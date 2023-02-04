@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BiDownvote, BiUpvote } from "react-icons/bi";
 import postapis from "../../API/postapis/postapis";
-import { useAuthModal } from "../../auth/modal/AuthModalProvider";
+import { useModals } from "../../auth/modal/ModalsProvider";
 import { useSession } from "../../auth/UserContextProvider";
 
 type Voting = {
@@ -13,14 +13,14 @@ type Voting = {
 const Voting = ({ ups, postId, liked }: Voting) => {
   let dir = 0; //vote
   const [upVote, setUpVote] = useState(ups);
-  const authModal = useAuthModal();
+  const modals = useModals()
   const [voted, setVoted] = useState(liked); //true false or null
   const { session } = useSession();
 
   const refreshVote = async () => {
     try {
       if (!session?.user) {
-        authModal.setShow("login");
+        modals.setShowAuth("login");
         return;
       }
       const data = await postapis.vote(postId, dir);

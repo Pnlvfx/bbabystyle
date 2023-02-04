@@ -1,44 +1,47 @@
 "use client";
 import { BsSearch } from "react-icons/bs";
-import Router from "next/router";
 import { MouseEvent, useState } from "react";
-import SearchDropdown from "./SearchDropdown";
+import { useModals } from "../../auth/modal/ModalsProvider";
+import { useRouter } from "next/navigation";
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState("");
-  const [show, setShow] = useState(false);
+  const modals = useModals()
+  const router = useRouter()
 
   const doSearch = (ev: MouseEvent<HTMLFormElement>) => {
     ev.preventDefault();
-    Router.push({
-      pathname: "/search",
-      query: { text: searchText },
-    });
-    setShow(false);
+    router.push(`/search?text=${searchText}`)
+    modals.setShowSearch(false);
   };
 
   return (
-    <>
+    <div id="searchDropdown" className="mx-4 h-auto w-auto border border-transparent rounded relative min-w-[72px]">
       <div
         onClick={(e) => {
           e.preventDefault();
-          setShow(true);
+          modals.setShowSearch(true);
         }}
-        className="mr-3 flex-grow rounded-md h-[36px] ml-1 bg-reddit_dark-brightest 2xl:ml-64 2xl:mr-64 border border-reddit_border hover:border-reddit_text"
+        className={`flex items-center bg-reddit_dark-brightest border border-reddit_border h-[40px] hover:border-reddit_text rounded-[20px] ${modals.showSearch && 'rounded-b-none'}`}
       >
-        <form onSubmit={doSearch} className="h-full flex items-center text-reddit_text-darker">
-          <BsSearch className="h-5 w-5 flex-none ml-3" />
+        <form action="/search/" autoComplete="off" method="get" role={'search'} onSubmit={doSearch} className="w-full flex">
+          <label className="flex" htmlFor="header-search-bar">
+            <div className="flex items-center pr-[9px] pl-[15px]">
+              <BsSearch className="h-5 w-5 align-middle text-[20px] leading-5 text-[#818384]" />
+            </div>
+          </label>
           <input
-            type="text"
-            className="w-full bg-reddit_dark-brightest p-1 pl-2 text-sm text-reddit_text placeholder:text-sm placeholder:text-reddit_text-darker focus:outline-none text-[16px]"
+            type="search"
+            id="header-search-bar"
+            name="b"
+            className="w-full appearance-none text-[14px] leading-[14px] bg-reddit_dark-brightest mr-4 text-reddit_text placeholder:text-reddit_text-darker outline-none"
             placeholder="Search Bbaby"
             value={searchText}
             onChange={(ev) => setSearchText(ev.target.value)}
           />
         </form>
-        <SearchDropdown show={show} setShow={setShow} />
       </div>
-    </>
+    </div>
   );
 };
 

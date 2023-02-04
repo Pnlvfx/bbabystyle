@@ -3,7 +3,7 @@ import { catchErrorWithMessage } from "../../API/config/apiErrors";
 import { useSession } from "../../auth/UserContextProvider";
 import { useMessage } from "../../utils/message/TimeMsgContext";
 import { ShareIcon } from "../../utils/svg/SVG";
-import ClickOutHandler from "react-clickout-ts";
+import { ClickOutHandler } from "react-clickout-ts";
 import { useState } from "react";
 
 type ShareButtonProps = {

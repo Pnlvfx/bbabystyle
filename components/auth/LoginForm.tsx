@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import oauthapis from "../API/oauthapis";
 import { Spinner } from "../utils/Spinner";
 import AuthInput from "./auth-input/AuthInput";
-import { useAuthModal } from "./modal/AuthModalProvider";
+import { useModals } from "./modal/ModalsProvider";
 import Google from "./providers/google/Google";
 import { useSession } from "./UserContextProvider";
 
@@ -17,7 +17,7 @@ const LoginForm = () => {
   const [passwordIsValid, setPasswordIsValid] = useState<boolean | null>(null);
   const [loading, setLoading] = useState(false);
   const { session } = useSession();
-  const authModal = useAuthModal();
+  const modals = useModals()
   const router = useRouter();
   const pathname = usePathname();
   const routerRef = useRef(router);
@@ -133,7 +133,7 @@ const LoginForm = () => {
             if (pathname?.match("register") || pathname?.match("login")) {
               router.push("/account/register");
             } else {
-              authModal.setShow("register");
+              modals.setShowAuth("register");
             }
           }}
         >

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { clientUrl } from "../../../../../config/config";
 import { useSession } from "../../../UserContextProvider";
 
 export interface UseLoadGsiScriptOptions {
@@ -25,6 +26,7 @@ const useLoadGsiScript = (options: UseLoadGsiScriptOptions = {}): boolean => {
 
     useEffect(() => {
         if (session?.user) return;
+        if (clientUrl.startsWith('http://192')) return;
         const scriptTag = document.createElement('script');
         scriptTag.src = 'https://accounts.google.com/gsi/client';
         scriptTag.async = true;

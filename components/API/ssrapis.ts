@@ -20,6 +20,20 @@ const ssrapis = {
       return;
     }
   },
+  search: async (text: string) => {
+    try {
+      const url = `${server}/search?phrase=${text}`
+      const res = await fetch(url, {
+        method: 'GET',
+        headers: getHeaders()
+      })
+      const data = await res.json()
+      if (!res.ok) return;
+      return data as PostProps[]
+    } catch (err) {
+      return;
+    }
+  },
 };
 
 export default ssrapis;

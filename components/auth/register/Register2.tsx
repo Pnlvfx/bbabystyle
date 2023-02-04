@@ -5,7 +5,7 @@ import { useMessage } from "../../utils/message/TimeMsgContext";
 import { Spinner } from "../../utils/Spinner";
 import { GoBackIcon } from "../../utils/svg/SVG";
 import AuthInput from "../auth-input/AuthInput";
-import { useAuthModal } from "../modal/AuthModalProvider";
+import { useModals } from "../modal/ModalsProvider";
 
 interface Register2Props {
   email: string;
@@ -19,7 +19,7 @@ const Register2 = ({ email, setFase2 }: Register2Props) => {
   const [passwordIsValid, setPasswordIsValid] = useState<boolean | null>(null);
   const [loading, setLoading] = useState(false);
   const message = useMessage();
-  const authModal = useAuthModal();
+  const modals = useModals()
   const validatePass = (input: HTMLInputElement["value"]) => {
     setPassword(input);
     setPasswordIsValid(true);
@@ -37,7 +37,7 @@ const Register2 = ({ email, setFase2 }: Register2Props) => {
       message.setMessage({ value: data?.msg, status: "success" });
       localStorage.setItem("isLogged", "true");
       //setEmailTo(email);
-      authModal.setShow("hidden");
+      modals.setShowAuth("hidden");
       if (top?.window.location.href) {
         top.window.location.href = "/";
       } else {

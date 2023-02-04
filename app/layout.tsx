@@ -1,10 +1,8 @@
 import { use } from "react";
 import userapis from "../components/API/userapis";
-import { AuthModalContextProvider } from "../components/auth/modal/AuthModalProvider";
+import { AuthModalContextProvider } from "../components/auth/modal/ModalsProvider";
 import { GoogleOAuthProvider } from "../components/auth/providers/google/GoogleOAuthProvider";
 import { UserContextProvider } from "../components/auth/UserContextProvider";
-import Header from "../components/header/Header";
-import HiddenLayout from "../components/HiddenLayout";
 import { TimeMsgContextProvider } from "../components/utils/message/TimeMsgContext";
 import "./globals.css";
 

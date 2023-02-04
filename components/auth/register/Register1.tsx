@@ -3,7 +3,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useState } from "react";
 import oauthapis from "../../API/oauthapis";
 import AuthInput from "../auth-input/AuthInput";
-import { useAuthModal } from "../modal/AuthModalProvider";
+import { useModals } from "../modal/ModalsProvider";
 import Google from "../providers/google/Google";
 
 type Register1 = {
@@ -16,7 +16,7 @@ const Register1 = ({ setFase2, email, setEmail }: Register1) => {
   const [emailIsValid, setEmailIsValid] = useState<boolean | null>(null);
   const [emailError, setEmailError] = useState("");
   const router = useRouter();
-  const authModal = useAuthModal();
+  const modals = useModals()
   const pathname = usePathname();
 
   const validateEmail = async (input: HTMLInputElement["value"]) => {
@@ -92,7 +92,7 @@ const Register1 = ({ setFase2, email, setEmail }: Register1) => {
                   if (pathname?.match("register") || pathname?.match("login")) {
                     router.push("/account/login");
                   } else {
-                    authModal.setShow("login");
+                    modals.setShowAuth("login");
                   }
                 }}
               >

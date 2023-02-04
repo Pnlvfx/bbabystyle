@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ClickOutHandler from "react-clickout-ts";
+import { ClickOutHandler } from "react-clickout-ts";
 import { useRouter } from "next/navigation";
 import { BsTrashFill } from "react-icons/bs";
 import postapis from "../../API/postapis/postapis";

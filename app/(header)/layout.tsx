@@ -18,8 +18,8 @@ const Layout = ({ children }: ChildrenProps) => {
             </div>
           </div>
         </div>
-        <HiddenLayout />
       </div>
+      <HiddenLayout />
     </>
   );
 };

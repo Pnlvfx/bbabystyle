@@ -1,11 +1,11 @@
 import { CloseIcon } from "../../utils/svg/SVG";
-import { useAuthModal } from "./AuthModalProvider";
+import { useModals } from "./ModalsProvider";
 
 const AuthModal = () => {
-  const authModal = useAuthModal();
+  const modals = useModals()
 
   const closeModal = async () => {
-    authModal.setShow("hidden");
+    modals.setShowAuth("hidden");
   };
   return (
     <div>
@@ -14,10 +14,10 @@ const AuthModal = () => {
           className="z-[111 fixed left-[50%] top-[50%] h-[640px] w-[400px] overflow-hidden rounded-[12px] shadow-[1px_7px_20px_2px_rgb(0_0_0/40%)]"
           style={{ transform: "translate(-50%, -50%)" }}
         >
-          {authModal.show === "login" ? (
-            <iframe key={authModal.show} src={`${process.env.NEXT_PUBLIC_CLIENT_URL}/account/login`} className="h-full w-full" />
-          ) : authModal.show === "register" ? (
-            <iframe key={authModal.show} src={`${process.env.NEXT_PUBLIC_CLIENT_URL}/account/register`} className="h-full w-full" />
+          {modals.showAuth === "login" ? (
+            <iframe key={modals.showAuth} src={`${process.env.NEXT_PUBLIC_CLIENT_URL}/account/login`} className="h-full w-full" />
+          ) : modals.showAuth === "register" ? (
+            <iframe key={modals.showAuth} src={`${process.env.NEXT_PUBLIC_CLIENT_URL}/account/register`} className="h-full w-full" />
           ) : (
             <div />
           )}

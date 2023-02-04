@@ -31,7 +31,6 @@ const useGoogleOneTapLogin = ({
   promptMomentNotificationRef.current = promptMomentNotification
 
   useEffect(() => {
-    console.log(scriptLoadedSuccessfully);
     if (!scriptLoadedSuccessfully) return
     window.google?.accounts.id.initialize({
       client_id: clientId,
