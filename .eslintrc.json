@@ -1,3 +1,17 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "plugins": ["unused-imports", "import"],
+  "rules": {
+    "unused-imports/no-unused-imports": [1],
+    "no-unused-vars": 1,
+    "import/no-unused-modules": [1, { "unusedExports": true }]
+  },
+  "overrides": [
+    {
+      "files": ["**/app/**"],
+      "rules": {
+        "import/no-unused-modules": 0
+      }
+    }
+  ]
 }

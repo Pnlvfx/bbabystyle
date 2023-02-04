@@ -1,0 +1,141 @@
+
+.field {
+    margin-top: 16px;
+    max-width: 280px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.field.modalUpdate {
+
+}
+
+.valid:before {
+    transform: translateZ(0);
+    opacity: 1;
+}
+
+.field.valid .textInput {
+    border-color: #24a0ed;
+}
+
+.field.invalid .textInput {
+    border-color: #ea0027;
+}
+
+.field:before {
+    position: absolute;
+    display: block;
+    content: "";
+    transition: all .2s ease-in-out;
+    transform: translate3d(5px,0,0);
+    opacity: 0;
+}
+
+.field.modalUpdate:before, field.modalUpdate:before {
+    z-index: 1;
+    right: 14px;
+    top: 18px;
+    height: 10px;
+    width: 12px;
+    background: url(https://www.redditstatic.com/accountmanager/d489caa9704588f7b7e1d7e1ea7b38b8.svg);
+}
+
+.field .textInput {
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    height: 46px;
+    padding-left: 16px;
+    padding-right: 36px;
+}
+
+.textInput {
+    border: 1px solid rgba(0,0,0,.1);
+    padding: 22px 12px 10px;
+    transition: all;
+    appearance: none;
+    width: 100%;
+    transform: translateZ(0);
+    background: transparent;
+}
+
+.textInput.modalUpdate {
+    background: transparent;
+    border-color: transparent;
+}
+
+.textInput:hover {
+    outline: 0;
+}
+
+.textInput.modalUpdate:active, .textInput:active {
+    border-color: #24a0ed;
+}
+
+.textInput.modalUpdate:focus, .textInput.modalUpdate:hover, .textInput:focus, .textInput:hover {
+    border-color: rgba(255, 255, 255, .2);
+}
+
+.textInputLabel {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    position: absolute;
+    display: inline-block;
+    vertical-align: middle;
+    top: 14px;
+    transform-origin: 0 50%;
+    transition: all .2s ease-in-out;
+    pointer-events: none;
+    line-height: 23px;
+    color: #a5a4a4;
+}
+
+.field .textInputLabel {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    height: 18px;
+    line-height: 18px;
+    text-transform: none;
+    width: 250px;
+    left: 16px;
+}
+
+.field.required .textInputLabel {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    height: 18px;
+    line-height: 18px;
+    text-transform: none;
+    width: 250px;
+}
+
+.textInputLabel:after {
+    content: "";
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 7px;
+    color: #24a0ed;
+}
+
+.field .textInput:hover+.textInputLabel {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    transform: translate3d(0,-10px,0);
+}
+
+.field .textInput[data-empty=false] +.textInputLabel {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    transform: translate3d(0,-10px,0);
+}

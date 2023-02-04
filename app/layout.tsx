@@ -1,18 +1,34 @@
-import './globals.css'
+import { use } from "react";
+import userapis from "../components/API/userapis";
+import { AuthModalContextProvider } from "../components/auth/modal/AuthModalProvider";
+import { GoogleOAuthProvider } from "../components/auth/providers/google/GoogleOAuthProvider";
+import { UserContextProvider } from "../components/auth/UserContextProvider";
+import Header from "../components/header/Header";
+import HiddenLayout from "../components/HiddenLayout";
+import { TimeMsgContextProvider } from "../components/utils/message/TimeMsgContext";
+import "./globals.css";
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+const RootLayout = ({ children }: ChildrenProps) => {
+  const session = use(userapis.getSession());
   return (
     <html lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
       <head />
-      <body>{children}</body>
+      <body cz-shortcut-listen="true" className="bg-bbaby-dark text-bbaby-text">
+        <div id="container">
+          <div tabIndex={-1} />
+          <div tabIndex={-1}>
+            <UserContextProvider session={session}>
+              <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
+                <AuthModalContextProvider>
+                  <TimeMsgContextProvider>{children}</TimeMsgContextProvider>
+                </AuthModalContextProvider>
+              </GoogleOAuthProvider>
+            </UserContextProvider>
+          </div>
+        </div>
+      </body>
     </html>
-  )
-}
+  );
+};
+
+export default RootLayout;
