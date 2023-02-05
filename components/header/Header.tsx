@@ -13,21 +13,14 @@ interface HeaderProps {
 
 const Header = ({ session }: HeaderProps) => {
   return (
-    <header
-      id="myHeader"
-      className="mt-0 h-12 items-center inline-flex flex-row z-[80] right-0 left-0 top-0 fixed"
-    >
+    <header id="myHeader" className="mt-0 h-12 items-center inline-flex flex-row z-[80] right-0 left-0 top-0 fixed">
       <div className="items-center inline-flex bg-reddit_dark-brighter box-border border-b border-reddit_border flex-grow flex-row px-5">
         <div className="inline-flex flex-grow items-center">
           <div className="inline-flex items-center flex-row flex-grow">
             <div className="h-12 items-center flex" />
-            <Link
-              href={"/"}
-              aria-label="Home"
-              className="inline-flex flex-row items-center"
-            >
+            <Link href={"/"} aria-label="Home" className="inline-flex flex-row items-center">
               <div className="pl-0 pr-2 py-2">
-                <Image src={LOGO} width={32} height={32} alt={"logo"} className='flex-none' />
+                <Image src={LOGO} width={32} height={32} alt={"logo"} className="flex-none" />
               </div>
               <TextLogo className="hidden lg:block h-[18px] mr-5 w-auto" />
             </Link>
@@ -42,9 +35,7 @@ const Header = ({ session }: HeaderProps) => {
           </div>
         </div>
         {session?.user ? (
-          <div>
-            
-          </div>
+          <div></div>
         ) : (
           <div className="items-center flex-row flex-grow-0 inline-flex">
             <div className="flex items-center flex-row">

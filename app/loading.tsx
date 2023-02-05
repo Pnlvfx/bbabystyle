@@ -1,11 +1,12 @@
-import { Spinner } from "../components/utils/Spinner";
+import { use } from "react";
+import userapis from "../components/API/userapis";
+import Header from "../components/header/Header";
 
 const Loading = () => {
+  const session = use(userapis.getSession());
   return (
-    <div className="mx-auto flex max-w-full justify-center md:py-5 md:px-6">
-      <div className="w-full lg:w-[640px]">
-        <Spinner />
-      </div>
+    <div>
+      <Header session={session} />
     </div>
   );
 };
