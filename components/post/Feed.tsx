@@ -2,6 +2,10 @@
 import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import postapis from "../API/postapis/postapis";
+import { useSession } from "../auth/UserContextProvider";
+import Donations from "../widget/Donations";
+import PolicyWidget from "../widget/PolicyWidget";
+import Widget from "../widget/Widget";
 import BestPost from "./BestPost";
 import Post from "./Post";
 import PostModal from "./PostModal";
@@ -13,7 +17,7 @@ type FeedProps = {
 };
 
 const Feed = ({ posts: ssrPost, community, author }: FeedProps) => {
-  //const { session } = useSession();
+  const { session } = useSession();
   const [posts, setPosts] = useState(ssrPost);
   const [hasMore, setHasMore] = useState(true);
   const [postForModal, setPostForModal] = useState<PostProps>();
@@ -63,6 +67,13 @@ const Feed = ({ posts: ssrPost, community, author }: FeedProps) => {
             </InfiniteScroll>
           </div>
         </div>
+        {!session?.device?.mobile && (
+          <div className="ml-6 hidden lg:block">
+            <Widget community={community ? true : false} />
+            <Donations />
+            <PolicyWidget />
+          </div>
+        )}
       </div>
     </>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, ReactNode, useContext, useMemo } from "react";
-import UseLoadGsiScript, { UseLoadGsiScriptOptions } from "./hooks/useLoadGsiScript";
+import useLoadGsiScript, { UseLoadGsiScriptOptions } from "./hooks/useLoadGsiScript";
 
 interface GoogleOAuthContextProps {
   clientId: string;
@@ -16,7 +16,7 @@ interface GoogleOAuthProviderProps extends UseLoadGsiScriptOptions {
 }
 
 export const GoogleOAuthProvider = ({ clientId, onScriptLoadSuccess, onScriptLoadError, children }: GoogleOAuthProviderProps) => {
-  const scriptLoadedSuccessfully = UseLoadGsiScript({
+  const scriptLoadedSuccessfully = useLoadGsiScript({
     onScriptLoadSuccess,
     onScriptLoadError,
   });

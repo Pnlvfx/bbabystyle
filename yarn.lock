@@ -188,10 +188,10 @@
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==
 
-"@types/node@18.11.18":
-  version "18.11.18"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.18.tgz#8dfb97f0da23c2293e554c5a50d61ef134d7697f"
-  integrity sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==
+"@types/node@18.11.19":
+  version "18.11.19"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.19.tgz#35e26df9ec441ab99d73e99e9aca82935eea216d"
+  integrity sha512-YUgMWAQBWLObABqrvx8qKO1enAvBUdjZOAWQ5grBAkp5LQv45jBvYKZ3oFS9iKRCQyFjqw6iuEa1vmFqtxYLZw==
 
 "@types/prop-types@*":
   version "15.7.5"
@@ -1999,10 +1999,10 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-clickout-ts@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/react-clickout-ts/-/react-clickout-ts-1.2.2.tgz#8073a9d6534e39b133a8b0158593c7143a0dfb85"
-  integrity sha512-+a2DavYKibet50tnS4H9I4L/SOToVQg1lWk7mhwaNNUwXudz3doaRrt21bMry+IuhkhTS3qqcce837UFyPCseA==
+react-clickout-ts@^2023.1.1:
+  version "2023.1.1"
+  resolved "https://registry.yarnpkg.com/react-clickout-ts/-/react-clickout-ts-2023.1.1.tgz#2456ae73b9a49ebb22164d9b094a1c83acffe229"
+  integrity sha512-DTChuRgkLVPAiisY0r0fn6A5ae9SpEvBbnt0GVlpVzS5QnT7KUBQjdQqGGBaszcscavHP/itHj0Fvr9c3PLxBA==
 
 react-dom@18.2.0:
   version "18.2.0"
@@ -2034,10 +2034,10 @@ react-timeago@^7.1.0:
   resolved "https://registry.yarnpkg.com/react-timeago/-/react-timeago-7.1.0.tgz#248bc6aa40a561249e756b2df402c94f1a296a85"
   integrity sha512-rouF7MiEm55fH791Y8cg+VobIJgx8gtNJ+gjr86R4ZqO1WKPkXiXjdT/lRzrvEkUzsxT1exHqV2V+Zdi114H3A==
 
-react@18.2.0:
-  version "18.2.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
-  integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
+react@18.3.0-next-3d615fc14-20220919:
+  version "18.3.0-next-3d615fc14-20220919"
+  resolved "https://registry.yarnpkg.com/react/-/react-18.3.0-next-3d615fc14-20220919.tgz#5b00b50d6008bfa2a1c49f794cd853b9664260e9"
+  integrity sha512-VmRTSixt6BRzSR4fpjgXCprX5rJlOb0dqWeTiKmbfmn1mgg4yaZcXISYaU8JDPP/lKKHImKX55lZl6AxFSosMg==
   dependencies:
     loose-envify "^1.1.0"
 

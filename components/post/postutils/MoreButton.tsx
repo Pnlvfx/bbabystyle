@@ -35,6 +35,7 @@ const MoreButton = ({ post, isListing }: MoreButtonProps) => {
   return (
     <div className={`flex items-center ${session?.device?.mobile && isListing && "articleLink"}`}>
       <ClickOutHandler onClickOut={() => setShow(false)}>
+        <div>
         <button
           aria-label="more options"
           aria-haspopup="true"
@@ -65,6 +66,7 @@ const MoreButton = ({ post, isListing }: MoreButtonProps) => {
                 </button>
               ))}
           </div>
+        </div>
         </div>
       </ClickOutHandler>
     </div>

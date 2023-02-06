@@ -1,0 +1,41 @@
+.button2K {
+    box-sizing: border-box;
+    cursor: pointer;
+    padding: 10px 16px 10px 48px;
+    position: relative;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    width: 100%;
+}
+
+.button2K:hover {
+    background-color: white;
+    color: black;
+}
+
+.rotateIcon {
+    transition: transform 0.3s ease-out
+}
+
+.policiesLink {
+    height: 40px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+}
+
+.link1Y {
+    box-sizing: border-box;
+    cursor: pointer;
+    padding: 10px 16px 10px 48px;
+    display: block;
+    position: relative;
+}
+
+.link1Y:hover {
+    background-color: white;
+    color: black;
+}

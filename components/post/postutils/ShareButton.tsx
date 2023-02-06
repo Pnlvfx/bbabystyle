@@ -33,6 +33,7 @@ const ShareButton = ({ linkToCopy, isListing }: ShareButtonProps) => {
   return (
     <div className={`mr-1 flex items-center ${session?.device?.mobile && isListing && "articleLink"}`}>
       <ClickOutHandler onClickOut={() => setShow(false)}>
+        <div>
         <button
           className="flex h-full items-center rounded-sm p-2 hover:bg-reddit_dark-brightest"
           type="button"
@@ -64,6 +65,7 @@ const ShareButton = ({ linkToCopy, isListing }: ShareButtonProps) => {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </ClickOutHandler>
     </div>

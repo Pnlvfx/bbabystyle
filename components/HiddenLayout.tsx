@@ -11,6 +11,8 @@ import UserMenu from "./header/usermenu/UserMenu";
 const HiddenLayout = () => {
   useGoogleOneTapLogin({
     onSuccess: (response) => oauthapis.googleLogin(response),
+    cancel_on_tap_outside: false,
+    
   });
   const { session } = useSession();
   const modals = useModals()

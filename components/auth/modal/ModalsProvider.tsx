@@ -8,7 +8,7 @@ import {
   useState,
 } from "react";
 
-interface ModalContextProps {
+export interface ModalContextProps {
   showAuth: "hidden" | "login" | "register" | "reset-your-password";
   setShowAuth: Dispatch<
     SetStateAction<"hidden" | "login" | "register" | "reset-your-password">

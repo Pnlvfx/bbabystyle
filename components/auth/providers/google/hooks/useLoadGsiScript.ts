@@ -15,8 +15,9 @@ export interface UseLoadGsiScriptOptions {
 
 const useLoadGsiScript = (options: UseLoadGsiScriptOptions = {}): boolean => {
     const { onScriptLoadSuccess, onScriptLoadError} = options;
-    const {session} = useSession();
+    const session = useRef(useSession())
     const [scriptLoadedSuccessfully, setScriptLoadSuccessfully] = useState(false);
+    const shouldRequest = useRef(true)
 
     const onScriptLoadSuccessRef = useRef(onScriptLoadSuccess);
     onScriptLoadSuccessRef.current = onScriptLoadSuccess;
@@ -25,7 +26,9 @@ const useLoadGsiScript = (options: UseLoadGsiScriptOptions = {}): boolean => {
     onScriptLoadErrorRef.current = onScriptLoadError;
 
     useEffect(() => {
-        if (session?.user) return;
+        if (session?.current.session?.user) return;
+        if (!shouldRequest.current) return;
+        shouldRequest.current = false;
         if (clientUrl.startsWith('http://192')) return;
         const scriptTag = document.createElement('script');
         scriptTag.src = 'https://accounts.google.com/gsi/client';
