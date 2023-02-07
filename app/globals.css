@@ -31,3 +31,47 @@ a {
   vertical-align: middle;
   width: 20px;
 }
+
+.loading {
+  position: relative;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(to left, transparent, rgb(26, 26, 27), transparent);
+  animation: loading-ans 1s linear infinite;
+}
+
+.top-community {
+  background-color: #0079d3;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  height: 80px;
+  position: relative;
+}
+
+.top-community::before {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0, transparent);
+  content: '';
+  height: 80px;
+  position: absolute;
+  width: 100%;
+}
+
+.inputClass {
+  font-size: 16px;
+  display: block;
+  border-radius: 6px;
+  background-color: transparent;
+}
+
+@media (min-width: 768px) {
+  .inputClass {
+    font-size: 12px;
+  }
+}

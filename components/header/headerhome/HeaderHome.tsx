@@ -7,11 +7,11 @@ import { useSession } from "../../auth/UserContextProvider";
 import { HomeIcon, PlusIcon } from "../../utils/svg/SVG";
 import { HiChevronDown } from "react-icons/hi";
 import Image from "next/image";
+import { AiOutlineOrderedList } from "react-icons/ai";
+import { BsSearch } from "react-icons/bs";
 
 const HeaderHome = () => {
-  const [path, setPath] = useState(
-    <h1 className="inline">Home</h1>
-  );
+  const [path, setPath] = useState(<h1 className="inline">Home</h1>);
   const [icon, setIcon] = useState(<HomeIcon className="h-5 w-5" />);
   const { session } = useSession();
   const pathname = usePathname();
@@ -26,56 +26,36 @@ const HeaderHome = () => {
   useEffect(() => {
     if (pathname === "/" || pathname === "/best") {
       setPath(<h1 className="ml-2 text-sm font-bold">Home</h1>);
-      setIcon(<HomeIcon className='leading-5 align-middle h-5 w-5 left-[10px] mt-[-10px] absolute top-[50%]' />);
+      setIcon(<HomeIcon className="leading-5 align-middle h-5 w-5 left-[10px] mt-[-10px] absolute top-[50%]" />);
     } else if (query.get("community")) {
-      setPath(
-        <span className="ml-2 text-sm font-bold">
-          b/{query.get("community")}
-        </span>
-      );
+      setPath(<span className="ml-2 text-sm font-bold">b/{query.get("community")}</span>);
       setIcon(
         <div className="h-5 w-5 rounded-full bg-gray-800">
-          {communityInfo.image && (
-            <Image
-              className="rounded-full"
-              src={communityInfo.image}
-              alt="Community Icon"
-              height={20}
-              width={20}
-            />
-          )}
-        </div>
+          {communityInfo.image && <Image className="rounded-full" src={communityInfo.image} alt="Community Icon" height={20} width={20} />}
+        </div>,
       );
-    } else if (router.query.username) {
-      setPath(
-        <h1 className="ml-2 text-sm font-bold">u/{router.query.username}</h1>
-      );
-    } else if (session?.user && router.pathname.match("/settings")) {
+    } else if (query.get("username")) {
+      setPath(<h1 className="ml-2 text-sm font-bold">u/{query.get("username")}</h1>);
+    } else if (session?.user && pathname?.match("/settings")) {
       setPath(<span className="ml-2 text-sm font-bold">User Settings</span>);
       setIcon(
         <div className="h-5 w-5 rounded-full bg-gray-800">
-          <Image
-            className="rounded-full"
-            src={session.user.avatar}
-            alt="User Icon"
-            height={20}
-            width={20}
-          />
-        </div>
+          <Image className="rounded-full" src={session.user.avatar} alt="User Icon" height={20} width={20} />
+        </div>,
       );
-    } else if (router.pathname.match("/governance")) {
+    } else if (pathname?.match("/governance")) {
       setPath(<h1 className="ml-2 text-sm font-bold">Gov</h1>);
       setIcon(<TbBabyCarriage className="h-5 w-5" />);
-    } else if (router.pathname.match("/submit")) {
+    } else if (pathname?.match("/submit")) {
       setPath(<span className="ml-2 text-sm font-bold">Create Post</span>);
       setIcon(<PlusIcon className="h-5 w-5" />);
-    } else if (router.pathname.match("/bbaby")) {
+    } else if (pathname?.match("/bbaby")) {
       setPath(<span className="ml-2 text-sm font-bold">Top Communities</span>);
       setIcon(<AiOutlineOrderedList className="h-5 w-5" />);
-    } else if (router.pathname.match("/search")) {
+    } else if (pathname?.match("/search")) {
       setPath(<h1 className="ml-2 text-sm font-bold">Search Results</h1>);
       setIcon(<BsSearch className="h-5 w-5" />);
-    } else if (router.pathname.match("/news")) {
+    } else if (pathname?.match("/news")) {
       setPath(<h1 className="ml-2 text-sm font-bold">News</h1>);
       setIcon(<TiNews className="h-5 w-5" />);
     }
@@ -113,9 +93,7 @@ const HeaderHome = () => {
               className="mx-4 mt-4 box-border h-[30px] w-[calc(100%_-_32px)] border border-reddit_border bg-reddit_dark-brightest px-[6px] text-[16px] outline-none placeholder:text-reddit_text-darker"
               placeholder="Filter"
             />
-            <div className="px-8 pt-4 pb-2 text-[10px] font-semibold uppercase leading-[16px] text-reddit_text-darker">
-              Moderating
-            </div>
+            <div className="px-8 pt-4 pb-2 text-[10px] font-semibold uppercase leading-[16px] text-reddit_text-darker">Moderating</div>
           </div>
         )}
       </div>

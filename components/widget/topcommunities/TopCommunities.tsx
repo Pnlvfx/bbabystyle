@@ -1,49 +1,52 @@
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import communityapis from '../../API/communityapis'
-import TopCommunitiesContent from './TopCommunitiesContent'
+"use client";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import communityapis from "../../API/communityapis";
+import TopCommunitiesContent from "./TopCommunitiesContent";
 
 const TopCommunities = () => {
-  const [allCommunity, setAllCommunity] = useState<CommunityProps[] | []>([])
+  const [allCommunity, setAllCommunity] = useState<CommunityProps[] | []>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const get = async () => {
       try {
         setTimeout(async () => {
           try {
-            const communities = await communityapis.getCommunities(5)
-            setAllCommunity(communities)
+            const communities = await communityapis.getCommunities(5);
+            setAllCommunity(communities);
+            setLoading(false);
           } catch (err) {}
-        }, 500)
+        }, 500);
       } catch (err) {}
-    }
-    get()
-  }, [])
+    };
+    get();
+  }, []);
 
   return (
     <>
       <div
-        className={`${loading && 'loading'} top-community`}
+        className={`${loading && "loading"} top-community`}
         style={{
           backgroundImage: `url(/topCommunitiesIcon.webp)`,
         }}
       >
         <h2 className="absolute bottom-2 left-4 text-[16px] font-bold leading-5 ">
-          <Link href={'/bbaby/leaderboard'}>Top Communities</Link>
+          <Link href={"/bbaby/leaderboard"}>Top Communities</Link>
         </h2>
       </div>
       <>
         {allCommunity?.length >= 1
           ? allCommunity.map((community, index) => {
-              const rank = index + 1
-              return <TopCommunitiesContent key={community._id} rank={rank} community={community} />
+              const rank = index + 1;
+              return <TopCommunitiesContent key={community._id} rank={rank} community={community} />;
             })
           : [1, 2, 3, 4, 5].map((_, idx) => (
-              <div key={idx} className={`h-[51px] ${loading && 'loading overflow-hidden'}`}>
+              <div key={idx} className={`h-[51px] ${loading && "loading overflow-hidden"}`}>
                 <hr className="border-reddit_border" />
               </div>
             ))}
-        <div className={`${loading && 'loading'} mx-2 mt-3 mb-3 h-[32px]`}>
+        <div className={`${loading && "loading"} mx-2 mt-3 mb-3 h-[32px]`}>
           {!loading && (
             <Link
               href={`/bbaby/leaderboard`}
@@ -57,7 +60,7 @@ const TopCommunities = () => {
         </div>
       </>
     </>
-  )
-}
+  );
+};
 
-export default TopCommunities
+export default TopCommunities;

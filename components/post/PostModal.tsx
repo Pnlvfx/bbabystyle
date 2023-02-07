@@ -1,8 +1,10 @@
 import { useRouter } from "next/navigation";
 import { MouseEvent } from "react";
 import { GrDocumentText } from "react-icons/gr";
+import Comment from "../comment/Comment";
+import { RootCommentContextProvider } from "../comment/CommentProvider";
 import { CloseIcon } from "../utils/svg/SVG";
-import Comment from "./singlepost/Comment";
+import Post from "./Post";
 
 type PostModalProps = {
   post: PostProps;
@@ -68,6 +70,7 @@ const PostModal = ({ post, onClickOut }: PostModalProps) => {
           }}
         >
           <div className="m-8 mr-3 min-h-[100vh] w-full flex-grow break-words rounded-md bg-reddit_dark-brighter pb-[1px] md:max-w-[740px]">
+            <Post post={post} isListing={false} />
             <Comment post={post} />
           </div>
         </div>

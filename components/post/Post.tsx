@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
@@ -11,7 +12,7 @@ interface ExtendPostProps {
 }
 
 export interface PostComponent extends ExtendPostProps {
-  setPostForModal: Dispatch<SetStateAction<PostProps | undefined>>;
+  setPostForModal?: Dispatch<SetStateAction<PostProps | undefined>>;
 }
 
 const Post = ({ post, isListing, setPostForModal }: PostComponent) => {
