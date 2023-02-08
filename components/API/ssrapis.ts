@@ -91,6 +91,19 @@ const ssrapis = {
       return;
     }
   },
+  getUserInfo: async () => {
+    try {
+      const res = await fetch(`${server}/user/about`, {
+        method: 'get',
+        headers: getHeaders()
+      })
+      const data = await res.json()
+      if (!res.ok) return;
+      return data as UserProps
+    } catch (err) {
+      return;
+    }
+  },
 };
 
 export default ssrapis;

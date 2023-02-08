@@ -1,29 +1,25 @@
-'use client'
+"use client";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import { useSession } from "../../auth/UserContextProvider";
 
 interface Props {
-  children : React.ReactNode
+  children: ReactNode;
 }
 
-const UserSecurity = ({children}:Props) => {
-  const {session} = useSession();
-  const router = useRef(useRouter())
+const UserSecurity = ({ children }: Props) => {
+  const { session } = useSession();
+  const router = useRef(useRouter());
 
   useEffect(() => {
-    if(!session?.user) {
-      router.current.push('/');
+    if (!session?.user) {
+      router.current.push("/");
     }
-  },[session])
+  }, [session]);
 
   if (!session?.user) return null;
 
-  return (
-        <>
-          {children}
-        </>
-  )
-}
+  return <>{children}</>;
+};
 
 export default UserSecurity;

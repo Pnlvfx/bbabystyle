@@ -1,4 +1,6 @@
+'use client';
 import Link from "next/link";
+import { useState } from "react";
 import style from './search-page.module.css';
 
 
@@ -8,10 +10,10 @@ interface SearchPageHeader {
     key: string
   }
   index: number
-  active: string
 }
 
-const SearchPageHeader = ({item, index, active}: SearchPageHeader) => {
+const SearchPageHeader = ({item, index}: SearchPageHeader) => {
+  const [active, setActive] = useState("posts");
   return (
     <Link 
       key={index} 
