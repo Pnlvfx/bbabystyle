@@ -2,14 +2,22 @@ import Link from "next/link"
 import { useState } from "react"
 import { CgFileDocument } from "react-icons/cg"
 import { RiArrowDownSLine } from "react-icons/ri"
+import { useModals } from "../../../../auth/modal/ModalsProvider"
 import { UserMenuButton } from "../notuser/ThemeButton"
 
 const UserPoliciesButton = ({ styles }: UserMenuButton) => {
   const [isOpen, setIsOpen] = useState(false)
+  const modals = useModals()
 
   const triggerDropdown = () => {
     setIsOpen(!isOpen);
   };
+
+  const closeDropdown = () => {
+    setIsOpen(false)
+    modals.setShowUserMenu(false)
+  }
+
 
   return (
     <>
@@ -35,10 +43,10 @@ const UserPoliciesButton = ({ styles }: UserMenuButton) => {
         </span>
       </button>
       <div className={`${isOpen ? "block" : "hidden"} border-b border-bbaby-border mb-3 pb-3`}>
-        <Link href={"/policies/user-agreement"} className={`${styles.userPoliciesLink} ${styles.active}`}>
+        <Link href={"/policies/user-agreement"} className={`${styles.userPoliciesLink} ${styles.active}`} onClick={closeDropdown}>
           User Agreement
         </Link>
-        <Link href={"/policies/privacy-policy"} className={`${styles.userPoliciesLink} ${styles.active}`}>
+        <Link href={"/policies/privacy-policy"} className={`${styles.userPoliciesLink} ${styles.active}`} onClick={closeDropdown}>
           Privacy Policy
         </Link>
       </div>

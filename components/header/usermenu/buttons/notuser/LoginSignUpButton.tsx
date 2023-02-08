@@ -10,6 +10,7 @@ const LoginSignUpButton = ({ styles }: UserMenuButton) => {
   const openAuthModal = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
     modals.setShowAuth('login')
+    modals.setShowUserMenu(false)
   }
 
   return (

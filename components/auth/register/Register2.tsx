@@ -43,7 +43,7 @@ const Register2 = ({ email, setFase2 }: Register2Props) => {
       if (top?.window.location.href) {
         top.window.location.href = "/";
       } else {
-        router.refresh()
+        window.location.href = '/'
       }
     } catch (err) {
       setLoading(false);

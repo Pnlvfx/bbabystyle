@@ -1,0 +1,108 @@
+.mainSearch {
+  max-width: 1024px;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 640px) {
+  .searchPage {
+    padding: 24px 24px 0;
+  }
+}
+
+.searchPage {
+  display: flex;
+  flex-direction: column;
+  max-width: calc(100% - 48px);
+  flex-grow: 1;
+}
+
+.searchPage2 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.searchPage3 {
+  display: flex;
+}
+
+.searchPageLinks {
+  position: relative;
+  margin-right: 4px;
+}
+
+.searchPageButtons {
+  background-color: #272729;
+  opacity: 1;
+  color: #d7dadc;
+  font-weight: 700;
+  padding: 12px 20px;
+}
+
+.searchPageButtons2 {
+  align-items: center;
+  border-radius: 9999px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: auto;
+  position: relative;
+  border: none;
+  font-size: 14px;
+  letter-spacing: unset;
+  line-height: 17px;
+  text-transform: unset;
+  min-height: 32px;
+  min-width: 32px;
+}
+
+.searchPageButtonsNotActive {
+  background-color: transparent;
+}
+
+.subNav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.subNavSort {
+  font-family: Noto Sans, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  min-height: 24px;
+  height: 24px;
+  padding-left: 12px;
+  padding-right: 8px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  align-items: center;
+  border-radius: 9999px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: auto;
+  position: relative;
+  border: none;
+  min-width: 32px;
+}
+
+.searchPageAll {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  padding-top: 8px;
+}
+
+.searchPagePosts {
+  flex: 1 1 640px;
+  max-width: 640px;
+  width: 100%;
+}

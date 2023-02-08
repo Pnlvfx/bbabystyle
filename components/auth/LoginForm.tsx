@@ -29,7 +29,7 @@ const LoginForm = () => {
       if (top?.window.location.href) {
         top.window.location.href = "/";
       } else {
-        router.refresh()
+        window.location.href = '/'
       }
       //authModal.setShow('hidden');
       setLoading(false);
