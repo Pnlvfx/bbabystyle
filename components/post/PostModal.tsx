@@ -1,9 +1,12 @@
 import { useRouter } from "next/navigation";
-import { MouseEvent } from "react";
+import { MouseEvent, useEffect, useRef, useState } from "react";
 import { GrDocumentText } from "react-icons/gr";
+import communityapis from "../API/communityapis";
+import { useSession } from "../auth/UserContextProvider";
 import Comment from "../comment/Comment";
-import { RootCommentContextProvider } from "../comment/CommentProvider";
 import { CloseIcon } from "../utils/svg/SVG";
+import Donations from "../widget/Donations";
+import Widget from "../widget/Widget";
 import Post from "./Post";
 
 type PostModalProps = {
@@ -13,15 +16,42 @@ type PostModalProps = {
 
 const PostModal = ({ post, onClickOut }: PostModalProps) => {
   const router = useRouter();
+  const { session } = useSession();
   const clickOut = (e: MouseEvent<HTMLDivElement | HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
     router.push("/");
     onClickOut();
   };
+  const postRef = useRef(post);
+  const [community, setCommunity] = useState<CommunityProps>()
+
+  useEffect(() => {
+    const get = async () => {
+      try {
+        const c = await communityapis.getCommunity(postRef.current.community)
+        setCommunity(c)
+      } catch (err) {
+        
+      }
+    }
+    get()
+  }, [])
+
+  if (!community) { //create a cool loader
+    return (
+      <div>
+        
+      </div>
+    )
+  }
+
   return (
     <div className="fixed top-12 bottom-0 left-0 right-0 z-20 h-full w-full bg-[rgb(25,25,25)]">
-      <div className="relative h-full w-full overflow-y-auto" onClick={clickOut}>
+      <div
+        className="relative h-full w-full overflow-y-auto"
+        onClick={clickOut}
+      >
         <div
           onClick={(e) => {
             e.preventDefault();
@@ -32,7 +62,9 @@ const PostModal = ({ post, onClickOut }: PostModalProps) => {
           className="sticky left-0 right-0 top-0 mx-auto box-border h-12 w-[calc(100%_-_160px)] max-w-[1280px] bg-reddit_dark"
         >
           <div className="m-auto flex h-full w-full max-w-[1128px] items-center md:px-8">
-            <div className={`flex w-full max-w-[calc(100%_-_324px)] flex-grow items-center `}>
+            <div
+              className={`flex w-full max-w-[calc(100%_-_324px)] flex-grow items-center `}
+            >
               <div className=""></div>
               <i className="icon mr-2">
                 <GrDocumentText className="icon h-5 w-5 text-reddit_text" />
@@ -73,6 +105,12 @@ const PostModal = ({ post, onClickOut }: PostModalProps) => {
             <Post post={post} isListing={false} />
             <Comment post={post} />
           </div>
+          {!session?.device?.mobile && (
+            <div className="m-8 ml-0 hidden lg:block">
+              <Widget community={community} />
+              <Donations />
+            </div>
+          )}
         </div>
       </div>
     </div>

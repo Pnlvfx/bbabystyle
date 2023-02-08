@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useSession } from "../auth/UserContextProvider";
 
 type PostFormProps = {
-  community?: string;
+  community?: CommunityProps
 };
 
 function PostForm({ community }: PostFormProps) {
@@ -29,7 +29,7 @@ function PostForm({ community }: PostFormProps) {
         </Link>
       </div>
       <form className="ml-4 mr-2 flex-grow rounded-md border border-reddit_border bg-reddit_dark-brightest hover:border-reddit_text">
-        <Link href={!community ? "/submit" : `/b/${community.toLowerCase()}/submit`}>
+        <Link href={!community ? "/submit" : `/b/${community.name.toLowerCase()}/submit`}>
           <input
             type="text"
             className="text-[16px] md:text-[14px] leading-5 bg-reddit_dark-brightest p-2 px-3 block w-full rounded-md placeholder:text-reddit_text-darker"

@@ -1,0 +1,8 @@
+.cookieContainer {
+    border: 1px solid #353535;
+    box-shadow: 0 0 5px 0 rgb(0, 0, 0 / 20%);
+    padding: 4px 16px 4px 8px;
+    position: relative;
+    border-radius: 3px;
+    background-color: #1a1a1b;
+}

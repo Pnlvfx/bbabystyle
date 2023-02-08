@@ -18,14 +18,14 @@ const UserDropdownButton = () => {
     <button
       className={`${!session?.user && 'justify-center lg:w-[70px]'} border border-transparent hover:border-bbaby-border ${
         modals.showUserMenu && "border-bbaby-border"
-      } rounded py-[2px] relative min-h-[32px] ml-2 items-center flex flex-row`}
+      } rounded py-[2px] relative min-h-[32px] md:ml-2 items-center flex flex-row`}
       id="USER_DROPDOWN_ID"
       onClick={triggerUserMenu}
     >
       <span className="flex items-center flex-row">
         {session?.user ? (
           <span className="md:w-[175px] items-center flex ml-2">
-            <div className="mr-[5px] relative h-full">
+            <div className="mr-[5px] relative h-full flex-none">
               <Image src={session.user.avatar} alt="User avatar" width={24} height={24} className='rounded float-left w-6 h-6 border border-bbaby-border object-cover object-center' />
             </div>
             <span className="hidden md:block">

@@ -1,3 +1,4 @@
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import communityapis from '../../API/communityapis'
 import { useModals } from '../../auth/modal/ModalsProvider'
@@ -10,11 +11,13 @@ interface SubscribeButton {
 const SubscribeButton = ({ community: req_community }: SubscribeButton) => {
   const [community, setCommunity] = useState(req_community)
   const modals = useModals()
+  const router = useRouter()
 
   const doSubscribe = async () => {
     try {
       await communityapis.subscribe(community.name, modals)
       setCommunity({ ...community, user_is_subscriber: !community.user_is_subscriber })
+      router.refresh()
     } catch (err) {}
   }
   return (

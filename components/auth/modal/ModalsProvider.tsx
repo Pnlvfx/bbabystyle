@@ -17,6 +17,8 @@ export interface ModalContextProps {
   setShowSearch: Dispatch<SetStateAction<boolean>>;
   showUserMenu: boolean;
   setShowUserMenu: Dispatch<SetStateAction<boolean>>;
+  showCommunity: boolean;
+  setShowCommunity: Dispatch<SetStateAction<boolean>>;
 }
 
 const ModalContext = createContext({});
@@ -25,9 +27,10 @@ export const AuthModalContextProvider = ({ children }: ChildrenProps) => {
   const [showAuth, setShowAuth] = useState("hidden");
   const [showSearch, setShowSearch] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [showCommunity, setShowCommunity] = useState(false);
   return (
     <ModalContext.Provider
-      value={{ showAuth, setShowAuth, showSearch, setShowSearch, showUserMenu, setShowUserMenu }}
+      value={{ showAuth, setShowAuth, showSearch, setShowSearch, showUserMenu, setShowUserMenu, showCommunity, setShowCommunity }}
     >
       {children}
     </ModalContext.Provider>

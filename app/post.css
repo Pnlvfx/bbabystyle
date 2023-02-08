@@ -1,0 +1,20 @@
+.article {
+    position: relative;
+}
+
+.article > a {
+    bottom: 0;
+    left: 0;
+    pointer-events: all;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.articleLink {
+    pointer-events: all;
+}
+
+.post-content {
+    grid-column: 1/4;
+}

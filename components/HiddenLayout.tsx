@@ -1,5 +1,6 @@
 "use client";
 
+import GoogleAnalytics from "./analytics/GoogleAnalytics";
 import oauthapis from "./API/oauthapis";
 import AuthModal from "./auth/modal/AuthModal";
 import { useModals } from "./auth/modal/ModalsProvider";
@@ -21,6 +22,7 @@ const HiddenLayout = () => {
   {!session?.user && modals.showAuth !== "hidden" && <AuthModal />}
   <SearchDropdown />
   {modals.showUserMenu && <UserMenu />}
+  {process.env.NODE_ENV === 'production' && <GoogleAnalytics />}
   </>
   )
 };

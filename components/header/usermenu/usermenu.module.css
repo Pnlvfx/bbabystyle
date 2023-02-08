@@ -11,7 +11,7 @@
 }
 
 .button2K:hover {
-    background-color: white;
+    background-color: #d7dadc;
     color: black;
 }
 
@@ -38,4 +38,21 @@
 .link1Y:hover {
     background-color: white;
     color: black;
+}
+
+.userPoliciesLink {
+    box-sizing: border-box;
+    height: 40px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    align-items: center;
+    display: flex;
+    padding-right: 16px;
+    padding-left: 52px;
+}
+
+.active:hover {
+    background: rgba(255, 255, 255, .04);
 }

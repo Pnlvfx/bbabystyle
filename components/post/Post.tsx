@@ -37,7 +37,7 @@ const Post = ({ post, isListing, setPostForModal }: PostComponent) => {
           <>
             {isListing ? (
               <article className={`${containerClass} article`} id={post._id}>
-                <Link href={post.permalink} />
+                <Link style={{pointerEvents: 'all'}} href={post.permalink} />
                 <PostContent post={post} isListing={isListing} setPostForModal={setPostForModal} />
               </article>
             ) : (

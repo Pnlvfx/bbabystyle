@@ -1,6 +1,5 @@
 import { use } from "react";
 import ssrapis from "../../../../../../components/API/ssrapis";
-import userapis from "../../../../../../components/API/userapis";
 import Comment from "../../../../../../components/comment/Comment";
 import Post from "../../../../../../components/post/Post";
 import Donations from "../../../../../../components/widget/Donations";
@@ -15,7 +14,7 @@ interface PostPageProps {
 }
 
 const PostPage = ({ params }: PostPageProps) => {
-  const session = use(userapis.getSession());
+  const session = use(ssrapis.getSession());
   const post = use(ssrapis.getPost(params.id));
 
   if (!post) {
@@ -25,7 +24,8 @@ const PostPage = ({ params }: PostPageProps) => {
   return (
     <>
       {session?.device?.mobile ? (
-        <div>
+        <div className="mb-2 bg-reddit_dark-brighter pt-2">
+          <Post post={post} isListing={false} />
           <Comment post={post} />
         </div>
       ) : (
@@ -35,12 +35,10 @@ const PostPage = ({ params }: PostPageProps) => {
               <Post post={post} isListing={false} />
               <Comment post={post} />
             </div>
-            {!session?.device?.mobile && (
-              <div className="hidden lg:block">
-                <Widget community={true} />
-                <Donations />
-              </div>
-            )}
+            <div className="hidden lg:block">
+              <Widget community={post.community_detail} />
+              <Donations />
+            </div>
           </div>
         </div>
       )}

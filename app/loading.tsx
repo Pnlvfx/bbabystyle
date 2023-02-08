@@ -1,9 +1,9 @@
 import { use } from "react";
-import userapis from "../components/API/userapis";
+import ssrapis from "../components/API/ssrapis";
 import Header from "../components/header/Header";
 
 const Loading = () => {
-  const session = use(userapis.getSession());
+  const session = use(ssrapis.getSession());
   return (
     <div>
       <Header session={session} />

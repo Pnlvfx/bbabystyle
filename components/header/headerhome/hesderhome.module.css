@@ -1,0 +1,23 @@
+.button {
+    bottom: 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    height: 100%;
+    left: 0;
+    line-height: 34px;
+    overflow: hidden;
+    padding-left: 40px;
+    padding-right: 56px;
+    position: absolute;
+    text-align: left;
+    text-overflow: ellipsis;
+    top: 0;
+    white-space: nowrap;
+    width: 100%;
+}
+
+@media (max-width: 1024px) {
+    .button {
+        padding: 0;
+    }
+}

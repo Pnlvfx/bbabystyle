@@ -1,7 +1,7 @@
 import { server } from "../../../config/config";
 import { catchError } from "../config/apiErrors";
 import { HEADERS } from "../config/clientConfig";
-import { GetPostsOptions } from "./apipost";
+import { GetPostsOptions, NewPostOptions } from "./types/apipost";
 
 const postapis = {
   getPosts: async (skip: number, options?: GetPostsOptions) => {
@@ -55,6 +55,34 @@ const postapis = {
       const data = await res.json()
       if (!res.ok) throw new Error(data?.msg)
       return data as true
+    } catch (err) {
+      throw catchError(err)
+    }
+  },
+  newPost: async (title: string, community: string, options?: NewPostOptions) => {
+    try {
+      const url = `${server}/posts`
+      const body = JSON.stringify({
+        title,
+        community,
+        body: options?.body,
+        selectedFile: options?.selectedFile,
+        isImage: options?.isImage,
+        isVideo: options?.isVideo,
+        height: options?.height,
+        width: options?.width,
+        sharePostToTG: options?.sharePostToTG,
+        sharePostToTwitter: options?.sharePostToTwitter,
+      })
+      const res = await fetch(url, {
+        method: 'post',
+        body,
+        headers: HEADERS,
+        credentials: 'include',
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data?.msg)
+      return data as PostProps
     } catch (err) {
       throw catchError(err)
     }

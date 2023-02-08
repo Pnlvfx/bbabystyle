@@ -47,6 +47,15 @@ a {
   animation: loading-ans 1s linear infinite;
 }
 
+@keyframes loading-ans {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 .top-community {
   background-color: #0079d3;
   background-position: 50%;

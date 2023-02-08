@@ -1,0 +1,35 @@
+@media (max-width : 592px) {
+    .dropdownContainer {
+        flex-wrap: wrap;
+    }
+}
+
+.dropdownContainer {
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+@media (max-width: 592px) {
+    .dropdownContainer2 {
+        min-width: 0;
+        width: 100%;
+        margin-right: 0;
+    }
+}
+
+.dropdownContainer2 {
+    position: relative;
+    box-sizing: border-box;
+    height: 40px;
+    border-radius: 4px;
+    transition: box-shadow .2s ease;
+    box-shadow: 0 0 0 0 #1a1a1b;
+    border: 1px solid #343536;
+    background-color: #1a1a1b;
+}
+
+.opendropdownContainer2 {
+    box-shadow: 0 0 2px 1px #343536;
+}

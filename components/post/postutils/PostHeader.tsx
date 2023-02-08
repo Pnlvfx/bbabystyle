@@ -25,6 +25,7 @@ const PostHeader = ({ post, isListing }: PostHeaderProps) => {
     e.stopPropagation();
     router.push(`/user/${post.author.toLowerCase()}`);
   };
+  
   return (
     <div className={`relative mx-2 mb-2 flex items-start text-[12px] leading-4`}>
       <div className="flex-none align-baseline">

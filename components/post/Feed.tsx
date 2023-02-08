@@ -8,11 +8,12 @@ import PolicyWidget from "../widget/PolicyWidget";
 import Widget from "../widget/Widget";
 import BestPost from "./BestPost";
 import Post from "./Post";
+import PostForm from "./PostForm";
 import PostModal from "./PostModal";
 
 type FeedProps = {
   posts: PostProps[];
-  community?: string;
+  community?: CommunityProps
   author?: string;
 };
 
@@ -25,7 +26,7 @@ const Feed = ({ posts: ssrPost, community, author }: FeedProps) => {
   const getMorePosts = async () => {
     try {
       const newPosts = await postapis.getPosts(posts.length, {
-        community,
+        community: community?.name,
         author,
         limit: 10,
       });
@@ -47,11 +48,11 @@ const Feed = ({ posts: ssrPost, community, author }: FeedProps) => {
       )}
       <div className="mx-auto flex max-w-full justify-center md:py-5 md:px-6">
         <div className="w-full lg:w-[640px]">
-          {/* {session?.user && !author && (
+          {session?.user && !author && (
           <div className="mb-[18px]">
             <PostForm community={community} />
           </div>
-        )} */}
+        )}
           <div className="mb-4">
             <BestPost />
           </div>
@@ -69,7 +70,7 @@ const Feed = ({ posts: ssrPost, community, author }: FeedProps) => {
         </div>
         {!session?.device?.mobile && (
           <div className="ml-6 hidden lg:block">
-            <Widget community={community ? true : false} />
+            <Widget community={community} />
             <Donations />
             <PolicyWidget />
           </div>

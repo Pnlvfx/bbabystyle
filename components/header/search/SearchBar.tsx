@@ -16,7 +16,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div id="searchDropdown" className="mx-4 h-auto w-auto border border-transparent rounded relative min-w-[72px]">
+    <div id="searchDropdown" className="md:mx-4 ml-2 h-auto w-auto border border-transparent rounded relative min-w-[72px]">
       <div
         onClick={(e) => {
           e.preventDefault();
@@ -36,7 +36,7 @@ const SearchBar = () => {
             type="search"
             id="header-search-bar"
             name="b"
-            className="w-full appearance-none text-[14px] leading-[14px] bg-reddit_dark-brightest mr-4 text-reddit_text placeholder:text-reddit_text-darker outline-none"
+            className="w-full appearance-none text-[16px] md:text-[14px] leading-[14px] bg-reddit_dark-brightest mr-4 text-reddit_text placeholder:text-reddit_text-darker outline-none"
             placeholder="Search Bbaby"
             value={searchText}
             onChange={(ev) => setSearchText(ev.target.value)}

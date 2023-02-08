@@ -27,7 +27,7 @@ const TermsPoliciesButton = ({ styles }: UserMenuButton) => {
             Terms & Policies
           </span>
           <RiArrowDownSLine
-            className={`w-5 h-5 align-middle leading-5 text-[20px] ${
+            className={`icon ${
               isOpen ? "rotate-180" : "rotate-0"
             } ${styles.rotateIcon}`}
           />

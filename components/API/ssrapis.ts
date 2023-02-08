@@ -2,6 +2,20 @@ import { server } from "../../config/config";
 import { getHeaders } from "./config/serverConfig";
 
 const ssrapis = {
+  getSession: async () => {
+    try {
+      const url = `${server}/user`
+      const res = await fetch(url, {
+        method: "GET",
+        headers: getHeaders()
+      });
+      const session = await res.json();
+      if (!res.ok) return null;
+      return session as SessionProps;
+    } catch (err) {
+      return null;
+    }
+  },
   getPosts: async (limit: number, skip: number, input?: "author" | "community", value?: string) => {
     try {
       let url = `${server}/posts?limit=${limit}&skip=${skip}`
@@ -59,6 +73,20 @@ const ssrapis = {
       const data = await res.json();
       if (!res.ok) return;
       return data as CommunityProps[];
+    } catch (err) {
+      return;
+    }
+  },
+  getCommunity: async (community: string) => {
+    try {
+      const url = `${server}/communities/${community}`
+      const res = await fetch(url, {
+        method: 'get',
+        headers: getHeaders(),
+      })
+      const data = await res.json()
+      if (!res.ok) return;
+      return data as CommunityProps
     } catch (err) {
       return;
     }

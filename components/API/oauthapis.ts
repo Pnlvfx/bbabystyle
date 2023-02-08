@@ -111,6 +111,22 @@ const oauthapis = {
       }
     }
   },
+  logout: async () => {
+    try {
+      const url = `${server}/logout`
+      const body = JSON.stringify({})
+      const res = await fetch(url, {
+        method: 'POST',
+        body,
+        headers: HEADERS,
+        credentials: 'include',
+      })
+      if (!res.ok) throw new Error('Something went wrong, please try again!')
+      return true
+    } catch (err) {
+      throw catchError(err)
+    }
+  },
 }
 
 export default oauthapis

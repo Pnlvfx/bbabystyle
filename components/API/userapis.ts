@@ -1,20 +1,50 @@
-
 import { server } from "../../config/config";
-import { getHeaders } from "./config/serverConfig";
+import { catchError } from "./config/apiErrors";
+import { HEADERS } from "./config/clientConfig";
 
 const userapis = {
-  getSession: async () => {
+  saveEUcookie: async (status: boolean) => {
     try {
-      const url = `${server}/user`
+      const url = `${server}/eu_cookie`
+      const body = JSON.stringify({ status })
       const res = await fetch(url, {
-        method: "GET",
-        headers: getHeaders()
-      });
-      const session = await res.json();
-      if (!res.ok) return null;
-      return session as SessionProps;
+        method: 'POST',
+        headers: HEADERS,
+        credentials: 'include',
+        body,
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data?.msg)
+      return data as true
     } catch (err) {
-      return null;
+      throw catchError(err)
+    }
+  },
+  getEUcookie: async () => {
+    try {
+      const url = `${server}/eu_cookie`
+      const res = await fetch(url, {
+        method: 'GET',
+        credentials: 'include',
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data?.msg)
+      return data as true
+    } catch (err) {
+      throw catchError(err)
+    }
+  },
+  getUserInfo: async () => {
+    try {
+      const res = await fetch(`${server}/user/about`, {
+        method: 'get',
+        credentials: 'include',
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data?.msg)
+      return data as UserProps
+    } catch (err) {
+      throw catchError(err)
     }
   },
 };

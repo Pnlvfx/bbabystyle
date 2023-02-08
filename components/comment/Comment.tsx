@@ -1,17 +1,33 @@
 "use client";
 import CommentForm from "./CommentForm";
-import { RootCommentContextProvider, useCommentProvider } from "./CommentProvider";
 import { GoCommentDiscussion } from "react-icons/go";
 import Comments from "./Comments";
+import { useEffect, useRef, useState } from "react";
+import commentapis from "../API/commentapis";
+import { catchError } from "../API/config/apiErrors";
 
 const Comment = ({ post }: { post: PostProps }) => {
-  const { comments } = useCommentProvider();
-  console.log(comments);
+  const [comments, setComments] = useState<CommentProps[]>([])
+  const postRef = useRef(post)
+
+  const getComments = async () => {
+    try {
+      const reqcomments = await commentapis.getCommentsFromPost(postRef.current._id);
+      setComments(reqcomments)
+    } catch (err) {
+      catchError(err)
+    }
+  }
+
+  useEffect(() => {
+    getComments()
+  }, [])
+
   return (
-    <RootCommentContextProvider post={post}>
+    <>
       {!!post && !!post._id && (
         <div className="relative my-6 lg:mx-10">
-          <CommentForm rootId={post._id} parentId={post._id} showAuthor={true} />
+          <CommentForm rootId={post._id} parentId={post._id} showAuthor={true} getComments={getComments} />
           <div className="my-4">
             <hr className="border-reddit_border" />
             {comments.length < 1 && (
@@ -24,10 +40,10 @@ const Comment = ({ post }: { post: PostProps }) => {
               </div>
             )}
           </div>
-          <Comments parentId={post._id} rootId={post._id} />
+          <Comments comments={comments} parentId={post._id} rootId={post._id} getComments={getComments} />
         </div>
       )}
-    </RootCommentContextProvider>
+    </>
   );
 };
 

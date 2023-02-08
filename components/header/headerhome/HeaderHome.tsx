@@ -1,22 +1,17 @@
 "use client";
 
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { MouseEvent, useEffect, useState } from "react";
 import { ClickOutHandler } from "react-clickout-ts";
-import { useSession } from "../../auth/UserContextProvider";
-import { HomeIcon, PlusIcon } from "../../utils/svg/SVG";
+import { HomeIcon } from "../../utils/svg/SVG";
 import { HiChevronDown } from "react-icons/hi";
-import Image from "next/image";
-import { AiOutlineOrderedList } from "react-icons/ai";
-import { BsSearch } from "react-icons/bs";
+import styles from './hesderhome.module.css';
 
 const HeaderHome = () => {
   const [path, setPath] = useState(<h1 className="inline">Home</h1>);
   const [icon, setIcon] = useState(<HomeIcon className="h-5 w-5" />);
-  const { session } = useSession();
   const pathname = usePathname();
   const [show, setShow] = useState(false);
-  const query = useSearchParams();
 
   const openDropdown = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -27,37 +22,6 @@ const HeaderHome = () => {
     if (pathname === "/" || pathname === "/best") {
       setPath(<h1 className="ml-2 text-sm font-bold">Home</h1>);
       setIcon(<HomeIcon className="leading-5 align-middle h-5 w-5 left-[10px] mt-[-10px] absolute top-[50%]" />);
-    } else if (query.get("community")) {
-      setPath(<span className="ml-2 text-sm font-bold">b/{query.get("community")}</span>);
-      setIcon(
-        <div className="h-5 w-5 rounded-full bg-gray-800">
-          {communityInfo.image && <Image className="rounded-full" src={communityInfo.image} alt="Community Icon" height={20} width={20} />}
-        </div>,
-      );
-    } else if (query.get("username")) {
-      setPath(<h1 className="ml-2 text-sm font-bold">u/{query.get("username")}</h1>);
-    } else if (session?.user && pathname?.match("/settings")) {
-      setPath(<span className="ml-2 text-sm font-bold">User Settings</span>);
-      setIcon(
-        <div className="h-5 w-5 rounded-full bg-gray-800">
-          <Image className="rounded-full" src={session.user.avatar} alt="User Icon" height={20} width={20} />
-        </div>,
-      );
-    } else if (pathname?.match("/governance")) {
-      setPath(<h1 className="ml-2 text-sm font-bold">Gov</h1>);
-      setIcon(<TbBabyCarriage className="h-5 w-5" />);
-    } else if (pathname?.match("/submit")) {
-      setPath(<span className="ml-2 text-sm font-bold">Create Post</span>);
-      setIcon(<PlusIcon className="h-5 w-5" />);
-    } else if (pathname?.match("/bbaby")) {
-      setPath(<span className="ml-2 text-sm font-bold">Top Communities</span>);
-      setIcon(<AiOutlineOrderedList className="h-5 w-5" />);
-    } else if (pathname?.match("/search")) {
-      setPath(<h1 className="ml-2 text-sm font-bold">Search Results</h1>);
-      setIcon(<BsSearch className="h-5 w-5" />);
-    } else if (pathname?.match("/news")) {
-      setPath(<h1 className="ml-2 text-sm font-bold">News</h1>);
-      setIcon(<TiNews className="h-5 w-5" />);
     }
   }, [pathname]);
 
@@ -70,18 +34,18 @@ const HeaderHome = () => {
       <div
         aria-label="search your community"
         id="home_button"
-        className={`lg:w-[270px] border rounded relative h-9 min-w-[72px] hover:border-reddit_border ${
-          show ? "border-reddit_border" : "border-transparent"
+        className={`hidden md:block lg:w-[270px] border relative h-9 min-w-[72px] hover:border-reddit_border ${
+          show ? "border-reddit_border rounded-t-[4px]" : "border-transparent rounded"
         }`}
       >
         <button
-          className="bottom-0 rounded h-full left-0 leading-[34px] overflow-hidden pl-10 pr-14 absolute text-left text-ellipsis top-0 whitespace-nowrap w-full"
+          className={styles.button}
           tabIndex={0}
           onClick={openDropdown}
         >
-          <span className="lg:inline text-[14px] leading-[18px] font-medium">{path}</span>
+          <span className="hidden lg:inline text-[14px] leading-[18px] font-medium">{path}</span>
           {icon}
-          <HiChevronDown className="h-5 w-5 align-middle leading-5 mt-[-10px] pointer-events-none absolute right-2 top-[50%]" />
+          <HiChevronDown className="icon mt-[-10px] pointer-events-none absolute right-2 top-[50%]" />
         </button>
         {show && (
           <div
