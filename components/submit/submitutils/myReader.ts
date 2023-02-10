@@ -24,9 +24,9 @@ export const previewImage = (
         }
         reader.onloadend = () => {
           if (!reader.result) return;
-          setSelectedFile(reader.result)
+          setSelectedFile(reader.result.toString())
         }
-        reader.onerror = (ev) => {
+        reader.onerror = () => {
           message.setMessage({value: 'Something went wrong, please try to use a different image.', status: 'error'})
         }
         } 
@@ -36,18 +36,18 @@ export const previewImage = (
 }
 
 
-export const importFileandPreview = (file: Blob, revoke?: boolean) => {
-  return new Promise((resolve, reject) => {
-    window.URL = window.URL || window.webkitURL;
-    let preview = window.URL.createObjectURL(file);
-    if (revoke) {
-      window.URL.revokeObjectURL(preview);
-    }
-    setTimeout(() => {
-      resolve(preview)
-    }, 100)
-  });
-}
+// export const importFileandPreview = (file: Blob, revoke?: boolean) => {
+//   return new Promise((resolve, reject) => {
+//     window.URL = window.URL || window.webkitURL;
+//     let preview = window.URL.createObjectURL(file);
+//     if (revoke) {
+//       window.URL.revokeObjectURL(preview);
+//     }
+//     setTimeout(() => {
+//       resolve(preview)
+//     }, 100)
+//   });
+// }
 
 // export const generateVideoThumbnail = async (videoFile: Blob, numberOfThumbnails: number) => {
 //   let thumbnail = []

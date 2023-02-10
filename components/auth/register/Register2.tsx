@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useState } from "react";
 import oauthapis from "../../API/oauthapis";
 import { useMessage } from "../../utils/message/TimeMsgContext";
@@ -25,7 +24,6 @@ const Register2 = ({ email, setFase2 }: Register2Props) => {
     setPassword(input);
     setPasswordIsValid(true);
   };
-  const router = useRouter()
 
   const validateUsername = (input: HTMLInputElement["value"]) => {
     setUsername(input);

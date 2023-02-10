@@ -1,4 +1,4 @@
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { AiOutlineEye } from "react-icons/ai";
 import { BiLogIn, BiUserCircle } from "react-icons/bi";
 import { GiBabyFace } from "react-icons/gi";
@@ -13,12 +13,13 @@ import Section1 from "./Section1";
 const UserMenuIn = ({ styles }: UserMenuButton) => {
   const message = useMessage();
   const modals = useModals()
-  const router = useRouter()
+  const pathname = usePathname();
 
   const doLogout = async () => {
     try {
+      if (!pathname) return;
       await oauthapis.logout();
-      router.refresh()
+      window.location.href = pathname
     } catch (err) {
       catchErrorWithMessage(err, message);
     }

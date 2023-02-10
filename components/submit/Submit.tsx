@@ -36,6 +36,7 @@ const Submit = () => {
   const createPost = async () => {
     try {
       setLoading(true)
+      if (!selectedCommunity) return;
       const post = await postapis.newPost(title, selectedCommunity.name, {
         body,
         height,

@@ -1,6 +1,6 @@
 "use client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { catchErrorWithMessage } from "../../API/config/apiErrors";
 import twitterapis from "../../API/twitterapis";
 import { useMessage } from "../../utils/message/TimeMsgContext";
@@ -16,35 +16,45 @@ const TwitterButton = ({ userInfo }: SettingsButton) => {
         (provider) => provider.provider === "twitter"
       )
     : undefined;
-  const router = useRouter();
-  const message = useMessage();
+  const router = useRef(useRouter());
+  const message = useRef(useMessage());
   const query = useSearchParams();
-  const pathname = usePathname();
+  const pathname = useRef(usePathname());
 
   const getToken = async () => {
     try {
       const oauth_token = await twitterapis.getToken();
-      router.push(
-        `https://api.twitter.com/oauth/authenticate?oauth_token=${oauth_token}`
-      );
+      window.location.href = `https://api.twitter.com/oauth/authenticate?oauth_token=${oauth_token}`;
     } catch (err) {
-      catchErrorWithMessage(err, message);
+      catchErrorWithMessage(err, message.current);
     }
   };
+
+  const shouldRequest = useRef(true);
 
   useEffect(() => {
     const handle = async () => {
       const oauth_token = query.get("oauth_token");
       const oauth_verifier = query.get("oauth_verifier");
-      if (!oauth_token || !oauth_verifier || !pathname) return;
-      console.log("fired");
+      if (!oauth_token || !oauth_verifier || !pathname.current) return;
+      if (!shouldRequest.current) return;
+      shouldRequest.current = false;
       await twitterapis.getAccessToken(oauth_token, oauth_verifier);
       await twitterapis.getUserInfo();
-      router.replace(pathname);
-      message.setMessage({ value: "Account connected!", status: "success" });
+      router.current.replace(pathname.current);
+      message.current.setMessage({ value: "Account connected!", status: "success" });
     };
     handle();
   }, [query]);
+
+  const logout = async () => {
+    try {
+      await twitterapis.logout();
+      router.current.refresh();
+    } catch (err) {
+      catchErrorWithMessage(err, message.current);
+    }
+  }
 
   return (
     <div className="settings-button-container">
@@ -62,15 +72,26 @@ const TwitterButton = ({ userInfo }: SettingsButton) => {
       </div>
       <div className="settings-button-right">
         <div className="flex items-center flex-grow justify-end">
-          <button
-            className="relative bg-[#1da1f2] text-bbaby-dark items-center flex justify-center max-w-[100%] min-w-[195px] w-auto whitespace-pre-wrap text-[14px] font-bold leading-[17px] min-h-[32px] py-1 px-4 rounded-full text-center"
-            role={"button"}
-            tabIndex={0}
-            onClick={getToken}
-          >
-            <TwitterLogo className="relative w-5 h-5 inline-block flex-none" />
-            <span className="ml-2">Connect to Twitter</span>
-          </button>
+          {twitterAccount ? (
+            <div className="text-[12px] leading-4 text-end">
+              <div>
+                <span className="font-medium mr-[5px] leading-4 text-bbaby-text_darker">@{twitterAccount.username}</span>
+              </div>
+              <button role={'button'} tabIndex={0} onClick={logout} className='text-[#1da1f2] relative min-h-[32px] min-w-[32px] items-center rounded-full flex justify-center text-center w-auto'>
+                (disconnect)
+              </button>
+            </div>
+          ) : (
+            <button
+              className="relative bg-[#1da1f2] text-bbaby-dark items-center flex justify-center max-w-[100%] min-w-[195px] w-auto whitespace-pre-wrap text-[14px] font-bold leading-[17px] min-h-[32px] py-1 px-4 rounded-full text-center"
+              role={"button"}
+              tabIndex={0}
+              onClick={getToken}
+            >
+              <TwitterLogo className="relative w-5 h-5 inline-block flex-none" />
+              <span className="ml-2">Connect to Twitter</span>
+            </button>
+          )}
         </div>
       </div>
     </div>

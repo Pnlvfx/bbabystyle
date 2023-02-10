@@ -1,5 +1,6 @@
 import Link from "next/link"
 import LoginForm from "../../../components/auth/LoginForm"
+import { clientUrl } from "../../../config/config"
 
 const LoginPage = () => {
   return (
@@ -32,3 +33,35 @@ const LoginPage = () => {
 }
 
 export default LoginPage
+
+export const metadata = {
+  title: `bbabystyle.com: Log in`,
+  description: `Don't worry, we won't tell anyone your username. Log in to your Bbaby account.`,
+  alternates: {
+    canonical: `${clientUrl}/login`,
+    languages: {
+      'en-US':  `${clientUrl}/login`,
+    }
+  },
+  openGraph: {
+    title: `bbabystyle.com: Log in`,
+    description: `Don't worry, we won't tell anyone your username. Log in to your Bbaby account.`,
+    url: `${clientUrl}/login`,
+    siteName: 'bbabystyle',
+    images: [
+      {
+        url: `${clientUrl}/imagePreview.png`,
+        width: 256,
+        height: 256,
+      }
+    ],
+    type: 'website',
+  },
+  twitter: {
+    creator: '@Bbabystyle',
+    card: 'summary',
+    title: `bbabystyle.com: Log in`,
+    description: `Don't worry, we won't tell anyone your username. Log in to your Bbaby account.`,
+    images: `${clientUrl}/imagePreview.png`,
+  },
+}

@@ -15,7 +15,7 @@ interface SubmitContextType {
   width: number
   setWidth: Dispatch<SetStateAction<number>>
   selectedFile: string | null
-  setSelectedFile: SetStateAction<string | null>
+  setSelectedFile: Dispatch<SetStateAction<string | null>>
   thumbnail: string | null
   setThumbnail: SetStateAction<string | null>
   selectedCommunity?: CommunityProps

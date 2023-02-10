@@ -13,7 +13,7 @@ import PostModal from "./PostModal";
 
 type FeedProps = {
   posts: PostProps[];
-  community?: CommunityProps
+  community?: CommunityProps;
   author?: string;
 };
 
@@ -49,18 +49,31 @@ const Feed = ({ posts: ssrPost, community, author }: FeedProps) => {
       <div className="mx-auto flex max-w-full justify-center md:py-5 md:px-6">
         <div className="w-full lg:w-[640px]">
           {session?.user && !author && (
-          <div className="mb-[18px]">
-            <PostForm community={community} />
-          </div>
-        )}
+            <div className="mb-[18px]">
+              <PostForm community={community} />
+            </div>
+          )}
           <div className="mb-4">
             <BestPost />
           </div>
           <div>
-            <InfiniteScroll dataLength={posts?.length || 1} next={getMorePosts} hasMore={hasMore} loader={<div />} endMessage={<></>}>
+            <InfiniteScroll
+              dataLength={posts?.length || 1}
+              next={getMorePosts}
+              hasMore={hasMore}
+              loader={<div />}
+              endMessage={<></>}
+            >
               {posts?.length >= 1 ? (
                 posts.map((post) => {
-                  return <Post key={post._id} post={post} isListing={true} setPostForModal={setPostForModal} />;
+                  return (
+                    <Post
+                      key={post._id}
+                      post={post}
+                      isListing={true}
+                      setPostForModal={setPostForModal}
+                    />
+                  );
                 })
               ) : (
                 <div></div>

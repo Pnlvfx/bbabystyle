@@ -6,6 +6,7 @@ import Header from "../../components/header/Header";
 import HiddenLayout from "../../components/HiddenLayout";
 import CookieConsent from "../../components/utils/validation/cookie-consent/CookieConsent";
 import CookieConsentMobile from "../../components/utils/validation/cookie-consent/CookieConsentMobile";
+import "./post.css";
 
 const Layout = ({ children }: ChildrenProps) => {
   const session = use(ssrapis.getSession());

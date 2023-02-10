@@ -1,3 +1,4 @@
+import { clientUrl } from "../../../config/config";
 import { CloseIcon } from "../../utils/svg/SVG";
 import { useModals } from "./ModalsProvider";
 
@@ -15,9 +16,9 @@ const AuthModal = () => {
           style={{ transform: "translate(-50%, -50%)" }}
         >
           {modals.showAuth === "login" ? (
-            <iframe key={modals.showAuth} src={`${process.env.NEXT_PUBLIC_CLIENT_URL}/account/login`} className="h-full w-full" />
+            <iframe key={modals.showAuth} src={`${clientUrl}/account/login`} className="h-full w-full" />
           ) : modals.showAuth === "register" ? (
-            <iframe key={modals.showAuth} src={`${process.env.NEXT_PUBLIC_CLIENT_URL}/account/register`} className="h-full w-full" />
+            <iframe key={modals.showAuth} src={`${clientUrl}/account/register`} className="h-full w-full" />
           ) : (
             <div />
           )}

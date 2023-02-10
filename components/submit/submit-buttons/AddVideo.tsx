@@ -34,7 +34,8 @@ const AddVideo = ({ styles }: UserMenuButton) => {
       })
     }
     reader.onloadend = () => {
-      setSelectedFile(reader.result)
+      if (!reader.result) return;
+      setSelectedFile(reader.result.toString())
     }
   }
 

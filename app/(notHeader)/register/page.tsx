@@ -2,10 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import Register1 from "../../../../components/auth/register/Register1";
-import Register2 from "../../../../components/auth/register/Register2";
-import { useSession } from "../../../../components/auth/UserContextProvider";
-import { clientUrl } from "../../../../config/config";
+import Register1 from "../../../components/auth/register/Register1";
+import Register2 from "../../../components/auth/register/Register2";
+import { useSession } from "../../../components/auth/UserContextProvider";
+import { clientUrl } from "../../../config/config";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState("");

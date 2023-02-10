@@ -101,7 +101,7 @@ const CommunityDropdown = () => {
               <span className="box-border h-[22px] w-[22px] rounded-[22px] border border-dashed text-[22px] leading-[22px]" />
             ) : selectedCommunity?.image && show ? (
               <BiSearch className="h-[22px] w-[22px] text-reddit_text-darker" />
-            ) : (
+            ) : selectedCommunity && (
               <Image
                 src={selectedCommunity.image}
                 width={22}

@@ -1,25 +1,24 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import communityapis from "../../API/communityapis";
 import TopCommunitiesContent from "./TopCommunitiesContent";
 
 const TopCommunities = () => {
   const [allCommunity, setAllCommunity] = useState<CommunityProps[] | []>([]);
   const [loading, setLoading] = useState(true);
+  const shouldRequest = useRef(true);
 
   useEffect(() => {
+    if (!shouldRequest.current) return;
+    shouldRequest.current = false;
     const get = async () => {
       try {
-        setTimeout(async () => {
-          try {
-            const communities = await communityapis.getCommunities(5);
-            setAllCommunity(communities);
-            setLoading(false);
-          } catch (err) {}
-        }, 500);
+        const communities = await communityapis.getCommunities(5);
+        setAllCommunity(communities);
+        setLoading(false);
       } catch (err) {}
-    };
+    }
     get();
   }, []);
 
@@ -39,10 +38,19 @@ const TopCommunities = () => {
         {allCommunity?.length >= 1
           ? allCommunity.map((community, index) => {
               const rank = index + 1;
-              return <TopCommunitiesContent key={community._id} rank={rank} community={community} />;
+              return (
+                <TopCommunitiesContent
+                  key={community._id}
+                  rank={rank}
+                  community={community}
+                />
+              );
             })
           : [1, 2, 3, 4, 5].map((_, idx) => (
-              <div key={idx} className={`h-[51px] ${loading && "loading overflow-hidden"}`}>
+              <div
+                key={idx}
+                className={`h-[51px] ${loading && "loading overflow-hidden"}`}
+              >
                 <hr className="border-reddit_border" />
               </div>
             ))}

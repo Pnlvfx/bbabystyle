@@ -27,7 +27,7 @@ const Body = () => {
   };
 
   const deleteCurrentImage = () => {
-    setSelectedFile(undefined);
+    setSelectedFile(null);
     setIsImage(false);
     setShowDeleteOptions(false);
   };
@@ -102,7 +102,7 @@ const Body = () => {
                                         <div className="relative h-full max-h-[100%] max-w-[100%] cursor-default select-none overflow-hidden whitespace-nowrap">
                                           <Video
                                             url={selectedFile}
-                                            poster={thumbnail}
+                                            poster={thumbnail as string}
                                             Logo={LOGO}
                                           />
                                           <div className="absolute top-0 bottom-0 left-0 right-0" />

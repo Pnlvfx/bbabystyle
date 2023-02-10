@@ -13,7 +13,7 @@ type Voting = {
 const Voting = ({ ups, postId, liked }: Voting) => {
   let dir = 0; //vote
   const [upVote, setUpVote] = useState(ups);
-  const modals = useModals()
+  const modals = useModals();
   const [voted, setVoted] = useState(liked); //true false or null
   const { session } = useSession();
 
@@ -62,9 +62,15 @@ const Voting = ({ ups, postId, liked }: Voting) => {
           handleVoteUp();
         }}
       >
-        <BiUpvote className={`&& h-6 w-6 text-center text-reddit_text-darker hover:text-blue-600 ${voted === true && "text-blue-600"}`} />
+        <BiUpvote
+          className={`&& h-6 w-6 text-center hover:text-blue-600 ${
+            voted === true ? "text-blue-600" : "text-reddit_text-darker"
+          }`}
+        />
       </button>
-      <div className="pointer-events-none mx-[1px] w-8 text-center text-[12px] font-bold leading-[15px]">{upVote === 0 ? "Vote" : upVote}</div>
+      <div className="pointer-events-none mx-[1px] w-8 text-center text-[12px] font-bold leading-[15px]">
+        {upVote === 0 ? "Vote" : upVote}
+      </div>
       <button
         aria-label="downvote"
         className="h-6 w-6"
@@ -74,7 +80,11 @@ const Voting = ({ ups, postId, liked }: Voting) => {
           handleVoteDown();
         }}
       >
-        <BiDownvote className={`&& h-6 w-6 text-reddit_text-darker hover:text-reddit_orange ${voted === false && "text-reddit_orange"}`} />
+        <BiDownvote
+          className={`&& h-6 w-6 hover:text-reddit_orange ${
+            voted === false ? "text-reddit_orange" : "text-reddit_text-darker"
+          }`}
+        />
       </button>
     </>
   );

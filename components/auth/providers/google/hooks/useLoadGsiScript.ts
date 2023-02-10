@@ -27,9 +27,9 @@ const useLoadGsiScript = (options: UseLoadGsiScriptOptions = {}): boolean => {
 
     useEffect(() => {
         if (session?.current.session?.user) return;
+        if (clientUrl.startsWith('http://192')) return;
         if (!shouldRequest.current) return;
         shouldRequest.current = false;
-        if (clientUrl.startsWith('http://192')) return;
         const scriptTag = document.createElement('script');
         scriptTag.src = 'https://accounts.google.com/gsi/client';
         scriptTag.async = true;

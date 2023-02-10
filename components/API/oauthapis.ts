@@ -98,11 +98,7 @@ const oauthapis = {
         credentials: 'include',
       })
       const data = await res.json()
-      if (res.ok) {
-        return { status: true, data: data.msg }
-      } else {
-        return { status: false, data: data.msg }
-      }
+      return { status: data.status, data: data.msg }
     } catch (err) {
       if (err instanceof Error) {
         return { status: false, data: err.message }

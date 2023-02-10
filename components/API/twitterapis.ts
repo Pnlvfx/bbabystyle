@@ -47,6 +47,21 @@ const twitterapis = {
       throw catchError(err);
     }
   },
+  logout: async () => {
+    try {
+      const url = `${server}/twitter/logout`
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: HEADERS,
+        credentials: 'include',
+        body: JSON.stringify({})
+      })
+      if (!res.ok) throw new Error("Something went wrong");
+      return true;
+    } catch (err) {
+      throw catchError(err);
+    }
+  }
 };
 
 export default twitterapis;
