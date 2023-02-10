@@ -1,24 +1,21 @@
 import Link from "next/link";
-import { useSession } from "../auth/UserContextProvider";
 
 type PostFormProps = {
+  session: SessionProps
   community?: CommunityProps
 };
 
-function PostForm({ community }: PostFormProps) {
-  const { session } = useSession();
-  if (!session?.user) return null;
-
+function PostForm({ session, community }: PostFormProps) {
   return (
     <div className="mx-auto flex rounded border border-reddit_border bg-reddit_dark-brighter p-2">
       <div className="h-[38px] w-[38px] overflow-hidden">
-        <Link href={`/user/${session.user.username.toLowerCase()}`} className="h-[38px] w-[38px]">
+        <Link href={`/user/${session.user?.username.toLowerCase()}`} className="h-[38px] w-[38px]">
           <div className="relative h-full">
             <div className="relative h-[38px] w-[38px] rounded-[50%]">
               <div className="h-full w-full rounded-[50%] bg-[#343536]" />
               <picture className="absolute bottom-0 h-full w-full rounded-[50%]">
                 <img
-                  src={session.user.avatar}
+                  src={session.user?.avatar}
                   className="h-full w-full rounded-[50%]"
                   style={{ transformOrigin: "bottom center" }}
                   alt="User Avatar"

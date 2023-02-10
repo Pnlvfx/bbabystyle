@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { clientUrl } from "../../../../../config/config";
-import { useSession } from "../../../UserContextProvider";
 
 export interface UseLoadGsiScriptOptions {
      /**
@@ -15,7 +14,6 @@ export interface UseLoadGsiScriptOptions {
 
 const useLoadGsiScript = (options: UseLoadGsiScriptOptions = {}): boolean => {
     const { onScriptLoadSuccess, onScriptLoadError} = options;
-    const session = useRef(useSession())
     const [scriptLoadedSuccessfully, setScriptLoadSuccessfully] = useState(false);
     const shouldRequest = useRef(true)
 
@@ -26,7 +24,6 @@ const useLoadGsiScript = (options: UseLoadGsiScriptOptions = {}): boolean => {
     onScriptLoadErrorRef.current = onScriptLoadError;
 
     useEffect(() => {
-        if (session?.current.session?.user) return;
         if (clientUrl.startsWith('http://192')) return;
         if (!shouldRequest.current) return;
         shouldRequest.current = false;

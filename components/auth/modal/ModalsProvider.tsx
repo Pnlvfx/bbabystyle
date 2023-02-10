@@ -23,7 +23,7 @@ export interface ModalContextProps {
 
 const ModalContext = createContext({});
 
-export const AuthModalContextProvider = ({ children }: ChildrenProps) => {
+export const ModalsContextProvider = ({ children }: ChildrenProps) => {
   const [showAuth, setShowAuth] = useState("hidden");
   const [showSearch, setShowSearch] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);

@@ -51,6 +51,7 @@ const TwitterButton = ({ userInfo }: SettingsButton) => {
     try {
       await twitterapis.logout();
       router.current.refresh();
+      message.current.setMessage({value: 'Twitter account disconnected!', status: 'success'});
     } catch (err) {
       catchErrorWithMessage(err, message.current);
     }

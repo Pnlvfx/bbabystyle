@@ -1,10 +1,17 @@
 export const TextLogo = (props: any) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={90} height={23} viewBox="0 12 318 75" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={90}
+      height={23}
+      viewBox="0 12 318 75"
+      {...props}
+    >
       <defs>
         <style
           dangerouslySetInnerHTML={{
-            __html: '\n      .cls-1 {\n        fill: #d7dadc;\n        fill-rule: evenodd;\n      }\n    ',
+            __html:
+              "\n      .cls-1 {\n        fill: #d7dadc;\n        fill-rule: evenodd;\n      }\n    ",
           }}
         />
       </defs>
@@ -14,8 +21,8 @@ export const TextLogo = (props: any) => {
         d="M21.534,75.048q9.779,0,15.029-4.028t5.249-11.536A12.126,12.126,0,0,0,39.237,51.7a12.95,12.95,0,0,0-7.285-4.413,13.743,13.743,0,0,0,6.307-4.541,10.848,10.848,0,0,0,2.155-6.592q0-7.177-5.149-10.8T20.257,21.728H0.338v53.32h21.2Zm0.958-24.06q9.26,0.184,9.261,8.5a7.293,7.293,0,0,1-2.674,6.006q-2.675,2.161-7.425,2.161H10.437V50.988H22.492ZM10.437,29.2h9.82q5.189,0,7.644,1.758t2.455,5.713A6.489,6.489,0,0,1,27.7,42.218a12.185,12.185,0,0,1-7.365,1.959h-9.9V29.2ZM88.874,55.126q0-9.668-4.511-15.051T71.949,34.692q-7.106,0-11.3,4.541V18.8h-9.7v56.25h8.782l0.479-4.285q4.231,5.018,11.815,5.017,7.863,0,12.354-5.457t4.491-14.685V55.126Zm-9.7.879q-0.08,6.3-2.555,9.412a8.456,8.456,0,0,1-7.025,3.113q-6.347,0-8.941-5.164V47.033q2.554-5.054,8.862-5.054A8.511,8.511,0,0,1,76.7,45.2q2.475,3.223,2.475,9.668v1.135ZM132.7,75.048V74.426a18.777,18.777,0,0,1-1.637-8.533V48.022a12.037,12.037,0,0,0-4.63-9.833q-4.512-3.5-12.1-3.5A24.27,24.27,0,0,0,105.3,36.3a15.624,15.624,0,0,0-6.407,4.449,9.377,9.377,0,0,0-2.355,6.1h9.7a4.586,4.586,0,0,1,2.116-3.864,9.081,9.081,0,0,1,5.428-1.52q3.833,0,5.708,1.849a6.6,6.6,0,0,1,1.876,4.926v2.6h-5.947q-9.541,0-14.67,3.387a10.958,10.958,0,0,0-5.129,9.723,10.525,10.525,0,0,0,4.111,8.423,16.093,16.093,0,0,0,10.618,3.406,15.781,15.781,0,0,0,11.337-4.431,12.86,12.86,0,0,0,1.117,3.7h9.9ZM107.176,67.12a5.005,5.005,0,0,1-1.856-4.083,5.452,5.452,0,0,1,2.714-4.871q2.715-1.721,8.1-1.721h5.229v7.471a9,9,0,0,1-3.812,3.442,11.814,11.814,0,0,1-5.408,1.282A7.6,7.6,0,0,1,107.176,67.12Zm71.95-11.993q0-9.668-4.51-15.051T162.2,34.692q-7.106,0-11.3,4.541V18.8h-9.7v56.25h8.782l0.479-4.285q4.23,5.018,11.815,5.017,7.864,0,12.355-5.457t4.49-14.685V55.126Zm-9.7.879q-0.081,6.3-2.555,9.412a8.457,8.457,0,0,1-7.026,3.113q-6.346,0-8.941-5.164V47.033q2.554-5.054,8.862-5.054a8.513,8.513,0,0,1,7.185,3.223q2.474,3.223,2.475,9.668v1.135Zm23.351-20.581H182.32l15.168,39.411-1.4,3.4a8.121,8.121,0,0,1-2.934,4.117,10.115,10.115,0,0,1-5.528,1.226l-1.837-.11v6.918a18.737,18.737,0,0,0,4.671.663q9.461,0,13.412-10l17.164-45.63H210.7L201.919,62.3Z"
       />
     </svg>
-  )
-}
+  );
+};
 
 export const UserIcon = (props: any) => {
   return (
@@ -38,79 +45,128 @@ export const UserIcon = (props: any) => {
         strokeWidth="2px"
       />
     </svg>
-  )
-}
+  );
+};
 
 export const TwitterLogo = (props: any) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width={30} height={20} {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      width={30}
+      height={20}
+      {...props}
+    >
       <path
         d="M23.643 4.937c-.835.37-1.732.62-2.675.733a4.67 4.67 0 002.048-2.578 9.3 9.3 0 01-2.958 1.13 4.66 4.66 0 00-7.938 4.25 13.229 13.229 0 01-9.602-4.868c-.4.69-.63 1.49-.63 2.342A4.66 4.66 0 003.96 9.824a4.647 4.647 0 01-2.11-.583v.06a4.66 4.66 0 003.737 4.568 4.692 4.692 0 01-2.104.08 4.661 4.661 0 004.352 3.234 9.348 9.348 0 01-5.786 1.995 9.5 9.5 0 01-1.112-.065 13.175 13.175 0 007.14 2.093c8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602a9.47 9.47 0 002.323-2.41z"
         fill="#1A1A1B"
       />
     </svg>
-  )
-}
+  );
+};
 
 export const AddImageIcon = (props: any) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width={24} height={24} {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      width={24}
+      height={24}
+      {...props}
+    >
       <g fill="#818384">
         <path d="M19.75 2H4.25C3.01 2 2 3.01 2 4.25v15.5C2 20.99 3.01 22 4.25 22h15.5c1.24 0 2.25-1.01 2.25-2.25V4.25C22 3.01 20.99 2 19.75 2zM4.25 3.5h15.5c.413 0 .75.337.75.75v9.676l-3.858-3.858a.75.75 0 00-.53-.22h-.003a.74.74 0 00-.532.224l-4.317 4.384-1.813-1.806a.75.75 0 00-.53-.22c-.193-.03-.395.08-.535.227L3.5 17.642V4.25c0-.413.337-.75.75-.75zm-.744 16.28l5.418-5.534 6.282 6.254H4.25a.75.75 0 01-.744-.72zm16.244.72h-2.42l-5.007-4.987 3.792-3.85 4.385 4.384v3.703c0 .413-.337.75-.75.75z" />
         <circle cx={8.868} cy={8.309} r={1.542} />
       </g>
     </svg>
-  )
-}
+  );
+};
 
 export const CommentIcon = (props: any) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width={20} height={20} {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      width={20}
+      height={20}
+      {...props}
+    >
       <path
         d="M14.046 2.242l-4.148-.01h-.002c-4.374 0-7.8 3.427-7.8 7.802 0 4.098 3.186 7.206 7.465 7.37v3.828a.85.85 0 00.12.403.744.744 0 001.034.229c.264-.168 6.473-4.14 8.088-5.506 1.902-1.61 3.04-3.97 3.043-6.312v-.017c-.006-4.367-3.43-7.787-7.8-7.788zm3.787 12.972c-1.134.96-4.862 3.405-6.772 4.643V16.67a.75.75 0 00-.75-.75h-.396c-3.66 0-6.318-2.476-6.318-5.886 0-3.534 2.768-6.302 6.3-6.302l4.147.01h.002c3.532 0 6.3 2.766 6.302 6.296-.003 1.91-.942 3.844-2.514 5.176z"
         fill="#818384"
       />
     </svg>
-  )
-}
+  );
+};
 
 export const MoreIcon = (props: any) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width={20} height={20} {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      width={20}
+      height={20}
+      {...props}
+    >
       <g fill="#818384">
         <circle cx={5} cy={12} r={2} />
         <circle cx={12} cy={12} r={2} />
         <circle cx={19} cy={12} r={2} />
       </g>
     </svg>
-  )
-}
+  );
+};
 
 export const ShareIcon = (props: any) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width={20} height={20} {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      width={20}
+      height={20}
+      {...props}
+    >
       <g fill="#818384">
         <path d="M17.53 7.47l-5-5a.749.749 0 00-1.06 0l-5 5a.749.749 0 101.06 1.06l3.72-3.72V15a.75.75 0 001.5 0V4.81l3.72 3.72c.146.147.338.22.53.22s.384-.072.53-.22a.749.749 0 000-1.06z" />
         <path d="M19.708 21.944H4.292A2.294 2.294 0 012 19.652V14a.75.75 0 011.5 0v5.652c0 .437.355.792.792.792h15.416a.793.793 0 00.792-.792V14a.75.75 0 011.5 0v5.652a2.294 2.294 0 01-2.292 2.292z" />
       </g>
     </svg>
-  )
-}
+  );
+};
 
 export const CloseIcon = (props: any) => {
   return (
-    <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" width={24} height={24} {...props}>
+    <svg
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      {...props}
+    >
       <path
         fill="#818384"
         d="M11.649 9.882L18.262 3.267 16.495 1.5 9.881 8.114 3.267 1.5 1.5 3.267 8.114 9.883 1.5 16.497 3.267 18.264 9.881 11.65 16.495 18.264 18.262 16.497z"
       />
     </svg>
-  )
-}
+  );
+};
 
 export const VideoIcon = (props: any) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={24} height={24} pointerEvents="none" display="block" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width={24}
+      height={24}
+      pointerEvents="none"
+      display="block"
+      {...props}
+    >
       <g className="style-scope yt-icon" fill="#818384">
         <path
           d="M10 9.35L15 12l-5 2.65zM12 6a54.36 54.36 0 00-7.56.38 1.53 1.53 0 00-1.06 1.06A24.63 24.63 0 003 12a24.63 24.63 0 00.38 4.56 1.53 1.53 0 001.06 1.06A54.36 54.36 0 0012 18a54.36 54.36 0 007.56-.38 1.53 1.53 0 001.06-1.06A24.63 24.63 0 0021 12a24.63 24.63 0 00-.38-4.56 1.53 1.53 0 00-1.06-1.06A54.36 54.36 0 0012 6m0-1s6.25 0 7.81.42a2.51 2.51 0 011.77 1.77A25.87 25.87 0 0122 12a25.87 25.87 0 01-.42 4.81 2.51 2.51 0 01-1.77 1.77C18.25 19 12 19 12 19s-6.25 0-7.81-.42a2.51 2.51 0 01-1.77-1.77A25.87 25.87 0 012 12a25.87 25.87 0 01.42-4.81 2.51 2.51 0 011.77-1.77C5.75 5 12 5 12 5z"
@@ -118,53 +174,79 @@ export const VideoIcon = (props: any) => {
         />
       </g>
     </svg>
-  )
-}
+  );
+};
 
 export const HomeIcon = (props: any) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width={24} height={24} {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      width={24}
+      height={24}
+      {...props}
+    >
       <path
         d="M22.58 7.35L12.475 1.897a1 1 0 00-.95 0L1.425 7.35A1.002 1.002 0 001.9 9.231c.16 0 .324-.038.475-.12l.734-.396 1.59 11.25c.216 1.214 1.31 2.062 2.66 2.062h9.282c1.35 0 2.444-.848 2.662-2.088l1.588-11.225.737.398a1 1 0 00.95-1.759zM12 15.435a3.25 3.25 0 110-6.5 3.25 3.25 0 010 6.5z"
         fill="#D7DADC"
       />
     </svg>
-  )
-}
+  );
+};
 
 export const TrashIcon = (props: any) => {
   return (
-    <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" width={32} height={32} {...props}>
+    <svg
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+      width={32}
+      height={32}
+      {...props}
+    >
       <path
         d="M16.5 2h-3.79l-.85-.85A.5.5 0 0011.5 1h-3a.5.5 0 00-.35.15L7.29 2H3.5a.5.5 0 00-.5.5v1a.5.5 0 00.5.5h13a.5.5 0 00.5-.5v-1a.5.5 0 00-.5-.5zM16.5 5h-13a.5.5 0 00-.5.5v12A1.5 1.5 0 004.5 19h11a1.5 1.5 0 001.5-1.5v-12a.5.5 0 00-.5-.5zM6.75 15.5a.75.75 0 01-1.5 0v-7a.75.75 0 011.5 0zm4 0a.75.75 0 01-1.5 0v-7a.75.75 0 011.5 0zm4 0a.75.75 0 01-1.5 0v-7a.75.75 0 011.5 0z"
         fill="#818384"
       />
     </svg>
-  )
-}
+  );
+};
 
 export const PlusIcon = (props: any) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width={22} height={22} {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      width={22}
+      height={22}
+      {...props}
+    >
       <path
         d="M45.2 147.2h3.6a1.2 1.2 0 000-2.4h-3.6v-3.6a1.2 1.2 0 00-2.4 0v3.6h-3.6a1.2 1.2 0 000 2.4h3.6v3.6a1.2 1.2 0 002.4 0v-3.6z"
         transform="translate(-34 -136)"
         fill="#D7DADC"
       />
     </svg>
-  )
-}
+  );
+};
 
 export const CheckboxChecked = (props: any) => {
   return (
-    <svg className="_3PYsg_uRJ6AGptv-hi7kqu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width={20} height={20} {...props}>
+    <svg
+      className="_3PYsg_uRJ6AGptv-hi7kqu"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      width={20}
+      height={20}
+      {...props}
+    >
       <path
         d="M10 6.667a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zM10 0c5.523 0 10 4.477 10 10s-4.477 10-10 10S0 15.523 0 10 4.477 0 10 0z"
         fill="#0079D3"
       />
     </svg>
-  )
-}
+  );
+};
 
 export const Checkbox = (props: any) => {
   return (
@@ -181,34 +263,53 @@ export const Checkbox = (props: any) => {
         fill="#818384"
       />
     </svg>
-  )
-}
+  );
+};
 
 export const PublicCommunity = (props: any) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width={20} height={20} {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      width={20}
+      height={20}
+      {...props}
+    >
       <path
         d="M12 11c3.309 0 6 2.691 6 6a1 1 0 01-1 1H3a1 1 0 01-1-1c0-3.309 2.691-6 6-6h4zm-2-1.267a3.871 3.871 0 01-3.867-3.867v-1A3.87 3.87 0 0110 1a3.87 3.87 0 013.867 3.866v1A3.871 3.871 0 0110 9.733z"
         fill="#818384"
       />
     </svg>
-  )
-}
+  );
+};
 
 export const PrivateCommunity = (props: any) => {
   return (
-    <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" width={40} height={40} {...props}>
+    <svg
+      viewBox="0 0 40 40"
+      xmlns="http://www.w3.org/2000/svg"
+      width={40}
+      height={40}
+      {...props}
+    >
       <g fill="#818384">
         <rect x={7.5} y={12.5} />
         <path d="M32.5 17.5v-2.6c0-6.8-5.6-12.4-12.4-12.4h-.2c-6.8 0-12.4 5.6-12.4 12.4v2.6C6.1 17.5 5 18.6 5 20v10c0 5.5 4.5 10 10 10h10c5.5 0 10-4.5 10-10V20c0-1.4-1.1-2.5-2.5-2.5zm-20 0v-2.6c0-4.1 3.3-7.4 7.4-7.4h.2c4.1 0 7.4 3.3 7.4 7.4v2.6h-15z" />
       </g>
     </svg>
-  )
-}
+  );
+};
 
 export const GoBackIcon = (props: any) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" height={14} viewBox="0 0 14 14" width={14} {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      height={14}
+      viewBox="0 0 14 14"
+      width={14}
+      {...props}
+    >
       <script />
       <path
         clipRule="evenodd"
@@ -217,8 +318,8 @@ export const GoBackIcon = (props: any) => {
         fillRule="evenodd"
       />
     </svg>
-  )
-}
+  );
+};
 
 export const RetweetIcon = (props: any) => {
   return (
@@ -236,16 +337,75 @@ export const RetweetIcon = (props: any) => {
         fill="#71767B"
       />
     </svg>
-  )
-}
+  );
+};
 
 export const HeartIcon = (props: any) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width={24} height={24} {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      width={24}
+      height={24}
+      {...props}
+    >
       <path
         d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5a3.44 3.44 0 00-2.91 1.91c-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82a3.439 3.439 0 00-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67a5.417 5.417 0 014.601-3.01c1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01a5.417 5.417 0 014.601 3.01c.896 1.81.846 4.17-.514 6.67z"
         fill="#71767B"
       />
+    </svg>
+  );
+};
+
+export const USFlagIcon = (props: any) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      viewBox="0 0 7410 3900"
+      {...props}
+    >
+      <path fill="#b22234" d="M0 0h7410v3900H0z" />
+      <path
+        d="M0 450h7410m0 600H0m0 600h7410m0 600H0m0 600h7410m0 600H0"
+        stroke="#fff"
+        strokeWidth={300}
+      />
+      <path fill="#3c3b6e" d="M0 0h2964v2100H0z" />
+      <g fill="#fff">
+        <g id="d">
+          <g id="c">
+            <g id="e">
+              <g id="b">
+                <path
+                  id="a"
+                  d="M247 90l70.534 217.082-184.66-134.164h228.253L176.466 307.082z"
+                />
+                <use xlinkHref="#a" y={420} />
+                <use xlinkHref="#a" y={840} />
+                <use xlinkHref="#a" y={1260} />
+              </g>
+              <use xlinkHref="#a" y={1680} />
+            </g>
+            <use xlinkHref="#b" x={247} y={210} />
+          </g>
+          <use xlinkHref="#c" x={494} />
+        </g>
+        <use xlinkHref="#d" x={988} />
+        <use xlinkHref="#c" x={1976} />
+        <use xlinkHref="#e" x={2470} />
+      </g>
+    </svg>
+  );
+};
+
+export const ITflagIcon = (props: any) => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" {...props}>
+      <path fill="#008C45" d="M0 0h1v2H0z" />
+      <path fill="#fff" d="M1 0h1v2H1z" />
+      <path fill="#CD212A" d="M2 0h1v2H2z" />
     </svg>
   )
 }

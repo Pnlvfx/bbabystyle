@@ -2,7 +2,12 @@ import Link from "next/link";
 import { use } from "react";
 import ssrapis from "../../../../components/API/ssrapis";
 import BoardHeader from "../../../../components/community/BoardHeader";
+import BestPost from "../../../../components/post/BestPost";
 import Feed from "../../../../components/post/Feed";
+import PostForm from "../../../../components/post/PostForm";
+import Donations from "../../../../components/widget/Donations";
+import PolicyWidget from "../../../../components/widget/PolicyWidget";
+import Widget from "../../../../components/widget/Widget";
 
 interface CommunityPageProps {
   params: {
@@ -13,6 +18,7 @@ interface CommunityPageProps {
 const CommunityPage = ({ params }: CommunityPageProps) => {
   const posts = use(ssrapis.getPosts(15, 0, "community", params.community));
   const community = use(ssrapis.getCommunity(params.community));
+  const session = use(ssrapis.getSession());
 
   if (!community) {
     return <div></div>;
@@ -46,7 +52,26 @@ const CommunityPage = ({ params }: CommunityPageProps) => {
           </div>
         </div>
       </div>
-      <Feed posts={posts} community={community} />
+      <div className="mx-auto flex max-w-full justify-center md:py-5 md:px-6">
+      <div className="w-full lg:w-[640px]">
+        {session?.user && (
+          <div className="mb-[18px]">
+            <PostForm session={session} />
+          </div>
+        )}
+        <div className="mb-4">
+          <BestPost />
+        </div>
+        <Feed posts={posts} community={community} />
+      </div>
+      {!session?.device?.mobile && (
+        <div className="ml-6 hidden lg:block">
+          <Widget />
+          <Donations />
+          <PolicyWidget />
+        </div>
+      )}
+    </div>
     </>
   );
 };

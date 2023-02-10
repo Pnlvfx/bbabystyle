@@ -1,7 +1,7 @@
 import { use } from "react";
-import ssrapis from "../../components/API/ssrapis";
-import Feed from "../../components/post/Feed";
-import { clientUrl } from "../../config/config";
+import ssrapis from "../../../components/API/ssrapis";
+import Feed from "../../../components/post/Feed";
+import { clientUrl } from "../../../config/config";
 
 const Home = () => {
   const posts = use(ssrapis.getPosts(15, 0));

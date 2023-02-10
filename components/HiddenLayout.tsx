@@ -13,10 +13,9 @@ const HiddenLayout = () => {
   useGoogleOneTapLogin({
     onSuccess: (response) => oauthapis.googleLogin(response),
     cancel_on_tap_outside: false,
-    
   });
   const { session } = useSession();
-  const modals = useModals()
+  const modals = useModals();
   return (
     <>
   {!session?.user && modals.showAuth !== "hidden" && <AuthModal />}
