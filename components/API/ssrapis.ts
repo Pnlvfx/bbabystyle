@@ -29,7 +29,7 @@ const ssrapis = {
       const data = await res.json();
       if (!res.ok) return;
       //await new Promise((resolve) => setTimeout(resolve, 15000))
-      return data;
+      return data as PostProps[]
     } catch (err) {
       return;
     }

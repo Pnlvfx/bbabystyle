@@ -33,6 +33,7 @@ const UserMenu = () => {
 
   useEffect(() => {
     //close modal on resize
+    if (!modalsRef.current.showUserMenu) return;
     const onResize = () => {
       modalsRef.current.setShowUserMenu(false);
     };

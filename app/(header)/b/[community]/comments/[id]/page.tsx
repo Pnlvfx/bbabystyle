@@ -4,6 +4,7 @@ import Comment from "../../../../../../components/comment/Comment";
 import Post from "../../../../../../components/post/Post";
 import Donations from "../../../../../../components/widget/Donations";
 import Widget from "../../../../../../components/widget/Widget";
+import { clientUrl } from "../../../../../../config/config";
 
 interface PostPageProps {
   params: {
@@ -47,3 +48,76 @@ const PostPage = ({ params }: PostPageProps) => {
 };
 
 export default PostPage;
+
+export async function generateMetadata({ params }: PostPageProps) {
+  const post = await ssrapis.getPost(params.id);
+
+  if (!post) {
+    return {
+      title: "Bbabystyle - Free speech",
+      description: "With Bbabystyle, you can build your own community, share your thoughts and ideas, and participate in lively debates. Whether you're looking to make new friends, learn from others, or simply express yourself, Bbabystyle provides the perfect platform for you to do so. Join the conversation today and see what the community has to offer!",
+      alternates: {
+        canonical: clientUrl,
+        languages: {
+          "en-US": clientUrl,
+        },
+      },
+      openGraph: {
+        title: "Bbabystyle - Free speech",
+        description:
+          "With Bbabystyle, you can build your own community, share your thoughts and ideas, and participate in lively debates. Whether you're looking to make new friends, learn from others, or simply express yourself, Bbabystyle provides the perfect platform for you to do so. Join the conversation today and see what the community has to offer!",
+        url: clientUrl,
+        siteName: "bbabystyle",
+        images: [
+          {
+            url: `${clientUrl}/imagePreview.png`,
+            width: 256,
+            height: 256,
+          },
+        ],
+        type: "website",
+      },
+      twitter: {
+        creator: "@Bbabystyle",
+        card: "summary",
+        title: "Bbabystyle - Free speech",
+        description:
+          "With Bbabystyle, you can build your own community, share your thoughts and ideas, and participate in lively debates. Whether you're looking to make new friends, learn from others, or simply express yourself, Bbabystyle provides the perfect platform for you to do so. Join the conversation today and see what the community has to offer!",
+        images: `${clientUrl}/imagePreview.png`,
+      },
+    };
+  }
+
+  return {
+    title: post?.title,
+    description: post?.body,
+    alternates: {
+      canonical: `${clientUrl}${post.permalink}`,
+      languages: {
+        "en-US": `${clientUrl}${post.permalink}`,
+      },
+    },
+    openGraph: {
+      title: post.title,
+      description: post.body,
+      url: clientUrl,
+      siteName: "bbabystyle",
+      images: [
+        {
+          url: `${clientUrl}/imagePreview.png`,
+          width: 256,
+          height: 256,
+        },
+      ],
+      type: "website",
+    },
+    twitter: {
+      creator: "@Bbabystyle",
+      card: "summary",
+      title: post.title,
+      description:
+        "With Bbabystyle, you can build your own community, share your thoughts and ideas, and participate in lively debates. Whether you're looking to make new friends, learn from others, or simply express yourself, Bbabystyle provides the perfect platform for you to do so. Join the conversation today and see what the community has to offer!",
+      images: `${clientUrl}/imagePreview.png`,
+    },
+  };
+}

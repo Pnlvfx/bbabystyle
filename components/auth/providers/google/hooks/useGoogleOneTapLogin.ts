@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useRef } from 'react'
-import { clientUrl } from '../../../../../config/config';
 import { useGoogleContext } from '../GoogleOAuthProvider'
 import { CredentialResponse, MomenListener } from '../types/googletypes'
 
@@ -33,8 +32,6 @@ const useGoogleOneTapLogin = ({
 
   useEffect(() => {
     if (!scriptLoadedSuccessfully) return
-    if (clientUrl.startsWith('http://192')) return;
-    console.log('fired');
     window.google?.accounts.id.initialize({
       client_id: clientId,
       callback: (credentialResponse: CredentialResponse) => {
