@@ -44,7 +44,7 @@ export const metadata = {
     }
   },
   openGraph: {
-    title: `bbabystyle.com: Log in`,
+    title: 'bbabystyle.com: Log in',
     description: `Don't worry, we won't tell anyone your username. Log in to your Bbaby account.`,
     url: `${clientUrl}/login`,
     siteName: 'bbabystyle',
@@ -55,7 +55,7 @@ export const metadata = {
         height: 256,
       }
     ],
-    type: 'website',
+    type: "website"
   },
   twitter: {
     creator: '@Bbabystyle',

@@ -5,6 +5,7 @@ import { clientUrl } from "../../../config/config";
 
 const Home = () => {
   const posts = use(ssrapis.getPosts(15, 0));
+
   return <Feed posts={posts} />;
 };
 

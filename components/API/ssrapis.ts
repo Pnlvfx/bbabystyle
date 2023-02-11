@@ -11,6 +11,10 @@ const ssrapis = {
       });
       const session = await res.json();
       if (!res.ok) return null;
+      const token = res.headers.get('set-cookie');
+      if (token) {
+        //
+      }
       return session as SessionProps;
     } catch (err) {
       return null;
@@ -27,11 +31,11 @@ const ssrapis = {
         headers: getHeaders(),
       });
       const data = await res.json();
-      if (!res.ok) return;
+      if (!res.ok) return []
       //await new Promise((resolve) => setTimeout(resolve, 15000))
       return data as PostProps[]
     } catch (err) {
-      return;
+      return []
     }
   },
   getPost: async (id: string) => {

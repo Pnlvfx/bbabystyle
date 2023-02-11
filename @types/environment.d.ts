@@ -7,5 +7,6 @@ namespace NodeJS {
     NEXT_PUBLIC_GOOGLE_CLIENT_ID: string;
     NEXT_PUBLIC_YOUTUBE_CLIENT_ID: string;
     NEXT_PUBLIC_GA_ID: string;
+    NEXT_PUBLIC_IP_LOOKUP_API_KEY: string
   }
 }

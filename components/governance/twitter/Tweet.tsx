@@ -194,7 +194,7 @@ const Tweet = ({
           height={height}
           video={video}
           type={type}
-          minimal={false}
+          minimal={true}
         >
           <Submit />
         </SubmitContextProvider>

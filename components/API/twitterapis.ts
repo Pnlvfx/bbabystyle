@@ -61,7 +61,22 @@ const twitterapis = {
     } catch (err) {
       throw catchError(err);
     }
-  }
+  },
+  getHome: async (skip: number, limit: number) => {
+    try {
+      const url = `${server}/twitter/home?limit=${limit}&skip=${skip}`;
+      const res = await fetch(url, {
+        method: "GET",
+        headers: HEADERS,
+        credentials: 'include'
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.msg);
+      return data as TweetProps[];
+    } catch (err) {
+      throw catchError(err);
+    }
+  },
 };
 
 export default twitterapis;

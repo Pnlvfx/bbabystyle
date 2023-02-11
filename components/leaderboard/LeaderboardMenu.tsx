@@ -27,11 +27,7 @@ const LeaderboardMenu = () => {
   return (
     <div className="mr-6 hidden md:block">
       <div className="flex h-full flex-col">
-        <div
-          className={
-            "w-[192px] overflow-visible break-words rounded-md border border-reddit_border bg-reddit_dark-brighter"
-          }
-        >
+        <div className="w-[192px] overflow-visible break-words rounded-md border border-reddit_border bg-reddit_dark-brighter">
           <div className="flex h-[40px] items-center border-b border-reddit_border bg-reddit_dark-brightest pl-4 text-[16px] font-extrabold leading-5">
             <h2>Categories</h2>
           </div>
@@ -67,39 +63,39 @@ const LeaderboardMenu = () => {
                 </Link>
               </li>
               {categoriesLists.length > 0 &&
-                categoriesLists.map((category, index) => (
-                  <>
-                    {index <= totalShow && (
-                      <li key={category._id}>
-                        <Link
-                          href={`/bbaby/leaderboard/${category.name
-                            .replaceAll(" ", "_")
-                            .toLowerCase()}`}
-                          scroll={false}
-                          className="text-[12px] capitalize"
-                          onClick={() => {
-                            setActive(index);
-                          }}
+                categoriesLists.map((category, index) => {
+                  console.log(category);
+                  if (index > totalShow) return;
+                  return (
+                    <li key={index}>
+                      <Link
+                        href={`/bbaby/leaderboard/${category.name
+                          .replaceAll(" ", "_")
+                          .toLowerCase()}`}
+                        scroll={false}
+                        className="text-[12px] capitalize"
+                        onClick={() => {
+                          setActive(index);
+                        }}
+                      >
+                        <div
+                          className={`flex h-[40px] ${
+                            active === index
+                              ? "bg-reddit_dark-brightest font-extrabold"
+                              : "hover:bg-reddit_dark-brightest"
+                          }`}
                         >
                           <div
-                            className={`flex h-[40px] ${
-                              active === index
-                                ? "bg-reddit_dark-brightest font-extrabold"
-                                : "hover:bg-reddit_dark-brightest"
+                            className={`w-[6px] ${
+                              active === index && "bg-reddit_blue"
                             }`}
-                          >
-                            <div
-                              className={`w-[6px] ${
-                                active === index && "bg-reddit_blue"
-                              }`}
-                            />
-                            <p className="ml-3 self-center">{category.name}</p>
-                          </div>
-                        </Link>
-                      </li>
-                    )}
-                  </>
-                ))}
+                          />
+                          <p className="ml-3 self-center">{category.name}</p>
+                        </div>
+                      </Link>
+                    </li>
+                  );
+                })}
             </ul>
           </div>
           <div className="w-full items-center text-center">

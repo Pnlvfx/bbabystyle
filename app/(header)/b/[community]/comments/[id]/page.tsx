@@ -14,7 +14,7 @@ interface PostPageProps {
   searchParams: {};
 }
 
-const PostPage = ({ params }: PostPageProps) => {
+const PostPage = ({ params }: any) => {
   const session = use(ssrapis.getSession());
   const post = use(ssrapis.getPost(params.id));
 
@@ -49,7 +49,7 @@ const PostPage = ({ params }: PostPageProps) => {
 
 export default PostPage;
 
-export async function generateMetadata({ params }: PostPageProps) {
+export async function generateMetadata({ params }: any): Promise<any> {
   const post = await ssrapis.getPost(params.id);
 
   if (!post) {

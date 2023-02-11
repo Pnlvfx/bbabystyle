@@ -67,9 +67,9 @@ const CategoriesDropdown = ({ community }: CommunityInfoProps) => {
       </button>
       {show && (
         <div className="absolute max-h-[200px] w-full max-w-[295px] overflow-y-scroll bg-reddit_dark-brighter">
-          {categoriesLists.map((category) => (
+          {categoriesLists.map((category, index) => (
             <button
-              key={category._id}
+              key={index}
               onClick={(e) => {
                 e.preventDefault();
                 doSelectCategory(category.name);
