@@ -57,7 +57,7 @@ export const metadata = {
   applicationName: "bbabystyle",
   appleWebApp: {
     title: "Bbabystyle",
-    statusBarStyle: "black-translucent",
+    statusBarStyle: "black",
   },
   icons: {
     icon: `${clientUrl}/favicon-32x32.png`,

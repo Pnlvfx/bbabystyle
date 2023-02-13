@@ -64,7 +64,6 @@ const LeaderboardMenu = () => {
               </li>
               {categoriesLists.length > 0 &&
                 categoriesLists.map((category, index) => {
-                  console.log(category);
                   if (index > totalShow) return;
                   return (
                     <li key={index}>

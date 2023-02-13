@@ -49,7 +49,7 @@ const PostPage = ({ params }: any) => {
 
 export default PostPage;
 
-export async function generateMetadata({ params }: any): Promise<any> {
+export const generateMetadata = async ({ params }: any) => {
   const post = await ssrapis.getPost(params.id);
 
   if (!post) {
