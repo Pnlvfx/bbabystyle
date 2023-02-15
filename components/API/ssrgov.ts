@@ -19,6 +19,23 @@ const ssrgov = {
       return;
     }
   },
+  getMyListTweets: async (listId: string, owner_screen_name: string, skip: number, limit: number) => {
+    try {
+      const url = `${server}/twitter/selected-tweets?slug=${listId}&owner_screen_name=${owner_screen_name}&skip=${skip}&limit=${limit}`
+      const res = await fetch(url, {
+        method: 'GET',
+        headers: getHeaders(),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        if (res.status === 401) return;
+        return;
+      }
+      return data as TweetProps[]
+    } catch (err) {
+      return;
+    }
+  },
 };
 
 export default ssrgov;

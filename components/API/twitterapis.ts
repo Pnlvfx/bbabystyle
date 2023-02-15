@@ -77,6 +77,20 @@ const twitterapis = {
       throw catchError(err);
     }
   },
+  getMyListTweets: async (listId: string, owner_screen_name: string, skip: number, limit: number) => {
+    try {
+      const url = `${server}/twitter/selected-tweets?slug=${listId}&owner_screen_name=${owner_screen_name}&skip=${skip}&limit=${limit}`;
+      const res = await fetch(url, {
+        method: 'GET',
+        credentials: 'include',
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data?.msg)
+      return data as TweetProps[]
+    } catch (err) {
+      throw catchError(err)
+    }
+  },
 };
 
 export default twitterapis;

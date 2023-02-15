@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import twitterapis from "../../API/twitterapis";
 import Tweet from "./Tweet";
@@ -7,17 +8,36 @@ import Tweet from "./Tweet";
 interface TwitterFeedProps {
   tweets: TweetProps[];
   language: "it" | "en";
+  list?: {
+    listId: string
+    owner_screen_name: string
+  }
 }
 
-const TwitterFeed = ({ tweets: ssr_tweets, language }: TwitterFeedProps) => {
+const TwitterFeed = ({ tweets: ssr_tweets, language, list }: TwitterFeedProps) => {
   const [tweets, setTweets] = useState(ssr_tweets);
+  const query = useSearchParams();
 
   const getMoreTweets = async () => {
     try {
-      const newTweets = await twitterapis.getHome(tweets.length, 10);
-      setTweets([...tweets, ...newTweets]);
+      if (!list) {
+        const newTweets = await twitterapis.getHome(tweets.length, 10);
+        setTweets([...tweets, ...newTweets]);
+      } else {
+        const newTweets = await twitterapis.getMyListTweets(list.listId, list.owner_screen_name, tweets.length, 10);
+        setTweets([...tweets, ...newTweets]);
+      }
     } catch (err) {}
   };
+
+  useEffect(() => {
+    if (!query.get('sort')) return;
+    if (query.get('sort') === 'best') {
+      setTweets(tweets.sort((a, b) => b.favorite_count - a.favorite_count))
+    } else {
+      setTweets(tweets.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()))
+    }
+  }, [query]);
 
   return (
     <div>

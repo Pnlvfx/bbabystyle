@@ -1,3 +1,4 @@
+import TwitterSortButton from "../../../../components/governance/twitter/TwitterSortButton"
 import TwitterTab from "../../../../components/governance/twitter/TwitterTab"
 
 const TwitterLayout = ({children}: ChildrenProps) => {
@@ -7,11 +8,9 @@ const TwitterLayout = ({children}: ChildrenProps) => {
         <div className="mb-4">
           <TwitterTab />
         </div>
-        {/* <div className="mb-4">
-          <button onClick={changeOrder} className="rounded-full border border-reddit_border px-4 py-1 text-sm font-bold">
-            {router.query.order ? router.query.order : 'Recently'}
-          </button>
-        </div> */}
+        <div className="mb-4">
+          <TwitterSortButton />
+        </div>
         <ul>
           {children}
         </ul>
