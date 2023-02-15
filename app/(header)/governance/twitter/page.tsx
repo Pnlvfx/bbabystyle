@@ -9,9 +9,7 @@ const TwitterPage = () => {
     return <div></div>;
   }
 
-  return (
-   <TwitterFeed tweets={tweets} />
-  );
+  return <TwitterFeed tweets={tweets} language="en" />;
 };
 
 export default TwitterPage;

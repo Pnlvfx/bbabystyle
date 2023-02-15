@@ -1,9 +1,6 @@
 import { use } from "react";
 import { getHeaders } from "../../../../components/API/config/serverConfig";
-import {
-  showErrMsg,
-  showSuccessMsg,
-} from "../../../../components/utils/validation/Validation";
+import { showErrMsg, showSuccessMsg } from "../../../../components/utils/validation/Validation";
 import { server } from "../../../../config/config";
 
 interface ActivationEmailProps {
@@ -25,22 +22,14 @@ const activationEmail = async (activation_token: string) => {
     const data = await res.json();
     return data.msg as string;
   } catch (err) {
-    return 'Something went wrong!'
+    return "Something went wrong!";
   }
 };
 
-const ActivationEmail = ({ params }: ActivationEmailProps) => {
+const ActivationEmail = ({ params }: any) => {
   const status = use(activationEmail(params.token));
 
-  return (
-    <div>
-      {status === 'Success' ? (
-        showSuccessMsg(status)
-      ) : (
-        showErrMsg(status)
-      )}
-    </div>
-  );
+  return <div>{status === "Success" ? showSuccessMsg(status) : showErrMsg(status)}</div>;
 };
 
 export default ActivationEmail;

@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 
 const GovernanceTab = () => {
   const menu = [
-    { title: "Bbaby", url: "/governance/bbaby" },
+    { title: "Bbaby", url: "/governance/bbaby", url2: "/governance" },
     { title: "Twitter", url: "/governance/twitter" },
     { title: "BBCNews", url: "/governance/news" },
     { title: "Reddit", url: "/governance/reddit" },
@@ -20,11 +20,7 @@ const GovernanceTab = () => {
             key={index}
             href={m.url}
             shallow={true}
-            className={`${
-              pathname === m.url
-                ? "font-extrabold text-reddit_text"
-                : "text-reddit_text-darker"
-            }`}
+            className={`${pathname === m.url || pathname === m.url2 ? "font-extrabold text-reddit_text" : "text-reddit_text-darker"}`}
           >
             <p className={`mx-3 py-3`}>{m.title}</p>
           </Link>

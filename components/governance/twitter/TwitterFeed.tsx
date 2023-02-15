@@ -6,18 +6,17 @@ import Tweet from "./Tweet";
 
 interface TwitterFeedProps {
   tweets: TweetProps[];
+  language: "it" | "en";
 }
 
-const TwitterFeed = ({ tweets: ssr_tweets }: TwitterFeedProps) => {
+const TwitterFeed = ({ tweets: ssr_tweets, language }: TwitterFeedProps) => {
   const [tweets, setTweets] = useState(ssr_tweets);
-  
+
   const getMoreTweets = async () => {
     try {
       const newTweets = await twitterapis.getHome(tweets.length, 10);
       setTweets([...tweets, ...newTweets]);
-    } catch (err) {
-      
-    }
+    } catch (err) {}
   };
 
   return (
@@ -44,7 +43,7 @@ const TwitterFeed = ({ tweets: ssr_tweets }: TwitterFeedProps) => {
                   width={tweet?.extended_entities?.media[0]?.sizes.large.w}
                   height={tweet?.extended_entities?.media[0]?.sizes.large.h}
                   user_avatar={tweet.user.profile_image_url_https}
-                  language={"en"}
+                  language={language}
                   retweet_count={tweet.retweet_count}
                   like_count={tweet.favorite_count}
                 />

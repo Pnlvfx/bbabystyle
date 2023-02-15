@@ -11,14 +11,9 @@ interface SearchPageProps {
   };
 }
 
-const SearchPage = ({ searchParams }: SearchPageProps) => {
-
+const SearchPage = ({ searchParams }: any) => {
   if (!searchParams.text) {
-    return (
-      <div>
-
-      </div>
-    )
+    return <div></div>;
   }
 
   const posts = use(ssrapis.search(searchParams.text));

@@ -36,10 +36,7 @@ const CommunityPage = ({ params }: CommunityPageProps) => {
       >
         <Link href={`/b/${community.name?.toLowerCase()}`}>
           <div className="relative m-auto h-full max-w-[1200px]">
-            <div
-              className="left-[50%] h-[176px]"
-              style={{ transform: "translate(-50%, -50%)" }}
-            >
+            <div className="left-[50%] h-[176px]" style={{ transform: "translate(-50%, -50%)" }}>
               {community.name}
             </div>
           </div>
@@ -53,25 +50,25 @@ const CommunityPage = ({ params }: CommunityPageProps) => {
         </div>
       </div>
       <div className="mx-auto flex max-w-full justify-center md:py-5 md:px-6">
-      <div className="w-full lg:w-[640px]">
-        {session?.user && (
-          <div className="mb-[18px]">
-            <PostForm session={session} />
+        <div className="w-full lg:w-[640px]">
+          {session?.user && (
+            <div className="mb-[18px]">
+              <PostForm session={session} />
+            </div>
+          )}
+          <div className="mb-4">
+            <BestPost />
+          </div>
+          <Feed posts={posts} community={community} />
+        </div>
+        {!session?.device?.mobile && (
+          <div className="ml-6 hidden lg:block">
+            <Widget />
+            <Donations />
+            <PolicyWidget />
           </div>
         )}
-        <div className="mb-4">
-          <BestPost />
-        </div>
-        <Feed posts={posts} community={community} />
       </div>
-      {!session?.device?.mobile && (
-        <div className="ml-6 hidden lg:block">
-          <Widget />
-          <Donations />
-          <PolicyWidget />
-        </div>
-      )}
-    </div>
     </>
   );
 };
