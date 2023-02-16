@@ -9,19 +9,20 @@ interface TwitterFeedProps {
   tweets: TweetProps[];
   language: "it" | "en";
   list?: {
-    listId: string
-    owner_screen_name: string
-  }
+    listId: string;
+    owner_screen_name: string;
+  };
 }
 
 const TwitterFeed = ({ tweets: ssr_tweets, language, list }: TwitterFeedProps) => {
   const [tweets, setTweets] = useState(ssr_tweets);
+  const [sort, setSort] = useState<"recently" | "best">("recently");
   const query = useSearchParams();
 
   const getMoreTweets = async () => {
     try {
       if (!list) {
-        const newTweets = await twitterapis.getHome(tweets.length, 10);
+        const newTweets = await twitterapis.getHome(tweets.length, 10, sort);
         setTweets([...tweets, ...newTweets]);
       } else {
         const newTweets = await twitterapis.getMyListTweets(list.listId, list.owner_screen_name, tweets.length, 10);
@@ -31,12 +32,20 @@ const TwitterFeed = ({ tweets: ssr_tweets, language, list }: TwitterFeedProps) =
   };
 
   useEffect(() => {
-    if (!query.get('sort')) return;
-    if (query.get('sort') === 'best') {
-      setTweets(t => t.sort((a, b) => b.favorite_count - a.favorite_count))
-    } else {
-      setTweets(t => t.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()))
-    }
+    const run = async () => {
+      const querysort = query.get("sort");
+      if (!querysort) return;
+      if (querysort === "best") {
+        setSort(querysort);
+        const newTweets = await twitterapis.getHome(0, 15, querysort);
+        setTweets(newTweets);
+      } else if (querysort === "recently") {
+        setSort(querysort);
+        const newTweets = await twitterapis.getHome(0, 15, querysort);
+        setTweets(newTweets);
+      }
+    };
+    run();
   }, [query]);
 
   return (

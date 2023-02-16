@@ -2,9 +2,9 @@ import { server } from "../../config/config";
 import { getHeaders } from "./config/serverConfig";
 
 const ssrgov = {
-  getTweetHome: async (skip: number, limit: number) => {
+  getTweetHome: async (skip: number, limit: number, sort: 'recently' | 'best') => {
     try {
-      const url = `${server}/twitter/home?limit=${limit}&skip=${skip}`;
+      const url = `${server}/twitter/home?limit=${limit}&skip=${skip}&sort=${sort}`;
       const res = await fetch(url, {
         method: "GET",
         headers: getHeaders()

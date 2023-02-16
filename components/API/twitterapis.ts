@@ -62,9 +62,9 @@ const twitterapis = {
       throw catchError(err);
     }
   },
-  getHome: async (skip: number, limit: number) => {
+  getHome: async (skip: number, limit: number, sort: 'recently' | 'best') => {
     try {
-      const url = `${server}/twitter/home?limit=${limit}&skip=${skip}`;
+      const url = `${server}/twitter/home?limit=${limit}&skip=${skip}&sort=${sort}`;
       const res = await fetch(url, {
         method: "GET",
         headers: HEADERS,
