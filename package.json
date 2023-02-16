@@ -21,7 +21,7 @@
     "@types/react-timeago": "^4.1.3",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
-    "next": "^13.1.7-canary.15",
+    "next": "^13.1.7-canary.16",
     "react": "18.3.0-next-3d615fc14-20220919",
     "react-clickout-ts": "^2023.1.1",
     "react-dom": "18.2.0",

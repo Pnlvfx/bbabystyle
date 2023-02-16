@@ -33,9 +33,9 @@ const TwitterFeed = ({ tweets: ssr_tweets, language, list }: TwitterFeedProps) =
   useEffect(() => {
     if (!query.get('sort')) return;
     if (query.get('sort') === 'best') {
-      setTweets(tweets.sort((a, b) => b.favorite_count - a.favorite_count))
+      setTweets(t => t.sort((a, b) => b.favorite_count - a.favorite_count))
     } else {
-      setTweets(tweets.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()))
+      setTweets(t => t.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()))
     }
   }, [query]);
 

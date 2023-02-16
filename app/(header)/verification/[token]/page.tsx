@@ -1,6 +1,6 @@
+import { redirect } from "next/navigation";
 import { use } from "react";
 import { getHeaders } from "../../../../components/API/config/serverConfig";
-import { showErrMsg, showSuccessMsg } from "../../../../components/utils/validation/Validation";
 import { server } from "../../../../config/config";
 
 interface ActivationEmailProps {
@@ -20,16 +20,27 @@ const activationEmail = async (activation_token: string) => {
       body,
     });
     const data = await res.json();
+    if (data.msg === 'Success') {
+      redirect('/')
+    }
     return data.msg as string;
   } catch (err) {
     return "Something went wrong!";
   }
 };
 
-const ActivationEmail = ({ params }: any) => {
+const ActivationEmail = ({ params }: ActivationEmailProps) => {
   const status = use(activationEmail(params.token));
 
-  return <div>{status === "Success" ? showSuccessMsg(status) : showErrMsg(status)}</div>;
+  return (
+    <>
+    {status !== 'Success' && (
+      <div className="h-[100vh] flex items-center justify-center bg-bbaby-brighter">
+        <div className="text-reddit_red">{status}</div>
+      </div>
+    )}
+    </>
+  );
 };
 
 export default ActivationEmail;

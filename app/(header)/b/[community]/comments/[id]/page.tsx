@@ -1,10 +1,13 @@
-import { use } from "react";
-import ssrapis from "../../../../../../components/API/ssrapis";
-import Comment from "../../../../../../components/comment/Comment";
-import Post from "../../../../../../components/post/Post";
-import Donations from "../../../../../../components/widget/Donations";
-import Widget from "../../../../../../components/widget/Widget";
-import { clientUrl } from "../../../../../../config/config";
+import { Metadata } from 'next';
+import { use } from 'react';
+import ssrapis from '../../../../../../components/API/ssrapis';
+import Comment from '../../../../../../components/comment/Comment';
+import { getMetadata } from '../../../../../../components/metadata/metadata';
+import Post from '../../../../../../components/post/Post';
+import PostNotFound from '../../../../../../components/post/PostNotFound';
+import Donations from '../../../../../../components/widget/Donations';
+import Widget from '../../../../../../components/widget/Widget';
+import { clientUrl } from '../../../../../../config/config';
 
 interface PostPageProps {
   params: {
@@ -14,13 +17,11 @@ interface PostPageProps {
   searchParams: {};
 }
 
-const PostPage = ({ params }: any) => {
+const PostPage = ({ params }: PostPageProps) => {
   const session = use(ssrapis.getSession());
   const post = use(ssrapis.getPost(params.id));
 
-  if (!post) {
-    return <div></div>;
-  }
+  if (!post) return <PostNotFound />;
 
   return (
     <>
@@ -49,75 +50,24 @@ const PostPage = ({ params }: any) => {
 
 export default PostPage;
 
-export const generateMetadata = async ({ params }: any) => {
+export const generateMetadata = async ({ params }: PostPageProps): Promise<Metadata> => {
   const post = await ssrapis.getPost(params.id);
-
-  if (!post) {
-    return {
-      title: "Bbabystyle - Free speech",
-      description: "With Bbabystyle, you can build your own community, share your thoughts and ideas, and participate in lively debates. Whether you're looking to make new friends, learn from others, or simply express yourself, Bbabystyle provides the perfect platform for you to do so. Join the conversation today and see what the community has to offer!",
-      alternates: {
-        canonical: clientUrl,
-        languages: {
-          "en-US": clientUrl,
-        },
-      },
-      openGraph: {
-        title: "Bbabystyle - Free speech",
-        description:
-          "With Bbabystyle, you can build your own community, share your thoughts and ideas, and participate in lively debates. Whether you're looking to make new friends, learn from others, or simply express yourself, Bbabystyle provides the perfect platform for you to do so. Join the conversation today and see what the community has to offer!",
-        url: clientUrl,
-        siteName: "bbabystyle",
-        images: [
-          {
-            url: `${clientUrl}/imagePreview.png`,
-            width: 256,
-            height: 256,
-          },
-        ],
-        type: "website",
-      },
-      twitter: {
-        creator: "@Bbabystyle",
-        card: "summary",
-        title: "Bbabystyle - Free speech",
-        description:
-          "With Bbabystyle, you can build your own community, share your thoughts and ideas, and participate in lively debates. Whether you're looking to make new friends, learn from others, or simply express yourself, Bbabystyle provides the perfect platform for you to do so. Join the conversation today and see what the community has to offer!",
-        images: `${clientUrl}/imagePreview.png`,
-      },
-    };
-  }
-
-  return {
-    title: post?.title,
-    description: post?.body,
-    alternates: {
-      canonical: `${clientUrl}${post.permalink}`,
-      languages: {
-        "en-US": `${clientUrl}${post.permalink}`,
-      },
-    },
-    openGraph: {
-      title: post.title,
-      description: post.body,
-      url: clientUrl,
-      siteName: "bbabystyle",
-      images: [
-        {
-          url: `${clientUrl}/imagePreview.png`,
-          width: 256,
-          height: 256,
-        },
-      ],
-      type: "website",
-    },
-    twitter: {
-      creator: "@Bbabystyle",
-      card: "summary",
-      title: post.title,
-      description:
-        "With Bbabystyle, you can build your own community, share your thoughts and ideas, and participate in lively debates. Whether you're looking to make new friends, learn from others, or simply express yourself, Bbabystyle provides the perfect platform for you to do so. Join the conversation today and see what the community has to offer!",
-      images: `${clientUrl}/imagePreview.png`,
-    },
-  };
-}
+  if (!post) return {};
+  const url = `${clientUrl}${post.permalink}`;
+  const title = post.title.length >= 40 ? post.title : `${post.title} : ${post.community}`;
+  const description =
+    post.body ||
+    `${post.ups} votes, ${post.numComments} comments. ${post.community_detail.subscribers} members in the ${post.community} community, ${post.community_detail.description}`.substring(
+      0,
+      160,
+    );
+  const card = post.mediaInfo?.isImage ? 'summary_large_image' : post.mediaInfo?.isVideo ? 'summary_large_image' : 'summary';
+  const images = post.mediaInfo?.isImage
+    ? [{ url: post.mediaInfo.image, width: post.mediaInfo.dimension[1], height: post.mediaInfo.dimension[0] }]
+    : post.mediaInfo?.isVideo
+    ? [{ url: post.mediaInfo.video.url.replace('mp4', 'jpg'), width: post.mediaInfo.dimension[1], height: post.mediaInfo.dimension[0] }]
+    : undefined;
+  const type = 'article'
+  const videos = post.mediaInfo?.isVideo ? [post.mediaInfo.video.url] : undefined;
+  return getMetadata(title, description, url, type, card, images, videos);
+};

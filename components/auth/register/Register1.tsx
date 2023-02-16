@@ -52,7 +52,7 @@ const Register1 = ({ setFase2, email, setEmail }: Register1) => {
               </div>
               <div className="mt-[20px] mb-6 flex items-center justify-between">
                 <span className="box-border w-[40%]" />
-                <span className="box-border w-[40%] text-sm font-bold">OR</span>
+                <span className="box-border w-[40%] text-sm font-bold text-bbaby-text_darker">OR</span>
                 <span className="box-border w-[40%]" />
               </div>
             </div>

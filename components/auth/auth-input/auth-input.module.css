@@ -6,16 +6,12 @@
     box-sizing: border-box;
 }
 
-.field.modalUpdate {
-
-}
-
 .valid:before {
     transform: translateZ(0);
     opacity: 1;
 }
 
-.field.valid .textInput {
+.field.valid .textInput.textInput.modalUpdate {
     border-color: #24a0ed;
 }
 
@@ -32,13 +28,18 @@
     opacity: 0;
 }
 
-.field.modalUpdate:before, field.modalUpdate:before {
+.field.modalUpdate:before, .field:before {
     z-index: 1;
     right: 14px;
     top: 18px;
     height: 10px;
     width: 12px;
-    background: url(https://www.redditstatic.com/accountmanager/d489caa9704588f7b7e1d7e1ea7b38b8.svg);
+    background: url('/auth-check.svg');
+}
+
+.field.valid::before {
+    transform: translateZ(0);
+    opacity: 1;
 }
 
 .field .textInput {
@@ -53,6 +54,7 @@
 
 .textInput {
     border: 1px solid rgba(0,0,0,.1);
+    outline: none;
     padding: 22px 12px 10px;
     transition: all;
     appearance: none;
@@ -66,16 +68,8 @@
     border-color: transparent;
 }
 
-.textInput:hover {
-    outline: 0;
-}
-
-.textInput.modalUpdate:active, .textInput:active {
-    border-color: #24a0ed;
-}
-
-.textInput.modalUpdate:focus, .textInput.modalUpdate:hover, .textInput:focus, .textInput:hover {
-    border-color: rgba(255, 255, 255, .2);
+.textInput.modalUpdate:hover, .textInput:focus, .textInput:hover {
+    border-color: rgba(0, 0, 0, .2);
 }
 
 .textInputLabel {
@@ -134,6 +128,13 @@
 }
 
 .field .textInput[data-empty=false] +.textInputLabel {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    transform: translate3d(0,-10px,0);
+}
+
+.field .textInput:focus +.textInputLabel {
     font-size: 12px;
     font-weight: 400;
     line-height: 16px;

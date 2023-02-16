@@ -53,15 +53,23 @@ export const metadata = {
     initialScale: 1,
   },
   referrer: "origin-when-cross-origin",
+  manifest: `${clientUrl}/manifest.json`,
   themeColor: "#1a1a1b",
   applicationName: "bbabystyle",
   appleWebApp: {
     title: "Bbabystyle",
-    statusBarStyle: "black",
+    statusBarStyle: "default",
   },
   icons: {
     icon: `${clientUrl}/favicon-32x32.png`,
     shortcut: `${clientUrl}/favicon-16x16.png`,
     apple: `${clientUrl}/apple-touch-icon-180x180.png`,
   },
+  twitter: {
+    card: 'summary',
+    site: '@bbabystyle',
+  },
+  openGraph: {
+    siteName: 'bbabystyle'
+  }
 };

@@ -1,6 +1,7 @@
 import { use } from "react";
 import ssrapis from "../API/ssrapis";
 import GenderButton from "./buttons/GenderButton";
+import ResendEmail from "./buttons/ResendEmail";
 import TwitterButton from "./buttons/TwitterButton";
 
 const Account = () => {
@@ -19,7 +20,8 @@ const Account = () => {
           <div className="settings-button-left-in">
             <p className="settings-button-left-in-p">Email address</p>
           </div>
-          <p className="settings-button-left-in-p-small">{userInfo.email}</p>
+          <p className="settings-button-left-in-p-small">{userInfo.email} {!userInfo.email_verified && 'is not verified!'}</p>
+          <ResendEmail />
         </div>
         <div className="settings-button-right">
           <div className="settings-button-right-div">

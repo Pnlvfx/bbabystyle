@@ -1,6 +1,6 @@
 import style from './auth-input.module.css'
 
-type AuthInput = {
+type AuthInputProps = {
   id: string
   type: string
   name: string
@@ -9,12 +9,13 @@ type AuthInput = {
   validate: (input: HTMLInputElement['value']) => void
   isValid: boolean | null
   error: string
-  autoComplete: string
+  autoComplete?: string
 }
 
-const AuthInput = ({ id, type, name, value, validate, isValid, error, autoComplete }: AuthInput) => {
+const AuthInput = ({ id, type, name, value, validate, isValid, error, autoComplete }: AuthInputProps) => {
   return (
     <fieldset className={`${style.field} ${style.modalUpdate} ${style.required} ${isValid ? style.valid : isValid === false ? style.invalid : ''}`}>
+      <input className='hidden' id={`${id}-prevent`} data-hidden type={type} name={`${name}-prevent`} data-empty />
       <input
         id={id}
         className={`${style.textInput} ${style.modalUpdate}`}
@@ -29,9 +30,9 @@ const AuthInput = ({ id, type, name, value, validate, isValid, error, autoComple
         }}
       />
       <label htmlFor={id} className={`${style.textInputLabel} ${style.modalUpdate}`}>
-        {name}
+        {name.charAt(0).toUpperCase() + name.slice(1)}
       </label>
-      {isValid === false && <div className="mt-1 pl-4 text-[12px] text-[#fb133a] ">{error}</div>}
+      {isValid === false && <div className="mt-1 pl-4 text-[12px] text-[#fb133a]">{error}</div>}
     </fieldset>
   )
 }

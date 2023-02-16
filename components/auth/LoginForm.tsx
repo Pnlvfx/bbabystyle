@@ -48,10 +48,20 @@ const LoginForm = () => {
   };
 
   const validatePass = (input: HTMLInputElement["value"]) => {
+    if (input.length >= 8) {
+      setPasswordIsValid(true);
+    } else {
+      setPasswordIsValid(false);
+    }
     setPassword(input);
   };
 
   const validateUsername = (input: HTMLInputElement["value"]) => {
+    if (input.length >= 5) {
+      setUsernameIsValid(true)
+    } else {
+      setUsernameIsValid(false);
+    }
     setUsername(input);
   };
 
@@ -70,7 +80,7 @@ const LoginForm = () => {
         </div>
         <div className="mt-[20px] mb-6 flex items-center justify-between">
           <span className="box-border w-[40%]" />
-          <span className="box-border w-[40%] text-sm font-bold">OR</span>
+          <span className="box-border w-[40%] text-sm font-bold text-bbaby-text_darker">OR</span>
           <span className="box-border w-[40%]" />
         </div>
       </div>
@@ -82,7 +92,6 @@ const LoginForm = () => {
         validate={validateUsername}
         error={""}
         isValid={usernameIsvalid}
-        autoComplete={"on"}
       />
       {error && (
         <div>
@@ -97,7 +106,6 @@ const LoginForm = () => {
         validate={validatePass}
         error={""}
         isValid={passwordIsValid}
-        autoComplete={"on"}
       />
       <div className="mt-4 text-[12px] leading-4">
         Forget your{" "}

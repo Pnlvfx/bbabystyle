@@ -4,6 +4,7 @@ interface SessionProps {
     username: string;
     avatar: string;
     role: number;
+    email_verified: boolean
   };
   device?: {
     mobile: boolean;
@@ -11,13 +12,14 @@ interface SessionProps {
 }
 
 type UserProps = {
-  username?: string
-  avatar?: string
-  role?: number
-  email?: string
-  country?: string
-  hasExternalAccount?: boolean
-  externalAccounts?: [
+  username: string
+  avatar: string
+  role: number
+  email: string
+  email_verified: boolean
+  country: string
+  hasExternalAccount: boolean
+  externalAccounts: [
     {
       username: string
       provider: string

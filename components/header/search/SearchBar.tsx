@@ -16,7 +16,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div id="searchDropdown" className="md:mx-4 ml-2 h-auto w-auto border border-transparent rounded relative min-w-[72px]">
+    <div id="searchDropdown" className="mx-4 h-auto w-auto border border-transparent rounded relative min-w-[72px]">
       <div
         onClick={(e) => {
           e.preventDefault();

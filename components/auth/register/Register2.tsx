@@ -70,7 +70,7 @@ const Register2 = ({ email, setFase2 }: Register2Props) => {
           </div>
           <div className="m-auto flex max-w-[280px] flex-1 justify-between p-6">
             <div className="flex w-full items-center justify-center">
-              <form autoComplete="new-password">
+              <form>
                 <AuthInput
                   id="regUsername"
                   type="text"
@@ -79,7 +79,6 @@ const Register2 = ({ email, setFase2 }: Register2Props) => {
                   validate={validateUsername}
                   error={""}
                   isValid={usernameIsvalid}
-                  autoComplete={"new-password"}
                 />
                 <AuthInput
                   id="regPassword"

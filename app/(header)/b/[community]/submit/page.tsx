@@ -1,17 +1,14 @@
+import { Metadata } from "next";
 import { use } from "react";
 import ssrapis from "../../../../../components/API/ssrapis";
 import Submit from "../../../../../components/submit/Submit";
 import { SubmitContextProvider } from "../../../../../components/submit/SubmitProvider";
 import UserSecurity from "../../../../../components/utils/security/UserSecurity";
 import TempSubmitWid from "../../../../../components/widget/TempSubmitWid";
+import { clientUrl } from "../../../../../config/config";
+import { CommunityPageProps } from "../page";
 
-interface SubmitCommunityPageProps {
-  params: {
-    community: string;
-  };
-}
-
-const SubmitCommunityPage = ({ params }: SubmitCommunityPageProps) => {
+const SubmitCommunityPage = ({ params }: CommunityPageProps) => {
   const community = use(ssrapis.getCommunity(params.community));
 
   if (!community) {
@@ -39,3 +36,18 @@ const SubmitCommunityPage = ({ params }: SubmitCommunityPageProps) => {
 };
 
 export default SubmitCommunityPage;
+
+export const generateMetadata = async ({params}: CommunityPageProps): Promise<Metadata> => {
+  const community = await ssrapis.getCommunity(params.community);
+  if (!community) return {};
+  return {
+    title: `Submit to ${community.name}`,
+    description: community.description,
+    alternates: {
+      canonical: `${clientUrl}/b/${community}/submit`,
+      languages: {
+        'en-US': `${clientUrl}/b/${community}/submit`
+      }
+    }
+  }
+}

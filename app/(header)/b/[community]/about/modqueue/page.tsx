@@ -1,13 +1,10 @@
+import { Metadata } from "next";
 import { use } from "react";
 import ssrapis from "../../../../../../components/API/ssrapis";
+import { clientUrl } from "../../../../../../config/config";
+import { CommunityPageProps } from "../../page";
 
-interface ModQueuePageProps {
-  params: {
-    community: string;
-  };
-}
-
-const ModQueuePage = ({ params }: ModQueuePageProps) => {
+const ModQueuePage = ({ params }: CommunityPageProps) => {
   const session = use(ssrapis.getSession());
   return (
     <div>
@@ -28,3 +25,18 @@ const ModQueuePage = ({ params }: ModQueuePageProps) => {
 };
 
 export default ModQueuePage;
+
+export const generateMetadata = async ({params}: CommunityPageProps): Promise<Metadata> => {
+  const community = await ssrapis.getCommunity(params.community);
+  if (!community) return {};
+  return {
+    title: community.name,
+    description: community.description,
+    alternates: {
+      canonical: `${clientUrl}/b/${community}/about`,
+      languages: {
+        'en-US': `${clientUrl}/b/${community}/about`
+      }
+    }
+  }
+}

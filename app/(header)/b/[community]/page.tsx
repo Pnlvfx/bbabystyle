@@ -1,15 +1,18 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import { use } from "react";
 import ssrapis from "../../../../components/API/ssrapis";
 import BoardHeader from "../../../../components/community/BoardHeader";
+import { getMetadata } from "../../../../components/metadata/metadata";
 import BestPost from "../../../../components/post/BestPost";
 import Feed from "../../../../components/post/Feed";
 import PostForm from "../../../../components/post/PostForm";
 import Donations from "../../../../components/widget/Donations";
 import PolicyWidget from "../../../../components/widget/PolicyWidget";
 import Widget from "../../../../components/widget/Widget";
+import { clientUrl } from "../../../../config/config";
 
-interface CommunityPageProps {
+export interface CommunityPageProps {
   params: {
     community: string;
   };
@@ -63,7 +66,7 @@ const CommunityPage = ({ params }: CommunityPageProps) => {
         </div>
         {!session?.device?.mobile && (
           <div className="ml-6 hidden lg:block">
-            <Widget />
+            <Widget community={community} />
             <Donations />
             <PolicyWidget />
           </div>
@@ -74,3 +77,17 @@ const CommunityPage = ({ params }: CommunityPageProps) => {
 };
 
 export default CommunityPage;
+
+export const generateMetadata = async ({params}: CommunityPageProps): Promise<Metadata> => {
+  const community = await ssrapis.getCommunity(params.community);
+  if (!community) return {};
+  const title = `b/${community.name}`;
+  const description = community.description
+  const url = `${clientUrl}/b/${community.name}`;
+  const images = [{
+    url: community.image,
+    width: 256,
+    height: 256
+  }]
+  return getMetadata(title, description, url, 'website', 'summary', images)
+}
