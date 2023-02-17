@@ -1,3 +1,4 @@
+import Script from "next/script";
 import { use } from "react";
 import ssrapis from "../components/API/ssrapis";
 import { ModalsContextProvider } from "../components/auth/modal/ModalsProvider";
@@ -33,6 +34,7 @@ const RootLayout = ({ children }: ChildrenProps) => {
               </UserContextProvider>
             )}
           </div>
+          <Script src="inobounce.js" strategy="afterInteractive" async defer />
         </div>
       </body>
     </html>

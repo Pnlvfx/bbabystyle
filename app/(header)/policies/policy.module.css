@@ -1,0 +1,33 @@
+.main {
+    display: grid;
+}
+
+.main p {
+    margin-block-start: 1em;
+    margin-block-start: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    margin-bottom: 16px;
+}
+
+.main table {
+    margin-bottom: 16px;
+    display: table;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+.main table tr {
+    vertical-align: top;
+    display: table-row;
+}
+
+.main table td {
+    display: table-cell;
+    text-align: left;
+    padding: 8px;
+}
+
+.main table a {
+    color: #003584
+}

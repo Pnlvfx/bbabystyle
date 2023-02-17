@@ -1,20 +1,8 @@
-import { use } from "react";
-import ssrapis from "../../../../components/API/ssrapis";
-import LeaderboardFeed from "../../../../components/leaderboard/LeaderboardFeed";
 import LeaderboardMenu from "../../../../components/leaderboard/LeaderboardMenu";
+import TopCommunities from "../../../../components/widget/topcommunities/TopCommunities";
 import Widget from "../../../../components/widget/Widget";
 
-const LeaderboardLayout = () => {
-    const communities = use(ssrapis.getCommunities(25))
-
-    if (!communities) {
-        return (
-            <div>
-                
-            </div>
-        )
-    }
-
+const LeaderboardLayout = ({children}: ChildrenProps) => {
   return (
     <div className="flex min-h-[calc(100vh_-_48px)] flex-col">
       <div className="z-[3]">
@@ -31,9 +19,11 @@ const LeaderboardLayout = () => {
         </div>
         <div className="mx-auto box-border flex max-w-[1248px] justify-center py-5 px-6 ">
           <LeaderboardMenu />
-          <LeaderboardFeed communities={communities} />
+          {children}
           <div className="ml-8">
-            <Widget />
+            <Widget>
+              <TopCommunities />
+            </Widget>
           </div>
         </div>
       </div>

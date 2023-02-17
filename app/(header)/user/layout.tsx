@@ -4,6 +4,7 @@ import AuthorHeader from "../../../components/authorpage/AuthorHeader";
 import BestPost from "../../../components/post/BestPost";
 import Donations from "../../../components/widget/Donations";
 import PolicyWidget from "../../../components/widget/PolicyWidget";
+import TopCommunities from "../../../components/widget/topcommunities/TopCommunities";
 import Widget from "../../../components/widget/Widget";
 import styles from "./user-page.module.css";
 
@@ -29,7 +30,9 @@ const UserLayout = ({ children }: ChildrenProps) => {
         </div>
         {!session?.device?.mobile && (
           <div className="ml-6 hidden lg:block">
-            <Widget />
+            <Widget>
+              <TopCommunities />
+            </Widget>
             <Donations />
             <PolicyWidget />
           </div>

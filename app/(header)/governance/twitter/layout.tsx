@@ -1,9 +1,11 @@
 import TwitterSortButton from "../../../../components/governance/twitter/TwitterSortButton"
 import TwitterTab from "../../../../components/governance/twitter/TwitterTab"
+import TwitterWidget from "../../../../components/governance/twitter/TwitterWidget"
+import Widget from "../../../../components/widget/Widget"
 
 const TwitterLayout = ({children}: ChildrenProps) => {
   return (
-    <div id="diplay_tweets" className="mx-[2px] flex justify-center lg:mx-10">
+    <div className="mx-auto flex max-w-full justify-center md:py-5 md:px-6">
       <div className="w-full lg:w-[640px]">
         <div className="mb-4">
           <TwitterTab />
@@ -14,7 +16,11 @@ const TwitterLayout = ({children}: ChildrenProps) => {
         <ul>
           {children}
         </ul>
-        <div className="hidden lg:block">Twitter Widget</div>
+      </div>
+      <div className="ml-6 hidden lg:block">
+      <Widget>
+        <TwitterWidget />
+      </Widget>
       </div>
     </div>
   )

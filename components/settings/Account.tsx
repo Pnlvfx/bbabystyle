@@ -21,7 +21,7 @@ const Account = () => {
             <p className="settings-button-left-in-p">Email address</p>
           </div>
           <p className="settings-button-left-in-p-small">{userInfo.email} {!userInfo.email_verified && 'is not verified!'}</p>
-          <ResendEmail />
+          {!userInfo.email_verified && <ResendEmail />}
         </div>
         <div className="settings-button-right">
           <div className="settings-button-right-div">

@@ -5,6 +5,7 @@ import communityapis from "../API/communityapis";
 import { useSession } from "../auth/UserContextProvider";
 import Comment from "../comment/Comment";
 import { CloseIcon } from "../utils/svg/SVG";
+import CommunityInfo from "../widget/communityinfo/CommunityInfo";
 import Donations from "../widget/Donations";
 import Widget from "../widget/Widget";
 import Post from "./Post";
@@ -85,7 +86,7 @@ const PostModal = ({ post, onClickOut }: PostModalProps) => {
                 onClick={clickOut}
               >
                 <i className="inline-block pr-1">
-                  <CloseIcon className="h-4 w-4" />
+                  <CloseIcon className="h-4 w-4 fill-bbaby-text_darker" />
                 </i>
                 <span>Close</span>
               </button>
@@ -107,7 +108,9 @@ const PostModal = ({ post, onClickOut }: PostModalProps) => {
           </div>
           {!session?.device?.mobile && (
             <div className="m-8 ml-0 hidden lg:block">
-              <Widget community={community} />
+              <Widget>
+                <CommunityInfo community={community} />
+              </Widget>
               <Donations />
             </div>
           )}

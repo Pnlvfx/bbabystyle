@@ -55,7 +55,7 @@ const CookieConsent = () => {
                   platform. For more information, please see our{" "}
                   <Link
                     className="text-[#4fbcff]"
-                    href={"/policies/cookie-notice"}
+                    href={"/policies/cookies"}
                     target="_blank"
                   >
                     Cookie Notice

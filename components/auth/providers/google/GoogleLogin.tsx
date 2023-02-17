@@ -53,7 +53,7 @@ const GoogleLogin = ({
       locale,
     });
     return () => {};
-  }, [clientId, scriptLoadedSuccessfully, type, theme, size, text, shape, logo_alignment, width, locale]);
+  }, [clientId, scriptLoadedSuccessfully, type, theme, size, text, shape, logo_alignment, width, locale, props]);
 
   return <div ref={btnContainerRef} style={{ height: containerHeightMap[size] }} />;
 };

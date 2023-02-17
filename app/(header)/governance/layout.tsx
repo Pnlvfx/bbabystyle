@@ -35,6 +35,6 @@ export default GovernanceLayout
 export const metadata = {
   title: 'Bbabystyle - authority page',
   robots: {
-    
+    index: false
   }
 }

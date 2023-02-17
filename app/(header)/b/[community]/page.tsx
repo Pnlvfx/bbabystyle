@@ -7,6 +7,7 @@ import { getMetadata } from "../../../../components/metadata/metadata";
 import BestPost from "../../../../components/post/BestPost";
 import Feed from "../../../../components/post/Feed";
 import PostForm from "../../../../components/post/PostForm";
+import CommunityInfo from "../../../../components/widget/communityinfo/CommunityInfo";
 import Donations from "../../../../components/widget/Donations";
 import PolicyWidget from "../../../../components/widget/PolicyWidget";
 import Widget from "../../../../components/widget/Widget";
@@ -66,7 +67,9 @@ const CommunityPage = ({ params }: CommunityPageProps) => {
         </div>
         {!session?.device?.mobile && (
           <div className="ml-6 hidden lg:block">
-            <Widget community={community} />
+            <Widget>
+              <CommunityInfo community={community} />
+            </Widget>
             <Donations />
             <PolicyWidget />
           </div>

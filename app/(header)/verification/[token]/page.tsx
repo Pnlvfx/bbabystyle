@@ -20,26 +20,23 @@ const activationEmail = async (activation_token: string) => {
       body,
     });
     const data = await res.json();
-    if (data.msg === 'Success') {
-      redirect('/')
-    }
     return data.msg as string;
   } catch (err) {
-    return "Something went wrong!";
+    return "Something went wrong, probably this token is expired!";
   }
 };
 
 const ActivationEmail = ({ params }: ActivationEmailProps) => {
   const status = use(activationEmail(params.token));
 
+  if (status === 'Success') {
+    redirect('/');
+  }
+
   return (
-    <>
-    {status !== 'Success' && (
       <div className="h-[100vh] flex items-center justify-center bg-bbaby-brighter">
         <div className="text-reddit_red">{status}</div>
       </div>
-    )}
-    </>
   );
 };
 

@@ -6,3 +6,7 @@
     border-radius: 3px;
     background-color: #1a1a1b;
 }
+
+.cookieContainer p {
+    margin-bottom: 10px;
+}

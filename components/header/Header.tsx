@@ -28,6 +28,7 @@ const Header = ({ session }: HeaderProps) => {
               href={"/"}
               aria-label="Home"
               className="inline-flex flex-row items-center"
+              scroll={true}
             >
               <div className="pl-0 pr-2 py-2 flex-none">
                 <Image
@@ -37,14 +38,18 @@ const Header = ({ session }: HeaderProps) => {
                   alt={"logo"}
                 />
               </div>
-              <TextLogo className="hidden lg:block h-[18px] mr-5 w-auto" />
+              {!session?.device?.mobile ? (
+                <TextLogo className="hidden lg:block h-[18px] mr-5 w-auto" />
+              ) : (
+                <TextLogo className="block h-[18px] mr-5 w-auto" />
+              )}
             </Link>
             {session?.user && !session?.device?.mobile && (
               <div>
                 <HeaderHome />
               </div>
             )}
-            <div className="flex-grow my-0 max-w-[690px] mx-auto">
+            <div className="flex-grow my-0 max-w-[690px] mx-auto hidden md:block">
               <SearchBar />
             </div>
           </div>

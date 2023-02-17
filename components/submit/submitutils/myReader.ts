@@ -69,7 +69,6 @@ export const previewImage = (
 //       }).catch((err) => {
 //         console.error(err);
 //       }).finally((res) => {
-//         console.log(res)
 //         resolve(thumbnail);
 //       })
 //     })

@@ -5,6 +5,7 @@ import Comment from '../../../../../../components/comment/Comment';
 import { getMetadata } from '../../../../../../components/metadata/metadata';
 import Post from '../../../../../../components/post/Post';
 import PostNotFound from '../../../../../../components/post/PostNotFound';
+import CommunityInfo from '../../../../../../components/widget/communityinfo/CommunityInfo';
 import Donations from '../../../../../../components/widget/Donations';
 import Widget from '../../../../../../components/widget/Widget';
 import { clientUrl } from '../../../../../../config/config';
@@ -38,7 +39,9 @@ const PostPage = ({ params }: PostPageProps) => {
               <Comment post={post} />
             </div>
             <div className="hidden lg:block">
-              <Widget community={post.community_detail} />
+              <Widget>
+                <CommunityInfo community={post.community_detail} />
+              </Widget>
               <Donations />
             </div>
           </div>

@@ -11,7 +11,7 @@ interface SearchPageProps {
   };
 }
 
-const SearchPage = ({ searchParams }: any) => {
+const SearchPage = ({ searchParams }: SearchPageProps) => {
   if (!searchParams.text) {
     return <div></div>;
   }

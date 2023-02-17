@@ -6,6 +6,7 @@ import { CloseIcon } from "../../svg/SVG";
 import styles from "./cookie-consent-mobile.module.css";
 const CookieConsentMobile = () => {
   const [euCookie, setEuCookie] = useState(true);
+
   useEffect(() => {
     const get = async () => {
       try {
@@ -28,13 +29,13 @@ const CookieConsentMobile = () => {
     <div className="p-2">
       <div className={styles.cookieContainer}>
         <div onClick={saveEUcookie} className="absolute top-0 right-0">
-          <CloseIcon className="align-middle w-4 h-4" />
+          <CloseIcon className="align-middle w-4 h-4 fill-bbaby-text_darker" />
         </div>
-        <p>
+        <p className="text-[14px] leading-4">
           Cookies help us deliver our Services. We only use essential cookies.{" "}
           <Link
             className="text-[#24a0ed]"
-            href={"/policies/cookie-notice"}
+            href={"/policies/cookies"}
             target={"_blank"}
           >
             Learn More

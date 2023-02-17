@@ -60,7 +60,7 @@ const CommunityFormModal = () => {
                 <div className="max-h-[100%] max-w-[492px]">
                   <h1 className="mb-4 flex justify-between border-b border-solid border-reddit_border pb-4 text-[16px] font-medium leading-5">
                     Create a community
-                    <CloseIcon onClick={() => close()} className="ml-auto h-4 w-4 cursor-pointer overflow-hidden text-[16px] leading-5 " />
+                    <CloseIcon onClick={() => close()} className="ml-auto h-4 w-4 cursor-pointer fill-bbaby-text_darker overflow-hidden text-[16px] leading-5 " />
                   </h1>
                   <div className="mb-[30px] flex flex-col" style={{ flexWrap: 'wrap' }}>
                     <div className="mb-[-4] mr-2 flex max-w-[100%] flex-col">
