@@ -1,4 +1,3 @@
-import Script from "next/script";
 import { use } from "react";
 import ssrapis from "../components/API/ssrapis";
 import { ModalsContextProvider } from "../components/auth/modal/ModalsProvider";
@@ -24,9 +23,7 @@ const RootLayout = ({ children }: ChildrenProps) => {
               </UserContextProvider>
             ) : (
               <UserContextProvider session={session}>
-                <GoogleOAuthProvider
-                  clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
-                >
+                <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
                   <ModalsContextProvider>
                     <TimeMsgContextProvider>{children}</TimeMsgContextProvider>
                   </ModalsContextProvider>
@@ -34,7 +31,7 @@ const RootLayout = ({ children }: ChildrenProps) => {
               </UserContextProvider>
             )}
           </div>
-          <Script src="inobounce.js" strategy="afterInteractive" async defer />
+          {/* {session?.device?.mobile && <Script src="inobounce.js" strategy="afterInteractive" async defer />} */}
         </div>
       </body>
     </html>
@@ -68,10 +65,10 @@ export const metadata = {
     apple: `${clientUrl}/apple-touch-icon-180x180.png`,
   },
   twitter: {
-    card: 'summary',
-    site: '@bbabystyle',
+    card: "summary",
+    site: "@bbabystyle",
   },
   openGraph: {
-    siteName: 'bbabystyle'
-  }
+    siteName: "bbabystyle",
+  },
 };

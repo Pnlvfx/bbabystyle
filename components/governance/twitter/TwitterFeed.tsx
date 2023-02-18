@@ -12,23 +12,23 @@ interface TwitterFeedProps {
 const TwitterFeed = ({ tweets: ssr_tweets, language }: TwitterFeedProps) => {
   const allTweets = useRef(ssr_tweets);
   const [tweets, setTweets] = useState(allTweets.current.slice(0, 15));
-  const sort = useSearchParams().get('sort');
+  const sort = useSearchParams().get("sort");
 
   const getMoreTweets = async () => {
     try {
       const response = allTweets.current.slice(tweets.length, tweets.length + 10);
-      setTweets(t => [...t, ...response]);
+      setTweets((t) => [...t, ...response]);
     } catch (err) {}
   };
 
   useEffect(() => {
     if (!sort) return;
-    if (sort === 'best') {
+    if (sort === "best") {
       allTweets.current = allTweets.current.sort((a, b) => b.favorite_count - a.favorite_count);
-    } else if (sort === 'recently') {
+    } else if (sort === "recently") {
       allTweets.current = allTweets.current.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
     }
-    setTweets(t => allTweets.current.slice(0, t.length));
+    setTweets((t) => allTweets.current.slice(0, t.length));
   }, [sort]);
 
   return (
@@ -43,7 +43,7 @@ const TwitterFeed = ({ tweets: ssr_tweets, language }: TwitterFeedProps) => {
         {tweets.map((tweet) => (
           <div key={tweet.id}>
             <div>
-              <div className="mb-3 w-full cursor-pointer rounded-md border border-reddit_border bg-[#141415] hover:border-reddit_text">
+              <div className="rounded-md border mb-3 w-full border-reddit_border bg-[#141415] hover:border-reddit_text">
                 <Tweet
                   username={tweet?.user.name}
                   screen_name={tweet.user.screen_name}
