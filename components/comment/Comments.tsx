@@ -1,30 +1,30 @@
-import TimeAgo from 'react-timeago'
-import { useState } from 'react'
-import Link from 'next/link'
-import CommentForm from './CommentForm'
-import Linkify from 'react-linkify'
-import VoteComment from './VoteComment'
-import ReplyButton from './ReplyButton'
+import { useState } from "react";
+import Link from "next/link";
+import CommentForm from "./CommentForm";
+import Linkify from "react-linkify";
+import VoteComment from "./VoteComment";
+import ReplyButton from "./ReplyButton";
+import TimeAgo from "../react-time-ago";
 
 interface CommentsProps {
-  comments: CommentProps[]
-  parentId: string
-  rootId: string
-  getComments: () => Promise<void>
+  comments: CommentProps[];
+  parentId: string;
+  rootId: string;
+  getComments: () => Promise<void>;
 }
 
 const Comments = ({ parentId, rootId, comments: propsComments, getComments }: CommentsProps) => {
-  const [showForm, setShowForm] = useState(false)
-  const comments = propsComments.filter((comment) => parentId === comment.parentId)
+  const [showForm, setShowForm] = useState(false);
+  const comments = propsComments.filter((comment) => parentId === comment.parentId);
 
   const onCancel = () => {
-    setShowForm(false)
-  }
+    setShowForm(false);
+  };
 
   return (
-    <div className={'my-2 bg-reddit_dark-brighter'}>
+    <div className={"my-2 bg-reddit_dark-brighter"}>
       {comments.map((comment) => {
-        const replies = propsComments.filter((c) => c.parentId === comment._id)
+        const replies = propsComments.filter((c) => c.parentId === comment._id);
         return (
           <div className="mb-2" key={comment._id}>
             <div className="mb-2 flex">
@@ -41,7 +41,7 @@ const Comments = ({ parentId, rootId, comments: propsComments, getComments }: Co
                 <div className="resize-x-none inline flex-none break-words text-sm leading-6">
                   <Linkify
                     componentDecorator={(decoratedHref, decoratedText, key) => (
-                      <a className="text-reddit_blue" target={'_blank'} href={decoratedHref} key={key} rel={'noopener nofollow ugc noreferrer'}>
+                      <a className="text-reddit_blue" target={"_blank"} href={decoratedHref} key={key} rel={"noopener nofollow ugc noreferrer"}>
                         {decoratedText}
                       </a>
                     )}
@@ -52,9 +52,9 @@ const Comments = ({ parentId, rootId, comments: propsComments, getComments }: Co
                 <div className="flex w-auto p-2 pl-0">
                   <VoteComment comment={comment} />
                   <ReplyButton
-                    type={'button'}
+                    type={"button"}
                     onClick={() => {
-                      setShowForm(!!comment._id)
+                      setShowForm(!!comment._id);
                     }}
                   >
                     Reply
@@ -67,10 +67,10 @@ const Comments = ({ parentId, rootId, comments: propsComments, getComments }: Co
               </div>
             </div>
           </div>
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
-export default Comments
+export default Comments;

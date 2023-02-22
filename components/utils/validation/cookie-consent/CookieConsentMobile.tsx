@@ -1,21 +1,11 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import userapis from "../../../API/userapis";
 import { CloseIcon } from "../../svg/SVG";
 import styles from "./cookie-consent-mobile.module.css";
+import useCookieConsent from "./useCookieConsent";
 const CookieConsentMobile = () => {
-  const [euCookie, setEuCookie] = useState(true);
-
-  useEffect(() => {
-    const get = async () => {
-      try {
-        const boolean = await userapis.getEUcookie();
-        setEuCookie(boolean);
-      } catch (err) {}
-    };
-    get();
-  }, []);
+  const { euCookie, setEuCookie } = useCookieConsent();
 
   const saveEUcookie = async () => {
     try {
@@ -33,11 +23,7 @@ const CookieConsentMobile = () => {
         </div>
         <p className="text-[14px] leading-4">
           Cookies help us deliver our Services. We only use essential cookies.{" "}
-          <Link
-            className="text-[#24a0ed]"
-            href={"/policies/cookies"}
-            target={"_blank"}
-          >
+          <Link className="text-[#24a0ed]" href={"/policies/cookies"} target={"_blank"}>
             Learn More
           </Link>
         </p>

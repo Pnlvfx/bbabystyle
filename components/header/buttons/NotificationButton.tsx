@@ -10,13 +10,11 @@ const NotificationButton = () => {
     setShow(!show);
   };
 
-  useEffect(() => {
-    
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <ClickOutHandler onClickOut={() => setShow(false)}>
-      <span className="md:ml-2 h-8">
+      <div className="md:ml-2 h-8">
         <button
           className={`relative rounded-[2px]`}
           aria-expanded={show}
@@ -32,7 +30,7 @@ const NotificationButton = () => {
           </div>
         </button>
         {show && <NotificationModal />}
-      </span>
+      </div>
     </ClickOutHandler>
   );
 };

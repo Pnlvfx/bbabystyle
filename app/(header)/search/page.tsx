@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { use } from "react";
 import ssrapis from "../../../components/API/ssrapis";
 import Search from "../../../components/search/Search";
@@ -32,3 +33,13 @@ const SearchPage = ({ searchParams }: SearchPageProps) => {
 };
 
 export default SearchPage;
+
+export const generateMetadata = async ({ searchParams }: SearchPageProps): Promise<Metadata> => {
+  const title = `bbabystyle.com: search results - ${searchParams.text || ""}`;
+  return {
+    title,
+    robots: {
+      index: false,
+    },
+  };
+};

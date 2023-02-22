@@ -9,16 +9,7 @@ import SubmitButton from "../submit-buttons/SubmitButton";
 const Body = () => {
   const [showDeleteOptions, setShowDeleteOptions] = useState(false);
   const [activeClassBody, setActiveClassBody] = useState(false);
-  const {
-    thumbnail,
-    selectedFile,
-    setSelectedFile,
-    isImage,
-    setIsImage,
-    body,
-    setBody,
-    isVideo,
-  } = useSubmitProvider();
+  const { thumbnail, selectedFile, setSelectedFile, isImage, setIsImage, body, setBody, isVideo, setIsVideo } = useSubmitProvider();
   const [activeFigure, setActiveFigure] = useState(false);
 
   const figureClickOut = () => {
@@ -29,6 +20,7 @@ const Body = () => {
   const deleteCurrentImage = () => {
     setSelectedFile(null);
     setIsImage(false);
+    setIsVideo(false);
     setShowDeleteOptions(false);
   };
 
@@ -45,9 +37,7 @@ const Body = () => {
         }}
       >
         <div
-          className={`solid relative rounded-[4px] border ${
-            activeClassBody ? "border-reddit_text" : "border-reddit_border"
-          }`}
+          className={`solid relative rounded-[4px] border ${activeClassBody ? "border-reddit_text" : "border-reddit_border"}`}
           onClick={() => setActiveClassBody(true)}
         >
           <div className="sticky top-12 z-[8] box-border flex flex-nowrap items-center rounded-[4px] bg-[#272729]">
@@ -63,15 +53,11 @@ const Body = () => {
                       <ClickOutHandler onClickOut={figureClickOut}>
                         <div className="mt-2 mb-1">
                           {showDeleteOptions && (
-                            <div
-                              className="sticky bottom-0 top-10 z-10 flex h-0 justify-center"
-                              onClick={deleteCurrentImage}
-                            >
+                            <div className="sticky bottom-0 top-10 z-10 flex h-0 justify-center" onClick={deleteCurrentImage}>
                               <div
                                 className="felx-row box-border flex h-[30px] translate-y-[-40px] items-center rounded-[4px] bg-[#272729] hover:bg-reddit_hover"
                                 style={{
-                                  boxShadow:
-                                    "0 0 0 1px #343536, 0 1px 10px #343536",
+                                  boxShadow: "0 0 0 1px #343536, 0 1px 10px #343536",
                                 }}
                               >
                                 <button className="relative box-border flex items-center rounded-[4px] border-none p-[3px] outline-none transition-colors">
@@ -100,11 +86,7 @@ const Body = () => {
                                     <>
                                       <div className="absolute bottom-0 left-0 right-0 top-0 z-[1] opacity-100">
                                         <div className="relative h-full max-h-[100%] max-w-[100%] cursor-default select-none overflow-hidden whitespace-nowrap">
-                                          <Video
-                                            url={selectedFile}
-                                            poster={thumbnail as string}
-                                            Logo={LOGO}
-                                          />
+                                          <Video url={selectedFile} poster={thumbnail as string} Logo={LOGO} />
                                           <div className="absolute top-0 bottom-0 left-0 right-0" />
                                         </div>
                                       </div>
@@ -113,12 +95,7 @@ const Body = () => {
                                   {isImage && (
                                     <>
                                       <picture>
-                                        <img
-                                          draggable={false}
-                                          src={selectedFile}
-                                          alt={""}
-                                          className="z-0 max-w-[100%] self-center rounded-[8px]"
-                                        />
+                                        <img draggable={false} src={selectedFile} alt={""} className="z-0 max-w-[100%] self-center rounded-[8px]" />
                                       </picture>
                                       <div className="absolute bottom-0 left-0 right-0 z-10 h-[64px] opacity-0"></div>
                                     </>
@@ -135,9 +112,7 @@ const Body = () => {
                     </figure>
                     <div className="mx-[10%] mb-3">
                       <div className="relative whitespace-pre-wrap text-center text-[13px] leading-[18px]">
-                        <span className="text-reddit_text-darker">
-                          Add a caption
-                        </span>
+                        <span className="text-reddit_text-darker">Add a caption</span>
                       </div>
                     </div>
                   </>

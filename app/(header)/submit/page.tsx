@@ -8,7 +8,7 @@ import TempSubmitWid from "../../../components/widget/TempSubmitWid";
 const SubmitPage = () => {
   const session = use(ssrapis.getSession());
 
-  if (!session || !session.user) {
+  if (!session?.user) {
     redirect("/");
   }
 
@@ -27,3 +27,7 @@ const SubmitPage = () => {
 };
 
 export default SubmitPage;
+
+export const metadata = {
+  title: "Submit to Bbabystyle",
+};

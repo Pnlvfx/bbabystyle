@@ -24,3 +24,7 @@ const SettingsLayout = ({ children }: ChildrenProps) => {
 };
 
 export default SettingsLayout;
+
+export const metadata = {
+  title: "Bbabystyle settings",
+};

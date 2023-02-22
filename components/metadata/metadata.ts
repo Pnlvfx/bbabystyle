@@ -14,7 +14,7 @@ interface ImagesProps {
   height: number
 }
 
-const getOG = (title: string, description: string, url: string, type: 'article' | 'website', images?: ImagesProps[], videos?: string[]) => {
+const getOG = (title: string, description: string, url: string, type: 'article' | 'website' | 'profile', images?: ImagesProps[], videos?: string[]) => {
   return {
     title,
     description,
@@ -26,7 +26,7 @@ const getOG = (title: string, description: string, url: string, type: 'article' 
   }
 }
 
-export const getMetadata = (title: string, description: string, url: string, type: 'article' | 'website', card: 'summary_large_image' | 'summary', images?: ImagesProps[], videos?: string[]) => {
+export const getMetadata = (title: string, description: string, url: string, type: 'article' | 'website' | 'profile', card: 'summary_large_image' | 'summary', images?: ImagesProps[], videos?: string[]) => {
   const twImages = images && images.length >= 1 ? [images[0].url] : undefined;
   return {
     title,

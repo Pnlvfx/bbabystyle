@@ -54,6 +54,35 @@ const ssrgov = {
       return catchError(err);
     }
   },
+  getArticles: async (limit: string | number, skip: string | number) => {
+    try {
+      const url = `${server}/governance/BBCnews?limit=${limit}&skip=${skip}`
+      const res = await fetch(url, {
+        method: 'get',
+        headers: getHeaders(),
+      })
+      const data = await res.json()
+      if (!res.ok) return;
+      return data as ExternalNews[]
+    } catch (err) {
+      return;
+    }
+  },
+  getArticle: async (permalink: string) => {
+    try {
+      const serverUrl = `${server}${permalink}`
+      const res = await fetch(serverUrl, {
+        method: 'GET',
+        headers: getHeaders(),
+      })
+      const data = await res.json()
+      if (!res.ok) return;
+      return data as ExternalNews
+    } catch (err) {
+      console.log(err);
+      return;
+    }
+  },
 };
 
 export default ssrgov;

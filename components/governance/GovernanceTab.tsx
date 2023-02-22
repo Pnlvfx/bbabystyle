@@ -6,7 +6,7 @@ const GovernanceTab = () => {
   const menu = [
     { title: "Bbaby", url: "/governance/bbaby", url2: "/governance" },
     { title: "Twitter", url: "/governance/twitter" },
-    { title: "BBCNews", url: "/governance/news" },
+    { title: "News", url: "/governance/news" },
     { title: "Reddit", url: "/governance/reddit" },
     { title: "TikTak", url: "/governance/tiktak" },
   ];
@@ -20,7 +20,7 @@ const GovernanceTab = () => {
             key={index}
             href={m.url}
             shallow={true}
-            className={`${pathname === m.url || pathname === m.url2 ? "font-extrabold text-reddit_text" : "text-reddit_text-darker"}`}
+            className={`${pathname.match(m.url) || pathname === m.url2 ? "font-extrabold text-reddit_text" : "text-reddit_text-darker"}`}
           >
             <p className={`mx-3 py-3`}>{m.title}</p>
           </Link>

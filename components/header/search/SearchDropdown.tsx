@@ -3,6 +3,7 @@ import { ClickOutHandler } from "react-clickout-ts";
 import { catchErrorWithMessage } from "../../API/config/apiErrors";
 import searchapis from "../../API/searchapis";
 import { useModals } from "../../auth/modal/ModalsProvider";
+import { useSession } from "../../auth/UserContextProvider";
 import { useMessage } from "../../utils/message/TimeMsgContext";
 
 type PositionProps = {
@@ -16,22 +17,25 @@ const SearchDropdown = () => {
   const shouldRequest = useRef(true);
   const modals = useModals();
   const modalsRef = useRef(modals);
+  const sessionRef = useRef(useSession());
   const [position, setPosition] = useState<PositionProps>({
     width: 0,
     left: 0,
   });
 
   useEffect(() => {
+    if (sessionRef.current.session?.device?.mobile) return;
     if (!shouldRequest.current) return;
     shouldRequest.current = false;
-    setTimeout(async () => {
+    const get = async () => {
       try {
         const t = await searchapis.searchTrend();
         setTrends(t);
       } catch (err) {
         catchErrorWithMessage(err, message.current);
       }
-    }, 1000);
+    };
+    get();
   }, []);
 
   useEffect(() => {
@@ -76,11 +80,8 @@ const SearchDropdown = () => {
             overflow: "auto",
           }}
         >
-          <div className="pb-2 pt-4 text-bbaby-text_darker text-[10px] font-bold leading-3 uppercase px-4">
-            Trending today
-          </div>
-          {trends.length >= 1 &&
-            trends.map((trend, index) => <div key={index} />)}
+          <div className="pb-2 pt-4 text-bbaby-text_darker text-[10px] font-bold leading-3 uppercase px-4">Trending today</div>
+          {trends.length >= 1 && trends.map((trend, index) => <div key={index} />)}
         </div>
       </ClickOutHandler>
     </div>
