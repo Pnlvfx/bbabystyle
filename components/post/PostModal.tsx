@@ -21,7 +21,7 @@ const PostModal = ({ post, onClickOut }: PostModalProps) => {
   const clickOut = (e: MouseEvent<HTMLDivElement | HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    router.push("/");
+    router.back()
     onClickOut();
   };
   const postRef = useRef(post);

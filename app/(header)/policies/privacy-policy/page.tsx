@@ -93,6 +93,70 @@ const PrivacyPolicyPage = () => {
             <PrivacyTable table={table2} />
           </div>
         </div>
+        <div id="content-2">
+          <h2 className="text-[24px] leading-[28px] mb-4">How We Use Your Information</h2>
+          <div className="w-full overflow-x-scroll">
+            <p>We may use your personal information for the following purposes:</p>
+            <ul className="pl-8 mb-4">
+              <li className="mt-1 list-disc">To operate, maintain, and improve Bbabystyle.</li>
+              <li className="mt-1 list-disc">To respond to your inquiries and provide you with customer service.</li>
+              <li className="mt-1 list-disc">
+                To personalize your experience on the Babystyle and provide you with tailored content and advertising.
+              </li>
+              <li className="mt-1 list-disc">To comply with applicable laws and regulations, and to enforce our legal rights.</li>
+            </ul>
+          </div>
+        </div>
+        <div id="content-3">
+          <h2 className="text-[24px] leading-[28px] mb-4">How We Share Your Information</h2>
+          <div className="w-full overflow-x-scroll">
+            <p>We may share your personal information with the following types of third parties:</p>
+            <ul className="pl-8 mb-4">
+              <li className="mt-1 list-disc">
+                Service providers, such as hosting providers and email service providers, who help us operate Bbabystyle.
+              </li>
+              <li className="mt-1 list-disc">
+                Advertising partners, such as Google AdSense, who help us display personalized advertising on the Site.
+              </li>
+              <li className="mt-1 list-disc">Legal and law enforcement authorities, as required by law or in response to a legal request.</li>
+            </ul>
+          </div>
+        </div>
+        <div id="content-4">
+          <h2 className="text-[24px] leading-[28px] mb-4">Your Rights and Choices</h2>
+          <div className="w-full overflow-x-scroll">
+            <p>You have certain rights and choices regarding your personal information. For example, you may:</p>
+            <ul className="pl-8 mb-4">
+              <li className="mt-1 list-disc">Access and receive a copy of your personal information.</li>
+              <li className="mt-1 list-disc">Update or correct your personal information.</li>
+              <li className="mt-1 list-disc">Object to the processing of your personal information.</li>
+              <li className="mt-1 list-disc">Request that we delete your personal information.</li>
+            </ul>
+          </div>
+        </div>
+        <p>
+          To exercise these rights, or if you have any questions or concerns about our privacy practices, please contact us using the contact
+          information provided below.
+        </p>
+        <h2 className="text-[24px] leading-[28px] mb-4">Third-Party Links and Services</h2>
+        <p>
+          Bbabystyle may contain links to third-party websites or services, which are not governed by this Privacy Policy. We are not responsible for
+          the privacy practices or content of these third-party sites.
+        </p>
+        <h2 className="text-[24px] leading-[28px] mb-4">Changes to This Privacy Policy</h2>
+        <p>
+          We may update this Privacy Policy from time to time. If we make any material changes, we will notify you by email or by posting a notice on
+          Bbabystyle. Your continued use of Bbabystyle after the changes have been made will indicate your acceptance of the updated Privacy Policy.
+        </p>
+        <h2 className="text-[24px] leading-[28px] mb-4">Contact us</h2>
+        <p className='text-sm mt-5'>
+            To send a GDPR data subject request or CCPA consumer request, or if
+            you have other inquiries about your privacy rights, follow the steps
+            in the Your Rights - Data Subject and Consumer Information Requests
+            section above.
+          </p>
+          <p className='mt-5 text-sm'>If you have other questions about this Privacy Policy, please contact us at:</p>
+          <a href='mailto:noreply.bbabystyle@gmail.com' className='mt-5 text-sm text-[#006cbf]'>noreply.bbabystyle@gmail.com</a>
       </article>
     </>
   );

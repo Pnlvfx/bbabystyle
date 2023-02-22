@@ -23,6 +23,8 @@ const MainButtonNav = () => {
     setShow(!show);
   };
 
+  if (pathname.match('user-agreement')) return null;
+
   return (
     <div className="col-start-2 row-start-1 flex flex-wrap gap-4 visible relative z-[1]">
       <button

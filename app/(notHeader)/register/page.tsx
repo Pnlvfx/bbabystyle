@@ -5,8 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import Register1 from "../../../components/auth/register/Register1";
 import Register2 from "../../../components/auth/register/Register2";
 import { useSession } from "../../../components/auth/UserContextProvider";
-import { clientUrl } from "../../../config/config";
-
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [fase2, setFase2] = useState(false);
@@ -28,34 +26,34 @@ const RegisterPage = () => {
 
 export default RegisterPage;
 
-export const metadata = {
-  title: `bbabystyle.com: join out community`,
-  description: `Create an account on bbabystle and become part of our community!.`,
-  alternates: {
-    canonical: `${clientUrl}/register`,
-    languages: {
-      'en-US':  `${clientUrl}/register`,
-    }
-  },
-  openGraph: {
-    title: `bbabystyle.com: join out community`,
-    description: `Create an account on bbabystle and become part of our community!.`,
-    url: `${clientUrl}/register`,
-    siteName: 'bbabystyle',
-    images: [
-      {
-        url: `${clientUrl}/imagePreview.png`,
-        width: 256,
-        height: 256,
-      }
-    ],
-    type: 'website',
-  },
-  twitter: {
-    creator: '@Bbabystyle',
-    card: 'summary',
-    title: `bbabystyle.com: join out community`,
-    description: `Create an account on bbabystle and become part of our community!.`,
-    images: `${clientUrl}/imagePreview.png`,
-  },
-}
+// export const metadata = {
+//   title: `bbabystyle.com: join out community`,
+//   description: `Create an account on bbabystle and become part of our community!.`,
+//   alternates: {
+//     canonical: `${clientUrl}/register`,
+//     languages: {
+//       'en-US':  `${clientUrl}/register`,
+//     }
+//   },
+//   openGraph: {
+//     title: `bbabystyle.com: join out community`,
+//     description: `Create an account on bbabystle and become part of our community!.`,
+//     url: `${clientUrl}/register`,
+//     siteName: 'bbabystyle',
+//     images: [
+//       {
+//         url: `${clientUrl}/imagePreview.png`,
+//         width: 256,
+//         height: 256,
+//       }
+//     ],
+//     type: 'website',
+//   },
+//   twitter: {
+//     creator: '@Bbabystyle',
+//     card: 'summary',
+//     title: `bbabystyle.com: join out community`,
+//     description: `Create an account on bbabystle and become part of our community!.`,
+//     images: `${clientUrl}/imagePreview.png`,
+//   },
+// }
