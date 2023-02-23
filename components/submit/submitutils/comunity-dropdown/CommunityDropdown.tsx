@@ -100,7 +100,7 @@ const CommunityDropdown = () => {
             <HiChevronDown className="h-[22px] w-[22px] cursor-pointer align-middle text-[20px] leading-5 text-reddit_text-darker" />
           </div>
           {show && (
-            <div className={"absolute z-30 w-[300px] overflow-hidden bg-reddit_dark-brighter"}>
+            <div className={"absolute z-30 w-full md:w-[300px] overflow-hidden bg-reddit_dark-brighter"}>
               <div className={`solid max-h-[400px] overflow-y-scroll border border-reddit_border bg-reddit_dark-brighter`}>
                 <div className="p-3 text-sm font-bold">
                   <p className="px-2 py-1 text-[11px] font-bold text-reddit_text-darker">YOUR PROFILE</p>
