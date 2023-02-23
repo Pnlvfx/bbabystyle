@@ -20,7 +20,12 @@ export interface CommunityPageProps {
 }
 
 const CommunityPage = ({ params }: CommunityPageProps) => {
-  const posts = use(ssrapis.getPosts(15, 0, "community", params.community));
+  const posts = use(
+    ssrapis.getPosts(0, {
+      community: params.community,
+      limit: 15,
+    }),
+  );
   const community = use(ssrapis.getCommunity(params.community));
   const session = use(ssrapis.getSession());
 
@@ -81,16 +86,18 @@ const CommunityPage = ({ params }: CommunityPageProps) => {
 
 export default CommunityPage;
 
-export const generateMetadata = async ({params}: CommunityPageProps): Promise<Metadata> => {
+export const generateMetadata = async ({ params }: CommunityPageProps): Promise<Metadata> => {
   const community = await ssrapis.getCommunity(params.community);
   if (!community) return {};
   const title = `b/${community.name}`;
-  const description = community.description
+  const description = community.description;
   const url = `${clientUrl}/b/${community.name}`;
-  const images = [{
-    url: community.image,
-    width: 256,
-    height: 256
-  }]
-  return getMetadata(title, description, url, 'website', 'summary', images)
-}
+  const images = [
+    {
+      url: community.image,
+      width: 256,
+      height: 256,
+    },
+  ];
+  return getMetadata(title, description, url, "website", "summary", images);
+};

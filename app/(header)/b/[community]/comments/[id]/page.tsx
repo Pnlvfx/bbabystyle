@@ -1,14 +1,14 @@
-import { Metadata } from 'next';
-import { use } from 'react';
-import ssrapis from '../../../../../../components/API/ssrapis';
-import Comment from '../../../../../../components/comment/Comment';
-import { getMetadata } from '../../../../../../components/metadata/metadata';
-import Post from '../../../../../../components/post/Post';
-import PostNotFound from '../../../../../../components/post/PostNotFound';
-import CommunityInfo from '../../../../../../components/widget/communityinfo/CommunityInfo';
-import Donations from '../../../../../../components/widget/Donations';
-import Widget from '../../../../../../components/widget/Widget';
-import { clientUrl } from '../../../../../../config/config';
+import { Metadata } from "next";
+import { use } from "react";
+import ssrapis from "../../../../../../components/API/ssrapis";
+import Comment from "../../../../../../components/comment/Comment";
+import { getMetadata } from "../../../../../../components/metadata/metadata";
+import Post from "../../../../../../components/post/Post";
+import PostNotFound from "../../../../../../components/post/PostNotFound";
+import CommunityInfo from "../../../../../../components/widget/communityinfo/CommunityInfo";
+import Donations from "../../../../../../components/widget/Donations";
+import Widget from "../../../../../../components/widget/Widget";
+import { clientUrl } from "../../../../../../config/config";
 
 interface PostPageProps {
   params: {
@@ -57,6 +57,7 @@ export const generateMetadata = async ({ params }: PostPageProps): Promise<Metad
   const post = await ssrapis.getPost(params.id);
   if (!post) return {};
   const url = `${clientUrl}${post.permalink}`;
+  console.log(url);
   const title = post.title.length >= 40 ? post.title : `${post.title} : ${post.community}`;
   const description =
     post.body ||
@@ -64,13 +65,13 @@ export const generateMetadata = async ({ params }: PostPageProps): Promise<Metad
       0,
       160,
     );
-  const card = post.mediaInfo?.isImage ? 'summary_large_image' : post.mediaInfo?.isVideo ? 'summary_large_image' : 'summary';
+  const card = post.mediaInfo?.isImage ? "summary_large_image" : post.mediaInfo?.isVideo ? "summary_large_image" : "summary";
   const images = post.mediaInfo?.isImage
     ? [{ url: post.mediaInfo.image, width: post.mediaInfo.dimension[1], height: post.mediaInfo.dimension[0] }]
     : post.mediaInfo?.isVideo
-    ? [{ url: post.mediaInfo.video.url.replace('mp4', 'jpg'), width: post.mediaInfo.dimension[1], height: post.mediaInfo.dimension[0] }]
+    ? [{ url: post.mediaInfo.video.url.replace("mp4", "jpg"), width: post.mediaInfo.dimension[1], height: post.mediaInfo.dimension[0] }]
     : undefined;
-  const type = 'article'
+  const type = "article";
   const videos = post.mediaInfo?.isVideo ? [post.mediaInfo.video.url] : undefined;
   return getMetadata(title, description, url, type, card, images, videos);
 };

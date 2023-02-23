@@ -1,5 +1,6 @@
 import { server } from "../../config/config";
 import { getHeaders } from "./config/serverConfig";
+import { GetPostsOptions } from "./postapis/types/apipost";
 
 const ssrapis = {
   getSession: async () => {
@@ -20,11 +21,21 @@ const ssrapis = {
       return null;
     }
   },
-  getPosts: async (limit: number, skip: number, input?: "author" | "community", value?: string) => {
+  getPosts: async (skip: number, options?: GetPostsOptions) => {
     try {
-      let url = `${server}/posts?limit=${limit}&skip=${skip}`;
-      if (input && value) {
-        url = `${url}&${input}=${value}`;
+      const limit = options?.limit || 10;
+      let url = `${server}/posts`;
+      if (options?.sort) {
+        url += `/${options.sort}`
+      }
+      url += `?limit=${limit}&skip=${skip}`;
+      if (options) {
+        const usedOptions = Object.entries(options).filter(([, value]) => value !== undefined);
+        usedOptions.forEach(([key, value]) => {
+          if (key === "limit") return;
+          if (key === "sort") return;
+          url += `&${key}=${value}`;
+        });
       }
       const res = await fetch(url, {
         method: "GET",

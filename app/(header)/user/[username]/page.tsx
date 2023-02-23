@@ -12,7 +12,12 @@ interface UserPageProps {
 }
 
 const UserPage = ({ params }: UserPageProps) => {
-  const posts = use(ssrapis.getPosts(15, 0, "author", params.username));
+  const posts = use(
+    ssrapis.getPosts(0, {
+      author: params.username,
+      limit: 15,
+    }),
+  );
   return <Feed author={params.username} posts={posts} />;
 };
 

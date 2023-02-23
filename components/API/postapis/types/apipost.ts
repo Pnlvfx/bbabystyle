@@ -3,6 +3,7 @@ export interface GetPostsOptions {
   limit?: number;
   author?: string;
   community?: string;
+  sort?: 'hot' | 'best' | 'top' | 'new'
 }
 
 export interface NewPostOptions {
