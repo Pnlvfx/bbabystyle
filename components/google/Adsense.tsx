@@ -13,7 +13,6 @@ const Adsense = () => {
       data-ad-slot="6614182647"
       data-ad-format="auto"
       data-full-width-responsive="true"
-      data-adtest="on"
     />
   );
 };
