@@ -55,7 +55,7 @@ export const metadata = {
   manifest: `${clientUrl}/manifest.json`,
   themeColor: "#1a1a1b",
   applicationName: "bbabystyle",
-  
+
   appleWebApp: {
     title: "Bbabystyle",
     statusBarStyle: "default",

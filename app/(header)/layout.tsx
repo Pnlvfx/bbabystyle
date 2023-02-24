@@ -30,12 +30,9 @@ const Layout = ({ children }: ChildrenProps) => {
         <ShowCommunity />
       </div>
       <HiddenLayout />
-      {process.env.NODE_ENV === "production" && (
+      {/* {process.env.NODE_ENV === "production" && (
         <>
-          <Script
-            strategy="afterInteractive"
-            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-          />
+          <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`} />
           <Script
             id="gtag-init"
             async
@@ -63,7 +60,13 @@ const Layout = ({ children }: ChildrenProps) => {
         })(window.history)`}
           </Script>
         </>
-      )}
+      )} */}
+      <Script
+        async
+        data-ad-client="ca-pub-7203519143982992"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+        crossOrigin="anonymous"
+      />
     </>
   );
 };

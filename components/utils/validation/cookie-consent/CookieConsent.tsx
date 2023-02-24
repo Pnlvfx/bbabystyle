@@ -1,10 +1,13 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import userapis from "../../../API/userapis";
 import styles from "./cookie-consent.module.css";
 import useCookieConsent from "./useCookieConsent";
 const CookieConsent = () => {
-  const { euCookie, setEuCookie } = useCookieConsent();
+  const pathname = usePathname();
+  const notShow = pathname.match("/policies") ? true : false;
+  const { euCookie, setEuCookie } = useCookieConsent(notShow);
 
   const saveEUcookie = async (status: boolean) => {
     try {
@@ -13,7 +16,7 @@ const CookieConsent = () => {
     } catch (err) {}
   };
 
-  if (euCookie) return null;
+  if (euCookie || notShow) return null;
   return (
     <div>
       <div className={styles.cookieContainer}>

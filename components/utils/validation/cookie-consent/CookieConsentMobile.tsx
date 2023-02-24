@@ -1,11 +1,14 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import userapis from "../../../API/userapis";
 import { CloseIcon } from "../../svg/SVG";
 import styles from "./cookie-consent-mobile.module.css";
 import useCookieConsent from "./useCookieConsent";
 const CookieConsentMobile = () => {
-  const { euCookie, setEuCookie } = useCookieConsent();
+  const pathname = usePathname();
+  const notShow = pathname.match("/policies") ? true : false;
+  const { euCookie, setEuCookie } = useCookieConsent(notShow);
 
   const saveEUcookie = async () => {
     try {
@@ -14,7 +17,7 @@ const CookieConsentMobile = () => {
     } catch (err) {}
   };
 
-  if (euCookie) return null;
+  if (euCookie || notShow) return null;
   return (
     <div className="p-2">
       <div className={styles.cookieContainer}>
