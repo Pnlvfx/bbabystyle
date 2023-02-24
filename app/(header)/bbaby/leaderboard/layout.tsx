@@ -32,3 +32,11 @@ const LeaderboardLayout = ({children}: ChildrenProps) => {
 };
 
 export default LeaderboardLayout;
+
+export const metadata = {
+  title: "Today's Top Communities",
+  description: 'View Bbabystyle top communities. Filter to see view top communities in sports, gaming, news, television and more.',
+  robots: {
+    index: false
+  }
+}
