@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { clientUrl} from "../config/config";
-import GoogleAnalytics from "./analytics/GoogleAnalytics";
+import { clientUrl } from "../config/config";
+import GoogleAnalytics from "./google/GoogleAnalytics";
 import oauthapis from "./API/oauthapis";
 import AuthModal from "./auth/modal/AuthModal";
 import { useModals } from "./auth/modal/ModalsProvider";

@@ -2,6 +2,7 @@
 import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import postapis from "../API/postapis/postapis";
+import Adsense from "../google/Adsense";
 import Post from "./Post";
 import PostModal from "./PostModal";
 
@@ -40,23 +41,13 @@ const Feed = ({ posts: ssrPost, community, author }: FeedProps) => {
         />
       )}
       <div>
-        <InfiniteScroll
-          dataLength={posts?.length || 1}
-          next={getMorePosts}
-          hasMore={hasMore}
-          loader={<div />}
-          endMessage={<></>}
-        >
+        <InfiniteScroll dataLength={posts?.length || 1} next={getMorePosts} hasMore={hasMore} loader={<div />} endMessage={<></>}>
           {posts?.length >= 1 ? (
-            posts.map((post) => {
-              return (
-                <Post
-                  key={post._id}
-                  post={post}
-                  isListing={true}
-                  setPostForModal={setPostForModal}
-                />
-              );
+            posts.map((post, index) => {
+              if (index === 3) {
+                return <Adsense key={index} />;
+              }
+              return <Post key={post._id} post={post} isListing={true} setPostForModal={setPostForModal} />;
             })
           ) : (
             <div></div>
