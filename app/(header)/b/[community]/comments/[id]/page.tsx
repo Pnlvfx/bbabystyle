@@ -4,7 +4,7 @@ import ssrapis from "../../../../../../components/API/ssrapis";
 import Comment from "../../../../../../components/comment/Comment";
 import { getMetadata } from "../../../../../../components/metadata/metadata";
 import Post from "../../../../../../components/post/Post";
-import PostNotFound from "../../../../../../components/post/PostNotFound";
+import PostNotFound from "../../../../../../components/post/post-not-found/PostNotFound";
 import CommunityInfo from "../../../../../../components/widget/communityinfo/CommunityInfo";
 import Donations from "../../../../../../components/widget/Donations";
 import Widget from "../../../../../../components/widget/Widget";

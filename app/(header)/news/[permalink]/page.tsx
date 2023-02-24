@@ -3,6 +3,7 @@ import { use } from "react";
 import ssrapis from "../../../../components/API/ssrapis";
 import { getMetadata } from "../../../../components/metadata/metadata";
 import NewsCard from "../../../../components/news/NewsCard";
+import PostNotFound from "../../../../components/post/post-not-found/PostNotFound";
 import Donations from "../../../../components/widget/Donations";
 import PolicyWidget from "../../../../components/widget/PolicyWidget";
 import TopCommunities from "../../../../components/widget/topcommunities/TopCommunities";
@@ -20,7 +21,7 @@ const NewsArticlePage = ({ params }: NewsArticleProps) => {
   const news = use(ssrapis.getArticle(params.permalink));
 
   if (!news) {
-    return <div></div>;
+    return <PostNotFound />;
   }
 
   return (

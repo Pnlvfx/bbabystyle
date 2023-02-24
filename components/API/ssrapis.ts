@@ -168,10 +168,10 @@ const ssrapis = {
         headers: getHeaders(),
       })
       const data = await res.json()
-      if (!res.ok) throw new Error(data?.msg)
+      if (!res.ok) return;
       return data as NewsProps
     } catch (err) {
-      throw catchError(err)
+      return;
     }
   },
 };
