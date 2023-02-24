@@ -57,7 +57,6 @@ export const generateMetadata = async ({ params }: PostPageProps): Promise<Metad
   const post = await ssrapis.getPost(params.id);
   if (!post) return {};
   const url = `${clientUrl}${post.permalink}`;
-  console.log(url);
   const title = post.title.length >= 40 ? post.title : `${post.title} : ${post.community}`;
   const description =
     post.body ||

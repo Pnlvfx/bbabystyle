@@ -79,7 +79,6 @@ const ssrgov = {
       if (!res.ok) return;
       return data as ExternalNews
     } catch (err) {
-      console.log(err);
       return;
     }
   },

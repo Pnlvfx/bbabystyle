@@ -1,0 +1,56 @@
+import { Metadata } from "next";
+import { use } from "react";
+import ssrapis from "../../../../components/API/ssrapis";
+import { getMetadata } from "../../../../components/metadata/metadata";
+import NewsCard from "../../../../components/news/NewsCard";
+import Donations from "../../../../components/widget/Donations";
+import PolicyWidget from "../../../../components/widget/PolicyWidget";
+import TopCommunities from "../../../../components/widget/topcommunities/TopCommunities";
+import Widget from "../../../../components/widget/Widget";
+import { clientUrl } from "../../../../config/config";
+
+interface NewsArticleProps {
+  params: {
+    permalink: string;
+  };
+}
+
+const NewsArticlePage = ({ params }: NewsArticleProps) => {
+  const session = use(ssrapis.getSession());
+  const news = use(ssrapis.getArticle(params.permalink));
+
+  if (!news) {
+    return <div></div>;
+  }
+
+  return (
+    <div className="mx-auto box-border flex max-w-full justify-center md:py-5 md:px-6">
+      <div className="w-full lg:w-[640px]">
+        <NewsCard news={news} isListing={false} />
+      </div>
+      {!session?.device?.mobile && (
+        <div className="ml-6 hidden lg:block">
+          <Widget>
+            <TopCommunities />
+          </Widget>
+          <Donations />
+          <PolicyWidget />
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default NewsArticlePage;
+
+export const generateMetadata = async ({ params }: NewsArticleProps): Promise<Metadata> => {
+  const news = await ssrapis.getArticle(params.permalink);
+  if (!news) return {};
+  const url = `${clientUrl}${news.permalink}`;
+  const title = news.title;
+  const description = news.description.substring(0, 160);
+  const card = "summary_large_image";
+  const images = news.mediaInfo.image ? [{ url: news.mediaInfo.image, width: news.mediaInfo.width, height: news.mediaInfo.height }] : undefined;
+  const type = "article";
+  return getMetadata(title, description, url, type, card, images);
+};

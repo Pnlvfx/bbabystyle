@@ -1,10 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { ClickOutHandler } from "react-clickout-ts";
-import { catchErrorWithMessage } from "../../API/config/apiErrors";
 import searchapis from "../../API/searchapis";
 import { useModals } from "../../auth/modal/ModalsProvider";
 import { useSession } from "../../auth/UserContextProvider";
-import { useMessage } from "../../utils/message/TimeMsgContext";
 
 type PositionProps = {
   left: number;
@@ -13,7 +11,6 @@ type PositionProps = {
 
 const SearchDropdown = () => {
   const [trends, setTrends] = useState<PostProps[]>([]);
-  const message = useRef(useMessage());
   const shouldRequest = useRef(true);
   const modals = useModals();
   const modalsRef = useRef(modals);
@@ -31,9 +28,7 @@ const SearchDropdown = () => {
       try {
         const t = await searchapis.searchTrend();
         setTrends(t);
-      } catch (err) {
-        catchErrorWithMessage(err, message.current);
-      }
+      } catch (err) {}
     };
     get();
   }, []);
