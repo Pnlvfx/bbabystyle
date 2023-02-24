@@ -61,12 +61,12 @@ const Layout = ({ children }: ChildrenProps) => {
           </Script>
         </>
       )} */}
-      <Script
+      {/* <Script
         async
         data-ad-client="ca-pub-7203519143982992"
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
         crossOrigin="anonymous"
-      />
+      /> */}
     </>
   );
 };
