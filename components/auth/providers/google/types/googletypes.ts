@@ -91,7 +91,6 @@ export type GoogleLoginProps = {
   ) => void;
   
   
-  
   export interface PromptMomentNotification {
     /** Is this notification for a display moment? */
     isDisplayMoment: () => boolean;

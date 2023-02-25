@@ -16,7 +16,7 @@ const Register1 = ({ setFase2, email, setEmail }: Register1) => {
   const [emailIsValid, setEmailIsValid] = useState<boolean | null>(null);
   const [emailError, setEmailError] = useState("");
   const router = useRouter();
-  const modals = useModals()
+  const modals = useModals();
   const pathname = usePathname();
 
   const validateEmail = async (input: HTMLInputElement["value"]) => {
@@ -34,11 +34,11 @@ const Register1 = ({ setFase2, email, setEmail }: Register1) => {
           </div>
           <p className=" mx-auto mt-2 text-xs">
             By continuing, you agree are setting up a Bbabystyle account and agree to our{" "}
-            <Link target={"_blank"} href={"/policies/user-agreement"} className="text-reddit_blue">
+            <Link target={"_blank"} href={"/policies/user-agreement"} className="text-bbaby-blue">
               User Agreement{" "}
             </Link>
             and{" "}
-            <Link target={"_blank"} href={"/policies/privacy-policy"} className="text-reddit_blue">
+            <Link target={"_blank"} href={"/policies/privacy-policy"} className="text-bbaby-blue">
               Privacy Policy
             </Link>
             .
@@ -68,7 +68,7 @@ const Register1 = ({ setFase2, email, setEmail }: Register1) => {
             />
             <fieldset className="relative mt-4 max-w-[280px]">
               <button
-                className={`mt-2 h-[40px] w-full rounded-full bg-reddit_blue px-4 text-[14px] font-bold leading-4 ${
+                className={`mt-2 h-[40px] w-full rounded-full bg-bbaby-blue px-4 text-[14px] font-bold leading-4 ${
                   !emailIsValid && "pointer-events-none cursor-not-allowed opacity-20"
                 }`}
                 type="submit"

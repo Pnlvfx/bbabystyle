@@ -25,7 +25,7 @@ const AddVideo = ({ styles }: UserMenuButton) => {
     reader.onload = (event) => {
       const video_url = event.target?.result
       if (!video_url) return
-      let video = document.createElement('video')
+      const video = document.createElement('video')
       video.preload = 'metadata'
       video.src = video_url.toString()
       video.addEventListener('loadedmetadata', () => {
@@ -34,7 +34,7 @@ const AddVideo = ({ styles }: UserMenuButton) => {
       })
     }
     reader.onloadend = () => {
-      if (!reader.result) return;
+      if (!reader.result) return
       setSelectedFile(reader.result.toString())
     }
   }

@@ -22,7 +22,7 @@ const Comments = ({ parentId, rootId, comments: propsComments, getComments }: Co
   };
 
   return (
-    <div className={"my-2 bg-reddit_dark-brighter"}>
+    <div className={"my-2 bg-bbaby-brighter"}>
       {comments.map((comment) => {
         const replies = propsComments.filter((c) => c.parentId === comment._id);
         return (
@@ -34,14 +34,14 @@ const Comments = ({ parentId, rootId, comments: propsComments, getComments }: Co
               <Link href={`/user/${comment.author.toLowerCase()}`} className="pr-2 font-sans text-sm leading-10 hover:underline">
                 {comment.author}
               </Link>
-              <TimeAgo className="font-sans text-sm leading-10 text-reddit_text-darker" date={comment.createdAt} />
+              <TimeAgo className="font-sans text-sm leading-10 text-bbaby-text_darker" date={comment.createdAt} />
             </div>
-            <div className="ml-[18px] border-l-2 border-reddit_text-darker p-3">
+            <div className="ml-[18px] border-l-2 border-bbaby-text_darker p-3">
               <div className="-mt-4 pl-4">
                 <div className="resize-x-none inline flex-none break-words text-sm leading-6">
                   <Linkify
                     componentDecorator={(decoratedHref, decoratedText, key) => (
-                      <a className="text-reddit_blue" target={"_blank"} href={decoratedHref} key={key} rel={"noopener nofollow ugc noreferrer"}>
+                      <a className="text-bbaby-blue" target={"_blank"} href={decoratedHref} key={key} rel={"noopener nofollow ugc noreferrer"}>
                         {decoratedText}
                       </a>
                     )}

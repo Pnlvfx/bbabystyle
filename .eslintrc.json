@@ -4,7 +4,12 @@
   "rules": {
     "unused-imports/no-unused-imports": [1],
     "no-unused-vars": 1,
-    "import/no-unused-modules": [1, { "unusedExports": true }]
+    "import/no-unused-modules": [1, { "unusedExports": true }],
+    "no-var": "error",
+    "no-multi-spaces": "error",
+    "space-in-parens": "error",
+    "no-multiple-empty-lines": "error",
+    "prefer-const": "error"
   },
   "overrides": [
     {

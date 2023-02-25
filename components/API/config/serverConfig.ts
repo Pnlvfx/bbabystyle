@@ -12,8 +12,8 @@ export const getHeaders = () => {
     Accept: 'application/json',
     'Content-Type': 'application/json',
     origin: clientUrl,
-    'user-agent': user_agent ? user_agent : '',
-    'Accept-Language': lang ? lang : ''
+    'user-agent': user_agent || '',
+    'Accept-Language': lang || ''
   }
   return _headers
 }

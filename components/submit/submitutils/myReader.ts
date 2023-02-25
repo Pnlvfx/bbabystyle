@@ -13,8 +13,8 @@ export const previewImage = (
       const reader = new FileReader()
       reader.readAsDataURL(file)
       reader.onload = (event) => {
-        let image_url = event.target?.result;
-        let image = document.createElement('img')
+        const image_url = event.target?.result;
+        const image = document.createElement('img')
         if (!image_url) return message.setMessage({value:'no valid image.', status: 'error'})
         if (image_url.toString().match('video')) return message.setMessage({value:'Only images are accepted here. Please use the "Add video" button if you want to share a video.', status: 'error'})
         image.src = image_url.toString()

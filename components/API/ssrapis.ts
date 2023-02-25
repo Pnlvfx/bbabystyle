@@ -137,13 +137,16 @@ const ssrapis = {
     try {
       const url = `${server}/sitemaps?type=${type}`
       const res = await fetch(url, {
-        headers: getHeaders()
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
       });
-      if (!res.ok) return;
       const data = await res.json();
-      return data;
+      if (!res.ok) throw new Error(data?.msg);
+      return data as (PostProps | CommunityProps | NewsProps)[]
     } catch (err) {
-      return;
+      throw catchError(err);
     }
   },
   getArticles: async (skip: number, limit: number) => {
