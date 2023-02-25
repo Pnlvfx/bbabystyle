@@ -1,34 +1,34 @@
-'use client';
-import { Video } from '@bbabystyle/next-video-player';
-import Image from 'next/image';
-import { MouseEvent, useEffect, useState } from 'react';
-import ReactLinkify from 'react-linkify';
-import { LOGO } from '../../../config/config';
-import { catchErrorWithMessage } from '../../API/config/apiErrors';
-import govapis from '../../API/govapis';
-import Voting from '../../post/postutils/Voting';
-import Submit from '../../submit/Submit';
-import { SubmitContextProvider } from '../../submit/SubmitProvider';
-import { useMessage } from '../../utils/message/TimeMsgContext';
-import { RetweetIcon } from '../../utils/svg/SVG';
-import TweetHeader from './TweetHeader';
+'use client'
+import { Video } from '@bbabystyle/next-video-player'
+import Image from 'next/image'
+import { MouseEvent, useEffect, useState } from 'react'
+import ReactLinkify from 'react-linkify'
+import { LOGO } from '../../../config/config'
+import { catchErrorWithMessage } from '../../API/config/apiErrors'
+import govapis from '../../API/govapis'
+import Voting from '../../post/postutils/Voting'
+import Submit from '../../submit/Submit'
+import { SubmitContextProvider } from '../../submit/SubmitProvider'
+import { useMessage } from '../../utils/message/TimeMsgContext'
+import { RetweetIcon } from '../../utils/svg/SVG'
+import TweetHeader from './TweetHeader'
 
 type TweetPageProps = {
-  user_avatar: string;
-  language: string;
-  username: string;
-  screen_name: string;
-  created_at: string;
-  title: string;
-  type: 'photo' | 'video' | undefined;
-  videoInfo?: VideoInfo;
-  image?: string;
-  height?: number;
-  width?: number;
-  retweet_count: number;
-  like_count: number;
-  id: string;
-};
+  user_avatar: string
+  language: string
+  username: string
+  screen_name: string
+  created_at: string
+  title: string
+  type: 'photo' | 'video' | undefined
+  videoInfo?: VideoInfo
+  image?: string
+  height?: number
+  width?: number
+  retweet_count: number
+  like_count: number
+  id: string
+}
 
 const Tweet = ({
   username,
@@ -46,39 +46,39 @@ const Tweet = ({
   like_count,
   id,
 }: TweetPageProps) => {
-  const message = useMessage();
-  const [translated, setTranslated] = useState('');
-  const [showSubmit, setShowSubmit] = useState(false);
-  const [video, setVideo] = useState('');
+  const message = useMessage()
+  const [translated, setTranslated] = useState('')
+  const [showSubmit, setShowSubmit] = useState(false)
+  const [video, setVideo] = useState('')
 
   const doTranslate = async (e: MouseEvent<HTMLButtonElement>) => {
     try {
-      e.preventDefault();
+      e.preventDefault()
       if (showSubmit) {
-        setShowSubmit(false);
+        setShowSubmit(false)
       } else {
-        const tweetTitle = await govapis.translate(title, language);
-        setTranslated(tweetTitle);
-        setShowSubmit(true);
+        const tweetTitle = await govapis.translate(title, language)
+        setTranslated(tweetTitle)
+        setShowSubmit(true)
       }
     } catch (err) {
-      catchErrorWithMessage(err, message);
+      catchErrorWithMessage(err, message)
     }
-  };
+  }
 
   useEffect(() => {
-    if (!videoInfo) return;
-    let prevBitrate = 0;
+    if (!videoInfo) return
+    let prevBitrate = 0
     videoInfo?.variants.map((v) => {
       if (v.content_type === 'video/mp4') {
-        if (!v.bitrate) return;
+        if (!v.bitrate) return
         if (prevBitrate < v.bitrate) {
-          setVideo(v.url);
-          prevBitrate = v.bitrate;
+          setVideo(v.url)
+          prevBitrate = v.bitrate
         }
       }
-    });
-  }, [videoInfo]);
+    })
+  }, [videoInfo])
 
   return (
     <>
@@ -94,7 +94,7 @@ const Tweet = ({
             <div className="inline align-baseline">
               <ReactLinkify
                 componentDecorator={(decoratedHref, decoratedText, key) => (
-                  <a className="text-reddit_blue" target={'_blank'} href={decoratedHref} key={key} rel={'noopener nofollow ugc noreferrer'}>
+                  <a className="text-bbaby-blue" target={'_blank'} href={decoratedHref} key={key} rel={'noopener nofollow ugc noreferrer'}>
                     {decoratedText}
                   </a>
                 )}
@@ -140,7 +140,7 @@ const Tweet = ({
         </SubmitContextProvider>
       )}
     </>
-  );
-};
+  )
+}
 
-export default Tweet;
+export default Tweet

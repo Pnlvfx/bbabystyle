@@ -34,12 +34,6 @@ module.exports = {
           DEFAULT: '#d7dadc',
           darker: '#818384',
         },
-        reddit_hover: {
-          DEFAULT: '#454546',
-        },
-        reddit_blue: {
-          DEFAULT: '#24A0ED',
-        },
       },
     },
   },

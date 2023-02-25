@@ -8,7 +8,7 @@ const ssrgov = {
       const url = `${server}/twitter/home`;
       const res = await fetch(url, {
         method: "GET",
-        headers: getHeaders()
+        headers: getHeaders(),
       });
       const data = await res.json();
       if (!res.ok) {

@@ -1,14 +1,14 @@
-import { use } from "react";
-import ssrapis from "../components/API/ssrapis";
-import { ModalsContextProvider } from "../components/auth/modal/ModalsProvider";
-import { GoogleOAuthProvider } from "../components/auth/providers/google/GoogleOAuthProvider";
-import { UserContextProvider } from "../components/auth/UserContextProvider";
-import { TimeMsgContextProvider } from "../components/utils/message/TimeMsgContext";
-import { clientUrl } from "../config/config";
-import "./globals.css";
+import { use } from 'react'
+import ssrapis from '../components/API/ssrapis'
+import { ModalsContextProvider } from '../components/auth/modal/ModalsProvider'
+import { GoogleOAuthProvider } from '../components/auth/providers/google/GoogleOAuthProvider'
+import { UserContextProvider } from '../components/auth/UserContextProvider'
+import { TimeMsgContextProvider } from '../components/utils/message/TimeMsgContext'
+import { clientUrl } from '../config/config'
+import './globals.css'
 
 const RootLayout = ({ children }: ChildrenProps) => {
-  const session = use(ssrapis.getSession());
+  const session = use(ssrapis.getSession())
   return (
     <html lang="en">
       <body cz-shortcut-listen="true" className="bg-bbaby-dark text-bbaby-text">
@@ -35,30 +35,30 @@ const RootLayout = ({ children }: ChildrenProps) => {
         </div>
       </body>
     </html>
-  );
-};
+  )
+}
 
-export default RootLayout;
+export default RootLayout
 
 export const metadata = {
   title: {
-    default: "Bbabystyle - Free speech",
-    template: "%s",
+    default: 'Bbabystyle - Free speech',
+    template: '%s',
   },
   description:
     "With Bbabystyle, you can build your own community, share your thoughts and ideas, and participate in lively debates. Whether you're looking to make new friends, learn from others, or simply express yourself, Bbabystyle provides the perfect platform for you to do so. Join the conversation today and see what the community has to offer!",
   viewport: {
-    width: "device-width",
+    width: 'device-width',
     initialScale: 1,
   },
-  referrer: "origin-when-cross-origin",
-  manifest: `${clientUrl}/manifest.json`,
-  themeColor: "#1a1a1b",
-  applicationName: "bbabystyle",
+  referrer: 'origin-when-cross-origin',
+  manifest: process.env.NODE_ENV === 'production' ? `${clientUrl}/manifest.json` : undefined,
+  themeColor: '#1a1a1b',
+  applicationName: 'bbabystyle',
 
   appleWebApp: {
-    title: "Bbabystyle",
-    statusBarStyle: "default",
+    title: 'Bbabystyle',
+    statusBarStyle: 'default',
     capable: true,
   },
   icons: {
@@ -67,10 +67,10 @@ export const metadata = {
     apple: `${clientUrl}/apple-touch-icon-180x180.png`,
   },
   twitter: {
-    card: "summary",
-    site: "@bbabystyle",
+    card: 'summary',
+    site: '@bbabystyle',
   },
   openGraph: {
-    siteName: "bbabystyle",
+    siteName: 'bbabystyle',
   },
-};
+}

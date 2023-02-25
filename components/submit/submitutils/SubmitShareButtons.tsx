@@ -1,38 +1,38 @@
-import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { AiOutlineInfoCircle } from "react-icons/ai";
-import userapis from "../../API/userapis";
-import { useSession } from "../../auth/UserContextProvider";
-import CheckBox from "../../utils/buttons/CheckBox";
-import { useSubmitProvider } from "../SubmitProvider";
+import Link from 'next/link'
+import { useEffect, useRef, useState } from 'react'
+import { AiOutlineInfoCircle } from 'react-icons/ai'
+import userapis from '../../API/userapis'
+import { useSession } from '../../auth/UserContextProvider'
+import CheckBox from '../../utils/buttons/CheckBox'
+import { useSubmitProvider } from '../SubmitProvider'
 
 const SubmitShareButtons = () => {
-  const { session } = useSession();
-  const sessionRef = useRef(session);
-  const [canPostOnTwitter, setCanPostOnTwitter] = useState(false);
-  const { sharePostToTG, setSharePostToTG, sharePostToTwitter, setSharePostToTwitter } = useSubmitProvider();
+  const { session } = useSession()
+  const sessionRef = useRef(session)
+  const [canPostOnTwitter, setCanPostOnTwitter] = useState(false)
+  const { sharePostToTG, setSharePostToTG, sharePostToTwitter, setSharePostToTwitter } = useSubmitProvider()
 
   useEffect(() => {
     const authorize = async () => {
       try {
-        const userInfo = await userapis.getUserInfo();
-        if (userInfo?.externalAccounts?.find((provider) => provider.provider === "twitter")) {
-          setCanPostOnTwitter(true);
-          if (sessionRef.current?.user?.role === 1 && process.env.NODE_ENV === "production") {
-            setSharePostToTwitter(true);
+        const userInfo = await userapis.getUserInfo()
+        if (userInfo?.externalAccounts?.find((provider) => provider.provider === 'twitter')) {
+          setCanPostOnTwitter(true)
+          if (sessionRef.current?.user?.role === 1 && process.env.NODE_ENV === 'production') {
+            setSharePostToTwitter(true)
           }
         }
       } catch (err) {}
-    };
-    authorize();
-  }, []);
+    }
+    authorize()
+  }, [])
   return (
     <div
       className="relative flex h-24 rounded-b-md border-t border-solid border-reddit_border bg-reddit_dark-brightest py-2 px-4"
-      style={{ flexFlow: "column" }}
+      style={{ flexFlow: 'column' }}
     >
       <div className="mt-2 flex w-full">
-        <div className="mr-auto self-start" style={{ flexFlow: "column" }}>
+        <div className="mr-auto self-start" style={{ flexFlow: 'column' }}>
           {session?.user?.role === 1 && <CheckBox title="Share this post on Telegram" check={sharePostToTG} setCheck={setSharePostToTG} />}
           <div className="flex items-center">
             {canPostOnTwitter ? (
@@ -40,10 +40,10 @@ const SubmitShareButtons = () => {
             ) : (
               <>
                 <Link
-                  href={"/settings"}
+                  href={'/settings'}
                   rel="noopener nofollow ugc"
-                  target={"_blank"}
-                  className="mr-1 block text-[14px] font-semibold leading-[18px] text-reddit_blue"
+                  target={'_blank'}
+                  className="mr-1 block text-[14px] font-semibold leading-[18px] text-bbaby-blue"
                 >
                   Connect accounts to share your post
                 </Link>
@@ -61,7 +61,7 @@ const SubmitShareButtons = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SubmitShareButtons;
+export default SubmitShareButtons

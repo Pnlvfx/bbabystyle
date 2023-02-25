@@ -1,43 +1,43 @@
-import { useState } from "react";
-import { ClickOutHandler } from "react-clickout-ts";
-import { Video } from "@bbabystyle/next-video-player";
-import { useSubmitProvider } from "../SubmitProvider";
-import { TrashIcon } from "../../utils/svg/SVG";
-import { LOGO } from "../../../config/config";
-import SubmitButton from "../submit-buttons/SubmitButton";
+import { useState } from 'react'
+import { ClickOutHandler } from 'react-clickout-ts'
+import { Video } from '@bbabystyle/next-video-player'
+import { useSubmitProvider } from '../SubmitProvider'
+import { TrashIcon } from '../../utils/svg/SVG'
+import { LOGO } from '../../../config/config'
+import SubmitButton from '../submit-buttons/SubmitButton'
 
 const Body = () => {
-  const [showDeleteOptions, setShowDeleteOptions] = useState(false);
-  const [activeClassBody, setActiveClassBody] = useState(false);
-  const { thumbnail, selectedFile, setSelectedFile, isImage, setIsImage, body, setBody, isVideo, setIsVideo } = useSubmitProvider();
-  const [activeFigure, setActiveFigure] = useState(false);
+  const [showDeleteOptions, setShowDeleteOptions] = useState(false)
+  const [activeClassBody, setActiveClassBody] = useState(false)
+  const { thumbnail, selectedFile, setSelectedFile, isImage, setIsImage, body, setBody, isVideo, setIsVideo } = useSubmitProvider()
+  const [activeFigure, setActiveFigure] = useState(false)
 
   const figureClickOut = () => {
-    setShowDeleteOptions(false);
-    setActiveFigure(false);
-  };
+    setShowDeleteOptions(false)
+    setActiveFigure(false)
+  }
 
   const deleteCurrentImage = () => {
-    setSelectedFile(null);
-    setIsImage(false);
-    setIsVideo(false);
-    setShowDeleteOptions(false);
-  };
+    setSelectedFile(null)
+    setIsImage(false)
+    setIsVideo(false)
+    setShowDeleteOptions(false)
+  }
 
   const clickOnFigure = () => {
-    setActiveFigure(true);
-    setShowDeleteOptions(true);
-  };
+    setActiveFigure(true)
+    setShowDeleteOptions(true)
+  }
 
   return (
     <div className="relative">
       <ClickOutHandler
         onClickOut={() => {
-          setActiveClassBody(false);
+          setActiveClassBody(false)
         }}
       >
         <div
-          className={`solid relative rounded-[4px] border ${activeClassBody ? "border-reddit_text" : "border-reddit_border"}`}
+          className={`solid relative rounded-[4px] border ${activeClassBody ? 'border-reddit_text' : 'border-reddit_border'}`}
           onClick={() => setActiveClassBody(true)}
         >
           <div className="sticky top-12 z-[8] box-border flex flex-nowrap items-center rounded-[4px] bg-[#272729]">
@@ -55,9 +55,9 @@ const Body = () => {
                           {showDeleteOptions && (
                             <div className="sticky bottom-0 top-10 z-10 flex h-0 justify-center" onClick={deleteCurrentImage}>
                               <div
-                                className="felx-row box-border flex h-[30px] translate-y-[-40px] items-center rounded-[4px] bg-[#272729] hover:bg-reddit_hover"
+                                className="felx-row box-border flex h-[30px] translate-y-[-40px] items-center rounded-[4px] bg-[#272729] hover:bg-bbaby-hover"
                                 style={{
-                                  boxShadow: "0 0 0 1px #343536, 0 1px 10px #343536",
+                                  boxShadow: '0 0 0 1px #343536, 0 1px 10px #343536',
                                 }}
                               >
                                 <button className="relative box-border flex items-center rounded-[4px] border-none p-[3px] outline-none transition-colors">
@@ -77,9 +77,9 @@ const Body = () => {
                               >
                                 <div
                                   className={`select-all ${
-                                    activeFigure && "shadow-[0_0_0_4px_#d7dadc]"
+                                    activeFigure && 'shadow-[0_0_0_4px_#d7dadc]'
                                   } relative flex-grow justify-center overflow-hidden rounded-[8px] transition-shadow ${
-                                    isVideo && "block pt-[56.25%]"
+                                    isVideo && 'block pt-[56.25%]'
                                   }`}
                                 >
                                   {isVideo && (
@@ -95,7 +95,7 @@ const Body = () => {
                                   {isImage && (
                                     <>
                                       <picture>
-                                        <img draggable={false} src={selectedFile} alt={""} className="z-0 max-w-[100%] self-center rounded-[8px]" />
+                                        <img draggable={false} src={selectedFile} alt={''} className="z-0 max-w-[100%] self-center rounded-[8px]" />
                                       </picture>
                                       <div className="absolute bottom-0 left-0 right-0 z-10 h-[64px] opacity-0"></div>
                                     </>
@@ -121,7 +121,7 @@ const Body = () => {
                   <div className="relative whitespace-pre-wrap text-left ">
                     <textarea
                       className="min-h-[135px] w-full bg-reddit_dark-brighter text-[16px] placeholder-reddit_text-darker outline-none"
-                      placeholder={"Text (optional)"}
+                      placeholder={'Text (optional)'}
                       onChange={(e) => setBody(e.target.value)}
                       value={body}
                     />
@@ -133,7 +133,7 @@ const Body = () => {
         </div>
       </ClickOutHandler>
     </div>
-  );
-};
+  )
+}
 
-export default Body;
+export default Body
