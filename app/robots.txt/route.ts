@@ -15,5 +15,5 @@ Host: https://www.bbabystyle.com
 Sitemap: https://www.bbabystyle.com/sitemap.xml
 Sitemap: https://www.bbabystyle.com/posts.xml
 Sitemap: https://www.bbabystyle.com/news.xml
-Sitemap: https://www.bbabystyle.com/community.xml`);
+Sitemap: https://www.bbabystyle.com/communities.xml`);
 }
