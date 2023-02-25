@@ -14,11 +14,11 @@ const LoginPage = () => {
               </div>
               <p className=" mx-auto mt-2 text-xs">
                 By continuing, you agree are setting up a Bbabystyle account and agree to our{" "}
-                <Link target={"_blank"} href={"/policies/user-agreement"} className="text-reddit_blue">
+                <Link target={"_blank"} href={"/policies/user-agreement"} className="text-bbaby-blue">
                   User Agreement{" "}
                 </Link>
                 and{" "}
-                <Link target={"_blank"} href={"/policies/privacy-policy"} className="text-reddit_blue">
+                <Link target={"_blank"} href={"/policies/privacy-policy"} className="text-bbaby-blue">
                   Privacy Policy
                 </Link>
                 .
@@ -40,28 +40,28 @@ export const metadata = {
   alternates: {
     canonical: `${clientUrl}/login`,
     languages: {
-      'en-US':  `${clientUrl}/login`,
-    }
+      "en-US": `${clientUrl}/login`,
+    },
   },
   openGraph: {
     title: `bbabystyle.com: Log in`,
     description: `Don't worry, we won't tell anyone your username. Log in to your Bbaby account.`,
     url: `${clientUrl}/login`,
-    siteName: 'bbabystyle',
+    siteName: "bbabystyle",
     images: [
       {
         url: `${clientUrl}/imagePreview.png`,
         width: 256,
         height: 256,
-      }
+      },
     ],
-    type: 'website',
+    type: "website",
   },
   twitter: {
-    creator: '@Bbabystyle',
-    card: 'summary',
+    creator: "@Bbabystyle",
+    card: "summary",
     title: `bbabystyle.com: Log in`,
     description: `Don't worry, we won't tell anyone your username. Log in to your Bbaby account.`,
     images: `${clientUrl}/imagePreview.png`,
   },
-}
+};

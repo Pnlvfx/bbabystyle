@@ -1,15 +1,15 @@
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction } from "react";
 
 type CheckBoxProps = {
-  title: string
-  check: boolean
-  setCheck: Dispatch<SetStateAction<boolean>>
-}
+  title: string;
+  check: boolean;
+  setCheck: Dispatch<SetStateAction<boolean>>;
+};
 
 const CheckBox = ({ title, check, setCheck }: CheckBoxProps) => {
   const callback = () => {
-    setCheck(!check)
-  }
+    setCheck(!check);
+  };
   return (
     <div className="flex items-center">
       <div className="mb-2 text-[14px] font-medium leading-[18px]">
@@ -18,7 +18,7 @@ const CheckBox = ({ title, check, setCheck }: CheckBoxProps) => {
           aria-disabled="false"
           className="flex cursor-pointer select-none items-center"
           aria-labelledby="post-to-telegram"
-          role={'checkbox'}
+          role={"checkbox"}
           tabIndex={0}
           onClick={callback}
         >
@@ -27,14 +27,14 @@ const CheckBox = ({ title, check, setCheck }: CheckBoxProps) => {
             id="telegram"
             checked={check}
             onChange={callback}
-            className="h-[20px] w-[16px] bg-reddit_dark-brighter"
-            style={{ filter: 'invert(85%)' }}
+            className="h-[20px] w-[16px] bg-bbaby-brighter"
+            style={{ filter: "invert(85%)" }}
           />
           <p className="ml-2">{title}</p>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CheckBox
+export default CheckBox;

@@ -37,7 +37,7 @@ const ActivationEmail = ({ params }: ActivationEmailProps) => {
 
   return (
     <div className="h-[100vh] flex items-center justify-center bg-bbaby-brighter">
-      <div className="text-reddit_red">{status}</div>
+      <div className="text-bbaby-red">{status}</div>
     </div>
   );
 };

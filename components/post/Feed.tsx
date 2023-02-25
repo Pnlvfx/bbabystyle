@@ -44,7 +44,7 @@ const Feed = ({ posts: ssrPost, community, author }: FeedProps) => {
         <InfiniteScroll dataLength={posts?.length || 1} next={getMorePosts} hasMore={hasMore} loader={<div />} endMessage={<></>}>
           {posts?.length >= 1 ? (
             posts.map((post, index) => {
-              if (index === 3) {
+              if (index === 3 && process.env.NODE_ENV === "production") {
                 return <Adsense key={index} />;
               }
               return <Post key={post._id} post={post} isListing={true} setPostForModal={setPostForModal} />;

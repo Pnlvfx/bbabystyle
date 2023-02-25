@@ -17,7 +17,7 @@ const PostContent = ({ post, isListing, setPostForModal }: PostComponent) => {
           <Voting ups={post.ups} postId={post._id} liked={post.liked} />
         </div>
       </div>
-      <div className="w-full bg-reddit_dark-brighter pt-2">
+      <div className="w-full bg-bbaby-brighter pt-2">
         {session?.device?.mobile && isListing ? (
           <header>
             <PostHeader post={post} isListing={isListing} />

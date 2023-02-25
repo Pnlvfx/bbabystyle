@@ -11,12 +11,8 @@ const ModQueuePage = ({ params }: CommunityPageProps) => {
       <div className="absolute top-0 bottom-0 left-0 right-0 m-auto h-[100px] w-[100%]">
         {!session?.user && (
           <div className="text-center">
-            <p className="text-lg font-bold mb-4">
-              Sorry, this is a moderator-only page
-            </p>
-            <p className="text-reddit_text-darker text-sm">
-              You must be a moderator of b/{params.community} to view this page.
-            </p>
+            <p className="text-lg font-bold mb-4">Sorry, this is a moderator-only page</p>
+            <p className="text-bbaby-text_darker text-sm">You must be a moderator of b/{params.community} to view this page.</p>
           </div>
         )}
       </div>
@@ -26,7 +22,7 @@ const ModQueuePage = ({ params }: CommunityPageProps) => {
 
 export default ModQueuePage;
 
-export const generateMetadata = async ({params}: CommunityPageProps): Promise<Metadata> => {
+export const generateMetadata = async ({ params }: CommunityPageProps): Promise<Metadata> => {
   const community = await ssrapis.getCommunity(params.community);
   if (!community) return {};
   return {
@@ -35,8 +31,8 @@ export const generateMetadata = async ({params}: CommunityPageProps): Promise<Me
     alternates: {
       canonical: `${clientUrl}/b/${community}/about`,
       languages: {
-        'en-US': `${clientUrl}/b/${community}/about`
-      }
-    }
-  }
-}
+        "en-US": `${clientUrl}/b/${community}/about`,
+      },
+    },
+  };
+};

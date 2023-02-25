@@ -26,10 +26,7 @@ const NotificationModal = () => {
     detectSize();
   }, []);
   return (
-    <div
-      className={style.dropdown}
-      style={{ transform: `translate(${windowDimension}px, 46px)` }}
-    >
+    <div className={style.dropdown} style={{ transform: `translate(${windowDimension}px, 46px)` }}>
       <div className={style.dropdownContainer}>
         <div className={style.dropdownContainer2}>
           <nav className={style.dropdownNav}>
@@ -63,19 +60,11 @@ const NotificationModal = () => {
           <div className="overflow-hidden overflow-y-auto">
             <div className="flex flex-col items-center justify-center rounded-[4px] p-5 pb-8">
               <picture>
-                <img
-                  src={`/xxx.png`}
-                  alt="default user avatar"
-                  className="mt-3 h-[128px] rounded-sm"
-                />
+                <img src={`/xxx.png`} alt="default user avatar" className="mt-3 h-[128px] rounded-sm" />
               </picture>
-              <h1 className="mb-2 mt-6 text-[18px] font-medium leading-[22px]">
-                You don&apos;t have any activity yet
-              </h1>
-              <p className="mx-10 text-center text-[14px] leading-[18px] text-reddit_text-darker ">
-                That&apos;s ok, maybe you need the right inspitation. Try
-                posting in <Link href={"/"}></Link>a popular community for
-                discussion.
+              <h1 className="mb-2 mt-6 text-[18px] font-medium leading-[22px]">You don&apos;t have any activity yet</h1>
+              <p className="mx-10 text-center text-[14px] leading-[18px] text-bbaby-text_darker ">
+                That&apos;s ok, maybe you need the right inspitation. Try posting in <Link href={"/"}></Link>a popular community for discussion.
               </p>
             </div>
           </div>

@@ -17,7 +17,7 @@ const LoginForm = () => {
   const [passwordIsValid, setPasswordIsValid] = useState<boolean | null>(null);
   const [loading, setLoading] = useState(false);
   const { session } = useSession();
-  const modals = useModals()
+  const modals = useModals();
   const router = useRouter();
   const pathname = usePathname();
   const routerRef = useRef(router);
@@ -29,7 +29,7 @@ const LoginForm = () => {
       if (top?.window.location.href) {
         top.window.location.href = "/";
       } else {
-        window.location.href = '/'
+        window.location.href = "/";
       }
       //authModal.setShow('hidden');
       setLoading(false);
@@ -58,7 +58,7 @@ const LoginForm = () => {
 
   const validateUsername = (input: HTMLInputElement["value"]) => {
     if (input.length >= 5) {
-      setUsernameIsValid(true)
+      setUsernameIsValid(true);
     } else {
       setUsernameIsValid(false);
     }
@@ -84,29 +84,13 @@ const LoginForm = () => {
           <span className="box-border w-[40%]" />
         </div>
       </div>
-      <AuthInput
-        id="loginUsername"
-        type="text"
-        name="username"
-        value={username}
-        validate={validateUsername}
-        error={""}
-        isValid={usernameIsvalid}
-      />
+      <AuthInput id="loginUsername" type="text" name="username" value={username} validate={validateUsername} error={""} isValid={usernameIsvalid} />
       {error && (
         <div>
-          <p className="mx-4 text-sm text-reddit_red">{error}</p>
+          <p className="mx-4 text-sm text-bbaby-red">{error}</p>
         </div>
       )}
-      <AuthInput
-        id="loginPassword"
-        type="password"
-        name="password"
-        value={password}
-        validate={validatePass}
-        error={""}
-        isValid={passwordIsValid}
-      />
+      <AuthInput id="loginPassword" type="password" name="password" value={password} validate={validatePass} error={""} isValid={passwordIsValid} />
       <div className="mt-4 text-[12px] leading-4">
         Forget your{" "}
         <Link href={""} className="font-bold leading-6 text-[#0079d3] underline">
@@ -120,7 +104,7 @@ const LoginForm = () => {
       </div>
       <fieldset className="relative mt-4 max-w-[280px]">
         <button
-          className="mt-2 h-[40px] w-full rounded-full bg-reddit_blue px-4 text-[14px] font-bold leading-4"
+          className="mt-2 h-[40px] w-full rounded-full bg-bbaby-blue px-4 text-[14px] font-bold leading-4"
           type="submit"
           onClick={(e) => {
             e.preventDefault();

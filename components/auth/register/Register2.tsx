@@ -19,7 +19,7 @@ const Register2 = ({ email, setFase2 }: Register2Props) => {
   const [passwordIsValid, setPasswordIsValid] = useState<boolean | null>(null);
   const [loading, setLoading] = useState(false);
   const message = useMessage();
-  const modals = useModals()
+  const modals = useModals();
   const validatePass = (input: HTMLInputElement["value"]) => {
     setPassword(input);
     setPasswordIsValid(true);
@@ -41,7 +41,7 @@ const Register2 = ({ email, setFase2 }: Register2Props) => {
       if (top?.window.location.href) {
         top.window.location.href = "/";
       } else {
-        window.location.href = '/'
+        window.location.href = "/";
       }
     } catch (err) {
       setLoading(false);
@@ -95,7 +95,7 @@ const Register2 = ({ email, setFase2 }: Register2Props) => {
           </div>
           <fieldset className="relative my-5 mx-auto max-w-[280px]">
             <button
-              className={`mt-2 h-[40px] w-full rounded-full bg-reddit_blue px-4 text-[14px] font-bold leading-4 ${
+              className={`mt-2 h-[40px] w-full rounded-full bg-bbaby-blue px-4 text-[14px] font-bold leading-4 ${
                 !usernameIsvalid && passwordIsValid && "pointer-events-none cursor-not-allowed opacity-20"
               }`}
               type="submit"

@@ -51,7 +51,7 @@ const CommunityPage = ({ params }: CommunityPageProps) => {
           </div>
         </Link>
       </span>
-      <div className="block w-full bg-reddit_dark-brighter">
+      <div className="w-full bg-bbaby-brighter">
         <div className="mx-auto flex max-w-[984px] flex-col items-start justify-between pr-4 pl-6">
           <div className="relative mb-3 mt-[-14px] flex items-start">
             <BoardHeader community={community} />
