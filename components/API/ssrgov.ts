@@ -1,57 +1,57 @@
-import { server } from "../../config/config";
-import { catchError } from "./config/apiErrors";
-import { getHeaders } from "./config/serverConfig";
+import { server } from '../../config/config'
+import { catchError } from './config/apiErrors'
+import { getHeaders } from './config/serverConfig'
 
 const ssrgov = {
   getTweetHome: async () => {
     try {
-      const url = `${server}/twitter/home`;
-      const res = await fetch(url, {
-        method: "GET",
-        headers: getHeaders(),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        if (res.status === 401) return 'Unauthenticated'
-        return data.msg as string;
-      }
-      return data as TweetProps[];
-    } catch (err) {
-      return catchError(err);
-    }
-  },
-  getMyListTweets: async (listId: string, owner_screen_name: string) => {
-    try {
-      const url = `${server}/twitter/selected-tweets?slug=${listId}&owner_screen_name=${owner_screen_name}`
+      const url = `${server}/twitter/home`
       const res = await fetch(url, {
         method: 'GET',
         headers: getHeaders(),
       })
       const data = await res.json()
       if (!res.ok) {
-        if (res.status === 401) return;
-        return;
+        if (res.status === 401) return 'Unauthenticated'
+        return data.msg as string
       }
       return data as TweetProps[]
     } catch (err) {
-      return;
+      return catchError(err)
+    }
+  },
+  getMyListTweets: async (lang: 'it' | 'en') => {
+    try {
+      const url = `${server}/twitter/selected-tweets?lang=${lang}`
+      const res = await fetch(url, {
+        method: 'GET',
+        headers: getHeaders(),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        if (res.status === 401) return
+        return
+      }
+      return data as TweetProps[]
+    } catch (err) {
+      return
     }
   },
   getUserTweets: async (screen_name: string) => {
     try {
-      const url = `${server}/twitter/user/${screen_name}`;
+      const url = `${server}/twitter/user/${screen_name}`
       const res = await fetch(url, {
-        method: "GET",
-        headers: getHeaders()
-      });
-      const data = await res.json();
+        method: 'GET',
+        headers: getHeaders(),
+      })
+      const data = await res.json()
       if (!res.ok) {
         if (res.status === 401) return 'Unauthenticated'
-        return data.msg as string;
+        return data.msg as string
       }
-      return data as TweetProps[];
+      return data as TweetProps[]
     } catch (err) {
-      return catchError(err);
+      return catchError(err)
     }
   },
   getArticles: async (limit: string | number, skip: string | number) => {
@@ -62,10 +62,10 @@ const ssrgov = {
         headers: getHeaders(),
       })
       const data = await res.json()
-      if (!res.ok) return;
+      if (!res.ok) return
       return data as ExternalNews[]
     } catch (err) {
-      return;
+      return
     }
   },
   getArticle: async (permalink: string) => {
@@ -76,12 +76,12 @@ const ssrgov = {
         headers: getHeaders(),
       })
       const data = await res.json()
-      if (!res.ok) return;
+      if (!res.ok) return
       return data as ExternalNews
     } catch (err) {
-      return;
+      return
     }
   },
-};
+}
 
-export default ssrgov;
+export default ssrgov
