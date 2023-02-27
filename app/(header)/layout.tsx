@@ -1,15 +1,13 @@
-import Script from "next/script";
-import { use } from "react";
-import ssrapis from "../../components/API/ssrapis";
-import ShowCommunity from "../../components/community/ShowCommunity";
-import Header from "../../components/header/Header";
-import HiddenLayout from "../../components/HiddenLayout";
-import CookieConsent from "../../components/utils/validation/cookie-consent/CookieConsent";
-import CookieConsentMobile from "../../components/utils/validation/cookie-consent/CookieConsentMobile";
-import "./post.css";
+import Script from 'next/script'
+import { use } from 'react'
+import ssrapis from '../../components/API/ssrapis'
+import ShowCommunity from '../../components/community/ShowCommunity'
+import Header from '../../components/header/Header'
+import HiddenLayout from '../../components/HiddenLayout'
+import './post.css'
 
 const Layout = ({ children }: ChildrenProps) => {
-  const session = use(ssrapis.getSession());
+  const session = use(ssrapis.getSession())
   return (
     <>
       <div>
@@ -20,17 +18,17 @@ const Layout = ({ children }: ChildrenProps) => {
           <div id="main_content" className="pt-12">
             <div className="flex min-h-[calc(100vh_-_48px)] flex-col">
               <div className="z-3">
-                {session?.device?.mobile && <CookieConsentMobile />}
+                {/* {session?.device?.mobile && <CookieConsentMobile />} */}
                 {children}
               </div>
             </div>
           </div>
-          {!session?.device?.mobile && <CookieConsent />}
+          {/* {!session?.device?.mobile && <CookieConsent />} */}
         </div>
         <ShowCommunity />
       </div>
       <HiddenLayout />
-      {process.env.NODE_ENV === "production" && (
+      {process.env.NODE_ENV === 'production' && (
         <>
           {/* <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`} />
           <Script
@@ -68,7 +66,7 @@ const Layout = ({ children }: ChildrenProps) => {
         </>
       )}
     </>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout
