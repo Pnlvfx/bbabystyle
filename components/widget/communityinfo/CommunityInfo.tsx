@@ -1,21 +1,21 @@
-"use client";
-import { useState } from "react";
-import { buttonClass } from "../../utils/buttons/Button";
-import { MdOutlineAdminPanelSettings, MdDateRange } from "react-icons/md";
-import Link from "next/link";
-import { useSession } from "../../auth/UserContextProvider";
-import { useModals } from "../../auth/modal/ModalsProvider";
-import CategoriesDropdown from "./CategoriesDropdown";
+'use client'
+import { useState } from 'react'
+import { buttonClass } from '../../utils/buttons/Button'
+import { MdOutlineAdminPanelSettings, MdDateRange } from 'react-icons/md'
+import Link from 'next/link'
+import { useSession } from '../../auth/UserContextProvider'
+import { useModals } from '../../auth/modal/ModalsProvider'
+import CategoriesDropdown from './CategoriesDropdown'
 
 export interface CommunityInfoProps {
-  community: CommunityProps;
+  community: CommunityProps
 }
 
 const CommunityInfo = ({ community }: CommunityInfoProps) => {
-  const { session } = useSession();
-  const [descr, setDescr] = useState(community.description);
-  const modals = useModals();
-  const [showTextarea, setShowTextarea] = useState(false);
+  const { session } = useSession()
+  const [descr, setDescr] = useState(community.description)
+  const modals = useModals()
+  const [showTextarea, setShowTextarea] = useState(false)
 
   // const updateDescription = async () => {
   //   try {
@@ -38,7 +38,7 @@ const CommunityInfo = ({ community }: CommunityInfoProps) => {
         <div className="pt-3 text-[16px] leading-5">
           <h2 className="inline text-[14px] font-bold leading-[18px]">About community</h2>
         </div>
-        {community.user_is_moderator && ( //MODQUEQUE BUTTON
+        {community.user_is_moderator && (
           <div tabIndex={0} className="m-auto mr-0 pt-[10px] align-middle">
             <Link href={`/b/${community.name.toLowerCase()}/about/modqueue`} className="inline-block p-1">
               <MdOutlineAdminPanelSettings className="icon mr-1 inline-block" />
@@ -58,11 +58,11 @@ const CommunityInfo = ({ community }: CommunityInfoProps) => {
             <div
               className="text-[12px] font-bold leading-4"
               onClick={() => {
-                setShowTextarea(true);
+                setShowTextarea(true)
               }}
             >
               {showTextarea ? (
-                <textarea className="w-full resize-none bg-transparent" placeholder="Tell us about your community  " />
+                <textarea className="w-full resize-none bg-transparent outline-none" placeholder="Tell us about your community" />
               ) : (
                 <>{community.description}</>
               )}
@@ -73,21 +73,19 @@ const CommunityInfo = ({ community }: CommunityInfoProps) => {
           <p className="font-bold">{community.subscribers}</p>
           <p className="text-xs font-bold">Followers</p>
           <hr className="border-bbaby-border"></hr>
-          {community.createdAt && (
-            <div className="flex w-full items-center space-x-2 py-3">
-              <MdDateRange style={{ width: 18, height: 18 }} />
-              <p className="text-sm">
-                Created {new Date(community.createdAt).toLocaleString("en-us", { day: "numeric", month: "short", year: "numeric" })}
-              </p>
-            </div>
-          )}
+          <div className="flex w-full items-center space-x-2 py-3">
+            <MdDateRange style={{ width: 18, height: 18 }} />
+            <p className="text-sm">
+              Created {new Date(community.createdAt).toLocaleString('en-us', { day: 'numeric', month: 'short', year: 'numeric' })}
+            </p>
+          </div>
         </div>
         {community.user_is_moderator && <CategoriesDropdown community={community} />}
         <div className="self-center">
           {!session?.user && (
             <button
               onClick={() => {
-                modals.setShowAuth("login");
+                modals.setShowAuth('login')
               }}
               className={`mt-3 h-[32px] w-full ${buttonClass()}`}
             >
@@ -104,7 +102,7 @@ const CommunityInfo = ({ community }: CommunityInfoProps) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default CommunityInfo;
+export default CommunityInfo

@@ -1,136 +1,135 @@
-import { server } from "../../config/config";
-import { catchError } from "./config/apiErrors";
-import { getHeaders } from "./config/serverConfig";
-import { GetPostsOptions } from "./postapis/types/apipost";
+import { server } from '../../config/config'
+import { getHeaders } from './config/serverConfig'
+import { GetPostsOptions } from './postapis/types/apipost'
 
 const ssrapis = {
   getSession: async () => {
     try {
-      const url = `${server}/user`;
+      const url = `${server}/user`
       const res = await fetch(url, {
-        method: "GET",
+        method: 'GET',
         headers: getHeaders(),
-      });
-      const session = await res.json();
-      if (!res.ok) return null;
-      const token = res.headers.get("set-cookie");
+      })
+      const session = await res.json()
+      if (!res.ok) return null
+      const token = res.headers.get('set-cookie')
       if (token) {
         //
       }
-      return session as SessionProps;
+      return session as SessionProps
     } catch (err) {
-      return null;
+      return null
     }
   },
   getPosts: async (skip: number, options?: GetPostsOptions) => {
     try {
-      const limit = options?.limit || 10;
-      let url = `${server}/posts`;
+      const limit = options?.limit || 10
+      let url = `${server}/posts`
       if (options?.sort) {
         url += `/${options.sort}`
       }
-      url += `?limit=${limit}&skip=${skip}`;
+      url += `?limit=${limit}&skip=${skip}`
       if (options) {
-        const usedOptions = Object.entries(options).filter(([, value]) => value !== undefined);
+        const usedOptions = Object.entries(options).filter(([, value]) => value !== undefined)
         usedOptions.forEach(([key, value]) => {
-          if (key === "limit") return;
-          if (key === "sort") return;
-          url += `&${key}=${value}`;
-        });
+          if (key === 'limit') return
+          if (key === 'sort') return
+          url += `&${key}=${value}`
+        })
       }
       const res = await fetch(url, {
-        method: "GET",
+        method: 'GET',
         headers: getHeaders(),
-      });
-      const data = await res.json();
-      if (!res.ok) return [];
+      })
+      const data = await res.json()
+      if (!res.ok) return []
       //await new Promise((resolve) => setTimeout(resolve, 15000))
-      return data as PostProps[];
+      return data as PostProps[]
     } catch (err) {
-      return [];
+      return []
     }
   },
   getPost: async (id: string) => {
     try {
-      const url = `${server}/posts/${id}`;
-      const headers = getHeaders();
+      const url = `${server}/posts/${id}`
+      const headers = getHeaders()
       const res = await fetch(url, {
-        method: "get",
+        method: 'get',
         headers,
-      });
-      const data = await res.json();
-      if (!res.ok) return;
-      return data as PostProps;
+      })
+      const data = await res.json()
+      if (!res.ok) return
+      return data as PostProps
     } catch (err) {
-      return;
+      return
     }
   },
   search: async (text: string) => {
     try {
-      const url = `${server}/search?phrase=${text}`;
+      const url = `${server}/search?phrase=${text}`
       const res = await fetch(url, {
-        method: "GET",
+        method: 'GET',
         headers: getHeaders(),
-      });
-      const data = await res.json();
-      if (!res.ok) return;
-      return data as PostProps[];
+      })
+      const data = await res.json()
+      if (!res.ok) return
+      return data as PostProps[]
     } catch (err) {
-      return;
+      return
     }
   },
   getCommunities: async (limit: number) => {
     try {
-      const url = `${server}/communities?limit=${limit}`;
+      const url = `${server}/communities?limit=${limit}`
       const res = await fetch(url, {
-        method: "get",
+        method: 'get',
         headers: getHeaders(),
-      });
-      const data = await res.json();
-      if (!res.ok) return;
-      return data as CommunityProps[];
+      })
+      const data = await res.json()
+      if (!res.ok) return
+      return data as CommunityProps[]
     } catch (err) {
-      return;
+      return
     }
   },
   getCommunity: async (community: string) => {
     try {
-      const url = `${server}/communities/${community}`;
+      const url = `${server}/communities/${community}`
       const res = await fetch(url, {
-        method: "get",
+        method: 'get',
         headers: getHeaders(),
-      });
-      const data = await res.json();
-      if (!res.ok) return;
-      return data as CommunityProps;
+      })
+      const data = await res.json()
+      if (!res.ok) return
+      return data as CommunityProps
     } catch (err) {
-      return;
+      return
     }
   },
   getUserInfo: async () => {
     try {
       const res = await fetch(`${server}/user/about`, {
-        method: "get",
+        method: 'get',
         headers: getHeaders(),
-      });
-      const data = await res.json();
-      if (!res.ok) return;
-      return data as UserProps;
+      })
+      const data = await res.json()
+      if (!res.ok) return
+      return data as UserProps
     } catch (err) {
-      return;
+      return
     }
   },
   getUserFromUsername: async (username: string) => {
     try {
       const res = await fetch(`${server}/user/${username}`, {
-        method: "get",
+        method: 'get',
         headers: getHeaders(),
-      });
-      const data = await res.json();
-      if (!res.ok) return;
-      return data as UserProps;
+      })
+      const data = await res.json()
+      if (!res.ok) return
+      return data as UserProps
     } catch (err) {
-      return;
+      return
     }
   },
   getSitemap: async (type: 'post' | 'community' | 'news') => {
@@ -140,29 +139,29 @@ const ssrapis = {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data?.msg);
+          Accept: 'application/json',
+        },
+      })
+      const data = await res.json()
+      if (!res.ok) return
       return data as (PostProps | CommunityProps | NewsProps)[]
     } catch (err) {
-      throw catchError(err);
+      return
     }
   },
   getArticles: async (skip: number, limit: number) => {
     try {
-      const url = `${server}/news?skip=${skip}&limit=${limit}`;
+      const url = `${server}/news?skip=${skip}&limit=${limit}`
       const res = await fetch(url, {
         method: 'GET',
         headers: getHeaders(),
       })
       const data = await res.json()
-      if (!res.ok) return;
+      if (!res.ok) return
       return data as NewsProps[]
     } catch (err) {
-      return;
-    } 
+      return
+    }
   },
   getArticle: async (permalink: string) => {
     try {
@@ -172,12 +171,12 @@ const ssrapis = {
         headers: getHeaders(),
       })
       const data = await res.json()
-      if (!res.ok) return;
+      if (!res.ok) return
       return data as NewsProps
     } catch (err) {
-      return;
+      return
     }
   },
-};
+}
 
-export default ssrapis;
+export default ssrapis

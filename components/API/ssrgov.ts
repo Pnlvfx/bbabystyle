@@ -1,6 +1,7 @@
 import { server } from '../../config/config'
 import { catchError } from './config/apiErrors'
 import { getHeaders } from './config/serverConfig'
+import { TiktakProps } from './tiktakapis/types/tiktypes'
 
 const ssrgov = {
   getTweetHome: async () => {
@@ -78,6 +79,20 @@ const ssrgov = {
       const data = await res.json()
       if (!res.ok) return
       return data as ExternalNews
+    } catch (err) {
+      return
+    }
+  },
+  getTiktaks: async () => {
+    try {
+      const url = `${server}/governance/tiktak`
+      const res = await fetch(url, {
+        method: 'GET',
+        headers: getHeaders(),
+      })
+      const data = await res.json()
+      if (!res.ok) return
+      return data as TiktakProps[]
     } catch (err) {
       return
     }
