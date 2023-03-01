@@ -1,14 +1,19 @@
 import { use } from 'react'
 import ssrgov from '../../../../components/API/ssrgov'
-import TiktakHome from '../../../../components/governance/tiktak/TiktakHome'
+import TiktakList from '../../../../components/governance/tiktak/tiktaklist/TiktakList'
+import TiktaksHome from '../../../../components/governance/tiktak/TiktaksHome'
 
-const TiktakPage = () => {
+const TiktaksPage = () => {
   const tiktaks = use(ssrgov.getTiktaks())
+
+  if (!tiktaks) return <div></div>
+
   return (
     <div>
-      <TiktakHome />
+      <TiktakList tiktaks={tiktaks} />
+      <TiktaksHome />
     </div>
   )
 }
 
-export default TiktakPage
+export default TiktaksPage

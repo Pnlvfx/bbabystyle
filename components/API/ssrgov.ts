@@ -97,6 +97,20 @@ const ssrgov = {
       return
     }
   },
+  getTiktak: async (permalink: string) => {
+    try {
+      const serverUrl = `${server}/governance/tiktak/${permalink}`
+      const res = await fetch(serverUrl, {
+        method: 'get',
+        headers: getHeaders(),
+      })
+      const data = await res.json()
+      if (!res.ok) return
+      return data as TiktakProps
+    } catch (err) {
+      return
+    }
+  },
 }
 
 export default ssrgov

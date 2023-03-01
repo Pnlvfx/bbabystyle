@@ -5,11 +5,9 @@ export interface NewTiktakResponse {
   _id: string
 }
 
-export interface GetTiktakResponse {
-  tiktak: TiktakProps
-}
-
 export interface TiktakProps {
+  original_title: string
+  title: string
   original_body: string
   body: string
   permalink: string
@@ -19,7 +17,7 @@ export interface TiktakProps {
   images: FFmpegImage[]
   audios: string[]
   video: string
-  synthetize: string
+  synthetize?: string
   _id: string
   createdAt: string
   updatedAt: string

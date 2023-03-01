@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
-import TeaxtareaAutosize from '../../utils/TeaxtareaAutosize'
+import TextareaAutosize from '../../utils/TextareaAutosize'
 
 type TiktakTextProps = {
   value: string
@@ -9,9 +9,9 @@ type TiktakTextProps = {
 const TiktakText = ({ value, setValue }: TiktakTextProps) => {
   return (
     <div className="mt-[30px] flex items-center justify-center lg:mx-12">
-      <TeaxtareaAutosize
+      <TextareaAutosize
         value={value}
-        className="costum-shadow block w-full max-w-[640px] rounded-md bg-reddit_dark-brighter px-4 py-3 outline-none"
+        className="costum-shadow w-full max-w-[640px] rounded-md bg-bbaby-brighter px-4 py-3 outline-none"
         onChange={(e) => {
           setValue(e.target.value)
         }}

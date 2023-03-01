@@ -1,11 +1,12 @@
 'use client'
-import { useState } from 'react'
 import { buttonClass } from '../../utils/buttons/Button'
 import { MdOutlineAdminPanelSettings, MdDateRange } from 'react-icons/md'
 import Link from 'next/link'
 import { useSession } from '../../auth/UserContextProvider'
 import { useModals } from '../../auth/modal/ModalsProvider'
 import CategoriesDropdown from './CategoriesDropdown'
+import ModeratorDescr from './ModeratorDescr'
+import { MoreIcon } from '../../utils/svg/SVG'
 
 export interface CommunityInfoProps {
   community: CommunityProps
@@ -13,62 +14,33 @@ export interface CommunityInfoProps {
 
 const CommunityInfo = ({ community }: CommunityInfoProps) => {
   const { session } = useSession()
-  const [descr, setDescr] = useState(community.description)
   const modals = useModals()
-  const [showTextarea, setShowTextarea] = useState(false)
-
-  // const updateDescription = async () => {
-  //   try {
-  //     await communityapis.updateDescription(community.name, descr)
-  //     message.setMessage({ value: 'Description updated successfully!', status: 'success' })
-  //   } catch (err) {
-  //     catchErrorWithMessage(err, message)
-  //   }
-  // }
-
-  // //TEXTAREA
-  // const handleSave = ({ name, value, previousValue }: any) => {
-  //   setDescr(value)
-  //   updateDescription()
-  // }
 
   return (
     <>
-      <div className={`flex p-3 pt-0 text-[10px] font-bold leading-3 text-bbaby-text_darker`}>
-        <div className="pt-3 text-[16px] leading-5">
+      <div className={`flex px-3 pb-3 text-[10px] font-bold leading-3 text-bbaby-text_darker`}>
+        <div className="pt-3 text-[16px] leading-5 font-medium">
           <h2 className="inline text-[14px] font-bold leading-[18px]">About community</h2>
         </div>
         {community.user_is_moderator && (
-          <div tabIndex={0} className="m-auto mr-0 pt-[10px] align-middle">
+          <div className="my-auto ml-auto pt-[10px] align-middle">
             <Link href={`/b/${community.name.toLowerCase()}/about/modqueue`} className="inline-block p-1">
               <MdOutlineAdminPanelSettings className="icon mr-1 inline-block" />
               MOD TOOLS
             </Link>
+            <button className="h-8 align-middle pl-1 pr-[2px]">
+              <MoreIcon />
+            </button>
           </div>
         )}
       </div>
       <div className="p-3">
         {!community.user_is_moderator && (
           <div className="mb-2">
-            <div className="break-words text-[14px] leading-5">{descr}</div>
+            <div className="break-words text-[14px] leading-5">{community.description || `Welcome to ${community.name}`}</div>
           </div>
         )}
-        {community.user_is_moderator && (
-          <div className="mb-3 mt-2 block rounded border border-bbaby-border bg-bbaby-brightest p-2 transition-all" tabIndex={0}>
-            <div
-              className="text-[12px] font-bold leading-4"
-              onClick={() => {
-                setShowTextarea(true)
-              }}
-            >
-              {showTextarea ? (
-                <textarea className="w-full resize-none bg-transparent outline-none" placeholder="Tell us about your community" />
-              ) : (
-                <>{community.description}</>
-              )}
-            </div>
-          </div>
-        )}
+        {community.user_is_moderator && <ModeratorDescr name={community.name} description={community.description} />}
         <div className="grid">
           <p className="font-bold">{community.subscribers}</p>
           <p className="text-xs font-bold">Followers</p>

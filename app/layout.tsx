@@ -31,7 +31,6 @@ const RootLayout = ({ children }: ChildrenProps) => {
               </UserContextProvider>
             )}
           </div>
-          {/* {session?.device?.mobile && <Script src="inobounce.js" strategy="afterInteractive" async defer />} */}
         </div>
       </body>
     </html>

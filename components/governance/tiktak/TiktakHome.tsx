@@ -1,37 +1,71 @@
 'use client'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
 import { catchErrorWithMessage } from '../../API/config/apiErrors'
 import tiktakapis from '../../API/tiktakapis/tiktakapis'
-import { buttonClass } from '../../utils/buttons/Button'
+import { TiktakProps } from '../../API/tiktakapis/types/tiktypes'
 import { useMessage } from '../../utils/message/TimeMsgContext'
 import { Spinner } from '../../utils/Spinner'
 import TiktakText from './TiktakText'
 
-const TiktakHome = () => {
-  const [originalText, setOriginalText] = useState('')
+interface TiktakHomeProps {
+  tiktak: TiktakProps
+}
+
+const TiktakHome = ({ tiktak }: TiktakHomeProps) => {
+  const [title, setTitle] = useState(tiktak.title)
+  const [translated, setTranslated] = useState(tiktak.body)
   const [loading, setLoading] = useState(false)
   const message = useMessage()
   const router = useRouter()
+  const pathname = usePathname()
+  const [synthetize, setSynthetize] = useState(tiktak.synthetize || '')
 
-  const newTiktak = async () => {
+  const create = async () => {
     try {
+      if (!translated || !synthetize) {
+        message.setMessage({ value: 'Missing text or image search parameters', status: 'error' })
+        return
+      }
       setLoading(true)
-      const tiktak = await tiktakapis.newTiktak(originalText, 'en')
-      router.push(tiktak.permalink)
+      await tiktakapis.createTiktak(tiktak.permalink, title, translated, synthetize)
       setLoading(false)
+      router.push(`${pathname}/video`)
     } catch (err) {
       setLoading(false)
       catchErrorWithMessage(err, message)
     }
   }
+
+  const goBack = () => {
+    router.back()
+  }
+
   return (
     <div>
-      <TiktakText value={originalText} setValue={setOriginalText} />
-      <div className="mt-6 flex justify-center">
-        <button disabled={loading} className={`${buttonClass()} flex h-[35px] w-20 items-center justify-center`} onClick={newTiktak}>
+      <TiktakText value={title} setValue={setTitle} />
+      <TiktakText value={translated} setValue={setTranslated} />
+      <div className="mx-2 mt-6 flex justify-between">
+        <button
+          disabled={loading}
+          onClick={goBack}
+          className={`flex h-[35px] w-16 items-center justify-center rounded-full border border-reddit_border bg-reddit_dark-brighter`}
+        >
+          <AiOutlineArrowLeft className="h-6 w-6" />
+        </button>
+        <input
+          value={synthetize}
+          onChange={(e) => setSynthetize(e.target.value)}
+          className="rounded-md bg-reddit_dark-brighter p-2 text-center font-bold outline-none"
+        />
+        <button
+          disabled={loading}
+          className={`flex h-[35px] w-16 items-center justify-center rounded-full border border-reddit_border bg-reddit_dark-brighter`}
+          onClick={create}
+        >
           {loading && <Spinner />}
-          {!loading && <p className="text-right">Translate</p>}
+          {!loading && <AiOutlineArrowRight className="h-6 w-6" />}
         </button>
       </div>
     </div>

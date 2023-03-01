@@ -1,10 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './components/**/*.{js,ts,jsx,tsx}',
-    './app/**/*.{js,ts,jsx,tsx}',
-    './node_modules/@bbabystyle/next-video-player/**/*.{js,ts,jsx,tsx}',
-  ],
+  content: ['./components/**/*.{js,ts,jsx,tsx}', './app/**/*.{js,ts,jsx,tsx}', './node_modules/@bbabystyle/next-video-player/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
@@ -18,9 +14,8 @@ module.exports = {
           text: '#d7dadc',
           text_darker: '#818384',
           hover: '#454546',
-          blue: '#24A0ED'
+          blue: '#24A0ED',
         },
-        reddit_orange: '#f54404',
         reddit_red: '#f54404',
         reddit_dark: {
           DEFAULT: '#030303',

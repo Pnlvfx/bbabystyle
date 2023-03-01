@@ -1,0 +1,34 @@
+.trendingContainer {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #1a1a1b;
+}
+
+.trendingTitle {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.trendingList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.trendingItem {
+  margin-bottom: 10px;
+}
+
+.trendingLink {
+  display: block;
+  font-size: 18px;
+  color: #333;
+  text-decoration: none;
+}
+
+.trendingLink:hover {
+  color: #0079d3;
+}

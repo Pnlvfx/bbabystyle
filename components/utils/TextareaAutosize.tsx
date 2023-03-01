@@ -1,6 +1,6 @@
 import { DetailedHTMLProps, TextareaHTMLAttributes, useEffect, useRef } from 'react'
 
-const TeaxtareaAutosize = (props: DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>) => {
+const TextareaAutosize = (props: DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>) => {
   const tx = useRef<HTMLTextAreaElement>(null)
   const prevHeightRef = useRef(0)
 
@@ -24,4 +24,4 @@ const TeaxtareaAutosize = (props: DetailedHTMLProps<TextareaHTMLAttributes<HTMLT
   return <textarea style={{ resize: 'none', overflowWrap: 'break-word', height: 40 }} ref={tx} {...props} />
 }
 
-export default TeaxtareaAutosize
+export default TextareaAutosize

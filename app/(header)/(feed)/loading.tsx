@@ -1,4 +1,4 @@
-import { Spinner } from "../../components/utils/Spinner";
+import { Spinner } from '../../../components/utils/Spinner'
 
 const Loading = () => {
   return (
@@ -7,7 +7,7 @@ const Loading = () => {
         <Spinner height={50} width={50} />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Loading;
+export default Loading

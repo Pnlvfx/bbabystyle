@@ -84,3 +84,7 @@ a {
     font-size: 12px;
   }
 }
+
+.costum-shadow {
+  box-shadow: 0px -10px 10px #031da0, 0px 10px 10px #031da0;
+}
