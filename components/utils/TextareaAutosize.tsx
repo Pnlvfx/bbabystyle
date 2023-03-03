@@ -2,18 +2,11 @@ import { DetailedHTMLProps, TextareaHTMLAttributes, useEffect, useRef } from 're
 
 const TextareaAutosize = (props: DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>) => {
   const tx = useRef<HTMLTextAreaElement>(null)
-  const prevHeightRef = useRef(0)
 
   const resizeTextarea = () => {
     if (tx.current) {
-      const currentHeight = tx.current.scrollHeight
-      if (prevHeightRef.current !== currentHeight) {
-        tx.current.style.height = '0'
-        /* prettier-ignore */
-        tx.current.style.height = (tx.current.scrollHeight + 5) + 'px'
-        /* prettier-ignore */
-        prevHeightRef.current = currentHeight
-      }
+      tx.current.style.height = '0'
+      tx.current.style.height = tx.current.scrollHeight + 'px'
     }
   }
 
@@ -21,7 +14,7 @@ const TextareaAutosize = (props: DetailedHTMLProps<TextareaHTMLAttributes<HTMLTe
     if (tx.current) resizeTextarea()
   }, [props.value])
 
-  return <textarea style={{ resize: 'none', overflowWrap: 'break-word', height: 40 }} ref={tx} {...props} />
+  return <textarea style={{ overflowWrap: 'break-word', height: 'auto', overflow: 'hidden' }} ref={tx} {...props} />
 }
 
 export default TextareaAutosize

@@ -1,12 +1,12 @@
-import { TimeMsgContextProps } from "../../utils/message/TimeMsgContext"
+import { TimeMsgContextProps } from '../../utils/message/TimeMsgContext'
 
 export const catchError = (err: unknown) => {
   if (err instanceof Error) {
-    return new Error(err.message)
+    throw new Error(err.message)
   } else if (typeof err === 'string') {
-    return new Error(err)
+    throw new Error(err)
   } else {
-    return new Error('API error')
+    throw new Error('API error')
   }
 }
 
