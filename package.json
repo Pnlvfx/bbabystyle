@@ -7,19 +7,19 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@bbabystyle/next-video-player": "^2023.2.8",
-    "@types/node": "18.14.5",
+    "@types/node": "18.14.6",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.3",
-    "next": "^13.2.4-canary.1",
+    "next": "^13.2.4-canary.2",
     "react": "18.3.0-next-3d615fc14-20220919",
     "react-clickout-ts": "^2023.1.1",
     "react-dom": "18.2.0",
@@ -27,6 +27,7 @@
     "react-infinite-scroll-component": "^6.1.0",
     "react-linkify": "^1.0.0-alpha",
     "sharp": "^0.31.3",
+    "twitter-api-v2": "^1.14.2",
     "typescript": "4.9.5"
   },
   "devDependencies": {

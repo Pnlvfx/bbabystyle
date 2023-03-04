@@ -1,4 +1,3 @@
-import { redirect } from 'next/navigation'
 import { use } from 'react'
 import ssrgov from '../../../../components/API/ssrgov'
 import TwitterFeed from '../../../../components/governance/twitter/TwitterFeed'
@@ -6,14 +5,9 @@ import TwitterFeed from '../../../../components/governance/twitter/TwitterFeed'
 const TwitterPage = () => {
   const tweets = use(ssrgov.getTweetHome())
 
-  if (tweets instanceof Error) {
-    console.log(tweets.message)
+  if (!tweets) {
     return null
-  } else if (tweets === 'Unauthenticated') {
-    redirect('/settings')
-  } else if (typeof tweets === 'string') {
-    console.log(tweets)
-    return null
+    //redirect('/settings')
   }
 
   return <TwitterFeed tweets={tweets} language="en" />

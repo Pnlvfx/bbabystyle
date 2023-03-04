@@ -1,8 +1,9 @@
 'use client'
 import { Video } from '@bbabystyle/next-video-player'
 import Image from 'next/image'
-import { MouseEvent, useEffect, useState } from 'react'
+import { MouseEvent, useState } from 'react'
 import ReactLinkify from 'react-linkify'
+import { MediaObjectV2, TweetV2, UserV2 } from 'twitter-api-v2'
 import { LOGO } from '../../../config/config'
 import { catchErrorWithMessage } from '../../API/config/apiErrors'
 import govapis from '../../API/govapis'
@@ -14,42 +15,18 @@ import { RetweetIcon } from '../../utils/svg/SVG'
 import TweetHeader from './TweetHeader'
 
 type TweetPageProps = {
-  user_avatar: string
-  language: string
-  username: string
-  screen_name: string
-  created_at: string
-  title: string
-  type: 'photo' | 'video' | undefined
-  videoInfo?: VideoInfo
-  image?: string
-  height?: number
-  width?: number
-  retweet_count: number
-  like_count: number
-  id: string
+  tweet: TweetV2
+  user: UserV2
+  media?: MediaObjectV2
+  language: 'it' | 'en'
 }
 
-const Tweet = ({
-  username,
-  screen_name,
-  created_at,
-  title,
-  type,
-  videoInfo,
-  image,
-  width,
-  height,
-  user_avatar,
-  language,
-  retweet_count,
-  like_count,
-  id,
-}: TweetPageProps) => {
+const Tweet = ({ tweet, user, media, language }: TweetPageProps) => {
   const message = useMessage()
   const [translated, setTranslated] = useState('')
   const [showSubmit, setShowSubmit] = useState(false)
-  const [video, setVideo] = useState('')
+  const image = media?.type === 'photo' ? media.url : media?.type === 'video' ? media.url + ':thumb' : undefined
+  const video = media?.type === 'video' ? media.url : undefined
 
   const doTranslate = async (e: MouseEvent<HTMLButtonElement>) => {
     try {
@@ -57,7 +34,7 @@ const Tweet = ({
       if (showSubmit) {
         setShowSubmit(false)
       } else {
-        const tweetTitle = await govapis.translate(title, language)
+        const tweetTitle = await govapis.translate(tweet.text, language)
         setTranslated(tweetTitle)
         setShowSubmit(true)
       }
@@ -66,30 +43,24 @@ const Tweet = ({
     }
   }
 
-  useEffect(() => {
-    if (!videoInfo) return
-    let prevBitrate = 0
-    videoInfo?.variants.map((v) => {
-      if (v.content_type === 'video/mp4') {
-        if (!v.bitrate) return
-        if (prevBitrate < v.bitrate) {
-          setVideo(v.url)
-          prevBitrate = v.bitrate
-        }
-      }
-    })
-  }, [videoInfo])
+  if (!tweet.public_metrics?.like_count || !tweet.created_at || !user.profile_image_url || !tweet.author_id) return null
 
   return (
     <>
       <div className="relative flex max-h-[800px] rounded-[6px] md:pl-10">
         <div className="absolute left-0 top-0 box-border hidden w-10 flex-col items-center border-l-4 border-solid border-transparent py-2 pr-1 md:flex">
           <div className="hidden flex-col items-center md:flex">
-            <Voting ups={like_count} postId={id} liked={null} />
+            <Voting ups={tweet.public_metrics?.like_count} postId={tweet.id} liked={null} />
           </div>
         </div>
         <div className="w-full bg-reddit_dark-brighter pt-2">
-          <TweetHeader user_avatar={user_avatar} username={username} created_at={created_at} screen_name={screen_name} />
+          <TweetHeader
+            user_avatar={user.profile_image_url}
+            username={user.username}
+            created_at={tweet.created_at}
+            screen_name={user.name}
+            userId={tweet.author_id}
+          />
           <div className="mx-2">
             <div className="inline align-baseline">
               <ReactLinkify
@@ -99,13 +70,13 @@ const Tweet = ({
                   </a>
                 )}
               >
-                <h1 className="mb-4 break-words text-lg">{title}</h1>
+                <h1 className="mb-4 break-words text-lg">{tweet.text}</h1>
               </ReactLinkify>
             </div>
           </div>
           <div className="relative mt-2 max-h-[512px] overflow-hidden">
-            {type === 'photo' && image && width && height && <Image src={image} height={height} alt="Tweet Image" width={width} />}
-            {type === 'video' && video && image && width && height && (
+            {media?.type === 'photo' && image && <Image src={image} height={media.height} alt="Tweet Image" width={media.width} />}
+            {media?.type === 'video' && video && image && (
               <div className="w-full pb-[105.35%]">
                 <div className="absolute top-0 left-0 bottom-0 right-0">
                   <Video Logo={LOGO} url={video} poster={image} scroll={true} />
@@ -126,7 +97,7 @@ const Tweet = ({
                 <button className="flex h-full items-center rounded-[2px] py-2 px-3 hover:bg-reddit_dark-brightest" type="button">
                   <span className="flex max-h-[36px] items-center overflow-hidden text-ellipsis text-left leading-3">
                     <RetweetIcon className="mr-[10px] h-5 w-5" />
-                    {retweet_count}
+                    {tweet.public_metrics.retweet_count}
                   </span>
                 </button>
               </div>
@@ -135,7 +106,15 @@ const Tweet = ({
         </div>
       </div>
       {showSubmit && (
-        <SubmitContextProvider title={translated} image={image} width={width} height={height} video={video} type={type} minimal={true}>
+        <SubmitContextProvider
+          title={translated}
+          image={image}
+          width={media?.width}
+          height={media?.height}
+          video={video}
+          type={media?.type}
+          minimal={true}
+        >
           <Submit />
         </SubmitContextProvider>
       )}

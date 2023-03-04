@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import { useContext } from 'react'
 import { createContext, Dispatch, SetStateAction, useState } from 'react'
 import { useSession } from '../auth/UserContextProvider'
@@ -41,7 +41,7 @@ interface SubmitContextProviderProps extends ChildrenProps {
   width?: number
   height?: number
   video?: string
-  type?: 'video' | 'photo'
+  type?: string
 }
 
 export const SubmitContextProvider = (props: SubmitContextProviderProps) => {
@@ -84,7 +84,7 @@ export const SubmitContextProvider = (props: SubmitContextProviderProps) => {
         thumbnail,
         setThumbnail,
         minimal: props.minimal,
-        initialCommunity: props.initialCommunity
+        initialCommunity: props.initialCommunity,
       }}
     >
       {props.children}

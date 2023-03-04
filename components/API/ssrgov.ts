@@ -1,8 +1,14 @@
 import { server } from '../../config/config'
-import { catchError } from './config/apiErrors'
 import { getHeaders } from './config/serverConfig'
 import { TiktakProps } from './tiktakapis/types/tiktypes'
 import { TiktokProps } from './tiktokapis/types/TTtypes'
+import { MediaObjectV2, TweetV2, UserV2 } from 'twitter-api-v2'
+
+interface TweetResponse {
+  data: TweetV2[]
+  users: UserV2[]
+  media: MediaObjectV2[]
+}
 
 const ssrgov = {
   getTweetHome: async () => {
@@ -13,13 +19,10 @@ const ssrgov = {
         headers: getHeaders(),
       })
       const data = await res.json()
-      if (!res.ok) {
-        if (res.status === 401) return 'Unauthenticated'
-        return data.msg as string
-      }
-      return data as TweetProps[]
+      if (!res.ok) return
+      return data as TweetResponse
     } catch (err) {
-      return catchError(err)
+      return
     }
   },
   getMyListTweets: async (lang: 'it' | 'en') => {
@@ -30,30 +33,24 @@ const ssrgov = {
         headers: getHeaders(),
       })
       const data = await res.json()
-      if (!res.ok) {
-        if (res.status === 401) return
-        return
-      }
-      return data as TweetProps[]
+      if (!res.ok) return
+      return data as TweetResponse
     } catch (err) {
       return
     }
   },
-  getUserTweets: async (screen_name: string) => {
+  getUserTweets: async (id: string) => {
     try {
-      const url = `${server}/twitter/user/${screen_name}`
+      const url = `${server}/twitter/user/${id}`
       const res = await fetch(url, {
         method: 'GET',
         headers: getHeaders(),
       })
       const data = await res.json()
-      if (!res.ok) {
-        if (res.status === 401) return 'Unauthenticated'
-        return data.msg as string
-      }
-      return data as TweetProps[]
+      if (!res.ok) return
+      return data as TweetResponse
     } catch (err) {
-      return catchError(err)
+      return
     }
   },
   getArticles: async (limit: string | number, skip: string | number) => {
