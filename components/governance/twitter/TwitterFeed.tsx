@@ -1,6 +1,6 @@
 'use client'
 import { useSearchParams } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { MediaObjectV2, TweetV2, UserV2 } from 'twitter-api-v2'
 import Tweet from './Tweet'
@@ -25,21 +25,24 @@ const TwitterFeed = ({ tweets: ssr_tweets, language }: TwitterFeedProps) => {
     } catch (err) {}
   }
 
-  // useEffect(() => {
-  //   if (!sort) return
-  //   if (sort === 'best') {
-  //     allTweets.current = allTweets.current.tweets.sort((a, b) => {
-  //       if (!a.public_metrics || !b.public_metrics) return 0
-  //       return b.public_metrics?.like_count - a.public_metrics?.like_count
-  //     })
-  //   } else if (sort === 'recently') {
-  //     allTweets.current.tweets = allTweets.current.tweets.sort((a, b) => {
-  //       if (!a.created_at || !b.created_at) return 0
-  //       return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-  //     })
-  //   }
-  //   setTweets((t) => allTweets.current.slice(0, t.length))
-  // }, [sort])
+  useEffect(() => {
+    if (!sort) return
+    if (sort === 'best') {
+      setTweets((t) =>
+        t.sort((a, b) => {
+          if (!a.public_metrics || !b.public_metrics) return 0
+          return b.public_metrics.like_count - a.public_metrics.like_count
+        })
+      )
+    } else if (sort === 'recently') {
+      setTweets((t) =>
+        t.sort((a, b) => {
+          if (!a.created_at || !b.created_at) return 0
+          return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+        })
+      )
+    }
+  }, [sort])
 
   return (
     <>

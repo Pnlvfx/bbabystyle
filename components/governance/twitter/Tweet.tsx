@@ -43,7 +43,7 @@ const Tweet = ({ tweet, user, media, language }: TweetPageProps) => {
     }
   }
 
-  if (!tweet.public_metrics?.like_count || !tweet.created_at || !user.profile_image_url || !tweet.author_id) return null
+  if (tweet.public_metrics?.like_count === undefined || !tweet.created_at || !user.profile_image_url || !tweet.author_id) return null
 
   return (
     <>
