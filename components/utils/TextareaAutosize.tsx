@@ -14,7 +14,7 @@ const TextareaAutosize = (props: DetailedHTMLProps<TextareaHTMLAttributes<HTMLTe
     if (tx.current) resizeTextarea()
   }, [props.value])
 
-  return <textarea style={{ overflowWrap: 'break-word', height: 'auto', overflow: 'hidden' }} ref={tx} {...props} />
+  return <textarea style={{ overflowWrap: 'break-word', height: 'auto', overflow: 'hidden', resize: 'none' }} ref={tx} {...props} />
 }
 
 export default TextareaAutosize

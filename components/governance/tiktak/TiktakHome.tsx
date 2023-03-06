@@ -22,16 +22,16 @@ const TiktakHome = ({ tiktak }: TiktakHomeProps) => {
   const pathname = usePathname()
   const [synthetize, setSynthetize] = useState(tiktak.synthetize || '')
 
-  const create = async () => {
+  const createBgVideo = async () => {
     try {
       if (!translated || !synthetize) {
         message.setMessage({ value: 'Missing text or image search parameters', status: 'error' })
         return
       }
       setLoading(true)
-      await tiktakapis.createTiktak(tiktak.permalink, title, translated, synthetize)
-      setLoading(false)
+      await tiktakapis.createBgVideo(tiktak.permalink, title, translated, synthetize)
       router.push(`${pathname}/video`)
+      setLoading(false)
     } catch (err) {
       setLoading(false)
       catchErrorWithMessage(err, message)
@@ -48,7 +48,6 @@ const TiktakHome = ({ tiktak }: TiktakHomeProps) => {
       <TiktakText value={translated} setValue={setTranslated} />
       <div className="mx-2 mt-6 flex justify-between">
         <button
-          disabled={loading}
           onClick={goBack}
           className={`flex h-[35px] w-16 items-center justify-center rounded-full border border-reddit_border bg-reddit_dark-brighter`}
         >
@@ -62,7 +61,7 @@ const TiktakHome = ({ tiktak }: TiktakHomeProps) => {
         <button
           disabled={loading}
           className={`flex h-[35px] w-16 items-center justify-center rounded-full border border-reddit_border bg-reddit_dark-brighter`}
-          onClick={create}
+          onClick={createBgVideo}
         >
           {loading && <Spinner />}
           {!loading && <AiOutlineArrowRight className="h-6 w-6" />}

@@ -16,7 +16,7 @@ const TiktakPage = ({ params }: TiktakPageProps) => {
     redirect('/tiktak')
   }
 
-  if (tiktak.video) {
+  if (tiktak.video || tiktak.background_video) {
     redirect(`/governance/tiktak/${params.permalink}/video`)
   }
 

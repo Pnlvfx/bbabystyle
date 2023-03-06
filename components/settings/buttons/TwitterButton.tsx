@@ -33,7 +33,7 @@ const TwitterButton = ({ userInfo }: SettingsButton) => {
       try {
         const state = query.get('state')
         const code = query.get('code')
-        if (!code || !state || !pathname.current) return
+        if (!code || !state) return
         if (!shouldRequest.current) return
         shouldRequest.current = false
         await twitterapis.accessToken(state, code)

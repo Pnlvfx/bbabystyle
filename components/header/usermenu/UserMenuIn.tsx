@@ -1,29 +1,28 @@
-import { usePathname } from "next/navigation";
-import { AiOutlineEye } from "react-icons/ai";
-import { BiLogIn, BiUserCircle } from "react-icons/bi";
-import { GiBabyFace } from "react-icons/gi";
-import { catchErrorWithMessage } from "../../API/config/apiErrors";
-import oauthapis from "../../API/oauthapis";
-import { useModals } from "../../auth/modal/ModalsProvider";
-import { useMessage } from "../../utils/message/TimeMsgContext";
-import { UserMenuButton } from "./buttons/notuser/ThemeButton";
-import UserPoliciesButton from "./buttons/user/UserPoliciesButton";
-import Section1 from "./Section1";
+import { usePathname } from 'next/navigation'
+import { AiOutlineEye } from 'react-icons/ai'
+import { BiLogIn, BiUserCircle } from 'react-icons/bi'
+import { GiBabyFace } from 'react-icons/gi'
+import { catchErrorWithMessage } from '../../API/config/apiErrors'
+import oauthapis from '../../API/oauthapis'
+import { useModals } from '../../auth/modal/ModalsProvider'
+import { useMessage } from '../../utils/message/TimeMsgContext'
+import { UserMenuButton } from './buttons/notuser/ThemeButton'
+import UserPoliciesButton from './buttons/user/UserPoliciesButton'
+import Section1 from './Section1'
 
 const UserMenuIn = ({ styles }: UserMenuButton) => {
-  const message = useMessage();
+  const message = useMessage()
   const modals = useModals()
-  const pathname = usePathname();
+  const pathname = usePathname()
 
   const doLogout = async () => {
     try {
-      if (!pathname) return;
-      await oauthapis.logout();
+      await oauthapis.logout()
       window.location.href = pathname
     } catch (err) {
-      catchErrorWithMessage(err, message);
+      catchErrorWithMessage(err, message)
     }
-  };
+  }
 
   const openCommunityForm = () => {
     modals.setShowUserMenu(false)
@@ -37,9 +36,7 @@ const UserMenuIn = ({ styles }: UserMenuButton) => {
           <span className="mr-3 w-5 h-5">
             <BiUserCircle className="icon" />
           </span>
-          <span className="flex-1 text-[14px] font-medium leading-[18px] w-full text-ellipsis whitespace-nowrap overflow-hidden">
-            My Stuff
-          </span>
+          <span className="flex-1 text-[14px] font-medium leading-[18px] w-full text-ellipsis whitespace-nowrap overflow-hidden">My Stuff</span>
         </span>
       </div>
       <Section1 />
@@ -48,9 +45,7 @@ const UserMenuIn = ({ styles }: UserMenuButton) => {
           <span className="mr-3 w-5 h-5">
             <AiOutlineEye className="icon" />
           </span>
-          <span className="flex-1 text-[14px] font-medium leading-[18px] w-full text-ellipsis whitespace-nowrap overflow-hidden">
-            View Options
-          </span>
+          <span className="flex-1 text-[14px] font-medium leading-[18px] w-full text-ellipsis whitespace-nowrap overflow-hidden">View Options</span>
         </span>
       </div>
       <div className="border-b border-bbaby-border mb-3 pb-3">
@@ -71,10 +66,7 @@ const UserMenuIn = ({ styles }: UserMenuButton) => {
         </span>
       </button>
       <UserPoliciesButton styles={styles} />
-      <button
-        className={`w-full block h-10 border-none box-border ${styles.active}`}
-        onClick={doLogout}
-      >
+      <button className={`w-full block h-10 border-none box-border ${styles.active}`} onClick={doLogout}>
         <span className="items-center flex h-full px-5">
           <span className="flex-0 w-5 h-5 mr-3">
             <BiLogIn className="icon" />
@@ -85,12 +77,10 @@ const UserMenuIn = ({ styles }: UserMenuButton) => {
         </span>
       </button>
       <div className="w-full items-center flex min-h-[40px] py-3 px-5 text-bbaby-text_darker">
-        <span className="text-[12px] leading-4 font-normal">
-          © 2023 Bbabystyle, Inc. All rights reserved
-        </span>
+        <span className="text-[12px] leading-4 font-normal">© 2023 Bbabystyle, Inc. All rights reserved</span>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default UserMenuIn;
+export default UserMenuIn

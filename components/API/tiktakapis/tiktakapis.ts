@@ -21,9 +21,9 @@ const tiktakapis = {
       throw catchError(err)
     }
   },
-  createTiktak: async (permalink: string, title: string, text: string, synthetize: string) => {
+  createBgVideo: async (permalink: string, title: string, text: string, synthetize: string) => {
     try {
-      const url = `${server}/governance/tiktak/create?permalink=${permalink}`
+      const url = `${server}${permalink}/background-video`
       const body = JSON.stringify({
         title,
         text,
@@ -38,6 +38,51 @@ const tiktakapis = {
       const data = await res.json()
       if (!res.ok) throw new Error(data?.msg)
       return data
+    } catch (err) {
+      throw catchError(err)
+    }
+  },
+  create: async (permalink: string, color: string) => {
+    try {
+      const url = `${server}${permalink}/create`
+      const body = JSON.stringify({
+        color,
+      })
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: HEADERS,
+        body,
+        credentials: 'include',
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data?.msg)
+      return data
+    } catch (err) {
+      throw catchError(err)
+    }
+  },
+  delete: async (
+    permalink: string,
+    options: {
+      video?: string
+      background_video?: string
+    }
+  ) => {
+    try {
+      const url = `${server}${permalink}/delete`
+      const body = JSON.stringify({
+        video: options.video,
+        background_video: options.background_video,
+      })
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: HEADERS,
+        body,
+        credentials: 'include',
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data?.msg)
+      return data as boolean
     } catch (err) {
       throw catchError(err)
     }

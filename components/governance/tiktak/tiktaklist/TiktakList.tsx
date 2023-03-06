@@ -11,7 +11,7 @@ const TiktakList = ({ tiktaks }: { tiktaks: TiktakProps[] }) => {
     return (
       <li className={styles.trendingItem}>
         <Link href={tiktak.permalink} className="trending-link">
-          {tiktak.original_body.substring(0, 50)}
+          {tiktak.original_title.substring(0, 50)}
         </Link>
       </li>
     )

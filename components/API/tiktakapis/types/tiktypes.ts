@@ -11,12 +11,12 @@ export interface TiktakProps {
   original_body: string
   body: string
   permalink: string
-  audio: string
-  duration: number
-  background_video: string
+  audio?: string
+  duration?: number
+  background_video?: string
   images: FFmpegImage[]
   audios: string[]
-  video: string
+  video?: string
   synthetize?: string
   _id: string
   createdAt: string

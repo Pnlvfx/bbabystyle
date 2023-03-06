@@ -25,10 +25,10 @@ const Tweet = ({ tweet, user, media, language }: TweetPageProps) => {
   const message = useMessage()
   const [translated, setTranslated] = useState('')
   const [showSubmit, setShowSubmit] = useState(false)
-  const image = media?.type === 'photo' ? media.url : media?.type === 'video' ? media.url + ':thumb' : undefined
-  const video = media?.type === 'video' ? media.url : undefined
+  const image = media?.type === 'photo' ? media.url : media?.type === 'video' ? media.preview_image_url : undefined
+  const video = media?.type === 'video' && media.variants ? media.variants[0].url : undefined
 
-  const doTranslate = async (e: MouseEvent<HTMLButtonElement>) => {
+  const translate = async (e: MouseEvent<HTMLButtonElement>) => {
     try {
       e.preventDefault()
       if (showSubmit) {
@@ -87,11 +87,7 @@ const Tweet = ({ tweet, user, media, language }: TweetPageProps) => {
           <div className="flex h-[40px] flex-row px-[2px]">
             <div className="flex flex-grow items-stretch overflow-hidden pr-2 pl-1 text-[12px] font-bold leading-4 text-reddit_text-darker">
               <div className="mr-1 flex items-center">
-                <button
-                  className="flex h-full items-center rounded-[2px] py-2 px-3 hover:bg-reddit_dark-brightest"
-                  type="button"
-                  onClick={doTranslate}
-                >
+                <button className="flex h-full items-center rounded-[2px] py-2 px-3 hover:bg-reddit_dark-brightest" type="button" onClick={translate}>
                   <span className="max-h-[36px] overflow-hidden text-ellipsis text-left leading-3">Magic</span>
                 </button>
                 <button className="flex h-full items-center rounded-[2px] py-2 px-3 hover:bg-reddit_dark-brightest" type="button">
