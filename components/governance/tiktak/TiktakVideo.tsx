@@ -1,7 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { catchErrorWithMessage } from '../../API/config/apiErrors'
 import tiktakapis from '../../API/tiktakapis/tiktakapis'
 import { TiktakProps } from '../../API/tiktakapis/types/tiktypes'
@@ -28,11 +28,14 @@ const TiktakVideo = ({ tiktak }: TiktakVideoProps) => {
     }
   }
 
-  const download = async () => {
+  const send = async () => {
     try {
       setLoading(true)
+      const msg = await tiktakapis.send(tiktak.permalink)
+      message.setMessage({ value: msg.msg, status: 'success' })
       setLoading(false)
     } catch (err) {
+      setLoading(false)
       catchErrorWithMessage(err, message)
     }
   }
@@ -48,11 +51,10 @@ const TiktakVideo = ({ tiktak }: TiktakVideoProps) => {
       <div />
       <button
         disabled={loading}
-        className={`flex h-[35px] w-16 items-center justify-center rounded-full border border-reddit_border bg-reddit_dark-brighter`}
-        onClick={download}
+        className={`flex h-[35px] px-4 py-3 items-center justify-center rounded-full border border-reddit_border bg-reddit_dark-brighter`}
+        onClick={send}
       >
-        {loading && <Spinner />}
-        {!loading && <AiOutlineArrowRight className="h-6 w-6" />}
+        {loading ? <Spinner /> : <p className="font-semibold text-[14px]">Send to telegram</p>}
       </button>
     </div>
   )

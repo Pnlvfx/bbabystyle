@@ -10,6 +10,8 @@ import useGoogleOneTapLogin from './auth/providers/google/hooks/useGoogleOneTapL
 import { useSession } from './auth/UserContextProvider'
 import SearchDropdown from './header/search/SearchDropdown'
 import UserMenu from './header/usermenu/UserMenu'
+import { useMessage } from './utils/message/TimeMsgContext'
+import { catchErrorWithMessage } from './API/config/apiErrors'
 
 const HiddenLayout = () => {
   const { session } = useSession()
@@ -49,8 +51,16 @@ const HiddenLayout = () => {
 export default HiddenLayout
 
 const UseOneTap = () => {
+  const message = useMessage()
   useGoogleOneTapLogin({
-    onSuccess: (response) => oauthapis.googleLogin(response),
+    onSuccess: async (response) => {
+      try {
+        await oauthapis.googleLogin(response)
+        window.location.href = '/'
+      } catch (err) {
+        catchErrorWithMessage(err, message)
+      }
+    },
     cancel_on_tap_outside: false,
   })
   return null

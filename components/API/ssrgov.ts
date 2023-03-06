@@ -3,6 +3,7 @@ import { getHeaders } from './config/serverConfig'
 import { TiktakProps } from './tiktakapis/types/tiktypes'
 import { TiktokProps } from './tiktokapis/types/TTtypes'
 import { MediaObjectV2, TweetV2, UserV2 } from 'twitter-api-v2'
+import { QuoraProps } from './quoraapis/types/qtypes'
 
 interface TweetResponse {
   data: TweetV2[]
@@ -119,6 +120,20 @@ const ssrgov = {
       const data = await res.json()
       if (!res.ok) return
       return data as TiktokProps
+    } catch (err) {
+      return
+    }
+  },
+  getQuoras: async (skip: number, limit: number) => {
+    try {
+      const url = `${server}/governance/quora?skip=${skip}&limit=${limit}`
+      const res = await fetch(url, {
+        method: 'GET',
+        headers: getHeaders(),
+      })
+      const data = await res.json()
+      if (!res.ok) return
+      return data as QuoraProps[]
     } catch (err) {
       return
     }

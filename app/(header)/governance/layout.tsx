@@ -1,9 +1,9 @@
-import { use } from "react";
-import ssrapis from "../../../components/API/ssrapis";
-import GovernanceTab from "../../../components/governance/GovernanceTab";
+import { use } from 'react'
+import ssrapis from '../../../components/API/ssrapis'
+import GovernanceTab from '../../../components/governance/GovernanceTab'
 
 const GovernanceLayout = ({ children }: ChildrenProps) => {
-  const session = use(ssrapis.getSession());
+  const session = use(ssrapis.getSession())
   return (
     <>
       {!session?.user && (
@@ -27,14 +27,14 @@ const GovernanceLayout = ({ children }: ChildrenProps) => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default GovernanceLayout;
+export default GovernanceLayout
 
 export const metadata = {
-  title: "Bbabystyle - authority page",
+  title: 'Bbabystyle - authority page',
   robots: {
     index: false,
   },
-};
+}

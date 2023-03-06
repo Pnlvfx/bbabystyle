@@ -87,6 +87,22 @@ const tiktakapis = {
       throw catchError(err)
     }
   },
+  send: async (permalink: string) => {
+    try {
+      const url = `${server}${permalink}/send`
+      const res = await fetch(url, {
+        method: 'GET',
+        credentials: 'include',
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data?.msg)
+      return data as {
+        msg: string
+      }
+    } catch (err) {
+      throw catchError(err)
+    }
+  },
 }
 
 export default tiktakapis
