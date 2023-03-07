@@ -37,7 +37,7 @@ const CommunityFormModal = () => {
     }
   }
 
-  const close = async () => {
+  const closeModal = async () => {
     modals.setShowCommunity(false)
     setName('')
     setLoading(false)
@@ -45,21 +45,17 @@ const CommunityFormModal = () => {
   }
 
   return (
-    <div
-      className={
-        'fixed top-0 z-50 box-border flex h-full w-full items-center overflow-auto bg-[rgba(28,28,28,.9)] pt-[75px] pr-[30px] pb-5 pl-[30px]'
-      }
-    >
-      <ClickOutHandler onClickOut={close}>
+    <div className="fixed top-0 z-50 box-border flex h-full w-full items-center overflow-auto bg-[rgba(28,28,28,.9)] pt-[75px] pr-[30px] pb-5 pl-[30px]">
+      <ClickOutHandler onClickOut={closeModal}>
         <div aria-modal="true" className="pointer-events-auto z-50 m-auto rounded-md border border-[#343536] bg-bbaby-brighter">
           <div className="pointer-events-none flex">
-            <div className="rounde-md pointer-events-auto relative flex max-h-[100vh] w-[fit-content] max-w-[568px] self-center overflow-y-auto">
+            <div className="rounded-md pointer-events-auto relative flex max-h-[100vh] w-[fit-content] max-w-[568px] self-center overflow-y-auto">
               <div className="relative m-0 box-border flex max-h-[100%] max-w-[100vw] flex-1 items-center overflow-y-auto rounded-b-md p-4">
                 <div className="max-h-[100%] max-w-[492px]">
                   <h1 className="mb-4 flex justify-between border-b border-solid border-bbaby-border pb-4 text-[16px] font-medium leading-5">
                     Create a community
                     <CloseIcon
-                      onClick={() => close()}
+                      onClick={closeModal}
                       className="ml-auto h-4 w-4 cursor-pointer fill-bbaby-text_darker overflow-hidden text-[16px] leading-5 "
                     />
                   </h1>
@@ -110,16 +106,10 @@ const CommunityFormModal = () => {
                     </div>
                   </div>
                   <div className="mx-[-16px] mt-4 mb-[-16px] flex justify-end rounded-br bg-[#343536] p-4">
-                    <button role={'button'} tabIndex={0} onClick={close} className={`mr-2 h-[32px] w-[80px] ${buttonClass(true)}`}>
+                    <button role={'button'} tabIndex={0} onClick={closeModal} className={`mr-2 h-[32px] w-[80px] ${buttonClass(true)}`}>
                       Cancel
                     </button>
-                    <button
-                      role={'button'}
-                      tabIndex={0}
-                      disabled={loading}
-                      onClick={() => create()}
-                      className={`h-[32px] w-[160px] ${buttonClass()}`}
-                    >
+                    <button role={'button'} tabIndex={0} disabled={loading} onClick={create} className={`h-[32px] w-[160px] ${buttonClass()}`}>
                       {loading && <Spinner />}
                       {!loading && <p>Create a community</p>}
                     </button>

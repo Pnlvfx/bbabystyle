@@ -2,12 +2,15 @@ import { redirect } from 'next/navigation'
 import { use } from 'react'
 import ssrgov from '../../../../components/API/ssrgov'
 import TwitterFeed from '../../../../components/governance/twitter/TwitterFeed'
+import ServerMsg from '../../../../components/utils/message/ServerMsg'
 
 const TwitterPage = () => {
   const tweets = use(ssrgov.getTweetHome())
 
-  if (!tweets) {
+  if (tweets === 'Unauthorized') {
     redirect('/settings')
+  } else if (tweets instanceof Error) {
+    return <ServerMsg error={tweets.message} />
   }
 
   return <TwitterFeed tweets={tweets} language="en" />

@@ -20,10 +20,14 @@ const ssrgov = {
         headers: getHeaders(),
       })
       const data = await res.json()
-      if (!res.ok) return
+      if (!res.ok) {
+        if (res.status === 401) {
+          return 'Unauthorized'
+        } else return new Error(data?.msg)
+      }
       return data as TweetResponse
     } catch (err) {
-      return
+      return new Error('Server error')
     }
   },
   getMyListTweets: async (lang: 'it' | 'en') => {
@@ -34,10 +38,10 @@ const ssrgov = {
         headers: getHeaders(),
       })
       const data = await res.json()
-      if (!res.ok) return
+      if (!res.ok) return new Error(data?.msg)
       return data as TweetResponse
     } catch (err) {
-      return
+      return new Error('Server error')
     }
   },
   getUserTweets: async (id: string) => {
@@ -48,10 +52,14 @@ const ssrgov = {
         headers: getHeaders(),
       })
       const data = await res.json()
-      if (!res.ok) return
+      if (!res.ok) {
+        if (res.status === 401) {
+          return 'Unauthorized'
+        } else return new Error(data?.msg)
+      }
       return data as TweetResponse
     } catch (err) {
-      return
+      return new Error('Server error')
     }
   },
   getArticles: async (limit: string | number, skip: string | number) => {
@@ -102,6 +110,7 @@ const ssrgov = {
       const res = await fetch(serverUrl, {
         method: 'get',
         headers: getHeaders(),
+        cache: 'no-cache',
       })
       const data = await res.json()
       if (!res.ok) return

@@ -37,9 +37,11 @@ const TiktakVideoPage = ({ params }: TiktakPageProps) => {
 
   return (
     <div className="h-full w-full">
-      <div className="flex items-center justify-center">
-        <video className={`aspect-video`} src={tiktak.video} id="video_pre-share" controls={true} width={1080} height={1920} />
-      </div>
+      {tiktak.video && (
+        <div className="flex items-center justify-center">
+          <video className={`aspect-video`} src={tiktak.video} id="video_pre-share" controls={true} width={1080} height={1920} />
+        </div>
+      )}
       <TiktakVideo tiktak={tiktak} />
     </div>
   )

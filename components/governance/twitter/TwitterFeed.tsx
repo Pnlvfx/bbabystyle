@@ -14,8 +14,8 @@ interface TwitterFeedProps {
   language: 'it' | 'en'
 }
 
-const TwitterFeed = ({ tweets: ssr_tweets, language }: TwitterFeedProps) => {
-  const [tweets, setTweets] = useState(ssr_tweets.data)
+const TwitterFeed = ({ tweets: data, language }: TwitterFeedProps) => {
+  const [tweets, setTweets] = useState(data.data)
   const sort = useSearchParams().get('sort')
 
   const getMoreTweets = async () => {
@@ -28,6 +28,7 @@ const TwitterFeed = ({ tweets: ssr_tweets, language }: TwitterFeedProps) => {
   useEffect(() => {
     if (!sort) return
     if (sort === 'best') {
+      console.log('sorted best')
       setTweets((t) =>
         t.sort((a, b) => {
           if (!a.public_metrics || !b.public_metrics) return 0
@@ -45,33 +46,31 @@ const TwitterFeed = ({ tweets: ssr_tweets, language }: TwitterFeedProps) => {
   }, [sort])
 
   return (
-    <>
-      <InfiniteScroll
-        dataLength={tweets.length}
-        next={getMoreTweets}
-        hasMore={tweets.length >= 100 ? false : true}
-        loader={<div></div>}
-        endMessage={<></>}
-      >
-        {tweets.map((tweet) => {
-          const user = ssr_tweets.users.find((user) => user.id === tweet.author_id)
-          const media = ssr_tweets.media.find((m) => {
-            if (!tweet.attachments?.media_keys) return
-            return m.media_key === tweet.attachments?.media_keys[0]
-          })
-          if (!user) return
-          return (
-            <div key={tweet.id}>
-              <div>
-                <div className="rounded-md border mb-3 w-full border-reddit_border bg-[#141415] hover:border-reddit_text">
-                  <Tweet tweet={tweet} user={user} media={media} language={language} />
-                </div>
+    <InfiniteScroll
+      dataLength={tweets.length}
+      next={getMoreTweets}
+      hasMore={tweets.length >= 100 ? false : true}
+      loader={<div></div>}
+      endMessage={<></>}
+    >
+      {tweets.map((tweet) => {
+        const user = data.users.find((user) => user.id === tweet.author_id)
+        const media = data.media.find((m) => {
+          if (!tweet.attachments?.media_keys) return
+          return m.media_key === tweet.attachments?.media_keys[0]
+        })
+        if (!user) return
+        return (
+          <div key={tweet.id}>
+            <div>
+              <div className="rounded-md border mb-3 w-full border-reddit_border bg-[#141415] hover:border-reddit_text">
+                <Tweet tweet={tweet} user={user} media={media} language={language} />
               </div>
             </div>
-          )
-        })}
-      </InfiniteScroll>
-    </>
+          </div>
+        )
+      })}
+    </InfiniteScroll>
   )
 }
 

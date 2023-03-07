@@ -63,8 +63,7 @@ const TiktakHome = ({ tiktak }: TiktakHomeProps) => {
           className={`flex h-[35px] w-16 items-center justify-center rounded-full border border-reddit_border bg-reddit_dark-brighter`}
           onClick={createBgVideo}
         >
-          {loading && <Spinner />}
-          {!loading && <AiOutlineArrowRight className="h-6 w-6" />}
+          {loading ? <Spinner /> : <AiOutlineArrowRight className="h-6 w-6" />}
         </button>
       </div>
     </div>

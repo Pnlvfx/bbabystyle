@@ -34,7 +34,7 @@
   top: 18px;
   height: 10px;
   width: 12px;
-  background: url('/auth-check.svg');
+  background: url('../../../public/auth-check.svg');
 }
 
 .field.valid::before {

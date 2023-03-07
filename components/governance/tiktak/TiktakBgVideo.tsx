@@ -41,6 +41,7 @@ const TiktakBgVideo = ({ tiktak }: TiktakVideoProps) => {
       router.refresh()
       setLoading(false)
     } catch (err) {
+      setLoading(false)
       catchErrorWithMessage(err, message)
     }
   }

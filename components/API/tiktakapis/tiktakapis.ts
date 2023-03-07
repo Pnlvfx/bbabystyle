@@ -1,7 +1,7 @@
 import { server } from '../../../config/config'
 import { catchError } from '../config/apiErrors'
 import { HEADERS } from '../config/clientConfig'
-import { NewTiktakResponse } from './types/tiktypes'
+import { NewTiktakResponse, TiktakProps } from './types/tiktypes'
 
 const tiktakapis = {
   newTiktak: async (title: string, text: string, language: string) => {
@@ -37,7 +37,7 @@ const tiktakapis = {
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data?.msg)
-      return data
+      return data as TiktakProps
     } catch (err) {
       throw catchError(err)
     }
