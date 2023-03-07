@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { catchErrorWithMessage } from '../../API/config/apiErrors'
+import { QuoraProps } from '../../API/quoraapis/types/qtypes'
 import tiktakapis from '../../API/tiktakapis/tiktakapis'
 import Voting from '../../post/postutils/Voting'
 import { useMessage } from '../../utils/message/TimeMsgContext'

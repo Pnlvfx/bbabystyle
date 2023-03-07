@@ -7,9 +7,7 @@ const TwitterPageItalian = () => {
   const lang = 'it'
   const tweets = use(ssrgov.getMyListTweets(lang))
 
-  if (typeof tweets === 'string') {
-    return null
-  } else if (!tweets) {
+  if (!tweets) {
     redirect('/settings')
   }
 

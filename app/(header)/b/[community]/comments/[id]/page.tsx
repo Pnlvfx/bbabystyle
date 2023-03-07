@@ -1,28 +1,28 @@
-import { Metadata } from "next";
-import { use } from "react";
-import ssrapis from "../../../../../../components/API/ssrapis";
-import Comment from "../../../../../../components/comment/Comment";
-import { getMetadata } from "../../../../../../components/metadata/metadata";
-import Post from "../../../../../../components/post/Post";
-import PostNotFound from "../../../../../../components/post/post-not-found/PostNotFound";
-import CommunityInfo from "../../../../../../components/widget/communityinfo/CommunityInfo";
-import Donations from "../../../../../../components/widget/Donations";
-import Widget from "../../../../../../components/widget/Widget";
-import { clientUrl } from "../../../../../../config/config";
+import { Metadata } from 'next'
+import { use } from 'react'
+import ssrapis from '../../../../../../components/API/ssrapis'
+import Comment from '../../../../../../components/comment/Comment'
+import { getMetadata } from '../../../../../../components/metadata/metadata'
+import Post from '../../../../../../components/post/Post'
+import PostNotFound from '../../../../../../components/post/post-not-found/PostNotFound'
+import CommunityInfo from '../../../../../../components/widget/communityinfo/CommunityInfo'
+import Donations from '../../../../../../components/widget/Donations'
+import Widget from '../../../../../../components/widget/Widget'
+import { clientUrl } from '../../../../../../config/config'
 
 interface PostPageProps {
   params: {
-    community: string;
-    id: string;
-  };
-  searchParams: {};
+    community: string
+    id: string
+  }
+  searchParams: {}
 }
 
 const PostPage = ({ params }: PostPageProps) => {
-  const session = use(ssrapis.getSession());
-  const post = use(ssrapis.getPost(params.id));
+  const session = use(ssrapis.getSession())
+  const post = use(ssrapis.getPost(params.id))
 
-  if (!post) return <PostNotFound />;
+  if (!post) return <PostNotFound />
 
   return (
     <>
@@ -38,39 +38,40 @@ const PostPage = ({ params }: PostPageProps) => {
               <Post post={post} isListing={false} />
               <Comment post={post} />
             </div>
-            <div className="hidden lg:block">
-              <Widget>
-                <CommunityInfo community={post.community_detail} />
-              </Widget>
-              <Donations />
-            </div>
+            {post.community_detail && (
+              <div className="hidden lg:block">
+                <Widget>
+                  <CommunityInfo community={post.community_detail} />
+                </Widget>
+                <Donations />
+              </div>
+            )}
           </div>
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default PostPage;
+export default PostPage
 
 export const generateMetadata = async ({ params }: PostPageProps): Promise<Metadata> => {
-  const post = await ssrapis.getPost(params.id);
-  if (!post) return {};
-  const url = `${clientUrl}${post.permalink}`;
-  const title = post.title.length >= 40 ? post.title : `${post.title} : ${post.community}`;
+  const post = await ssrapis.getPost(params.id)
+  if (!post) return {}
+  const url = `${clientUrl}${post.permalink}`
+  const title = post.title.length >= 40 ? post.title : `${post.title} : ${post.community}`
   const description =
     post.body ||
-    `${post.ups} votes, ${post.numComments} comments. ${post.community_detail.subscribers} members in the ${post.community} community, ${post.community_detail.description}`.substring(
-      0,
-      160,
-    );
-  const card = post.mediaInfo?.isImage ? "summary_large_image" : post.mediaInfo?.isVideo ? "summary_large_image" : "summary";
+    `${post.ups} votes, ${post.numComments} comments. ${post.community_detail?.subscribers || 0} members in the ${post.community} community, ${
+      post.community_detail?.description || ''
+    }`.substring(0, 160)
+  const card = post.mediaInfo?.isImage ? 'summary_large_image' : post.mediaInfo?.isVideo ? 'summary_large_image' : 'summary'
   const images = post.mediaInfo?.isImage
     ? [{ url: post.mediaInfo.image, width: post.mediaInfo.dimension[1], height: post.mediaInfo.dimension[0] }]
     : post.mediaInfo?.isVideo
-    ? [{ url: post.mediaInfo.video.url.replace("mp4", "jpg"), width: post.mediaInfo.dimension[1], height: post.mediaInfo.dimension[0] }]
-    : undefined;
-  const type = "article";
-  const videos = post.mediaInfo?.isVideo ? [post.mediaInfo.video.url] : undefined;
-  return getMetadata(title, description, url, type, card, images, videos);
-};
+    ? [{ url: post.mediaInfo.video.url.replace('mp4', 'jpg'), width: post.mediaInfo.dimension[1], height: post.mediaInfo.dimension[0] }]
+    : undefined
+  const type = 'article'
+  const videos = post.mediaInfo?.isVideo ? [post.mediaInfo.video.url] : undefined
+  return getMetadata(title, description, url, type, card, images, videos)
+}
