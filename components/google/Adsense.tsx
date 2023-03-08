@@ -18,9 +18,9 @@ const Adsense = ({ adTest }: AdsenseProps) => {
       className="adsbygoogle"
       style={{ display: 'block' }}
       data-ad-client="ca-pub-7203519143982992"
-      data-ad-slot="6614182647"
-      data-ad-format="auto"
-      data-full-width-responsive="true"
+      data-ad-format="fluid"
+      data-ad-layout-key="-6f+dk-2n-94+11j"
+      data-ad-slot="6681904324"
       data-ad-test={adTest}
     />
   )
