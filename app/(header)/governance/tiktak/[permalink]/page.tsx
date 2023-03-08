@@ -13,7 +13,7 @@ const TiktakPage = ({ params }: TiktakPageProps) => {
   const tiktak = use(ssrgov.getTiktak(params.permalink))
 
   if (!tiktak) {
-    redirect('/tiktak')
+    redirect('/governance/tiktak')
   }
 
   if (tiktak.video || tiktak.background_video) {

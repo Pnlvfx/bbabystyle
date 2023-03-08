@@ -28,7 +28,6 @@ const TwitterFeed = ({ tweets: data, language }: TwitterFeedProps) => {
   useEffect(() => {
     if (!sort) return
     if (sort === 'best') {
-      console.log('sorted best')
       setTweets((t) =>
         t.sort((a, b) => {
           if (!a.public_metrics || !b.public_metrics) return 0

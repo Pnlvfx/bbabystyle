@@ -48,7 +48,7 @@ const Feed = ({ posts: ssrPost, community, author }: FeedProps) => {
               if (ads.find((ad) => ad === index) && process.env.NODE_ENV === 'production') {
                 return (
                   <div key={index}>
-                    <div className="post-container" data-is-listinh={'true'}>
+                    <div className="post-container" data-is-listing={'true'}>
                       <Adsense />
                     </div>
                   </div>

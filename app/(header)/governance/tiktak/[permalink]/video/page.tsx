@@ -14,10 +14,14 @@ const TiktakVideoPage = ({ params }: TiktakPageProps) => {
   const tiktak = use(ssrgov.getTiktak(params.permalink))
 
   if (!tiktak) {
-    redirect('/tiktak')
+    redirect('/governance/tiktak')
   }
 
-  if (!tiktak.video && tiktak.background_video) {
+  if (!tiktak.background_video) {
+    redirect(tiktak.permalink)
+  }
+
+  if (!tiktak.video) {
     return (
       <div className="h-full w-full">
         <div className="flex items-center justify-center">
@@ -37,11 +41,9 @@ const TiktakVideoPage = ({ params }: TiktakPageProps) => {
 
   return (
     <div className="h-full w-full">
-      {tiktak.video && (
-        <div className="flex items-center justify-center">
-          <video className={`aspect-video`} src={tiktak.video} id="video_pre-share" controls={true} width={1080} height={1920} />
-        </div>
-      )}
+      <div className="flex items-center justify-center">
+        <video className={`aspect-video`} src={tiktak.video} id="video_pre-share" controls={true} width={1080} height={1920} />
+      </div>
       <TiktakVideo tiktak={tiktak} />
     </div>
   )

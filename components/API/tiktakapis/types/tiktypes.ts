@@ -14,16 +14,9 @@ export interface TiktakProps {
   audio?: string
   duration?: number
   background_video?: string
-  images: FFmpegImage[]
-  audios: string[]
   video?: string
   synthetize?: string
   _id: string
   createdAt: string
   updatedAt: string
-}
-
-interface FFmpegImage {
-  path: string
-  loop: number
 }

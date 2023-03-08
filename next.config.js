@@ -10,7 +10,7 @@ const nextConfig = {
       'images.pexels.com',
       'localhost',
       'api.bbabystyle.com',
-      '192.168.1.22',
+      '192.168.1.31',
       '192.168.1.21',
     ],
   },
