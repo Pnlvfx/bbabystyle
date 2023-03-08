@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -19,7 +19,7 @@
     "@types/react-dom": "18.0.11",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.3",
-    "next": "^13.2.4-canary.5",
+    "next": "^13.2.4-canary.6",
     "react": "18.3.0-next-3d615fc14-20220919",
     "react-clickout-ts": "^2023.1.1",
     "react-dom": "18.2.0",

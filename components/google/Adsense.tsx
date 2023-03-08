@@ -1,9 +1,16 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
-const Adsense = () => {
+interface AdsenseProps {
+  adTest?: 'on'
+}
+
+const Adsense = ({ adTest }: AdsenseProps) => {
+  const shouldRequest = useRef(true)
   useEffect(() => {
+    if (!shouldRequest.current) return
+    shouldRequest.current = false
     if (typeof window === undefined) return
-    ;(window as any).adsbygoogle || ([] as any[]).push({})
+    ;((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({})
   }, [])
 
   return (
@@ -14,6 +21,7 @@ const Adsense = () => {
       data-ad-slot="6614182647"
       data-ad-format="auto"
       data-full-width-responsive="true"
+      data-ad-test={adTest}
     />
   )
 }

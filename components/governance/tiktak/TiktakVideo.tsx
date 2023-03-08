@@ -51,7 +51,7 @@ const TiktakVideo = ({ tiktak }: TiktakVideoProps) => {
       <div />
       <button
         disabled={loading}
-        className={`flex h-[35px] px-4 py-3 items-center justify-center rounded-full border border-reddit_border bg-reddit_dark-brighter`}
+        className={`flex h-[35px] px-4 py-3 items-center min-w-[150px] justify-center rounded-full border border-reddit_border bg-reddit_dark-brighter`}
         onClick={send}
       >
         {loading ? <Spinner /> : <p className="font-semibold text-[14px]">Send to telegram</p>}

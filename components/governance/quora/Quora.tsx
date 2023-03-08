@@ -50,7 +50,12 @@ const Quora = ({ quora }: QuoraPageProps) => {
         <div className="flex h-[40px] flex-row px-[2px]">
           <div className="flex flex-grow items-stretch overflow-hidden pr-2 pl-1 text-[12px] font-bold leading-4 text-reddit_text-darker">
             <div className="mr-1 flex items-center">
-              <button className="flex h-full items-center rounded-[2px] py-2 px-3 hover:bg-reddit_dark-brightest" type="button" onClick={toTiktak}>
+              <Voting ups={quora.ups} postId={quora._id} liked={null} />
+              <button
+                className="flex h-full justify-center items-center rounded-[2px] min-w-[40px] py-2 px-3 hover:bg-reddit_dark-brightest"
+                type="button"
+                onClick={toTiktak}
+              >
                 {loading ? <Spinner /> : <span className="max-h-[36px] overflow-hidden text-ellipsis text-left leading-3">Magic</span>}
               </button>
             </div>

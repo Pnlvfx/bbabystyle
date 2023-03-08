@@ -9,12 +9,13 @@ const ssrapis = {
       const res = await fetch(url, {
         method: 'GET',
         headers: getHeaders(),
+        cache: 'no-cache',
       })
       const session = await res.json()
       if (!res.ok) return null
       const token = res.headers.get('set-cookie')
       if (token) {
-        //
+        console.log(token)
       }
       return session as SessionProps
     } catch (err) {
@@ -40,6 +41,7 @@ const ssrapis = {
       const res = await fetch(url, {
         method: 'GET',
         headers: getHeaders(),
+        cache: 'no-cache',
       })
       const data = await res.json()
       if (!res.ok) return []
@@ -56,6 +58,7 @@ const ssrapis = {
       const res = await fetch(url, {
         method: 'get',
         headers,
+        cache: 'no-cache',
       })
       const data = await res.json()
       if (!res.ok) return
