@@ -46,13 +46,7 @@ const Feed = ({ posts: ssrPost, community, author }: FeedProps) => {
           {posts?.length >= 1 ? (
             posts.map((post, index) => {
               if (ads.find((ad) => ad === index) && process.env.NODE_ENV === 'production') {
-                return (
-                  <div key={index}>
-                    <div className="post-container" data-is-listinh={'true'}>
-                      <Adsense />
-                    </div>
-                  </div>
-                )
+                return <Adsense key={index} />
               }
               return <Post key={post._id} post={post} isListing={true} setPostForModal={setPostForModal} />
             })
