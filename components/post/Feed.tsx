@@ -16,6 +16,7 @@ const Feed = ({ posts: ssrPost, community, author }: FeedProps) => {
   const [posts, setPosts] = useState(ssrPost)
   const [hasMore, setHasMore] = useState(true)
   const [postForModal, setPostForModal] = useState<PostProps>()
+  const ads = [3, 12, 24, 36, 48, 97]
 
   const getMorePosts = async () => {
     try {
@@ -41,11 +42,17 @@ const Feed = ({ posts: ssrPost, community, author }: FeedProps) => {
         />
       )}
       <div>
-        <InfiniteScroll dataLength={posts?.length || 1} next={getMorePosts} hasMore={hasMore} loader={<div />} endMessage={<></>}>
+        <InfiniteScroll dataLength={posts.length} next={getMorePosts} hasMore={hasMore} loader={<div />} endMessage={<></>}>
           {posts?.length >= 1 ? (
             posts.map((post, index) => {
-              if (index === 3 && process.env.NODE_ENV === 'production') {
-                return <Adsense key={index} />
+              if (ads.find((ad) => ad === index) && process.env.NODE_ENV === 'production') {
+                return (
+                  <div key={index}>
+                    <div className="post-container" data-is-listinh={'true'}>
+                      <Adsense />
+                    </div>
+                  </div>
+                )
               }
               return <Post key={post._id} post={post} isListing={true} setPostForModal={setPostForModal} />
             })

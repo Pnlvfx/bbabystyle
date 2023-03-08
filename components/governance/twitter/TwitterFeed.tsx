@@ -63,7 +63,7 @@ const TwitterFeed = ({ tweets: data, language }: TwitterFeedProps) => {
         return (
           <div key={tweet.id}>
             <div>
-              <div className="rounded-md border mb-3 w-full border-reddit_border bg-[#141415] hover:border-reddit_text">
+              <div className="post-container" data-is-listing={'true'}>
                 <Tweet tweet={tweet} user={user} media={media} language={language} />
               </div>
             </div>

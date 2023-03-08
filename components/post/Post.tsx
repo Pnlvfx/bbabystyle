@@ -1,33 +1,33 @@
-"use client";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { Dispatch, SetStateAction } from "react";
-import { useSession } from "../auth/UserContextProvider";
-import { openPost } from "./postutils/hooks";
-import PostContent from "./postutils/PostContent";
+'use client'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { Dispatch, SetStateAction } from 'react'
+import { useSession } from '../auth/UserContextProvider'
+import { openPost } from './postutils/hooks'
+import PostContent from './postutils/PostContent'
 
 interface ExtendPostProps {
-  post: PostProps;
-  isListing: boolean;
+  post: PostProps
+  isListing: boolean
 }
 
 export interface PostComponent extends ExtendPostProps {
-  setPostForModal?: Dispatch<SetStateAction<PostProps | undefined>>;
+  setPostForModal?: Dispatch<SetStateAction<PostProps | undefined>>
 }
 
 const Post = ({ post, isListing, setPostForModal }: PostComponent) => {
-  const { session } = useSession();
-  const containerClass = `rounded-md border ${isListing ? "mb-3 w-full border-reddit_border bg-[#141415] hover:border-reddit_text" : "border-none"}`;
-  const router = useRouter();
+  const { session } = useSession()
+  const router = useRouter()
   return (
     <div>
       <div>
         {!session?.device?.mobile ? (
           <div
-            className={`${containerClass} ${isListing && "cursor-pointer"}`}
+            className={`post-container ${isListing && 'cursor-pointer'}`}
+            data-is-listing={`${isListing}`}
             onClick={(e) => {
               if (isListing) {
-                openPost(e, post, router, setPostForModal);
+                openPost(e, post, router, setPostForModal)
               }
             }}
           >
@@ -36,8 +36,8 @@ const Post = ({ post, isListing, setPostForModal }: PostComponent) => {
         ) : (
           <>
             {isListing ? (
-              <article className={`${containerClass} article`} id={post._id}>
-                <Link style={{pointerEvents: 'all'}} href={post.permalink} />
+              <article data-is-listing={'true'} className={`post-container article`} id={post._id}>
+                <Link style={{ pointerEvents: 'all' }} href={post.permalink} />
                 <PostContent post={post} isListing={isListing} setPostForModal={setPostForModal} />
               </article>
             ) : (
@@ -47,7 +47,7 @@ const Post = ({ post, isListing, setPostForModal }: PostComponent) => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Post;
+export default Post

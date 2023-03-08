@@ -1,20 +1,39 @@
 .article {
-    position: relative;
+  position: relative;
 }
 
 .article > a {
-    bottom: 0;
-    left: 0;
-    pointer-events: all;
-    position: absolute;
-    right: 0;
-    top: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: all;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .articleLink {
-    pointer-events: all;
+  pointer-events: all;
 }
 
 .post-content {
-    grid-column: 1/4;
+  grid-column: 1/4;
+}
+
+.post-container[data-is-listing='false'] {
+  border-radius: 6px;
+  border-width: 1px;
+  border-style: none;
+}
+
+.post-container[data-is-listing='true'] {
+  border-radius: 6px;
+  border-width: 1px;
+  border-color: rgb(50, 51, 52);
+  margin-bottom: 12px;
+  width: 100%;
+  background-color: #141415;
+}
+
+.post-container[data-is-listing='true']:hover {
+  border-color: rgb(215, 218, 220);
 }
