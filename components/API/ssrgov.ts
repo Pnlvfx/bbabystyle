@@ -4,6 +4,7 @@ import { TiktakProps } from './tiktakapis/types/tiktypes'
 import { TiktokProps } from './tiktokapis/types/TTtypes'
 import { MediaObjectV2, TweetV2, UserV2 } from 'twitter-api-v2'
 import { QuoraProps } from './quoraapis/types/qtypes'
+import { catchServer } from './config/apiErrors'
 
 interface TweetResponse {
   data: TweetV2[]
@@ -27,7 +28,7 @@ const ssrgov = {
       }
       return data as TweetResponse
     } catch (err) {
-      return new Error('Server error')
+      return catchServer(err)
     }
   },
   getMyListTweets: async (lang: 'it' | 'en') => {
@@ -41,7 +42,7 @@ const ssrgov = {
       if (!res.ok) return new Error(data?.msg)
       return data as TweetResponse
     } catch (err) {
-      return new Error('Server error')
+      return catchServer(err)
     }
   },
   getUserTweets: async (id: string) => {
@@ -59,7 +60,7 @@ const ssrgov = {
       }
       return data as TweetResponse
     } catch (err) {
-      return new Error('Server error')
+      return catchServer(err)
     }
   },
   getArticles: async (limit: string | number, skip: string | number) => {
