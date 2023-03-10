@@ -43,7 +43,7 @@ const CommunityPage = ({ params }: CommunityPageProps) => {
           height: '228px',
         }}
       >
-        <Link href={`/b/${community.name?.toLowerCase()}`}>
+        <Link href={`/b/${community.name.toLowerCase()}`}>
           <div className="relative m-auto h-full max-w-[1200px]">
             <div className="left-[50%] h-[176px]" style={{ transform: 'translate(-50%, -50%)' }}>
               {community.name}

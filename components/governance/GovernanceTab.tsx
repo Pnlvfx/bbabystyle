@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 const GovernanceTab = () => {
   const menu = [
     { title: 'Bbaby', url: '/governance/bbaby', url2: '/governance' },
-    { title: 'Twitter', url: '/governance/twitter' },
+    { title: 'Twitter', url: '/governance/twitter/english' },
     { title: 'News', url: '/governance/news' },
     { title: 'Reddit', url: '/governance/reddit' },
     { title: 'TikTak', url: '/governance/tiktak' },
@@ -15,7 +15,7 @@ const GovernanceTab = () => {
   const pathname = usePathname()
 
   return (
-    <div className="mb-3 overflow-hidden rounded-[6px] border border-bbaby-border bg-bbaby-brighter text-[14px]">
+    <div className="mb-3 overflow-scroll rounded-[6px] border border-bbaby-border bg-bbaby-brighter text-[14px]">
       <div className="flex w-full items-center justify-center">
         {menu.map((m, index) => (
           <Link

@@ -10,12 +10,13 @@ interface ModeratorDescrProps {
 
 const ModeratorDescr = ({ name, description: initialDescription }: ModeratorDescrProps) => {
   const [showTextarea, setShowTextarea] = useState(false)
+  const [isFocus, setIsFocus] = useState(false)
   const [description, setDescription] = useState(initialDescription)
   const message = useMessage()
 
   const updateDescription = async () => {
     try {
-      if (!description) return
+      if (!description || !isFocus) return
       await communityapis.updateDescription(name, description)
       message.setMessage({ value: 'Description updated successfully!', status: 'success' })
     } catch (err) {
@@ -36,29 +37,31 @@ const ModeratorDescr = ({ name, description: initialDescription }: ModeratorDesc
   }
 
   return (
-    <ClickOutHandler onClickOut={close}>
-      <div
-        className={`mb-3 mt-2 rounded border ${
-          showTextarea ? 'border-bbaby-text' : 'border-bbaby-dark'
-        } bg-bbaby-brightest p-2 transition-all cursor-pointer`}
-        tabIndex={0}
-      >
-        {showTextarea ? (
-          <textarea
-            className="w-full resize-none bg-transparent outline-none text-bbaby-text_darker text-[14px]"
-            placeholder="Tell us about your community"
-            value={description}
-            onChange={(e) => {
-              setDescription(e.target.value)
-            }}
-          />
-        ) : (
-          <div className="text-[12px] font-bold leading-4" onClick={open}>
-            {description || 'Add description'}
-          </div>
-        )}
-      </div>
-    </ClickOutHandler>
+    <div>
+      <ClickOutHandler onClickOut={close}>
+        <div
+          className={`mb-3 mt-2 rounded border ${
+            showTextarea ? 'border-bbaby-text' : 'border-bbaby-dark'
+          } bg-bbaby-brightest p-2 transition-all cursor-pointer`}
+          tabIndex={0}
+        >
+          {showTextarea ? (
+            <textarea
+              className="w-full resize-none bg-transparent outline-none text-bbaby-text_darker text-[14px]"
+              placeholder="Tell us about your community"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              onFocus={() => setIsFocus(true)}
+              onBlur={() => setIsFocus(false)}
+            />
+          ) : (
+            <div className="text-[12px] font-bold leading-4" onClick={open}>
+              {description || 'Add description'}
+            </div>
+          )}
+        </div>
+      </ClickOutHandler>
+    </div>
   )
 }
 
