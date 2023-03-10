@@ -1,23 +1,23 @@
-import { Video } from "@bbabystyle/next-video-player";
-import Image from "next/image";
-import { LOGO } from "../../../config/config";
-import { useSession } from "../../auth/UserContextProvider";
-import { PostComponent } from "../Post";
-import PostButtons from "./PostButtons";
-import PostHeader from "./PostHeader";
-import PostTitle from "./PostTitle";
-import Voting from "./Voting";
+import { Video } from '@bbabystyle/next-video-player'
+import Image from 'next/image'
+import { LOGO } from '../../../config/config'
+import { useSession } from '../../auth/UserContextProvider'
+import { PostComponent } from '../Post'
+import PostButtons from './PostButtons'
+import PostHeader from './PostHeader'
+import PostTitle from './PostTitle'
+import Voting from './Voting'
 
 const PostContent = ({ post, isListing, setPostForModal }: PostComponent) => {
-  const { session } = useSession();
+  const { session } = useSession()
   return (
-    <div className={`${session?.device?.mobile && isListing && "pointer-events-none"} relative flex max-h-[800px] rounded-md md:pl-10`}>
+    <>
       <div className="absolute left-0 top-0 box-border hidden w-10 flex-col items-center border-l-4 border-solid border-transparent py-2 pr-1 md:flex">
-        <div className="hidden flex-col items-center md:flex">
+        <div className="flex-col items-center flex">
           <Voting ups={post.ups} postId={post._id} liked={post.liked} />
         </div>
       </div>
-      <div className="w-full bg-bbaby-brighter pt-2">
+      <div className="relative bg-bbaby-brighter pt-2">
         {session?.device?.mobile && isListing ? (
           <header>
             <PostHeader post={post} isListing={isListing} />
@@ -35,16 +35,18 @@ const PostContent = ({ post, isListing, setPostForModal }: PostComponent) => {
               <>
                 <div className="w-full pb-[105.35%]" />
                 <div className="absolute top-0 left-0 bottom-0 right-0">
-                  <Video url={post.mediaInfo.video.url} poster={post.mediaInfo.video.url.replace("mp4", "jpg")} scroll={isListing} Logo={LOGO} />
+                  <Video url={post.mediaInfo.video.url} poster={post.mediaInfo.video.url.replace('mp4', 'jpg')} scroll={isListing} Logo={LOGO} />
                 </div>
               </>
             )}
-            {post.body && (
-              <div className="resize-x-none flex-none break-words text-sm leading-6">
+          </div>
+          {post.body && (
+            <div className="--max-h-[250px] overflow-hidden pt-[5px] px-2 pb-[10px]">
+              <div className="break-words text-[14px] leading-[21px] mb-[-1px] pb-[1px] ">
                 <p className="whitespace-pre-wrap">{post.body}</p>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
         {session?.device?.mobile ? (
           <>
@@ -60,8 +62,8 @@ const PostContent = ({ post, isListing, setPostForModal }: PostComponent) => {
           <PostButtons post={post} isListing={isListing} setPostForModal={setPostForModal} />
         )}
       </div>
-    </div>
-  );
-};
+    </>
+  )
+}
 
-export default PostContent;
+export default PostContent

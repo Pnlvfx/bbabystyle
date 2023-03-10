@@ -1,45 +1,45 @@
-import { CSSProperties, useEffect, useRef, useState } from 'react';
-import { useMessage } from './TimeMsgContext';
-import { AiOutlineSketch, AiOutlineWarning } from 'react-icons/ai';
-import { useSession } from '../../auth/UserContextProvider';
-import styles from './msg.module.css';
-import { CloseIcon } from '../svg/SVG';
-import Image from 'next/image';
-import { LOGO } from '../../../config/config';
+import { CSSProperties, useEffect, useRef, useState } from 'react'
+import { useMessage } from './TimeMsgContext'
+import { AiOutlineSketch, AiOutlineWarning } from 'react-icons/ai'
+import { useSession } from '../../auth/UserContextProvider'
+import styles from './msg.module.css'
+import { CloseIcon } from '../svg/SVG'
+import Image from 'next/image'
+import { LOGO } from '../../../config/config'
 
 const Msg = () => {
-  const message = useMessage();
-  const messageRef = useRef(message);
-  const { session } = useSession();
-  const sessionRef = useRef(session);
-  const [toClose, setToClose] = useState(false);
-  const messageMobileRef = useRef<HTMLDivElement>(null);
+  const message = useMessage()
+  const messageRef = useRef(message)
+  const { session } = useSession()
+  const sessionRef = useRef(session)
+  const [toClose, setToClose] = useState(false)
+  const messageMobileRef = useRef<HTMLDivElement>(null)
 
   const triggerMobile = (type: 'open' | 'close') => {
     const ms = type === 'open' ? 5 : 10
     const interval = setInterval(() => {
-      if (!messageMobileRef.current) return;
-      const currentBottom = parseInt(messageMobileRef.current.style.bottom, 10);
+      if (!messageMobileRef.current) return
+      const currentBottom = parseInt(messageMobileRef.current.style.bottom, 10)
       if (type === 'open') {
         if (currentBottom < 0) {
-          messageMobileRef.current.style.bottom = `${currentBottom + 1}px`;
+          messageMobileRef.current.style.bottom = `${currentBottom + 1}px`
         } else {
-          clearInterval(interval);
+          clearInterval(interval)
         }
       } else {
         if (currentBottom > -80) {
-          messageMobileRef.current.style.bottom = `${currentBottom - 1}px`;
+          messageMobileRef.current.style.bottom = `${currentBottom - 1}px`
         } else {
-          messageRef.current.setMessage({ value: '' });
-          clearInterval(interval);
+          messageRef.current.setMessage({ value: '' })
+          clearInterval(interval)
         }
       }
-    }, ms);
+    }, ms)
   }
 
   useEffect(() => {
-    if (!message.message.value) return;
-    const ms = message.message.time ? message.message.time : 8000;
+    if (!message.message.value) return
+    const ms = message.message.time ? message.message.time : 8000
     //open mobile
     if (sessionRef.current?.device?.mobile) {
       triggerMobile('open')
@@ -47,31 +47,34 @@ const Msg = () => {
     //
     setTimeout(() => {
       if (!sessionRef.current?.device?.mobile) {
-        messageRef.current.setMessage({ value: '' });
+        messageRef.current.setMessage({ value: '' })
       } else {
         triggerMobile('close')
       }
-    }, ms);
-  }, [message]);
+    }, ms)
+  }, [message])
 
   useEffect(() => {
-    if (!toClose) return;
+    if (!toClose) return
     const interval = setInterval(() => {
-      if (!messageMobileRef.current) return;
-      const currentBottom = parseInt(messageMobileRef.current.style.bottom, 10);
+      if (!messageMobileRef.current) return
+      const currentBottom = parseInt(messageMobileRef.current.style.bottom, 10)
       if (currentBottom > -80) {
-        messageMobileRef.current.style.bottom = `${currentBottom - 1}px`;
+        messageMobileRef.current.style.bottom = `${currentBottom - 1}px`
       } else {
-        messageRef.current.setMessage({ value: '' });
-        setToClose(false);
-        clearInterval(interval);
+        messageRef.current.setMessage({ value: '' })
+        setToClose(false)
+        clearInterval(interval)
       }
-    }, 10);
-  }, [toClose]);
+    }, 10)
+  }, [toClose])
 
   const closeMsg = () => {
-    message.setMessage({ value: '' });
-  };
+    message.setMessage({ value: '' })
+    if (messageMobileRef.current) {
+      messageMobileRef.current.style.bottom = '-80px'
+    }
+  }
 
   return (
     <>
@@ -110,7 +113,7 @@ const Msg = () => {
         </>
       )}
     </>
-  );
-};
+  )
+}
 
-export default Msg;
+export default Msg

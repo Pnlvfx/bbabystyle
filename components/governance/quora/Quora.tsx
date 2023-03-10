@@ -42,8 +42,8 @@ const Quora = ({ quora }: QuoraPageProps) => {
             <h1 className="mb-4 break-words text-lg">{quora.title}</h1>
           </div>
         </div>
-        <div className="relative mt-2 max-h-[512px] overflow-hidden">
-          <div className="resize-x-none flex-none break-words text-sm leading-6">
+        <div className="--max-h-[250px] overflow-hidden pt-[5px] px-2 pb-[10px]">
+          <div className="break-words text-[14px] leading-[21px] mb-[-1px] pb-[1px] ">
             <p className="whitespace-pre-wrap">{quora.description}</p>
           </div>
         </div>

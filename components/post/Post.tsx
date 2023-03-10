@@ -23,7 +23,7 @@ const Post = ({ post, isListing, setPostForModal }: PostComponent) => {
       <div>
         {!session?.device?.mobile ? (
           <div
-            className={`post-container ${isListing && 'cursor-pointer'}`}
+            className={`post-container relative ${isListing && 'cursor-pointer'}`}
             data-is-listing={`${isListing}`}
             onClick={(e) => {
               if (isListing) {
@@ -38,7 +38,9 @@ const Post = ({ post, isListing, setPostForModal }: PostComponent) => {
             {isListing ? (
               <article data-is-listing={'true'} className={`post-container article`} id={post._id}>
                 <Link style={{ pointerEvents: 'all' }} href={post.permalink} />
-                <PostContent post={post} isListing={isListing} setPostForModal={setPostForModal} />
+                <div className="pointer-events-none relative">
+                  <PostContent post={post} isListing={isListing} setPostForModal={setPostForModal} />
+                </div>
               </article>
             ) : (
               <PostContent post={post} isListing={isListing} setPostForModal={setPostForModal} />

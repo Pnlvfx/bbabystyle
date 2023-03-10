@@ -19,17 +19,25 @@
   grid-column: 1/4;
 }
 
-.post-container[data-is-listing='false'] {
-  border-radius: 6px;
+.post-container {
   border-width: 1px;
+  max-height: 800px;
+}
+
+@media (min-width: 640px) {
+  .post-container {
+    border-radius: 4px;
+    padding-left: 40px;
+  }
+}
+
+.post-container[data-is-listing='false'] {
   border-style: none;
 }
 
 .post-container[data-is-listing='true'] {
-  border-radius: 6px;
-  border-width: 1px;
   border-color: rgb(50, 51, 52);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   width: 100%;
   background-color: #141415;
 }
