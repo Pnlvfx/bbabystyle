@@ -16,7 +16,6 @@ module.exports = {
           hover: '#454546',
           blue: '#24A0ED',
         },
-        reddit_red: '#f54404',
         reddit_dark: {
           DEFAULT: '#030303',
           brighter: '#1a1a1b',

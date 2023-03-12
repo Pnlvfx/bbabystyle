@@ -21,7 +21,6 @@
 
 .post-container {
   border-width: 1px;
-  max-height: 800px;
 }
 
 @media (min-width: 640px) {

@@ -29,7 +29,7 @@ const TwitterFeed = ({ quoras: ssr_quoras }: QuoraFeedProps) => {
         {quoras.map((quora, index) => (
           <div key={index}>
             <div>
-              <div className="rounded-md border mb-3 w-full border-reddit_border bg-[#141415] hover:border-reddit_text">
+              <div className="rounded-md border mb-3 w-full border-bbaby-border bg-[#141415] hover:border-bbaby-text">
                 <Quora quora={quora} />
               </div>
             </div>

@@ -13,13 +13,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@bbabystyle/next-video-player": "^2023.2.8",
-    "@types/node": "18.14.6",
+    "@bbabystyle/next-video-player": "^2023.3.11",
+    "@types/node": "18.15.0",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
-    "eslint": "8.35.0",
-    "eslint-config-next": "13.2.3",
-    "next": "13.2.4-canary.4",
+    "eslint": "8.36.0",
+    "eslint-config-next": "13.2.4",
+    "next": "^13.2.5-canary.0",
     "react": "18.3.0-next-3d615fc14-20220919",
     "react-clickout-ts": "^2023.1.1",
     "react-dom": "18.2.0",
@@ -33,7 +33,7 @@
   "devDependencies": {
     "@types/gtag.js": "^0.0.12",
     "@types/react-linkify": "^1.0.1",
-    "autoprefixer": "^10.4.13",
+    "autoprefixer": "^10.4.14",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-unused-imports": "^2.0.0",
     "postcss": "^8.4.21",

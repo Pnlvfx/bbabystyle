@@ -9,7 +9,7 @@ interface LeaderboardCommunityProps {
 
 const LeaderboardCommunity = ({ community, index }: LeaderboardCommunityProps) => {
   return (
-    <li key={community._id} className="relative border-b border-reddit_border">
+    <li key={community._id} className="relative border-b border-bbaby-border">
       <Link href={`/b/${community.name.toLowerCase()}`} target={'_blank'} className="flex h-16 items-center justify-between px-6">
         <div className="flex items-center">
           <span className="min-w-5 text-right text-[14px] leading-[18px]">{index + 1}</span>

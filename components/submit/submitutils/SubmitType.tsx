@@ -8,7 +8,7 @@ const SubmitType = () => {
     py-[15px] px-[17px] z-[1] relative flex-1 text-center
     solid border-r border-b border-reddit_border
     justify-center items-center whitespace-nowrap flex
-    hover:bg-reddit_dark-brightest
+    hover:bg-bbaby-brightest
     `
   const [activeButton, setActiveButton] = useState('post')
   return (

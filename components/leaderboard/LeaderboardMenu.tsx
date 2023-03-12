@@ -27,8 +27,8 @@ const LeaderboardMenu = () => {
   return (
     <div className="mr-6 hidden md:block">
       <div className="flex h-full flex-col">
-        <div className="w-[192px] overflow-visible break-words rounded-md border border-reddit_border bg-reddit_dark-brighter">
-          <div className="flex h-[40px] items-center border-b border-reddit_border bg-reddit_dark-brightest pl-4 text-[16px] font-extrabold leading-5">
+        <div className="w-[192px] overflow-visible break-words rounded-md border border-bbaby-border bg-bbaby-brighter">
+          <div className="flex h-[40px] items-center border-b border-bbaby-border bg-bbaby-brightest pl-4 text-[16px] font-extrabold leading-5">
             <h2>Categories</h2>
           </div>
           <div>

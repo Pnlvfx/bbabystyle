@@ -52,7 +52,7 @@ const Quora = ({ quora }: QuoraPageProps) => {
             <div className="mr-1 flex items-center">
               <Voting ups={quora.ups} postId={quora._id} liked={null} />
               <button
-                className="flex h-full justify-center items-center rounded-[2px] min-w-[40px] py-2 px-3 hover:bg-reddit_dark-brightest"
+                className="flex h-full justify-center items-center rounded-[2px] min-w-[40px] py-2 px-3 hover:bg-bbaby-brightest"
                 type="button"
                 onClick={toTiktak}
               >

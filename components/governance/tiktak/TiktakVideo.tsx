@@ -42,16 +42,13 @@ const TiktakVideo = ({ tiktak }: TiktakVideoProps) => {
 
   return (
     <div className="mx-4 mt-6 flex justify-between">
-      <button
-        onClick={goBack}
-        className={`flex h-[35px] w-16 items-center justify-center rounded-full border border-reddit_border bg-reddit_dark-brighter`}
-      >
+      <button onClick={goBack} className={`flex h-[35px] w-16 items-center justify-center rounded-full border border-bbaby-border bg-bbaby-brighter`}>
         <AiOutlineArrowLeft className="h-6 w-6" />
       </button>
       <div />
       <button
         disabled={loading}
-        className={`flex h-[35px] px-4 py-3 items-center min-w-[150px] justify-center rounded-full border border-reddit_border bg-reddit_dark-brighter`}
+        className={`flex h-[35px] px-4 py-3 items-center min-w-[150px] justify-center rounded-full border border-bbaby-border bg-bbaby-brighter`}
         onClick={send}
       >
         {loading ? <Spinner /> : <p className="font-semibold text-[14px]">Send to telegram</p>}

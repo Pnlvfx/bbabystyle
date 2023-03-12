@@ -1,5 +1,5 @@
 'use client'
-import LeaderboardCommunity from "./LeaderboardCommunity"
+import LeaderboardCommunity from './LeaderboardCommunity'
 
 interface LeaderFeedProps {
   communities: CommunityProps[]
@@ -8,7 +8,7 @@ interface LeaderFeedProps {
 const LeaderboardFeed = ({ communities }: LeaderFeedProps) => {
   return (
     <div className="flex w-full max-w-[740px] flex-grow md:w-[640px]">
-      <div className="w-full border border-reddit_border">
+      <div className="w-full border border-bbaby-border">
         <div className="sticky top-12 z-[3] flex h-10 items-center justify-between bg-reddit_dark-brightest px-4">
           <span className="text-[16px] font-bold leading-5">Today&apos;s Top Growing Communities</span>
           <span className="text-[14px] font-bold leading-[18px] text-reddit_text-darker">Rank Change</span>

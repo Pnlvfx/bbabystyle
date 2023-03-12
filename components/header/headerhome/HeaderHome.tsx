@@ -34,8 +34,8 @@ const HeaderHome = () => {
       <div
         aria-label="search your community"
         id="home_button"
-        className={`hidden md:block lg:w-[270px] border relative h-9 min-w-[72px] hover:border-reddit_border ${
-          show ? 'border-reddit_border rounded-t-[4px]' : 'border-transparent rounded'
+        className={`hidden md:block lg:w-[270px] border relative h-9 min-w-[72px] hover:border-bbaby-border ${
+          show ? 'border-bbaby-border rounded-t-[4px]' : 'border-transparent rounded'
         }`}
       >
         <button className={styles.button} tabIndex={0} onClick={openDropdown}>
@@ -45,12 +45,12 @@ const HeaderHome = () => {
         </button>
         {show && (
           <div
-            className="solid absolute left-[-1px] top-[100%] right-0 mt-[-1px] box-border max-h-[482px] overflow-x-hidden overflow-y-scroll rounded-md border border-t-0 border-reddit_border bg-reddit_dark-brighter pb-4 "
+            className="solid absolute left-[-1px] top-[100%] right-0 mt-[-1px] box-border max-h-[482px] overflow-x-hidden overflow-y-scroll rounded-md border border-t-0 border-bbaby-border bg-bbaby-brighter pb-4 "
             role={'menu'}
           >
             <input
               aria-label="search your community"
-              className="mx-4 mt-4 box-border h-[30px] w-[calc(100%_-_32px)] border border-reddit_border bg-reddit_dark-brightest px-[6px] text-[16px] outline-none placeholder:text-reddit_text-darker"
+              className="mx-4 mt-4 box-border h-[30px] w-[calc(100%_-_32px)] border border-bbaby-border bg-bbaby-brightest px-[6px] text-[16px] outline-none placeholder:text-bbaby-text_darker"
               placeholder="Filter"
             />
             <div className="px-8 pt-4 pb-2 text-[10px] font-semibold uppercase leading-[16px] text-reddit_text-darker">Moderating</div>

@@ -1,19 +1,17 @@
-"use client";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { FaSpaceShuttle } from "react-icons/fa";
-import { ITflagIcon, USFlagIcon } from "../../utils/svg/SVG";
+'use client'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { FaSpaceShuttle } from 'react-icons/fa'
+import { ITflagIcon, USFlagIcon } from '../../utils/svg/SVG'
 
 const TwitterTab = () => {
-  const pathname = usePathname();
+  const pathname = usePathname()
   return (
-    <div className="flex space-x-3 rounded-md border border-reddit_border bg-reddit_dark-brighter py-[13px] px-2">
+    <div className="flex space-x-3 rounded-md border border-bbaby-border bg-bbaby-brighter py-[13px] px-2">
       <Link
-        href={"/governance/twitter"}
-        className={`rounded-full py-1 px-3 hover:bg-reddit_dark-brightest ${
-          pathname === "/governance/twitter"
-            ? "bg-reddit_dark-brightest text-bbaby-text"
-            : "text-bbaby-text_darker"
+        href={'/governance/twitter'}
+        className={`rounded-full py-1 px-3 hover:bg-bbaby-brightest ${
+          pathname === '/governance/twitter' ? 'bg-bbaby-brightest text-bbaby-text' : 'text-bbaby-text_darker'
         }`}
       >
         <div className="flex h-5 items-center space-x-1">
@@ -22,11 +20,9 @@ const TwitterTab = () => {
         </div>
       </Link>
       <Link
-        href={"/governance/twitter/english"}
+        href={'/governance/twitter/english'}
         className={`rounded-full py-1 px-3 hover:bg-reddit_dark-brightest ${
-          pathname === "/governance/twitter/english"
-            ? "bg-reddit_dark-brightest text-bbaby-text"
-            : "text-bbaby-text_darker"
+          pathname === '/governance/twitter/english' ? 'bg-reddit_dark-brightest text-bbaby-text' : 'text-bbaby-text_darker'
         }`}
       >
         <div className="flex h-5 items-center space-x-1">
@@ -35,11 +31,9 @@ const TwitterTab = () => {
         </div>
       </Link>
       <Link
-        href={"/governance/twitter/italian"}
+        href={'/governance/twitter/italian'}
         className={`rounded-full py-1 px-3 hover:bg-reddit_dark-brightest ${
-          pathname === "/governance/twitter/italian"
-            ? "bg-reddit_dark-brightest text-bbaby-text"
-            : "text-bbaby-text_darker"
+          pathname === '/governance/twitter/italian' ? 'bg-reddit_dark-brightest text-bbaby-text' : 'text-bbaby-text_darker'
         }`}
       >
         <div className="flex h-5 items-center space-x-1">
@@ -48,7 +42,7 @@ const TwitterTab = () => {
         </div>
       </Link>
     </div>
-  );
-};
+  )
+}
 
-export default TwitterTab;
+export default TwitterTab

@@ -33,19 +33,15 @@ const Post = ({ post, isListing, setPostForModal }: PostComponent) => {
           >
             <PostContent post={post} isListing={isListing} setPostForModal={setPostForModal} />
           </div>
-        ) : (
-          <>
-            {isListing ? (
-              <article data-is-listing={'true'} className={`post-container article`} id={post._id}>
-                <Link style={{ pointerEvents: 'all' }} href={post.permalink} />
-                <div className="pointer-events-none relative">
-                  <PostContent post={post} isListing={isListing} setPostForModal={setPostForModal} />
-                </div>
-              </article>
-            ) : (
+        ) : isListing ? (
+          <article data-is-listing={'true'} className={`post-container article`} id={post._id}>
+            <Link style={{ pointerEvents: 'all' }} href={post.permalink} />
+            <div className="pointer-events-none relative">
               <PostContent post={post} isListing={isListing} setPostForModal={setPostForModal} />
-            )}
-          </>
+            </div>
+          </article>
+        ) : (
+          <PostContent post={post} isListing={isListing} setPostForModal={setPostForModal} />
         )}
       </div>
     </div>
