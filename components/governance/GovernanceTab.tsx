@@ -15,7 +15,7 @@ const GovernanceTab = () => {
   const pathname = usePathname()
 
   return (
-    <div className="mb-3 overflow-scroll rounded-[6px] border border-bbaby-border bg-bbaby-brighter text-[14px]">
+    <div className="mb-3 flex items-center justify-center rounded-[6px] overflow-y-hidden overflow-x-scroll md:overflow-x-hidden border border-bbaby-border bg-bbaby-brighter text-[14px]">
       <div className="flex w-full items-center justify-center">
         {menu.map((m, index) => (
           <Link
