@@ -62,7 +62,7 @@ const TwitterFeed = ({ tweets: data, language }: TwitterFeedProps) => {
         return (
           <div key={tweet.id}>
             <div>
-              <div className="post-container" data-is-listing={'true'}>
+              <div className="post-container relative" data-is-listing={'true'}>
                 <Tweet tweet={tweet} user={user} media={media} language={language} />
               </div>
             </div>
