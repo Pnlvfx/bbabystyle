@@ -7,8 +7,8 @@ import { useProvider } from '../../VideoPlayerContext'
 import { MouseEvent } from 'react'
 import { handlePlayPause } from '../../../hooks/hooks'
 
-const DownControls = () => {
-  const { controls, Logo, isPlaying, volumeSlider, volumeSliderContainer, played, duration, videoContainerRef, player } = useProvider()
+const DownControls = ({ Logo }: { Logo: string }) => {
+  const { controls, isPlaying, volumeSlider, volumeSliderContainer, played, duration, videoContainerRef, player } = useProvider()
 
   const toggleFullScreenMode = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()

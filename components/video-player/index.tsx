@@ -13,10 +13,10 @@ export interface VideoPlayerProps {
 
 const Video = ({ url, poster, duration, scroll, Logo }: VideoPlayerProps) => {
   return (
-    <VideoPlayerContextProvider Logo={Logo} url={url} poster={poster} duration={duration}>
+    <VideoPlayerContextProvider duration={duration}>
       <ScrollObserver enable={scroll}>
         <Effects>
-          <VideoPlayer />
+          <VideoPlayer url={url} poster={poster} Logo={Logo} />
         </Effects>
       </ScrollObserver>
     </VideoPlayerContextProvider>

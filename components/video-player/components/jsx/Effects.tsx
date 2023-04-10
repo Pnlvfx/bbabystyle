@@ -6,7 +6,7 @@ interface EffectsProps {
 }
 
 const Effects = ({ children }: EffectsProps) => {
-  const { player, setIsMuted, volumeSliderContainer, volumeSlider, timelineBall, setprogressPosition, timelineRef, previewPositionRef } =
+  const { player, setIsMuted, volumeSliderContainer, volumeSlider, timelineBall, setProgressPosition, timelineRef, previewPositionRef } =
     useProvider()
 
   let isScrabbing = false
@@ -43,7 +43,7 @@ const Effects = ({ children }: EffectsProps) => {
 
     if (isScrabbing) {
       e.preventDefault()
-      setprogressPosition(percent)
+      setProgressPosition(percent)
     }
   }
 

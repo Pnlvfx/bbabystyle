@@ -3,7 +3,7 @@ import { VideoCenterReplayIcon } from '../../../SVG/SVG'
 import { useProvider } from '../../VideoPlayerContext'
 
 const ReplayButton = () => {
-  const { player, setIsPlaying, setIsEnded } = useProvider()
+  const { player, setIsEnded } = useProvider()
 
   const replayVideo = (e: MouseEvent<HTMLDivElement | HTMLButtonElement>) => {
     e.preventDefault()
@@ -11,7 +11,6 @@ const ReplayButton = () => {
     if (!player.current) return
     player.current.currentTime = 0
     player.current.play()
-    setIsPlaying(true)
     setIsEnded(false)
   }
 

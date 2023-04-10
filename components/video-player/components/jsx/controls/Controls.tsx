@@ -6,8 +6,13 @@ import { handlePlayPause } from '../../hooks/hooks'
 import ReplayButton from './controls/ReplayButton'
 import DownControls from './controls/DownControls'
 
-const Controls = () => {
-  const { isPlaying, isEnded, player, loading } = useProvider()
+interface VideoControls {
+  loading: boolean
+  Logo: string
+}
+
+const Controls = ({ loading, Logo }: VideoControls) => {
+  const { isPlaying, isEnded, player } = useProvider()
 
   const playVideo = (e: MouseEvent<HTMLDivElement | HTMLButtonElement>) => {
     e.preventDefault()
@@ -28,7 +33,7 @@ const Controls = () => {
           <LoadingIcon className="animate-spin mx-auto w-[50px] h-[50px]" />
         </div>
       )}
-      <DownControls />
+      <DownControls Logo={Logo} />
     </>
   )
 }

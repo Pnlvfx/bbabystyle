@@ -1,25 +1,14 @@
-import React, { MouseEvent } from 'react'
+import React, { MouseEvent, useState } from 'react'
 import { formatDuration, handlePlayPause } from '../hooks/hooks'
 import { useProvider } from './VideoPlayerContext'
 import Controls from './controls/Controls'
 import '../css/video.css'
+import { VideoPlayerProps } from '../..'
 
-const VideoPlayer = () => {
-  const {
-    player,
-    url,
-    poster,
-    videoContainerRef,
-    setIsPlaying,
-    setIsEnded,
-    setLoading,
-    setPlayed,
-    setprogressPosition,
-    setDuration,
-    volumeSlider,
-    setIsMuted,
-    setControls,
-  } = useProvider()
+const VideoPlayer = ({ url, poster, Logo }: VideoPlayerProps) => {
+  const { player, videoContainerRef, setIsPlaying, setIsEnded, setPlayed, setProgressPosition, setDuration, volumeSlider, setIsMuted, setControls } =
+    useProvider()
+  const [loading, setLoading] = useState(false)
 
   const playFromContainer = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
@@ -50,7 +39,7 @@ const VideoPlayer = () => {
     if (!player.current) return
     setPlayed(formatDuration(player.current.currentTime))
     const percent = player.current.currentTime / player.current.duration
-    setprogressPosition(percent)
+    setProgressPosition(percent)
   }
 
   const onLoadedMetadata = () => {
@@ -101,7 +90,7 @@ const VideoPlayer = () => {
       >
         {Array.isArray(url) ? url.map((source, index) => <source key={index} src={source.url} />) : <source src={url} />}
       </video>
-      <Controls />
+      <Controls loading={loading} Logo={Logo} />
     </div>
   )
 }

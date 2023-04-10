@@ -1,16 +1,7 @@
 import React, { createContext, Dispatch, MutableRefObject, ReactNode, SetStateAction, useContext, useRef, useState } from 'react'
-import { VideoPlayerProps } from '../..'
 
 interface VideoPlayerContextProps {
   player: MutableRefObject<HTMLVideoElement | null>
-  url:
-    | string
-    | [
-        {
-          url: string
-        }
-      ]
-  poster: string
   timelineRef: MutableRefObject<HTMLDivElement | null>
   duration: string
   setDuration: Dispatch<SetStateAction<string>>
@@ -19,7 +10,7 @@ interface VideoPlayerContextProps {
   isPlaying: boolean
   setIsPlaying: Dispatch<SetStateAction<boolean>>
   progressPosition: number
-  setprogressPosition: Dispatch<SetStateAction<number>>
+  setProgressPosition: Dispatch<SetStateAction<number>>
   videoContainerRef: MutableRefObject<HTMLDivElement | null>
   timelineBall: MutableRefObject<HTMLDivElement | null>
   previewPositionRef: MutableRefObject<HTMLDivElement | null>
@@ -31,18 +22,16 @@ interface VideoPlayerContextProps {
   setIsMuted: Dispatch<SetStateAction<boolean>>
   controls: boolean
   setControls: Dispatch<SetStateAction<boolean>>
-  loading: boolean
-  setLoading: Dispatch<SetStateAction<boolean>>
-  Logo: string
 }
 
 const VideoPlayerContext = createContext<VideoPlayerContextProps | Record<string, never>>({})
 
-interface VideoPlayerContextProviderProps extends VideoPlayerProps {
+interface VideoPlayerContextProviderProps {
   children: ReactNode
+  duration?: number
 }
 
-export const VideoPlayerContextProvider = ({ children, url, poster, Logo }: VideoPlayerContextProviderProps) => {
+export const VideoPlayerContextProvider = ({ children, duration: initialDuration }: VideoPlayerContextProviderProps) => {
   const previewPositionRef = useRef(null)
   const volumeSlider = useRef(null)
   const volumeSliderContainer = useRef(null)
@@ -50,21 +39,18 @@ export const VideoPlayerContextProvider = ({ children, url, poster, Logo }: Vide
   const videoContainerRef = useRef(null)
   const player = useRef(null)
   const timelineRef = useRef(null)
-  const [progressPosition, setprogressPosition] = useState(0)
+  const [progressPosition, setProgressPosition] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
-  const [duration, setDuration] = useState('0:00')
+  const [duration, setDuration] = useState(initialDuration?.toString() || '0:00')
   const [played, setPlayed] = useState('0:00')
   const [isEnded, setIsEnded] = useState(false)
   const [controls, setControls] = useState(false)
-  const [loading, setLoading] = useState(false)
   const [isMuted, setIsMuted] = useState(true)
 
   return (
     <VideoPlayerContext.Provider
       value={{
         player,
-        url,
-        poster,
         timelineRef,
         duration,
         setDuration,
@@ -73,7 +59,7 @@ export const VideoPlayerContextProvider = ({ children, url, poster, Logo }: Vide
         isPlaying,
         setIsPlaying,
         progressPosition,
-        setprogressPosition,
+        setProgressPosition,
         videoContainerRef,
         timelineBall,
         previewPositionRef,
@@ -85,9 +71,6 @@ export const VideoPlayerContextProvider = ({ children, url, poster, Logo }: Vide
         setIsMuted,
         controls,
         setControls,
-        loading,
-        setLoading,
-        Logo,
       }}
     >
       {children}
