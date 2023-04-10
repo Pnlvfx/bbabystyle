@@ -3,11 +3,11 @@ import Link from 'next/link'
 import { RiArrowUpSLine } from 'react-icons/ri'
 
 const preferredUsers = [
-  { name: 'spectatorindex', id: 1626294277 },
-  { name: 'dwnews', id: 6134882 },
-  { name: 'AZgeopolitics', id: 1312058894416515074 },
-  { name: 'AnonOpsSE', id: 1009546724 },
-  { name: 'DiscloseTV', id: 15392486 },
+  { name: 'spectatorindex', id: '1626294277' },
+  { name: 'dwnews', id: '6134882' },
+  { name: 'AZgeopolitics', id: '1312058894416515074' },
+  { name: 'AnonOpsSE', id: '1009546724' },
+  { name: 'DiscloseTV', id: '15392486' },
 ]
 
 const TwitterWidget = () => {

@@ -1,4 +1,3 @@
-import { Video } from '@bbabystyle/next-video-player'
 import Image from 'next/image'
 import { LOGO } from '../../../config/config'
 import { useSession } from '../../auth/UserContextProvider'
@@ -7,6 +6,7 @@ import PostButtons from './PostButtons'
 import PostHeader from './PostHeader'
 import PostTitle from './PostTitle'
 import Voting from './Voting'
+import Video from '../../video-player'
 
 const PostContent = ({ post, isListing, setPostForModal }: PostComponent) => {
   const { session } = useSession()

@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { ClickOutHandler } from 'react-clickout-ts'
-import { Video } from '@bbabystyle/next-video-player'
 import { useSubmitProvider } from '../SubmitProvider'
 import { TrashIcon } from '../../utils/svg/SVG'
 import { LOGO } from '../../../config/config'
 import SubmitButton from '../submit-buttons/SubmitButton'
+import { Video } from '../../video-player'
 
 const Body = () => {
   const [showDeleteOptions, setShowDeleteOptions] = useState(false)

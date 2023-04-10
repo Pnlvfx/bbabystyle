@@ -1,5 +1,4 @@
 'use client'
-import { Video } from '@bbabystyle/next-video-player'
 import Image from 'next/image'
 import { MouseEvent, useState } from 'react'
 import ReactLinkify from 'react-linkify'
@@ -13,6 +12,7 @@ import { SubmitContextProvider } from '../../submit/SubmitProvider'
 import { useMessage } from '../../utils/message/TimeMsgContext'
 import { RetweetIcon } from '../../utils/svg/SVG'
 import TweetHeader from './TweetHeader'
+import Video from '../../video-player'
 
 type TweetPageProps = {
   tweet: TweetV2
