@@ -2,20 +2,19 @@ import { useState } from 'react'
 import { BiDownvote, BiUpvote } from 'react-icons/bi'
 import postapis from '../../API/postapis/postapis'
 import { useModals } from '../../auth/modal/ModalsProvider'
-import { useSession } from '../../auth/UserContextProvider'
 
 type Voting = {
   ups: number
   postId: string
   liked: boolean | null
+  session: SessionProps | null
 }
 
-const Voting = ({ ups, postId, liked }: Voting) => {
+const Voting = ({ ups, postId, session, liked }: Voting) => {
   let dir = 0 //vote
   const [upVote, setUpVote] = useState(ups)
   const modals = useModals()
   const [voted, setVoted] = useState(liked) //true false or null
-  const { session } = useSession()
 
   const refreshVote = async () => {
     try {
@@ -62,7 +61,7 @@ const Voting = ({ ups, postId, liked }: Voting) => {
           handleVoteUp()
         }}
       >
-        <BiUpvote className={`&& h-6 w-6 text-center hover:text-blue-600 ${voted === true ? 'text-blue-600' : 'text-reddit_text-darker'}`} />
+        <BiUpvote className={`h-6 w-6 text-center hover:text-blue-600 ${voted === true ? 'text-blue-600' : 'text-reddit_text-darker'}`} />
       </button>
       <div className="pointer-events-none mx-[1px] w-8 overflow-hidden text-center text-[12px] font-bold leading-[15px]">
         {upVote === 0 ? 'Vote' : upVote}
@@ -76,7 +75,7 @@ const Voting = ({ ups, postId, liked }: Voting) => {
           handleVoteDown()
         }}
       >
-        <BiDownvote className={`&& h-6 w-6 hover:text-bbaby-orange ${voted === false ? 'text-bbaby-orange' : 'text-reddit_text-darker'}`} />
+        <BiDownvote className={`h-6 w-6 hover:text-bbaby-orange ${voted === false ? 'text-bbaby-orange' : 'text-reddit_text-darker'}`} />
       </button>
     </>
   )

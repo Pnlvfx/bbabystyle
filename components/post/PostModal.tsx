@@ -1,30 +1,30 @@
-import { useRouter } from "next/navigation";
-import { MouseEvent, useEffect, useRef, useState } from "react";
-import { GrDocumentText } from "react-icons/gr";
-import communityapis from "../API/communityapis";
-import { useSession } from "../auth/UserContextProvider";
-import Comment from "../comment/Comment";
-import { CloseIcon } from "../utils/svg/SVG";
-import CommunityInfo from "../widget/communityinfo/CommunityInfo";
-import Donations from "../widget/Donations";
-import Widget from "../widget/Widget";
-import Post from "./Post";
+import { useRouter } from 'next/navigation'
+import { MouseEvent, useEffect, useRef, useState } from 'react'
+import { GrDocumentText } from 'react-icons/gr'
+import communityapis from '../API/communityapis'
+import Comment from '../comment/Comment'
+import { CloseIcon } from '../utils/svg/SVG'
+import CommunityInfo from '../widget/communityinfo/CommunityInfo'
+import Donations from '../widget/Donations'
+import Widget from '../widget/Widget'
+import Post from './Post'
 
 type PostModalProps = {
-  post: PostProps;
-  onClickOut: () => void;
-};
+  session: SessionProps | null
+  post: PostProps
+  isMobile: boolean
+  onClickOut: () => void
+}
 
-const PostModal = ({ post, onClickOut }: PostModalProps) => {
-  const router = useRouter();
-  const { session } = useSession();
+const PostModal = ({ post, onClickOut, isMobile, session }: PostModalProps) => {
+  const router = useRouter()
   const clickOut = (e: MouseEvent<HTMLDivElement | HTMLButtonElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
+    e.preventDefault()
+    e.stopPropagation()
     router.back()
-    onClickOut();
-  };
-  const postRef = useRef(post);
+    onClickOut()
+  }
+  const postRef = useRef(post)
   const [community, setCommunity] = useState<CommunityProps>()
 
   useEffect(() => {
@@ -32,40 +32,30 @@ const PostModal = ({ post, onClickOut }: PostModalProps) => {
       try {
         const c = await communityapis.getCommunity(postRef.current.community)
         setCommunity(c)
-      } catch (err) {
-        
-      }
+      } catch (err) {}
     }
     get()
   }, [])
 
-  if (!community) { //create a cool loader
-    return (
-      <div>
-        
-      </div>
-    )
+  if (!community) {
+    //create a cool loader
+    return <div></div>
   }
 
   return (
-    <div className="fixed top-12 bottom-0 left-0 right-0 z-20 h-full w-full bg-[rgb(25,25,25)]">
-      <div
-        className="relative h-full w-full overflow-y-auto"
-        onClick={clickOut}
-      >
+    <div className="fixed inset-x-0 bottom-0 top-12 z-20 h-full w-full bg-[rgb(25,25,25)]">
+      <div className="relative h-full w-full overflow-y-auto" onClick={clickOut}>
         <div
           onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
+            e.preventDefault()
+            e.stopPropagation()
             //prevent closing modal
           }}
           tabIndex={-1}
-          className="sticky left-0 right-0 top-0 mx-auto box-border h-12 w-[calc(100%_-_160px)] max-w-[1280px] bg-reddit_dark"
+          className="sticky inset-x-0 top-0 mx-auto box-border h-12 w-[calc(100%_-_160px)] max-w-[1280px] bg-reddit_dark"
         >
           <div className="m-auto flex h-full w-full max-w-[1128px] items-center md:px-8">
-            <div
-              className={`flex w-full max-w-[calc(100%_-_324px)] flex-grow items-center `}
-            >
+            <div className={`flex w-full max-w-[calc(100%_-_324px)] grow items-center`}>
               <div className=""></div>
               <i className="icon mr-2">
                 <GrDocumentText className="icon h-5 w-5 text-reddit_text" />
@@ -78,11 +68,11 @@ const PostModal = ({ post, onClickOut }: PostModalProps) => {
             </div>
             <div className="ml-3 flex w-[312px] justify-end text-[12px] font-bold leading-4">
               <button
-                role={"button"}
+                role={'button'}
                 tabIndex={0}
                 title="Close"
                 aria-label="Close"
-                className="relative box-border flex min-h-[24px] w-auto min-w-[24px] items-center justify-center rounded-full border border-transparent py-1 px-2 text-center text-[12px] font-bold hover:bg-reddit_dark-brighter"
+                className="relative box-border flex min-h-[24px] w-auto min-w-[24px] items-center justify-center rounded-full border border-transparent px-2 py-1 text-center text-[12px] font-bold hover:bg-reddit_dark-brighter"
                 onClick={clickOut}
               >
                 <i className="inline-block pr-1">
@@ -97,19 +87,19 @@ const PostModal = ({ post, onClickOut }: PostModalProps) => {
           tabIndex={-1}
           className="relative mx-auto box-border flex w-[calc(100%_-_160px)] max-w-[1280px] justify-center bg-reddit_dark pb-8"
           onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
+            e.preventDefault()
+            e.stopPropagation()
             //prevent closing modal
           }}
         >
-          <div className="m-8 mr-3 min-h-[100vh] w-full flex-grow break-words rounded-md bg-reddit_dark-brighter pb-[1px] md:max-w-[740px]">
-            <Post post={post} isListing={false} />
-            <Comment post={post} />
+          <div className="m-8 mr-3 min-h-[100vh] w-full grow break-words rounded-md bg-bbaby-brighter pb-[1px] md:max-w-[740px]">
+            <Post session={session} post={post} isListing={false} isMobile={isMobile} />
+            <Comment post={post} session={session} />
           </div>
-          {!session?.device?.mobile && (
+          {!isMobile && (
             <div className="m-8 ml-0 hidden lg:block">
               <Widget>
-                <CommunityInfo community={community} />
+                <CommunityInfo community={community} session={session} />
               </Widget>
               <Donations />
             </div>
@@ -117,7 +107,7 @@ const PostModal = ({ post, onClickOut }: PostModalProps) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PostModal;
+export default PostModal

@@ -1,21 +1,14 @@
-import { BsMoon } from "react-icons/bs";
+import { BsMoon } from 'react-icons/bs'
+import styles from '../../usermenu.module.css'
 
-export interface UserMenuButton {
-  styles: {
-    readonly [key: string]: string;
-}
-}
-
-const ThemeButton = ({ styles }: UserMenuButton) => {
+const ThemeButton = () => {
   return (
-    <div className={`bg-bbaby-brighter h-10 my-1 ${styles.button2K}`}>
-      <BsMoon className="w-5 h-5 align-middle left-4 absolute" />
-      <div className="text-[14px] leading-[18px] inline-block align-middle font-medium">
-        Dark Mode
-      </div>
-      <button type="button" role={"switch"} aria-checked={true}></button>
+    <div className={`my-1 h-10 bg-bbaby-brighter ${styles.button2K}`}>
+      <BsMoon className="absolute left-4 h-5 w-5 align-middle" />
+      <div className="inline-block align-middle text-[14px] font-medium leading-[18px]">Dark Mode</div>
+      <button type="button" role={'switch'} aria-checked={true}></button>
     </div>
-  );
-};
+  )
+}
 
-export default ThemeButton;
+export default ThemeButton

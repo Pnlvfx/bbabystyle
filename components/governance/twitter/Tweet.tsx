@@ -19,9 +19,11 @@ type TweetPageProps = {
   user: UserV2
   media?: MediaObjectV2
   language: 'it' | 'en'
+  isMobile: boolean
+  session: SessionProps | null
 }
 
-const Tweet = ({ tweet, user, media, language }: TweetPageProps) => {
+const Tweet = ({ tweet, user, media, language, isMobile, session }: TweetPageProps) => {
   const message = useMessage()
   const [translated, setTranslated] = useState('')
   const [showSubmit, setShowSubmit] = useState(false)
@@ -49,7 +51,7 @@ const Tweet = ({ tweet, user, media, language }: TweetPageProps) => {
     <>
       <div className="absolute left-0 top-0 box-border hidden w-10 flex-col items-center border-l-4 border-solid border-transparent py-2 pr-1 md:flex">
         <div className="hidden flex-col items-center md:flex">
-          <Voting ups={tweet.public_metrics?.like_count} postId={tweet.id} liked={null} />
+          <Voting ups={tweet.public_metrics?.like_count} postId={tweet.id} liked={null} session={session} />
         </div>
       </div>
       <div className="w-full bg-reddit_dark-brighter pt-2">
@@ -59,6 +61,7 @@ const Tweet = ({ tweet, user, media, language }: TweetPageProps) => {
           created_at={tweet.created_at}
           screen_name={user.name}
           userId={tweet.author_id}
+          isMobile={isMobile}
         />
         <div className="mx-2">
           <div className="inline align-baseline">
@@ -116,6 +119,7 @@ const Tweet = ({ tweet, user, media, language }: TweetPageProps) => {
           video={video}
           type={media?.type}
           minimal={true}
+          session={session}
         >
           <Submit />
         </SubmitContextProvider>

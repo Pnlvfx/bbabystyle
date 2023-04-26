@@ -7,9 +7,10 @@ import Quora from './Quora'
 
 interface QuoraFeedProps {
   quoras: QuoraProps[]
+  session: SessionProps | null
 }
 
-const TwitterFeed = ({ quoras: ssr_quoras }: QuoraFeedProps) => {
+const TwitterFeed = ({ quoras: ssr_quoras, session }: QuoraFeedProps) => {
   const [quoras, setQuoras] = useState(ssr_quoras)
   const [hasMore, setHasMore] = useState(true)
 
@@ -29,8 +30,8 @@ const TwitterFeed = ({ quoras: ssr_quoras }: QuoraFeedProps) => {
         {quoras.map((quora, index) => (
           <div key={index}>
             <div>
-              <div className="rounded-md border mb-3 w-full border-bbaby-border bg-[#141415] hover:border-bbaby-text">
-                <Quora quora={quora} />
+              <div className="mb-3 w-full rounded-md border border-bbaby-border bg-[#141415] hover:border-bbaby-text">
+                <Quora quora={quora} session={session} />
               </div>
             </div>
           </div>

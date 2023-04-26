@@ -6,8 +6,10 @@ import Donations from '../../../components/widget/Donations'
 import PolicyWidget from '../../../components/widget/PolicyWidget'
 import TopCommunities from '../../../components/widget/topcommunities/TopCommunities'
 import Widget from '../../../components/widget/Widget'
+import { deviceIsMobile } from '../../../components/API/config/serverConfig'
 
 const FeedLayout = ({ children }: ChildrenProps) => {
+  const isMobile = deviceIsMobile()
   const session = use(ssrapis.getSession())
   return (
     <div className="mx-auto flex max-w-full justify-center md:px-6 md:py-5">
@@ -22,7 +24,7 @@ const FeedLayout = ({ children }: ChildrenProps) => {
         </div>
         {children}
       </div>
-      {!session?.device?.mobile && (
+      {!isMobile && (
         <div className="ml-6 hidden lg:block">
           <Widget>
             <TopCommunities />

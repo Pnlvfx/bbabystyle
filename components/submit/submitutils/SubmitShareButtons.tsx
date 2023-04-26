@@ -2,15 +2,13 @@ import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { AiOutlineInfoCircle } from 'react-icons/ai'
 import userapis from '../../API/userapis'
-import { useSession } from '../../auth/UserContextProvider'
 import CheckBox from '../../utils/buttons/CheckBox'
 import { useSubmitProvider } from '../SubmitProvider'
 
 const SubmitShareButtons = () => {
-  const { session } = useSession()
-  const sessionRef = useRef(session)
   const [canPostOnTwitter, setCanPostOnTwitter] = useState(false)
-  const { sharePostToTG, setSharePostToTG, sharePostToTwitter, setSharePostToTwitter } = useSubmitProvider()
+  const { sharePostToTG, setSharePostToTG, sharePostToTwitter, setSharePostToTwitter, session } = useSubmitProvider()
+  const sessionRef = useRef(session)
 
   useEffect(() => {
     const authorize = async () => {
@@ -28,7 +26,7 @@ const SubmitShareButtons = () => {
   }, [])
   return (
     <div
-      className="relative flex h-24 rounded-b-md border-t border-solid border-reddit_border bg-reddit_dark-brightest py-2 px-4"
+      className="relative flex h-24 rounded-b-md border-t border-solid border-reddit_border bg-reddit_dark-brightest px-4 py-2"
       style={{ flexFlow: 'column' }}
     >
       <div className="mt-2 flex w-full">

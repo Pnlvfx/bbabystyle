@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import { LOGO } from '../../../config/config'
-import { useSession } from '../../auth/UserContextProvider'
 import { PostComponent } from '../Post'
 import PostButtons from './PostButtons'
 import PostHeader from './PostHeader'
@@ -8,24 +7,23 @@ import PostTitle from './PostTitle'
 import Voting from './Voting'
 import Video from '../../video-player'
 
-const PostContent = ({ post, isListing, setPostForModal }: PostComponent) => {
-  const { session } = useSession()
+const PostContent = ({ post, isListing, isMobile, setPostForModal, session }: PostComponent) => {
   return (
     <>
-      <div className="absolute left-0 top-0 box-border hidden w-10 flex-col items-center border-l-4 border-solid border-transparent py-2 pr-1 md:flex">
+      <div className="absolute left-0 top-0 box-border flex w-10 flex-col items-center border-l-4 border-solid border-transparent py-2 pr-1">
         <div className="flex flex-col items-center">
-          <Voting ups={post.ups} postId={post._id} liked={post.liked} />
+          <Voting ups={post.ups} postId={post._id} liked={post.liked} session={session} />
         </div>
       </div>
       <div className="relative bg-bbaby-brighter pt-2">
-        {session?.device?.mobile && isListing ? (
+        {isMobile && isListing ? (
           <header>
-            <PostHeader post={post} isListing={isListing} />
+            <PostHeader post={post} isListing={isListing} isMobile={isMobile} />
           </header>
         ) : (
-          <PostHeader post={post} />
+          <PostHeader post={post} isMobile={isMobile} />
         )}
-        <PostTitle isListing={isListing} post={post} />
+        <PostTitle isListing={isListing} isMobile={isMobile} post={post} />
         <div className="mt-2">
           <div className="relative max-h-[512px] overflow-hidden">
             {post?.mediaInfo?.isImage && post?.mediaInfo?.image && (
@@ -48,18 +46,18 @@ const PostContent = ({ post, isListing, setPostForModal }: PostComponent) => {
             </div>
           )}
         </div>
-        {session?.device?.mobile ? (
+        {isMobile ? (
           <>
             {isListing ? (
               <footer className="pointer-events-none">
-                <PostButtons post={post} isListing={isListing} setPostForModal={setPostForModal} />
+                <PostButtons post={post} isListing={isListing} isMobile={isMobile} setPostForModal={setPostForModal} session={session} />
               </footer>
             ) : (
-              <PostButtons post={post} isListing={isListing} setPostForModal={setPostForModal} />
+              <PostButtons post={post} isListing={isListing} isMobile={isMobile} setPostForModal={setPostForModal} session={session} />
             )}
           </>
         ) : (
-          <PostButtons post={post} isListing={isListing} setPostForModal={setPostForModal} />
+          <PostButtons post={post} isListing={isListing} isMobile={isMobile} setPostForModal={setPostForModal} session={session} />
         )}
       </div>
     </>

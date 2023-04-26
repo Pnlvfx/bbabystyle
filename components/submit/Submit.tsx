@@ -5,7 +5,6 @@ import postapis from '../API/postapis/postapis'
 import { useSubmitProvider } from './SubmitProvider'
 import { useRouter } from 'next/navigation'
 import { useMessage } from '../utils/message/TimeMsgContext'
-import { useSession } from '../auth/UserContextProvider'
 import { catchErrorWithMessage } from '../API/config/apiErrors'
 import CommunityDropdown from './submitutils/comunity-dropdown/CommunityDropdown'
 import SubmitTitle from './submitutils/SubmitTitle'
@@ -15,12 +14,11 @@ import { Spinner } from '../utils/Spinner'
 import SubmitType from './submitutils/SubmitType'
 
 const Submit = () => {
-  const { title, selectedCommunity, body, height, isImage, isVideo, selectedFile, sharePostToTG, sharePostToTwitter, width, minimal } =
+  const { title, selectedCommunity, body, height, isImage, isVideo, selectedFile, sharePostToTG, sharePostToTwitter, width, minimal, session } =
     useSubmitProvider()
   const [loading, setLoading] = useState(false)
   const router = useRouter()
   const message = useMessage()
-  const { session } = useSession()
 
   const createPost = async () => {
     try {

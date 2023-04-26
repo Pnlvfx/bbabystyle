@@ -2,16 +2,15 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { MouseEvent } from 'react'
-import { useSession } from '../../auth/UserContextProvider'
 import TimeAgo from '../../react-time-ago'
 
 type PostHeaderProps = {
   post: PostProps
+  isMobile: boolean
   isListing?: boolean
 }
 
-const PostHeader = ({ post, isListing }: PostHeaderProps) => {
-  const { session } = useSession()
+const PostHeader = ({ post, isMobile, isListing }: PostHeaderProps) => {
   const router = useRouter()
 
   const linkToCommunity = (e: MouseEvent<HTMLAnchorElement>) => {
@@ -32,7 +31,7 @@ const PostHeader = ({ post, isListing }: PostHeaderProps) => {
         <Link
           href={`/b/${post.community.toLowerCase()}`}
           aria-label="Community"
-          className={`inline align-baseline font-bold leading-5 ${session?.device?.mobile && isListing && 'articleLink'}`}
+          className={`inline align-baseline font-bold leading-5 ${isMobile && isListing && 'articleLink'}`}
           onClick={linkToCommunity}
         >
           <div className="relative mr-1 inline-block h-5 w-5 rounded-full bg-[#4c075a] align-middle">
@@ -45,7 +44,7 @@ const PostHeader = ({ post, isListing }: PostHeaderProps) => {
           <div className="inline-block flex-none">
             <Link
               href={`/b/${post.community.toLowerCase()}`}
-              className={`inline align-baseline font-bold leading-5 hover:underline ${session?.device?.mobile && isListing && 'articleLink'}`}
+              className={`inline align-baseline font-bold leading-5 hover:underline ${isMobile && isListing && 'articleLink'}`}
               onClick={linkToCommunity}
             >
               {`b/${post.community}`}
@@ -57,7 +56,7 @@ const PostHeader = ({ post, isListing }: PostHeaderProps) => {
             <div>
               <Link
                 href={`/user/${post.author.toLowerCase()}`}
-                className={`hover:underline ${session?.device?.mobile && isListing && 'articleLink'}`}
+                className={`hover:underline ${isMobile && isListing && 'articleLink'}`}
                 onClick={linkToAuthor}
               >
                 {'u/' + post.author}

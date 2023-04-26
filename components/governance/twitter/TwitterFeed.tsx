@@ -12,9 +12,11 @@ interface TwitterFeedProps {
     media: MediaObjectV2[]
   }
   language: 'it' | 'en'
+  isMobile: boolean
+  session: SessionProps | null
 }
 
-const TwitterFeed = ({ tweets: data, language }: TwitterFeedProps) => {
+const TwitterFeed = ({ tweets: data, language, isMobile, session }: TwitterFeedProps) => {
   const [tweets, setTweets] = useState(data.data)
   const sort = useSearchParams().get('sort')
 
@@ -63,7 +65,7 @@ const TwitterFeed = ({ tweets: data, language }: TwitterFeedProps) => {
           <div key={tweet.id}>
             <div>
               <div className="post-container relative" data-is-listing={'true'}>
-                <Tweet tweet={tweet} user={user} media={media} language={language} />
+                <Tweet session={session} tweet={tweet} user={user} media={media} language={language} isMobile={isMobile} />
               </div>
             </div>
           </div>

@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { ClickOutHandler } from 'react-clickout-ts'
 import searchapis from '../../API/searchapis'
 import { useModals } from '../../auth/modal/ModalsProvider'
-import { useSession } from '../../auth/UserContextProvider'
 
 type PositionProps = {
   left: number
@@ -14,14 +13,12 @@ const SearchDropdown = () => {
   const shouldRequest = useRef(true)
   const modals = useModals()
   const modalsRef = useRef(modals)
-  const sessionRef = useRef(useSession())
   const [position, setPosition] = useState<PositionProps>({
     width: 0,
     left: 0,
   })
 
   useEffect(() => {
-    if (sessionRef.current.session?.device?.mobile) return
     if (!shouldRequest.current) return
     shouldRequest.current = false
     const get = async () => {
@@ -65,7 +62,7 @@ const SearchDropdown = () => {
         }}
       >
         <div
-          className="border border-t-0 border-bbaby-border bg-bbaby-brighter right-0 mt-[-1px] rounded-b-[4px] max-h-[482px]"
+          className="right-0 mt-[-1px] max-h-[482px] rounded-b-[4px] border border-t-0 border-bbaby-border bg-bbaby-brighter"
           style={{
             position: 'fixed',
             zIndex: 100,
@@ -75,7 +72,7 @@ const SearchDropdown = () => {
             overflow: 'auto',
           }}
         >
-          <div className="pb-2 pt-4 text-bbaby-text_darker text-[10px] font-bold leading-3 uppercase px-4">Trending today</div>
+          <div className="px-4 pb-2 pt-4 text-[10px] font-bold uppercase leading-3 text-bbaby-text_darker">Trending today</div>
           {trends.length >= 1 && trends.map((trend, index) => <div key={index} />)}
         </div>
       </ClickOutHandler>

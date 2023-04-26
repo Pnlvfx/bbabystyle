@@ -1,11 +1,11 @@
 import { ChangeEvent, useRef } from 'react'
-import { UserMenuButton } from '../../header/usermenu/buttons/notuser/ThemeButton'
 import { useMessage } from '../../utils/message/TimeMsgContext'
 import { AddImageIcon } from '../../utils/svg/SVG'
 import { useSubmitProvider } from '../SubmitProvider'
 import { previewImage } from '../submitutils/myReader'
+import styles from './submit-button.module.css'
 
-const AddImage = ({ styles }: UserMenuButton) => {
+const AddImage = () => {
   const message = useMessage()
   const filePickerRef = useRef<HTMLInputElement>(null)
   const { setSelectedFile, setIsImage, setHeight, setWidth, setIsVideo } = useSubmitProvider()

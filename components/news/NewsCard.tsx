@@ -5,10 +5,12 @@ import EditNews from './EditNews'
 import NewsButtons from './NewsButtons'
 interface NewsCardProps {
   news: NewsProps
+  isMobile: boolean
   isListing: boolean
+  session: SessionProps | null
 }
 
-const NewsCard = ({ news: ssr_news, isListing }: NewsCardProps) => {
+const NewsCard = ({ news: ssr_news, isMobile, isListing, session }: NewsCardProps) => {
   const router = useRouter()
   const [news, setNews] = useState(ssr_news)
   const openNews = () => {
@@ -35,7 +37,7 @@ const NewsCard = ({ news: ssr_news, isListing }: NewsCardProps) => {
             </picture>
           )}
           <p className="mt-2 truncate whitespace-pre-wrap text-base">{isListing ? news.description.substring(0, 250) + '...' : news.description}</p>
-          <NewsButtons news={news} isListing={isListing} setEditMode={setEditMode} openNews={openNews} />
+          <NewsButtons session={session} news={news} isListing={isListing} isMobile={isMobile} setEditMode={setEditMode} openNews={openNews} />
         </div>
       )}
     </div>

@@ -1,10 +1,10 @@
 import { ChangeEvent, useRef } from 'react'
-import { UserMenuButton } from '../../header/usermenu/buttons/notuser/ThemeButton'
 import { useMessage } from '../../utils/message/TimeMsgContext'
 import { VideoIcon } from '../../utils/svg/SVG'
 import { useSubmitProvider } from '../SubmitProvider'
+import styles from './submit-button.module.css'
 
-const AddVideo = ({ styles }: UserMenuButton) => {
+const AddVideo = () => {
   const message = useMessage()
   const errMessage = `Sorry, we accept only images (.png, .jpeg, .gif) and videos (.mp4, .mov)`
   const { setSelectedFile, setIsVideo, setWidth, setHeight, setIsImage } = useSubmitProvider()

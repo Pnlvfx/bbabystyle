@@ -1,11 +1,11 @@
 'use client'
 import { useContext } from 'react'
 import { createContext, Dispatch, SetStateAction, useState } from 'react'
-import { useSession } from '../auth/UserContextProvider'
 
 const SubmitContext = createContext<SubmitContextType | {}>({})
 
 interface SubmitContextType {
+  session: SessionProps | null
   title: string
   setTitle: Dispatch<SetStateAction<string>>
   body: string
@@ -34,6 +34,7 @@ interface SubmitContextType {
 
 interface SubmitContextProviderProps extends ChildrenProps {
   minimal: boolean
+  session: SessionProps | null
   initialCommunity?: CommunityProps
   title?: string
   body?: string
@@ -45,7 +46,6 @@ interface SubmitContextProviderProps extends ChildrenProps {
 }
 
 export const SubmitContextProvider = (props: SubmitContextProviderProps) => {
-  const { session } = useSession()
   const [title, setTitle] = useState(props.title || '')
   const [body, setBody] = useState(props.type === 'photo' ? '' : props.type === 'video' ? '' : props.body)
   const [width, setWidth] = useState(props.width || 0)
@@ -55,7 +55,7 @@ export const SubmitContextProvider = (props: SubmitContextProviderProps) => {
   const [thumbnail, setThumbnail] = useState(null)
   const [isImage, setIsImage] = useState(props.type === 'photo' ? true : false)
   const [isVideo, setIsVideo] = useState(props.type === 'video' ? true : false)
-  const [sharePostToTG, setSharePostToTG] = useState(session?.user?.role === 1 && process.env.NODE_ENV === 'production' ? true : false)
+  const [sharePostToTG, setSharePostToTG] = useState(props.session?.user?.role === 1 && process.env.NODE_ENV === 'production' ? true : false)
   const [sharePostToTwitter, setSharePostToTwitter] = useState(false)
 
   return (
@@ -85,6 +85,7 @@ export const SubmitContextProvider = (props: SubmitContextProviderProps) => {
         setThumbnail,
         minimal: props.minimal,
         initialCommunity: props.initialCommunity,
+        session: props.session,
       }}
     >
       {props.children}

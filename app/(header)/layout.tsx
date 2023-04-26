@@ -6,14 +6,16 @@ import ShowCommunity from '../../components/community/ShowCommunity'
 import Header from '../../components/header/Header'
 import HiddenLayout from '../../components/HiddenLayout'
 import { cookies } from 'next/headers'
+import { deviceIsMobile } from '../../components/API/config/serverConfig'
 
 const Layout = ({ children }: ChildrenProps) => {
+  const isMobile = deviceIsMobile()
   const token = cookies().get('token')
   const session = use(ssrapis.getSession())
   return (
     <>
       <div>
-        <Header session={session} />
+        <Header session={session} isMobile={isMobile} />
       </div>
       <div>
         <div>
@@ -29,7 +31,7 @@ const Layout = ({ children }: ChildrenProps) => {
         </div>
         <ShowCommunity />
       </div>
-      <HiddenLayout token={token} />
+      <HiddenLayout token={token} isMobile={isMobile} session={session} />
       {process.env.NODE_ENV === 'production' && (
         <>
           {/* <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`} />

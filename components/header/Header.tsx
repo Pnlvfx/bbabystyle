@@ -12,9 +12,10 @@ import GovButton from './buttons/GovButton'
 
 interface HeaderProps {
   session: SessionProps | null
+  isMobile: boolean
 }
 
-const Header = ({ session }: HeaderProps) => {
+const Header = ({ session, isMobile }: HeaderProps) => {
   return (
     <header id="myHeader" className="fixed inset-x-0 top-0 z-[80] mt-0 inline-flex h-12 flex-row items-center">
       <div className="box-border inline-flex grow flex-row items-center border-b border-bbaby-border bg-reddit_dark-brighter px-2 md:px-5">
@@ -25,18 +26,14 @@ const Header = ({ session }: HeaderProps) => {
               <div className="flex-none py-2 pl-0 pr-2">
                 <Image src={LOGO} width={32} height={32} alt={'logo'} priority />
               </div>
-              {!session?.device?.mobile ? (
-                <TextLogo className="mr-5 hidden h-[18px] w-auto lg:block" />
-              ) : (
-                <TextLogo className="mr-5 block h-[18px] w-auto" />
-              )}
+              {!isMobile ? <TextLogo className="mr-5 hidden h-[18px] w-auto lg:block" /> : <TextLogo className="mr-5 block h-[18px] w-auto" />}
             </Link>
-            {session?.user && !session?.device?.mobile && (
+            {session?.user && !isMobile && (
               <div>
                 <HeaderHome />
               </div>
             )}
-            {!session?.device?.mobile && (
+            {!isMobile && (
               <div className="mx-auto my-0 max-w-[690px] grow">
                 <SearchBar />
               </div>
@@ -59,7 +56,7 @@ const Header = ({ session }: HeaderProps) => {
             )}
             <div id="verification" className="flex flex-row items-center">
               <div id="user_dropdown">
-                <UserDropdownButton />
+                <UserDropdownButton session={session} />
               </div>
             </div>
           </div>

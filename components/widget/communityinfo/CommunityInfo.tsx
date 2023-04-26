@@ -2,7 +2,6 @@
 import { buttonClass } from '../../utils/buttons/Button'
 import { MdOutlineAdminPanelSettings, MdDateRange } from 'react-icons/md'
 import Link from 'next/link'
-import { useSession } from '../../auth/UserContextProvider'
 import { useModals } from '../../auth/modal/ModalsProvider'
 import CategoriesDropdown from './CategoriesDropdown'
 import ModeratorDescr from './ModeratorDescr'
@@ -12,8 +11,7 @@ export interface CommunityInfoProps {
   community: CommunityProps
 }
 
-const CommunityInfo = ({ community }: CommunityInfoProps) => {
-  const { session } = useSession()
+const CommunityInfo = ({ community, session }: CommunityInfoProps & WithSession) => {
   const modals = useModals()
 
   return (

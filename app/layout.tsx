@@ -1,21 +1,15 @@
 import './globals.css'
-import { use } from 'react'
-import ssrapis from '../components/API/ssrapis'
 import { ModalsContextProvider } from '../components/auth/modal/ModalsProvider'
 import { GoogleOAuthProvider } from '../components/auth/providers/google/GoogleOAuthProvider'
-import { UserContextProvider } from '../components/auth/UserContextProvider'
 import { TimeMsgContextProvider } from '../components/utils/message/TimeMsgContext'
 import { clientUrl } from '../config/config'
-import { userAgentFromString } from 'next/server'
-import { cookies, headers } from 'next/headers'
+import { cookies } from 'next/headers'
+import { deviceIsMobile } from '../components/API/config/serverConfig'
 
 const RootLayout = ({ children }: ChildrenProps) => {
-  const headerList = headers()
-  const user_agent = headerList.get('user-agent')
-  const isMobile = userAgentFromString(user_agent || '').device.type === 'mobile' ? true : false
-  const token = cookies().get('token')
+  const isMobile = deviceIsMobile()
 
-  const session = use(ssrapis.getSession())
+  const token = cookies().get('token')
 
   return (
     <html lang="en">
@@ -24,19 +18,15 @@ const RootLayout = ({ children }: ChildrenProps) => {
           <div tabIndex={-1} />
           <div tabIndex={-1}>
             {token ? (
-              <UserContextProvider session={session}>
+              <ModalsContextProvider>
+                <TimeMsgContextProvider isMobile={isMobile}>{children}</TimeMsgContextProvider>
+              </ModalsContextProvider>
+            ) : (
+              <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
                 <ModalsContextProvider>
                   <TimeMsgContextProvider isMobile={isMobile}>{children}</TimeMsgContextProvider>
                 </ModalsContextProvider>
-              </UserContextProvider>
-            ) : (
-              <UserContextProvider session={session}>
-                <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
-                  <ModalsContextProvider>
-                    <TimeMsgContextProvider isMobile={isMobile}>{children}</TimeMsgContextProvider>
-                  </ModalsContextProvider>
-                </GoogleOAuthProvider>
-              </UserContextProvider>
+              </GoogleOAuthProvider>
             )}
           </div>
         </div>

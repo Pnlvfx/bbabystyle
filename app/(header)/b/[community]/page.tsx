@@ -12,6 +12,7 @@ import Donations from '../../../../components/widget/Donations'
 import PolicyWidget from '../../../../components/widget/PolicyWidget'
 import Widget from '../../../../components/widget/Widget'
 import { clientUrl } from '../../../../config/config'
+import { deviceIsMobile } from '../../../../components/API/config/serverConfig'
 
 export interface CommunityPageProps {
   params: {
@@ -20,6 +21,7 @@ export interface CommunityPageProps {
 }
 
 const CommunityPage = ({ params }: CommunityPageProps) => {
+  const isMobile = deviceIsMobile()
   const posts = use(
     ssrapis.getPosts(0, {
       community: params.community,
@@ -52,13 +54,13 @@ const CommunityPage = ({ params }: CommunityPageProps) => {
         </Link>
       </span>
       <div className="w-full bg-bbaby-brighter">
-        <div className="mx-auto flex max-w-[984px] flex-col items-start justify-between pr-4 pl-6">
+        <div className="mx-auto flex max-w-[984px] flex-col items-start justify-between pl-6 pr-4">
           <div className="relative mb-3 mt-[-14px] flex items-start">
             <BoardHeader community={community} />
           </div>
         </div>
       </div>
-      <div className="mx-auto flex max-w-full justify-center md:py-5 md:px-6">
+      <div className="mx-auto flex max-w-full justify-center md:px-6 md:py-5">
         <div className="w-full lg:w-[640px]">
           {session?.user && (
             <div className="mb-[18px]">
@@ -68,12 +70,12 @@ const CommunityPage = ({ params }: CommunityPageProps) => {
           <div className="mb-4">
             <BestPost />
           </div>
-          <Feed posts={posts} community={community} />
+          <Feed session={session} posts={posts} community={community} isMobile={isMobile} />
         </div>
-        {!session?.device?.mobile && (
+        {!isMobile && (
           <div className="ml-6 hidden lg:block">
             <Widget>
-              <CommunityInfo community={community} />
+              <CommunityInfo community={community} session={session} />
             </Widget>
             <Donations />
             <PolicyWidget />

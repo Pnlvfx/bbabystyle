@@ -1,15 +1,24 @@
-import RegisterMain from "../../../components/auth/register/RegisterMain";
-import { clientUrl } from "../../../config/config";
+import { use } from 'react'
+import RegisterMain from '../../../components/auth/register/RegisterMain'
+import { clientUrl } from '../../../config/config'
+import ssrapis from '../../../components/API/ssrapis'
+import { redirect } from 'next/navigation'
 
 const RegisterPage = () => {
+  const session = use(ssrapis.getSession())
+
+  if (session) {
+    redirect('/')
+  }
+
   return (
     <div className="bg-white text-black">
       <RegisterMain />
     </div>
-  );
-};
+  )
+}
 
-export default RegisterPage;
+export default RegisterPage
 
 export const metadata = {
   title: `bbabystyle.com: join out community`,
@@ -17,14 +26,14 @@ export const metadata = {
   alternates: {
     canonical: `${clientUrl}/register`,
     languages: {
-      "en-US": `${clientUrl}/register`,
+      'en-US': `${clientUrl}/register`,
     },
   },
   openGraph: {
     title: `bbabystyle.com: join out community`,
     description: `Create an account on bbabystle and become part of our community!.`,
     url: `${clientUrl}/register`,
-    siteName: "bbabystyle",
+    siteName: 'bbabystyle',
     images: [
       {
         url: `${clientUrl}/imagePreview.png`,
@@ -32,13 +41,13 @@ export const metadata = {
         height: 256,
       },
     ],
-    type: "website",
+    type: 'website',
   },
   twitter: {
-    creator: "@Bbabystyle",
-    card: "summary",
+    creator: '@Bbabystyle',
+    card: 'summary',
     title: `bbabystyle.com: join out community`,
     description: `Create an account on bbabystle and become part of our community!.`,
     images: `${clientUrl}/imagePreview.png`,
   },
-};
+}

@@ -3,18 +3,18 @@ import { ClickOutHandler } from 'react-clickout-ts'
 import { useRouter } from 'next/navigation'
 import { BsTrashFill } from 'react-icons/bs'
 import postapis from '../../API/postapis/postapis'
-import { useSession } from '../../auth/UserContextProvider'
 import { useMessage } from '../../utils/message/TimeMsgContext'
 import { catchErrorWithMessage } from '../../API/config/apiErrors'
 import { MoreIcon } from '../../utils/svg/SVG'
 
 type MoreButtonProps = {
   post: PostProps
+  session: SessionProps | null
+  isMobile: boolean
   isListing?: boolean
 }
 
-const MoreButton = ({ post, isListing }: MoreButtonProps) => {
-  const { session } = useSession()
+const MoreButton = ({ post, isMobile, session, isListing }: MoreButtonProps) => {
   const router = useRouter()
   const [show, setShow] = useState(false)
   const message = useMessage()
@@ -29,7 +29,7 @@ const MoreButton = ({ post, isListing }: MoreButtonProps) => {
   }
 
   return (
-    <div className={`flex items-center ${session?.device?.mobile && isListing && 'articleLink'}`}>
+    <div className={`flex items-center ${isMobile && isListing && 'articleLink'}`}>
       <ClickOutHandler onClickOut={() => setShow(false)}>
         <div>
           <button

@@ -4,7 +4,6 @@ import { ClickOutHandler } from 'react-clickout-ts'
 import commentapis from '../API/commentapis'
 import { catchErrorWithMessage } from '../API/config/apiErrors'
 import { useModals } from '../auth/modal/ModalsProvider'
-import { useSession } from '../auth/UserContextProvider'
 import { buttonClass } from '../utils/buttons/Button'
 import { useMessage } from '../utils/message/TimeMsgContext'
 
@@ -12,12 +11,12 @@ interface CommentFormProps {
   rootId: string
   parentId: string
   showAuthor: boolean
+  session: SessionProps | null
   getComments: () => Promise<void>
   onCancel?: () => void
 }
 
-const CommentForm = ({ rootId, parentId, showAuthor, getComments, onCancel }: CommentFormProps) => {
-  const { session } = useSession()
+const CommentForm = ({ rootId, parentId, showAuthor, getComments, onCancel, session }: CommentFormProps) => {
   const [commentBody, setCommentBody] = useState('')
   const [commentBodyLength, setCommentBodyLength] = useState(0)
   const [enableComment, setEnableComment] = useState(false)

@@ -1,16 +1,15 @@
 import { ChangeEvent, useState } from 'react'
 import { ClickOutHandler } from 'react-clickout-ts'
-import { useSession } from '../../auth/UserContextProvider'
 import TextareaAutosize from '../../utils/TextareaAutosize'
 import { useSubmitProvider } from '../SubmitProvider'
 import style from './submit-title.module.css'
 
 const SubmitTitle = () => {
-  const { session } = useSession()
   const [active, setActive] = useState(false)
-  const maxLength = session?.user?.role === 1 ? 999 : 300
 
-  const { title, setTitle } = useSubmitProvider()
+  const { title, setTitle, session } = useSubmitProvider()
+
+  const maxLength = session?.user?.role === 1 ? 999 : 300
 
   const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value)

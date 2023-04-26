@@ -44,3 +44,17 @@
 .post-container[data-is-listing='true']:hover {
   border-color: rgb(215, 218, 220);
 }
+
+.bar-voting {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+@media (min-width: 640px) {
+  .bar-voting {
+    display: none;
+  }
+}

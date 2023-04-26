@@ -6,11 +6,11 @@ import { catchErrorWithMessage } from '../../API/config/apiErrors'
 import oauthapis from '../../API/oauthapis'
 import { useModals } from '../../auth/modal/ModalsProvider'
 import { useMessage } from '../../utils/message/TimeMsgContext'
-import { UserMenuButton } from './buttons/notuser/ThemeButton'
 import UserPoliciesButton from './buttons/user/UserPoliciesButton'
 import Section1 from './Section1'
+import styles from './usermenu.module.css'
 
-const UserMenuIn = ({ styles }: UserMenuButton) => {
+const UserMenuIn = ({ session }: WithSession) => {
   const message = useMessage()
   const modals = useModals()
   const pathname = usePathname()
@@ -39,7 +39,7 @@ const UserMenuIn = ({ styles }: UserMenuButton) => {
           <span className="w-full flex-1 overflow-hidden text-ellipsis whitespace-nowrap text-[14px] font-medium leading-[18px]">My Stuff</span>
         </span>
       </div>
-      <Section1 />
+      <Section1 session={session} />
       <div className="h-10 w-full text-bbaby-text_darker">
         <span className="flex h-full items-center px-5">
           <span className="mr-3 h-5 w-5">
@@ -65,7 +65,7 @@ const UserMenuIn = ({ styles }: UserMenuButton) => {
           </span>
         </span>
       </button>
-      <UserPoliciesButton styles={styles} />
+      <UserPoliciesButton />
       <button className={`box-border block h-10 w-full border-none ${styles.active}`} onClick={doLogout}>
         <span className="flex h-full items-center px-5">
           <span className="mr-3 h-5 w-5 grow-0">

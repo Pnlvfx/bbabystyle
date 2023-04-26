@@ -3,7 +3,6 @@ import Image from 'next/image'
 import { FormEvent, useEffect, useRef, useState } from 'react'
 import { HiChevronDown } from 'react-icons/hi'
 import { BiSearch } from 'react-icons/bi'
-import { useSession } from '../../../auth/UserContextProvider'
 import { useSubmitProvider } from '../../SubmitProvider'
 import CommunityList from './CommunityList'
 import { ClickOutHandler } from 'react-clickout-ts'
@@ -11,11 +10,10 @@ import communityapis from '../../../API/communityapis'
 import { useModals } from '../../../auth/modal/ModalsProvider'
 
 const CommunityDropdown = () => {
-  const { session } = useSession()
   const [show, setShow] = useState(false)
   const [activeClass, setActiveClass] = useState(false)
   const [allCommunity, setAllCommunity] = useState<CommunityProps[] | []>([])
-  const { selectedCommunity, initialCommunity } = useSubmitProvider()
+  const { selectedCommunity, initialCommunity, session } = useSubmitProvider()
   const initialCommunityRef = useRef(initialCommunity)
   const [searchValue, setSearchValue] = useState(selectedCommunity?.name || '')
   const modals = useModals()

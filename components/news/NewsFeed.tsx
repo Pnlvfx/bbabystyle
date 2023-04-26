@@ -1,28 +1,30 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
-import newsapis from "../API/newsapis";
-import Skeleton from "../utils/Skeleton";
-import NewsCard from "./NewsCard";
+import { useState } from 'react'
+import InfiniteScroll from 'react-infinite-scroll-component'
+import newsapis from '../API/newsapis'
+import Skeleton from '../utils/Skeleton'
+import NewsCard from './NewsCard'
 
 interface NewsFeedProps {
-  news: NewsProps[];
+  news: NewsProps[]
+  isMobile: boolean
+  session: SessionProps | null
 }
 
-const NewsFeed = ({ news: ssr_news }: NewsFeedProps) => {
-  const [news, setNews] = useState(ssr_news);
-  const [hasMore, setHasMore] = useState(false);
+const NewsFeed = ({ news: ssr_news, isMobile, session }: NewsFeedProps) => {
+  const [news, setNews] = useState(ssr_news)
+  const [hasMore, setHasMore] = useState(false)
 
   const getMoreNews = async () => {
     try {
-      const newNews = await newsapis.getArticles(news.length, 10);
+      const newNews = await newsapis.getArticles(news.length, 10)
       if (newNews.length < 10) {
-        setHasMore(false);
+        setHasMore(false)
       }
-      setNews([...news, ...newNews]);
+      setNews([...news, ...newNews])
     } catch (err) {}
-  };
+  }
 
   return (
     <InfiniteScroll
@@ -34,9 +36,13 @@ const NewsFeed = ({ news: ssr_news }: NewsFeedProps) => {
       ))}
       endMessage={<></>}
     >
-      {news?.length >= 1 ? news?.map((news) => <NewsCard key={news._id} news={news} isListing={true} />) : <div></div>}
+      {news?.length >= 1 ? (
+        news?.map((news) => <NewsCard key={news._id} news={news} isListing={true} isMobile={isMobile} session={session} />)
+      ) : (
+        <div></div>
+      )}
     </InfiniteScroll>
-  );
-};
+  )
+}
 
-export default NewsFeed;
+export default NewsFeed

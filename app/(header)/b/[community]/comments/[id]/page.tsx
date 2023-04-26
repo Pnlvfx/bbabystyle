@@ -9,6 +9,7 @@ import CommunityInfo from '../../../../../../components/widget/communityinfo/Com
 import Donations from '../../../../../../components/widget/Donations'
 import Widget from '../../../../../../components/widget/Widget'
 import { clientUrl } from '../../../../../../config/config'
+import { deviceIsMobile } from '../../../../../../components/API/config/serverConfig'
 
 interface PostPageProps {
   params: {
@@ -19,6 +20,7 @@ interface PostPageProps {
 }
 
 const PostPage = ({ params }: PostPageProps) => {
+  const isMobile = deviceIsMobile()
   const session = use(ssrapis.getSession())
   const post = use(ssrapis.getPost(params.id))
 
@@ -26,22 +28,22 @@ const PostPage = ({ params }: PostPageProps) => {
 
   return (
     <>
-      {session?.device?.mobile ? (
+      {isMobile ? (
         <div className="mb-2 bg-bbaby-brighter pt-2">
-          <Post post={post} isListing={false} />
-          <Comment post={post} />
+          <Post isMobile={isMobile} post={post} isListing={false} session={session} />
+          <Comment session={session} post={post} />
         </div>
       ) : (
         <div className="flex min-h-[calc(100vh_-_48px)] flex-col">
-          <div className="flex max-w-[1600px] flex-row justify-center md:py-5 md:px-6 lg:mx-auto">
+          <div className="flex max-w-[1600px] flex-row justify-center md:px-6 md:py-5 lg:mx-auto">
             <div className="w-full max-w-[750px] flex-none break-words rounded-md bg-bbaby-brighter lg:mr-4 lg:w-7/12 xl:w-8/12 2xl:w-[750px]">
-              <Post post={post} isListing={false} />
-              <Comment post={post} />
+              <Post isMobile={isMobile} post={post} isListing={false} session={session} />
+              <Comment session={session} post={post} />
             </div>
             {post.community_detail && (
               <div className="hidden lg:block">
                 <Widget>
-                  <CommunityInfo community={post.community_detail} />
+                  <CommunityInfo session={session} community={post.community_detail} />
                 </Widget>
                 <Donations />
               </div>

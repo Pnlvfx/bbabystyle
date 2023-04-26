@@ -1,35 +1,37 @@
-import style2 from "./search-page-empty.module.css";
-import { RiArrowDownSLine } from "react-icons/ri";
-import Post from "../post/Post";
-import SearchPageHeader from "./SearchPageHeader";
-import { UserMenuButton } from "../header/usermenu/buttons/notuser/ThemeButton";
+import style2 from './search-page-empty.module.css'
+import styles from './search-page.module.css'
+import { RiArrowDownSLine } from 'react-icons/ri'
+import Post from '../post/Post'
+import SearchPageHeader from './SearchPageHeader'
 
-interface SearchPageProps extends UserMenuButton {
-  q: string;
+const array = [
+  {
+    name: 'Posts',
+    key: 'posts',
+  },
+  {
+    name: 'Comments',
+    key: 'comments',
+  },
+  {
+    name: 'Communities',
+    key: 'communities',
+  },
+  {
+    name: 'People',
+    key: 'people',
+  },
+]
+
+interface SearchPageProps {
+  q: string
   type?: string
-  posts: PostProps[];
+  posts: PostProps[]
+  isMobile: boolean
+  session: SessionProps | null
 }
 
-const Search = ({ posts, styles, type = 'posts', q }: SearchPageProps) => {
-  const array = [
-    {
-      name: "Posts",
-      key: "posts",
-    },
-    {
-      name: "Comments",
-      key: "comments",
-    },
-    {
-      name: "Communities",
-      key: "communities",
-    },
-    {
-      name: "People",
-      key: "people",
-    },
-  ];
-
+const Search = ({ posts, type = 'posts', q, isMobile, session }: SearchPageProps) => {
   return (
     <>
       <div>
@@ -45,13 +47,13 @@ const Search = ({ posts, styles, type = 'posts', q }: SearchPageProps) => {
             <button className={styles.subNavSort}>
               Sort
               <i className="icon ml-1">
-                <RiArrowDownSLine className="w-5 h-5" />
+                <RiArrowDownSLine className="h-5 w-5" />
               </i>
             </button>
           </div>
         </div>
       </div>
-      {type === "posts" && (
+      {type === 'posts' && (
         <div className={styles.searchPageAll}>
           <div className={styles.searchPagePosts}>
             <div tabIndex={0} />
@@ -59,7 +61,7 @@ const Search = ({ posts, styles, type = 'posts', q }: SearchPageProps) => {
               {posts?.length > 0 ? (
                 posts.map((post) => (
                   <div key={post._id} className="h-auto w-full">
-                    <Post post={post} isListing={false} />
+                    <Post session={session} post={post} isListing={false} isMobile={isMobile} />
                   </div>
                 ))
               ) : (
@@ -71,10 +73,7 @@ const Search = ({ posts, styles, type = 'posts', q }: SearchPageProps) => {
                     .. we couldn&apos;t find any results for &quot;
                     {q}&quot;
                   </h2>
-                  <p className={style2.emptyp}>
-                    Double-check your spelling or try different keywords to
-                    adjust your search
-                  </p>
+                  <p className={style2.emptyp}>Double-check your spelling or try different keywords to adjust your search</p>
                 </div>
               )}
             </div>
@@ -82,7 +81,7 @@ const Search = ({ posts, styles, type = 'posts', q }: SearchPageProps) => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default Search;
+export default Search

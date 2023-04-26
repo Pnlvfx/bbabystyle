@@ -2,26 +2,23 @@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Dispatch, SetStateAction } from 'react'
-import { useSession } from '../auth/UserContextProvider'
 import { openPost } from './postutils/hooks'
 import PostContent from './postutils/PostContent'
 
-interface ExtendPostProps {
+export interface PostComponent {
   post: PostProps
   isListing: boolean
-}
-
-export interface PostComponent extends ExtendPostProps {
   setPostForModal?: Dispatch<SetStateAction<PostProps | undefined>>
+  isMobile: boolean
+  session: SessionProps | null
 }
 
-const Post = ({ post, isListing, setPostForModal }: PostComponent) => {
-  const { session } = useSession()
+const Post = ({ post, isListing, setPostForModal, session, isMobile }: PostComponent) => {
   const router = useRouter()
   return (
     <div>
       <div>
-        {!session?.device?.mobile ? (
+        {!isMobile ? (
           <div
             className={`post-container relative ${isListing && 'cursor-pointer'}`}
             data-is-listing={`${isListing}`}
@@ -31,17 +28,17 @@ const Post = ({ post, isListing, setPostForModal }: PostComponent) => {
               }
             }}
           >
-            <PostContent post={post} isListing={isListing} setPostForModal={setPostForModal} />
+            <PostContent session={session} post={post} isListing={isListing} setPostForModal={setPostForModal} isMobile={isMobile} />
           </div>
         ) : isListing ? (
           <article data-is-listing={'true'} className={`post-container article`} id={post._id}>
             <Link style={{ pointerEvents: 'all' }} href={post.permalink} />
             <div className="pointer-events-none relative">
-              <PostContent post={post} isListing={isListing} setPostForModal={setPostForModal} />
+              <PostContent session={session} post={post} isListing={isListing} isMobile={isMobile} setPostForModal={setPostForModal} />
             </div>
           </article>
         ) : (
-          <PostContent post={post} isListing={isListing} setPostForModal={setPostForModal} />
+          <PostContent session={session} post={post} isListing={isListing} isMobile={isMobile} setPostForModal={setPostForModal} />
         )}
       </div>
     </div>

@@ -1,22 +1,38 @@
 import { use } from 'react'
-import ssrapis from '../../../components/API/ssrapis'
-import { getMetadata } from '../../../components/metadata/metadata'
-import Feed from '../../../components/post/Feed'
-import { clientUrl } from '../../../config/config'
-import { deviceIsMobile } from '../../../components/API/config/serverConfig'
+import ssrapis from '../../../../components/API/ssrapis'
+import Feed from '../../../../components/post/Feed'
+import { clientUrl } from '../../../../config/config'
+import { getMetadata } from '../../../../components/metadata/metadata'
+import { deviceIsMobile } from '../../../../components/API/config/serverConfig'
 
-const Home = () => {
+interface SortedPosts {
+  params: {
+    sort: 'hot' | 'best' | 'top' | 'new'
+  }
+}
+
+const BestPage = ({ params }: SortedPosts) => {
+  if (params.sort !== 'hot') {
+    if (params.sort !== 'best') {
+      if (params.sort !== 'new') {
+        if (params.sort !== 'top') {
+          return <div></div>
+        }
+      }
+    }
+  }
   const isMobile = deviceIsMobile()
   const session = use(ssrapis.getSession())
   const posts = use(
     ssrapis.getPosts(0, {
       limit: 15,
+      sort: params.sort,
     })
   )
   return <Feed posts={posts} isMobile={isMobile} session={session} />
 }
 
-export default Home
+export default BestPage
 
 const title = 'Bbabystyle - Free speech'
 const description =

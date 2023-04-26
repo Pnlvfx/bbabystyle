@@ -1,14 +1,11 @@
 /* eslint-disable no-unused-vars */
 interface SessionProps {
   user?: {
-    username: string;
-    avatar: string;
-    role: number;
+    username: string
+    avatar: string
+    role: number
     email_verified: boolean
-  };
-  device?: {
-    mobile: boolean;
-  };
+  }
 }
 
 type UserProps = {

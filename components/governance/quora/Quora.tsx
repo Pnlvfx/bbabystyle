@@ -11,9 +11,10 @@ import { Spinner } from '../../utils/Spinner'
 
 type QuoraPageProps = {
   quora: QuoraProps
+  session: SessionProps | null
 }
 
-const Quora = ({ quora }: QuoraPageProps) => {
+const Quora = ({ quora, session }: QuoraPageProps) => {
   const message = useMessage()
   const router = useRouter()
   const [loading, setLoading] = useState(false)
@@ -33,7 +34,7 @@ const Quora = ({ quora }: QuoraPageProps) => {
     <div className="relative flex max-h-[800px] rounded-[6px] md:pl-10">
       <div className="absolute left-0 top-0 box-border hidden w-10 flex-col items-center border-l-4 border-solid border-transparent py-2 pr-1 md:flex">
         <div className="hidden flex-col items-center md:flex">
-          <Voting ups={quora.ups} postId={quora._id} liked={null} />
+          <Voting ups={quora.ups} postId={quora._id} liked={null} session={session} />
         </div>
       </div>
       <div className="w-full bg-reddit_dark-brighter pt-2">
@@ -50,7 +51,7 @@ const Quora = ({ quora }: QuoraPageProps) => {
         <div className="flex h-[40px] flex-row px-[2px]">
           <div className="flex grow items-stretch overflow-hidden pl-1 pr-2 text-[12px] font-bold leading-4 text-reddit_text-darker">
             <div className="mr-1 flex items-center">
-              <Voting ups={quora.ups} postId={quora._id} liked={null} />
+              <Voting ups={quora.ups} postId={quora._id} liked={null} session={session} />
               <button
                 className="flex h-full min-w-[40px] items-center justify-center rounded-[2px] px-3 py-2 hover:bg-bbaby-brightest"
                 type="button"

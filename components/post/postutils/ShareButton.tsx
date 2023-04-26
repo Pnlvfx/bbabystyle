@@ -1,6 +1,5 @@
 import { AiOutlineLink } from 'react-icons/ai'
 import { catchErrorWithMessage } from '../../API/config/apiErrors'
-import { useSession } from '../../auth/UserContextProvider'
 import { useMessage } from '../../utils/message/TimeMsgContext'
 import { ShareIcon } from '../../utils/svg/SVG'
 import { ClickOutHandler } from 'react-clickout-ts'
@@ -8,11 +7,11 @@ import { useState } from 'react'
 
 type ShareButtonProps = {
   linkToCopy: string
+  isMobile: boolean
   isListing: boolean
 }
 
-const ShareButton = ({ linkToCopy, isListing }: ShareButtonProps) => {
-  const { session } = useSession()
+const ShareButton = ({ linkToCopy, isMobile, isListing }: ShareButtonProps) => {
   const [show, setShow] = useState(false)
   const message = useMessage()
 
@@ -30,7 +29,7 @@ const ShareButton = ({ linkToCopy, isListing }: ShareButtonProps) => {
     }
   }
   return (
-    <div className={`mr-1 flex items-center ${session?.device?.mobile && isListing && 'articleLink'}`}>
+    <div className={`mr-1 flex items-center ${isMobile && isListing && 'articleLink'}`}>
       <ClickOutHandler onClickOut={() => setShow(false)}>
         <div>
           <button
@@ -39,7 +38,7 @@ const ShareButton = ({ linkToCopy, isListing }: ShareButtonProps) => {
             onClick={(event) => {
               event.preventDefault()
               event.stopPropagation()
-              if (session?.device?.mobile) {
+              if (isMobile) {
                 copyTextToClipboard(`${window.location.origin}${linkToCopy}`.toLowerCase())
               } else {
                 setShow(!show)

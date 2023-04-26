@@ -1,13 +1,12 @@
 'use client'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { ChangeEvent, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, MouseEvent, useState } from 'react'
 import oauthapis from '../API/oauthapis'
 import { Spinner } from '../utils/Spinner'
 import AuthInput from './auth-input/AuthInput'
 import { useModals } from './modal/ModalsProvider'
 import Google from './providers/google/Google'
-import { useSession } from './UserContextProvider'
 
 const LoginForm = () => {
   const [username, setUsername] = useState('')
@@ -16,16 +15,15 @@ const LoginForm = () => {
   const [password, setPassword] = useState('')
   const [passwordIsValid, setPasswordIsValid] = useState<boolean | null>(null)
   const [loading, setLoading] = useState(false)
-  const { session } = useSession()
   const modals = useModals()
   const router = useRouter()
   const pathname = usePathname()
-  const routerRef = useRef(router)
   const [usernameError, setUsernameError] = useState<string | null>(null)
   const [passwordError, setPasswordError] = useState<string | null>(null)
 
-  const doLogin = async () => {
+  const doLogin = async (e: MouseEvent) => {
     try {
+      e.preventDefault()
       setLoading(true)
       await oauthapis.login(username, password)
       if (top?.window.location.href) {
@@ -71,11 +69,6 @@ const LoginForm = () => {
     }
   }
 
-  useEffect(() => {
-    if (session?.user) {
-      routerRef.current.push('/')
-    }
-  }, [session])
   return (
     <form method="post" action="/login" className="m-auto box-border block w-[280px] max-w-[280px]">
       <div className="mb-[18px] mt-8 box-border">
@@ -115,24 +108,17 @@ const LoginForm = () => {
       />
       <div className="mt-4 text-[12px] leading-4">
         Forget your{' '}
-        <Link href={''} className="font-bold leading-6 text-[#0079d3] underline">
+        <Link href={'/'} className="font-bold leading-6 text-[#0079d3] underline">
           username
         </Link>{' '}
         or{' '}
-        <Link href={''} className="font-bold leading-6 text-[#0079d3] underline">
+        <Link href={'/'} className="font-bold leading-6 text-[#0079d3] underline">
           password
         </Link>{' '}
         ?
       </div>
       <fieldset className="relative mt-4 max-w-[280px]">
-        <button
-          className="mt-2 h-[40px] w-full rounded-full bg-bbaby-blue px-4 text-[14px] font-bold leading-4"
-          type="submit"
-          onClick={(e) => {
-            e.preventDefault()
-            doLogin()
-          }}
-        >
+        <button className="mt-2 h-[40px] w-full rounded-full bg-bbaby-blue px-4 text-[14px] font-bold leading-4" type="submit" onClick={doLogin}>
           {loading ? <Spinner /> : 'Log In'}
         </button>
       </fieldset>
@@ -144,7 +130,7 @@ const LoginForm = () => {
           onClick={(e) => {
             e.preventDefault()
             e.stopPropagation()
-            if (pathname?.match('register') || pathname?.match('login')) {
+            if (pathname.match('register') || pathname.match('login')) {
               router.push('/account/register')
             } else {
               modals.setShowAuth('register')

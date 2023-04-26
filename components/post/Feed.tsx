@@ -10,9 +10,11 @@ type FeedProps = {
   posts: PostProps[]
   community?: CommunityProps
   author?: string
+  isMobile: boolean
+  session: SessionProps | null
 }
 
-const Feed = ({ posts: ssrPost, community, author }: FeedProps) => {
+const Feed = ({ posts: ssrPost, community, author, isMobile, session }: FeedProps) => {
   const [posts, setPosts] = useState(ssrPost)
   const [hasMore, setHasMore] = useState(true)
   const [postForModal, setPostForModal] = useState<PostProps>()
@@ -31,16 +33,14 @@ const Feed = ({ posts: ssrPost, community, author }: FeedProps) => {
       setPosts([...posts, ...newPosts])
     } catch (err) {}
   }
+
+  const closeModal = () => {
+    setPostForModal(undefined)
+  }
+
   return (
     <>
-      {postForModal && (
-        <PostModal
-          post={postForModal}
-          onClickOut={() => {
-            setPostForModal(undefined)
-          }}
-        />
-      )}
+      {postForModal && <PostModal post={postForModal} isMobile={isMobile} onClickOut={closeModal} session={session} />}
       <div>
         <InfiniteScroll dataLength={posts.length} next={getMorePosts} hasMore={hasMore} loader={<div />} endMessage={<></>}>
           {posts?.length >= 1 ? (
@@ -54,7 +54,7 @@ const Feed = ({ posts: ssrPost, community, author }: FeedProps) => {
                   </div>
                 )
               }
-              return <Post key={post._id} post={post} isListing={true} setPostForModal={setPostForModal} />
+              return <Post key={post._id} post={post} isListing={true} isMobile={isMobile} setPostForModal={setPostForModal} session={session} />
             })
           ) : (
             <div></div>

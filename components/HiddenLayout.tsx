@@ -13,14 +13,14 @@ import { catchErrorWithMessage } from './API/config/apiErrors'
 import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies'
 import Analytics from './utils/Analytics'
 
-const HiddenLayout = ({ token }: { token?: RequestCookie }) => {
+const HiddenLayout = ({ token, isMobile, session }: WithSession & { isMobile: boolean; token?: RequestCookie }) => {
   const modals = useModals()
 
   return (
     <>
       {!token && modals.showAuth !== 'hidden' && <AuthModal />}
-      <SearchDropdown />
-      {modals.showUserMenu && <UserMenu />}
+      {!isMobile && <SearchDropdown />}
+      {modals.showUserMenu && <UserMenu session={session} />}
       {process.env.NODE_ENV === 'production' && <GoogleAnalytics />}
       {!token && !clientUrl.startsWith('http://192') && <UseOneTap />}
       <Analytics />

@@ -1,8 +1,17 @@
-import Link from "next/link";
-import LoginForm from "../../../components/auth/LoginForm";
-import { clientUrl } from "../../../config/config";
+import Link from 'next/link'
+import LoginForm from '../../../components/auth/LoginForm'
+import { clientUrl } from '../../../config/config'
+import { use } from 'react'
+import ssrapis from '../../../components/API/ssrapis'
+import { redirect } from 'next/navigation'
 
 const LoginPage = () => {
+  const session = use(ssrapis.getSession())
+
+  if (session) {
+    redirect('/')
+  }
+
   return (
     <div className="block bg-white text-black">
       <main className="block">
@@ -13,12 +22,12 @@ const LoginPage = () => {
                 <h1 className="mt-6 text-xl">Log In</h1>
               </div>
               <p className=" mx-auto mt-2 text-xs">
-                By continuing, you agree are setting up a Bbabystyle account and agree to our{" "}
-                <Link target={"_blank"} href={"/policies/user-agreement"} className="text-bbaby-blue">
-                  User Agreement{" "}
+                By continuing, you agree are setting up a Bbabystyle account and agree to our{' '}
+                <Link target={'_blank'} href={'/policies/user-agreement'} className="text-bbaby-blue">
+                  User Agreement{' '}
                 </Link>
-                and{" "}
-                <Link target={"_blank"} href={"/policies/privacy-policy"} className="text-bbaby-blue">
+                and{' '}
+                <Link target={'_blank'} href={'/policies/privacy-policy'} className="text-bbaby-blue">
                   Privacy Policy
                 </Link>
                 .
@@ -29,10 +38,10 @@ const LoginPage = () => {
         </div>
       </main>
     </div>
-  );
-};
+  )
+}
 
-export default LoginPage;
+export default LoginPage
 
 export const metadata = {
   title: `bbabystyle.com: Log in`,
@@ -40,14 +49,14 @@ export const metadata = {
   alternates: {
     canonical: `${clientUrl}/login`,
     languages: {
-      "en-US": `${clientUrl}/login`,
+      'en-US': `${clientUrl}/login`,
     },
   },
   openGraph: {
-    title: "bbabystyle.com: Log in",
+    title: 'bbabystyle.com: Log in',
     description: `Don't worry, we won't tell anyone your username. Log in to your Bbaby account.`,
     url: `${clientUrl}/login`,
-    siteName: "bbabystyle",
+    siteName: 'bbabystyle',
     images: [
       {
         url: `${clientUrl}/imagePreview.png`,
@@ -55,13 +64,13 @@ export const metadata = {
         height: 256,
       },
     ],
-    type: "website",
+    type: 'website',
   },
   twitter: {
-    creator: "@Bbabystyle",
-    card: "summary",
+    creator: '@Bbabystyle',
+    card: 'summary',
     title: `bbabystyle.com: Log in`,
     description: `Don't worry, we won't tell anyone your username. Log in to your Bbaby account.`,
     images: `${clientUrl}/imagePreview.png`,
   },
-};
+}
