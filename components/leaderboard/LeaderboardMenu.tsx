@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import categoryapis from '../API/categoryapis'
 import { catchErrorWithMessage } from '../API/config/apiErrors'
 import { useMessage } from '../utils/message/TimeMsgContext'
@@ -10,7 +10,7 @@ const LeaderboardMenu = () => {
   const [active, setActive] = useState(-1)
   const [showMore, setShowMore] = useState(false)
   const [categoriesLists, setCategoriesLists] = useState<CategoryProps[]>([])
-  const message = useMessage()
+  const messageRef = useRef(useMessage())
 
   useEffect(() => {
     const r = async () => {
@@ -18,7 +18,7 @@ const LeaderboardMenu = () => {
         const categories = await categoryapis.getCategories()
         setCategoriesLists(categories)
       } catch (err) {
-        catchErrorWithMessage(err, message)
+        catchErrorWithMessage(err, messageRef.current)
       }
     }
     r()

@@ -15,19 +15,8 @@ import { Spinner } from '../utils/Spinner'
 import SubmitType from './submitutils/SubmitType'
 
 const Submit = () => {
-  const {
-    title,
-    selectedCommunity,
-    body,
-    height,
-    isImage,
-    isVideo,
-    selectedFile,
-    sharePostToTG,
-    sharePostToTwitter,
-    width,
-    minimal
-  } = useSubmitProvider()
+  const { title, selectedCommunity, body, height, isImage, isVideo, selectedFile, sharePostToTG, sharePostToTwitter, width, minimal } =
+    useSubmitProvider()
   const [loading, setLoading] = useState(false)
   const router = useRouter()
   const message = useMessage()
@@ -36,7 +25,7 @@ const Submit = () => {
   const createPost = async () => {
     try {
       setLoading(true)
-      if (!selectedCommunity) return;
+      if (!selectedCommunity) return
       const post = await postapis.newPost(title, selectedCommunity.name, {
         body,
         height,
@@ -50,8 +39,7 @@ const Submit = () => {
       if (session?.user?.role === 0) {
         router.push(post.permalink)
       } else {
-        message.setMessage({
-          value: 'Post created successfully',
+        message.showMessage('Post created successfully', {
           status: 'success',
         })
         setLoading(false)
@@ -71,11 +59,11 @@ const Submit = () => {
             <div className="flex-1 text-[18px] font-medium leading-[22px]">Create a Post</div>
             <button
               role={'button'}
-              className="min-h-8 min-w-8 relative ml-[10px] box-border w-auto items-center rounded-full border border-transparent px-4 py-1 text-center text-[12px] font-bold leading-6"
+              className="relative ml-[10px] box-border min-h-[40px] w-auto min-w-[40px] items-center rounded-full border border-transparent px-4 py-1 text-center text-[12px] font-bold leading-6"
               style={{ letterSpacing: 0.5 }}
             >
               DRAFTS
-              <span className="ml-1 py-[1px] px-[3px] font-normal leading-4 ">0</span>
+              <span className="ml-1 px-[3px] py-[1px] font-normal leading-4 ">0</span>
             </button>
           </div>
         )}
@@ -86,7 +74,7 @@ const Submit = () => {
             <SubmitTitle />
             <SubmitBody />
           </div>
-          <hr className="mx-3 mt-12 mb-4 border-reddit_border" />
+          <hr className="mx-3 mb-4 mt-12 border-reddit_border" />
           <div className="mx-4 pb-4 text-right">
             <button className={`mr-2 h-[30px] opacity-20 ${buttonClass(true)}`}>
               <p>Save Draft</p>

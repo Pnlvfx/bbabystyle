@@ -42,17 +42,17 @@ const Quora = ({ quora }: QuoraPageProps) => {
             <h1 className="mb-4 break-words text-lg">{quora.title}</h1>
           </div>
         </div>
-        <div className="--max-h-[250px] overflow-hidden pt-[5px] px-2 pb-[10px]">
-          <div className="break-words text-[14px] leading-[21px] mb-[-1px] pb-[1px] ">
+        <div className="--max-h-[250px] overflow-hidden px-2 pb-[10px] pt-[5px]">
+          <div className="mb-[-1px] break-words pb-[1px] text-[14px] leading-[21px] ">
             <p className="whitespace-pre-wrap">{quora.description}</p>
           </div>
         </div>
         <div className="flex h-[40px] flex-row px-[2px]">
-          <div className="flex flex-grow items-stretch overflow-hidden pr-2 pl-1 text-[12px] font-bold leading-4 text-reddit_text-darker">
+          <div className="flex grow items-stretch overflow-hidden pl-1 pr-2 text-[12px] font-bold leading-4 text-reddit_text-darker">
             <div className="mr-1 flex items-center">
               <Voting ups={quora.ups} postId={quora._id} liked={null} />
               <button
-                className="flex h-full justify-center items-center rounded-[2px] min-w-[40px] py-2 px-3 hover:bg-bbaby-brightest"
+                className="flex h-full min-w-[40px] items-center justify-center rounded-[2px] px-3 py-2 hover:bg-bbaby-brightest"
                 type="button"
                 onClick={toTiktak}
               >

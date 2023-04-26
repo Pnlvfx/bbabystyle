@@ -24,7 +24,7 @@ const ShareButton = ({ linkToCopy, isListing }: ShareButtonProps) => {
         document.execCommand('copy', true, text)
       }
       setShow(false)
-      message.setMessage({ value: 'Link copied!', time: 8000, status: 'success' })
+      message.showMessage('Link copied!', { time: 8000, status: 'success' })
     } catch (err) {
       catchErrorWithMessage(err, message)
     }

@@ -64,14 +64,14 @@ const TiktakBgVideo = ({ tiktak }: TiktakVideoProps) => {
       <div>
         <button
           onClick={chooseColor}
-          className={`flex h-[35px] px-4 py-3 items-center justify-center rounded-full border border-bbaby-border bg-bbaby-brighter`}
+          className={`flex h-[35px] items-center justify-center rounded-full border border-bbaby-border bg-bbaby-brighter px-4 py-3`}
         >
           Choose color
         </button>
         <input
           type={'color'}
           ref={inputRef}
-          className="w-0 h-0"
+          className="h-0 w-0"
           style={{ visibility: 'hidden' }}
           value={color}
           onChange={(e) => setColor(e.target.value)}

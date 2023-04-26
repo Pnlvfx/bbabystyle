@@ -57,7 +57,7 @@ const MoreButton = ({ post, isListing }: MoreButtonProps) => {
                       deletePost()
                     }}
                   >
-                    <BsTrashFill className="mt-1 mr-2 h-4 w-4" />
+                    <BsTrashFill className="mr-2 mt-1 h-4 w-4" />
                     <p className="text-sm">Delete</p>
                   </button>
                 ))}

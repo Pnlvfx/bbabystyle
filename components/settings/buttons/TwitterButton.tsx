@@ -38,7 +38,7 @@ const TwitterButton = ({ userInfo }: SettingsButton) => {
         shouldRequest.current = false
         await twitterapis.accessToken(state, code)
         router.current.replace(pathname.current)
-        message.current.setMessage({ value: 'Account connected!', status: 'success' })
+        message.current.showMessage('Account connected!', { status: 'success' })
       } catch (err) {
         catchErrorWithMessage(err, message.current)
       }
@@ -50,7 +50,7 @@ const TwitterButton = ({ userInfo }: SettingsButton) => {
     try {
       await twitterapis.logout()
       router.current.refresh()
-      message.current.setMessage({ value: 'Twitter account disconnected!', status: 'success' })
+      message.current.showMessage('Twitter account disconnected!', { status: 'success' })
     } catch (err) {
       catchErrorWithMessage(err, message.current)
     }
@@ -69,29 +69,29 @@ const TwitterButton = ({ userInfo }: SettingsButton) => {
         </p>
       </div>
       <div className="settings-button-right">
-        <div className="flex items-center flex-grow justify-end">
+        <div className="flex grow items-center justify-end">
           {twitterAccount ? (
-            <div className="text-[12px] leading-4 text-end">
+            <div className="text-end text-[12px] leading-4">
               <div>
-                <span className="font-medium mr-[5px] leading-4 text-bbaby-text_darker">@{twitterAccount.username}</span>
+                <span className="mr-[5px] font-medium leading-4 text-bbaby-text_darker">@{twitterAccount.username}</span>
               </div>
               <button
                 role={'button'}
                 tabIndex={0}
                 onClick={logout}
-                className="text-[#1da1f2] relative min-h-[32px] min-w-[32px] items-center rounded-full flex justify-center text-center w-auto"
+                className="relative flex min-h-[32px] w-auto min-w-[32px] items-center justify-center rounded-full text-center text-[#1da1f2]"
               >
                 (disconnect)
               </button>
             </div>
           ) : (
             <button
-              className="relative bg-[#1da1f2] text-bbaby-dark items-center flex justify-center max-w-[100%] min-w-[195px] w-auto whitespace-pre-wrap text-[14px] font-bold leading-[17px] min-h-[32px] py-1 px-4 rounded-full text-center"
+              className="relative flex min-h-[32px] w-auto min-w-[195px] max-w-[100%] items-center justify-center whitespace-pre-wrap rounded-full bg-[#1da1f2] px-4 py-1 text-center text-[14px] font-bold leading-[17px] text-bbaby-dark"
               role={'button'}
               tabIndex={0}
               onClick={getToken}
             >
-              <TwitterLogo className="relative w-5 h-5 inline-block flex-none" />
+              <TwitterLogo className="relative inline-block h-5 w-5 flex-none" />
               <span className="ml-2">Connect to Twitter</span>
             </button>
           )}

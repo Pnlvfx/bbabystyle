@@ -31,7 +31,7 @@ const AddImage = ({ styles }: UserMenuButton) => {
         }}
       >
         <AddImageIcon className={styles.submitButtonIcon} />
-        <div className="absolute bottom-0 left-0 right-0 top-0">
+        <div className="absolute inset-0">
           <div className={`${styles.submitButtonTitle} transition-opacity`}>{'Add an image'}</div>
         </div>
         <input className="text-[16px]" type="file" accept="image/png, image/jpeg, image/webp" hidden onChange={addImageToPost} ref={filePickerRef} />

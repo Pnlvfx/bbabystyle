@@ -27,10 +27,10 @@ const TiktokPage = () => {
   }
 
   return (
-    <div className="mt-[30px] flex items-center justify-center flex-col lg:mx-12">
+    <div className="mt-[30px] flex flex-col items-center justify-center lg:mx-12">
       <textarea
         value={url}
-        className="costum-shadow w-full max-w-[640px] rounded-md bg-reddit_dark-brighter px-4 pt-4 outline-none resize-none"
+        className="costum-shadow w-full max-w-[640px] resize-none rounded-md bg-reddit_dark-brighter px-4 pt-4 outline-none"
         onChange={(e) => setUrl(e.target.value)}
         placeholder={'Insert the url here!'}
       />

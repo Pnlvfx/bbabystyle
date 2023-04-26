@@ -39,11 +39,11 @@ const TopCommunities = () => {
               <hr className="border-bbaby-border" />
             </div>
           ))}
-      <div className={`${allCommunity.length === 0 && 'loading'} mx-2 mt-3 mb-3 h-[32px]`}>
+      <div className={`${allCommunity.length === 0 && 'loading'} mx-2 my-3 h-[32px]`}>
         {allCommunity.length !== 0 && (
           <Link
             href={`/bbaby/leaderboard`}
-            className="relative box-border flex min-h-[32px] w-full min-w-[32px] items-center justify-center rounded-full bg-white py-1 px-4 text-[14px] font-bold leading-4 text-bbaby-dark"
+            className="relative box-border flex min-h-[32px] w-full min-w-[32px] items-center justify-center rounded-full bg-white px-4 py-1 text-[14px] font-bold leading-4 text-bbaby-dark"
             tabIndex={0}
             role="button"
           >

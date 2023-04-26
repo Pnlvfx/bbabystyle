@@ -16,6 +16,7 @@ const ssrapis = {
       const token = res.headers.get('set-cookie')
       if (token) {
         console.log(token)
+        return null
       }
       return session as SessionProps
     } catch (err) {

@@ -54,11 +54,11 @@ const TiktokHome = ({ tiktok }: TiktokIDProps) => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center w-full h-full">
-        <div className="w-full max-w-[700px] flex items-center justify-center mt-6">
+      <div className="flex h-full w-full flex-col items-center justify-center">
+        <div className="mt-6 flex w-full max-w-[700px] items-center justify-center">
           <TextareaAutosize
             value={showOriginal ? text : translated}
-            className="w-full max-w-[640px] outline-none resize-none px-4 py-3 rounded-md bg-bbaby-brighter"
+            className="w-full max-w-[640px] resize-none rounded-md bg-bbaby-brighter px-4 py-3 outline-none"
             onChange={(e) => {
               if (showOriginal) {
                 setText(e.target.value)
@@ -67,14 +67,14 @@ const TiktokHome = ({ tiktok }: TiktokIDProps) => {
               }
             }}
           />
-          <button className={`${buttonClass()} flex h-[35px] items-center justify-center mx-4`} onClick={translate}>
+          <button className={`${buttonClass()} mx-4 flex h-[35px] items-center justify-center`} onClick={translate}>
             {' '}
             <p>{showOriginal ? 'Translated' : 'Back'}</p>
           </button>
         </div>
       </div>
       <div className="flex items-center justify-center">
-        <div className="flex items-center justify-between w-full max-w-[640px] h-full mt-6">
+        <div className="mt-6 flex h-full w-full max-w-[640px] items-center justify-between">
           <div />
           <button
             disabled={loading}

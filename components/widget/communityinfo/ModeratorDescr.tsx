@@ -18,7 +18,7 @@ const ModeratorDescr = ({ name, description: initialDescription }: ModeratorDesc
     try {
       if (!description || !isFocus) return
       await communityapis.updateDescription(name, description)
-      message.setMessage({ value: 'Description updated successfully!', status: 'success' })
+      message.showMessage('Description updated successfully!', { status: 'success' })
     } catch (err) {
       catchErrorWithMessage(err, message)
     }
@@ -42,12 +42,12 @@ const ModeratorDescr = ({ name, description: initialDescription }: ModeratorDesc
         <div
           className={`mb-3 mt-2 rounded border ${
             showTextarea ? 'border-bbaby-text' : 'border-bbaby-dark'
-          } bg-bbaby-brightest p-2 transition-all cursor-pointer`}
+          } cursor-pointer bg-bbaby-brightest p-2 transition-all`}
           tabIndex={0}
         >
           {showTextarea ? (
             <textarea
-              className="w-full resize-none bg-transparent outline-none text-bbaby-text_darker text-[14px]"
+              className="w-full resize-none bg-transparent text-[14px] text-bbaby-text_darker outline-none"
               placeholder="Tell us about your community"
               value={description}
               onChange={(e) => setDescription(e.target.value)}

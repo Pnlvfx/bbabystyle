@@ -14,8 +14,8 @@ export const TextLogo = (props: any) => {
         d="M21.534,75.048q9.779,0,15.029-4.028t5.249-11.536A12.126,12.126,0,0,0,39.237,51.7a12.95,12.95,0,0,0-7.285-4.413,13.743,13.743,0,0,0,6.307-4.541,10.848,10.848,0,0,0,2.155-6.592q0-7.177-5.149-10.8T20.257,21.728H0.338v53.32h21.2Zm0.958-24.06q9.26,0.184,9.261,8.5a7.293,7.293,0,0,1-2.674,6.006q-2.675,2.161-7.425,2.161H10.437V50.988H22.492ZM10.437,29.2h9.82q5.189,0,7.644,1.758t2.455,5.713A6.489,6.489,0,0,1,27.7,42.218a12.185,12.185,0,0,1-7.365,1.959h-9.9V29.2ZM88.874,55.126q0-9.668-4.511-15.051T71.949,34.692q-7.106,0-11.3,4.541V18.8h-9.7v56.25h8.782l0.479-4.285q4.231,5.018,11.815,5.017,7.863,0,12.354-5.457t4.491-14.685V55.126Zm-9.7.879q-0.08,6.3-2.555,9.412a8.456,8.456,0,0,1-7.025,3.113q-6.347,0-8.941-5.164V47.033q2.554-5.054,8.862-5.054A8.511,8.511,0,0,1,76.7,45.2q2.475,3.223,2.475,9.668v1.135ZM132.7,75.048V74.426a18.777,18.777,0,0,1-1.637-8.533V48.022a12.037,12.037,0,0,0-4.63-9.833q-4.512-3.5-12.1-3.5A24.27,24.27,0,0,0,105.3,36.3a15.624,15.624,0,0,0-6.407,4.449,9.377,9.377,0,0,0-2.355,6.1h9.7a4.586,4.586,0,0,1,2.116-3.864,9.081,9.081,0,0,1,5.428-1.52q3.833,0,5.708,1.849a6.6,6.6,0,0,1,1.876,4.926v2.6h-5.947q-9.541,0-14.67,3.387a10.958,10.958,0,0,0-5.129,9.723,10.525,10.525,0,0,0,4.111,8.423,16.093,16.093,0,0,0,10.618,3.406,15.781,15.781,0,0,0,11.337-4.431,12.86,12.86,0,0,0,1.117,3.7h9.9ZM107.176,67.12a5.005,5.005,0,0,1-1.856-4.083,5.452,5.452,0,0,1,2.714-4.871q2.715-1.721,8.1-1.721h5.229v7.471a9,9,0,0,1-3.812,3.442,11.814,11.814,0,0,1-5.408,1.282A7.6,7.6,0,0,1,107.176,67.12Zm71.95-11.993q0-9.668-4.51-15.051T162.2,34.692q-7.106,0-11.3,4.541V18.8h-9.7v56.25h8.782l0.479-4.285q4.23,5.018,11.815,5.017,7.864,0,12.355-5.457t4.49-14.685V55.126Zm-9.7.879q-0.081,6.3-2.555,9.412a8.457,8.457,0,0,1-7.026,3.113q-6.346,0-8.941-5.164V47.033q2.554-5.054,8.862-5.054a8.513,8.513,0,0,1,7.185,3.223q2.474,3.223,2.475,9.668v1.135Zm23.351-20.581H182.32l15.168,39.411-1.4,3.4a8.121,8.121,0,0,1-2.934,4.117,10.115,10.115,0,0,1-5.528,1.226l-1.837-.11v6.918a18.737,18.737,0,0,0,4.671.663q9.461,0,13.412-10l17.164-45.63H210.7L201.919,62.3Z"
       />
     </svg>
-  );
-};
+  )
+}
 
 export const UserIcon = (props: any) => {
   return (
@@ -38,8 +38,8 @@ export const UserIcon = (props: any) => {
         strokeWidth="2px"
       />
     </svg>
-  );
-};
+  )
+}
 
 export const TwitterLogo = (props: any) => {
   return (
@@ -49,8 +49,8 @@ export const TwitterLogo = (props: any) => {
         fill="#1A1A1B"
       />
     </svg>
-  );
-};
+  )
+}
 
 export const AddImageIcon = (props: any) => {
   return (
@@ -60,8 +60,8 @@ export const AddImageIcon = (props: any) => {
         <circle cx={8.868} cy={8.309} r={1.542} />
       </g>
     </svg>
-  );
-};
+  )
+}
 
 export const CommentIcon = (props: any) => {
   return (
@@ -71,8 +71,8 @@ export const CommentIcon = (props: any) => {
         fill="#818384"
       />
     </svg>
-  );
-};
+  )
+}
 
 export const MoreIcon = (props: any) => {
   return (
@@ -83,8 +83,8 @@ export const MoreIcon = (props: any) => {
         <circle cx={19} cy={12} r={2} />
       </g>
     </svg>
-  );
-};
+  )
+}
 
 export const ShareIcon = (props: any) => {
   return (
@@ -94,31 +94,26 @@ export const ShareIcon = (props: any) => {
         <path d="M19.708 21.944H4.292A2.294 2.294 0 012 19.652V14a.75.75 0 011.5 0v5.652c0 .437.355.792.792.792h15.416a.793.793 0 00.792-.792V14a.75.75 0 011.5 0v5.652a2.294 2.294 0 01-2.292 2.292z" />
       </g>
     </svg>
-  );
-};
+  )
+}
 
 export const CloseIcon = (props: any) => {
   return (
     <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" width={24} height={24} {...props}>
-      <path
-        d="M11.649 9.882L18.262 3.267 16.495 1.5 9.881 8.114 3.267 1.5 1.5 3.267 8.114 9.883 1.5 16.497 3.267 18.264 9.881 11.65 16.495 18.264 18.262 16.497z"
-      />
+      <path d="M11.649 9.882L18.262 3.267 16.495 1.5 9.881 8.114 3.267 1.5 1.5 3.267 8.114 9.883 1.5 16.497 3.267 18.264 9.881 11.65 16.495 18.264 18.262 16.497z" />
     </svg>
-  );
-};
+  )
+}
 
 export const VideoIcon = (props: any) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={24} height={24} pointerEvents="none" display="block" {...props}>
-      <g className="style-scope yt-icon" fill="#818384">
-        <path
-          d="M10 9.35L15 12l-5 2.65zM12 6a54.36 54.36 0 00-7.56.38 1.53 1.53 0 00-1.06 1.06A24.63 24.63 0 003 12a24.63 24.63 0 00.38 4.56 1.53 1.53 0 001.06 1.06A54.36 54.36 0 0012 18a54.36 54.36 0 007.56-.38 1.53 1.53 0 001.06-1.06A24.63 24.63 0 0021 12a24.63 24.63 0 00-.38-4.56 1.53 1.53 0 00-1.06-1.06A54.36 54.36 0 0012 6m0-1s6.25 0 7.81.42a2.51 2.51 0 011.77 1.77A25.87 25.87 0 0122 12a25.87 25.87 0 01-.42 4.81 2.51 2.51 0 01-1.77 1.77C18.25 19 12 19 12 19s-6.25 0-7.81-.42a2.51 2.51 0 01-1.77-1.77A25.87 25.87 0 012 12a25.87 25.87 0 01.42-4.81 2.51 2.51 0 011.77-1.77C5.75 5 12 5 12 5z"
-          className="style-scope yt-icon"
-        />
+      <g fill="#818384">
+        <path d="M10 9.35L15 12l-5 2.65zM12 6a54.36 54.36 0 00-7.56.38 1.53 1.53 0 00-1.06 1.06A24.63 24.63 0 003 12a24.63 24.63 0 00.38 4.56 1.53 1.53 0 001.06 1.06A54.36 54.36 0 0012 18a54.36 54.36 0 007.56-.38 1.53 1.53 0 001.06-1.06A24.63 24.63 0 0021 12a24.63 24.63 0 00-.38-4.56 1.53 1.53 0 00-1.06-1.06A54.36 54.36 0 0012 6m0-1s6.25 0 7.81.42a2.51 2.51 0 011.77 1.77A25.87 25.87 0 0122 12a25.87 25.87 0 01-.42 4.81 2.51 2.51 0 01-1.77 1.77C18.25 19 12 19 12 19s-6.25 0-7.81-.42a2.51 2.51 0 01-1.77-1.77A25.87 25.87 0 012 12a25.87 25.87 0 01.42-4.81 2.51 2.51 0 011.77-1.77C5.75 5 12 5 12 5z" />
       </g>
     </svg>
-  );
-};
+  )
+}
 
 export const HomeIcon = (props: any) => {
   return (
@@ -128,8 +123,8 @@ export const HomeIcon = (props: any) => {
         fill="#D7DADC"
       />
     </svg>
-  );
-};
+  )
+}
 
 export const TrashIcon = (props: any) => {
   return (
@@ -139,8 +134,8 @@ export const TrashIcon = (props: any) => {
         fill="#818384"
       />
     </svg>
-  );
-};
+  )
+}
 
 export const PlusIcon = (props: any) => {
   return (
@@ -151,37 +146,30 @@ export const PlusIcon = (props: any) => {
         fill="#D7DADC"
       />
     </svg>
-  );
-};
+  )
+}
 
 export const CheckboxChecked = (props: any) => {
   return (
-    <svg className="_3PYsg_uRJ6AGptv-hi7kqu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width={20} height={20} {...props}>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width={20} height={20} {...props}>
       <path
         d="M10 6.667a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zM10 0c5.523 0 10 4.477 10 10s-4.477 10-10 10S0 15.523 0 10 4.477 0 10 0z"
         fill="#0079D3"
       />
     </svg>
-  );
-};
+  )
+}
 
 export const Checkbox = (props: any) => {
   return (
-    <svg
-      className="_11Rht_b1e-kmk12gkz7Lug _1lzSnSABNXX12WerTnwqI3"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 20 20"
-      width={20}
-      height={20}
-      {...props}
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width={20} height={20} {...props}>
       <path
         d="M10 1.667a8.333 8.333 0 100 16.666 8.333 8.333 0 000-16.666zM10 0c5.523 0 10 4.477 10 10s-4.477 10-10 10S0 15.523 0 10 4.477 0 10 0z"
         fill="#818384"
       />
     </svg>
-  );
-};
+  )
+}
 
 export const PublicCommunity = (props: any) => {
   return (
@@ -191,8 +179,8 @@ export const PublicCommunity = (props: any) => {
         fill="#818384"
       />
     </svg>
-  );
-};
+  )
+}
 
 export const PrivateCommunity = (props: any) => {
   return (
@@ -202,8 +190,8 @@ export const PrivateCommunity = (props: any) => {
         <path d="M32.5 17.5v-2.6c0-6.8-5.6-12.4-12.4-12.4h-.2c-6.8 0-12.4 5.6-12.4 12.4v2.6C6.1 17.5 5 18.6 5 20v10c0 5.5 4.5 10 10 10h10c5.5 0 10-4.5 10-10V20c0-1.4-1.1-2.5-2.5-2.5zm-20 0v-2.6c0-4.1 3.3-7.4 7.4-7.4h.2c4.1 0 7.4 3.3 7.4 7.4v2.6h-15z" />
       </g>
     </svg>
-  );
-};
+  )
+}
 
 export const GoBackIcon = (props: any) => {
   return (
@@ -216,27 +204,19 @@ export const GoBackIcon = (props: any) => {
         fillRule="evenodd"
       />
     </svg>
-  );
-};
+  )
+}
 
 export const RetweetIcon = (props: any) => {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-      className="r-4qtqp9 r-yyyyoo r-1xvli5t r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1hdv0qi"
-      width={24}
-      height={24}
-      {...props}
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width={24} height={24} {...props}>
       <path
         d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5a4 4 0 01-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5a4 4 0 014 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z"
         fill="#71767B"
       />
     </svg>
-  );
-};
+  )
+}
 
 export const HeartIcon = (props: any) => {
   return (
@@ -246,8 +226,8 @@ export const HeartIcon = (props: any) => {
         fill="#71767B"
       />
     </svg>
-  );
-};
+  )
+}
 
 export const USFlagIcon = (props: any) => {
   return (
@@ -276,8 +256,8 @@ export const USFlagIcon = (props: any) => {
         <use xlinkHref="#e" x={2470} />
       </g>
     </svg>
-  );
-};
+  )
+}
 
 export const ITflagIcon = (props: any) => {
   return (
@@ -286,5 +266,5 @@ export const ITflagIcon = (props: any) => {
       <path fill="#fff" d="M1 0h1v2H1z" />
       <path fill="#CD212A" d="M2 0h1v2H2z" />
     </svg>
-  );
-};
+  )
+}

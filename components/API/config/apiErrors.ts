@@ -14,10 +14,10 @@ export const catchServer = (err: unknown) => {
 
 export const catchErrorWithMessage = (err: unknown, transporter: TimeMsgContextProps): void => {
   if (err instanceof Error) {
-    transporter.setMessage({ value: err.message, status: 'error' })
+    transporter.showMessage(err.message, { status: 'error' })
   } else if (typeof err === 'string') {
-    transporter.setMessage({ value: err, status: 'error' })
+    transporter.showMessage(err, { status: 'error' })
   } else {
-    transporter.setMessage({ value: `That's really strange!`, status: 'error' })
+    transporter.showMessage(`That's really strange!`, { status: 'error' })
   }
 }

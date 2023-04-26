@@ -1,13 +1,13 @@
-import Link from 'next/link';
-import Widget from './Widget';
+import Link from 'next/link'
+import Widget from './Widget'
 
 const PolicyWidget = () => {
   return (
     <Widget>
-      <div className="relative flex-grow">
+      <div className="relative grow">
         <div className="sticky top-[57px]">
           <div className="bg-transparent p-2">
-            <div className="solid mx-3 flex border-b border-transparent py-2">
+            <div className="mx-3 flex border-b border-solid border-transparent py-2">
               <div className="flex w-[50%] flex-col flex-nowrap px-1">
                 <Link href={'/policies/user-agreement'} className="mx-1 inline-block text-[12px] leading-4">
                   User Agreement
@@ -22,7 +22,7 @@ const PolicyWidget = () => {
         </div>
       </div>
     </Widget>
-  );
-};
+  )
+}
 
-export default PolicyWidget;
+export default PolicyWidget

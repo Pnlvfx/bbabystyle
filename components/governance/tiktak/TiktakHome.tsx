@@ -25,7 +25,7 @@ const TiktakHome = ({ tiktak }: TiktakHomeProps) => {
   const createBgVideo = async () => {
     try {
       if (!translated || !synthetize) {
-        message.setMessage({ value: 'Missing text or image search parameters', status: 'error' })
+        message.showMessage('Missing text or image search parameters', { status: 'error' })
         return
       }
       setLoading(true)

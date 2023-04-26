@@ -78,24 +78,24 @@ const Tweet = ({ tweet, user, media, language }: TweetPageProps) => {
           {media?.type === 'video' && video && image && (
             <>
               <div className="w-full pb-[105.35%]" />
-              <div className="absolute top-0 left-0 bottom-0 right-0">
+              <div className="absolute inset-0">
                 <Video Logo={LOGO} url={video} poster={image} scroll={true} />
               </div>
             </>
           )}
         </div>
         <div className="flex h-[40px] flex-row px-[2px]">
-          <div className="flex flex-grow items-stretch overflow-hidden pr-2 pl-1 text-[12px] font-bold leading-4 text-reddit_text-darker">
+          <div className="flex grow items-stretch overflow-hidden pl-1 pr-2 text-[12px] font-bold leading-4 text-reddit_text-darker">
             <div className="mr-1 flex items-center">
               <button
-                className="flex h-full justify-center items-center min-w-[40px] rounded-[2px] py-2 px-3 hover:bg-reddit_dark-brightest"
+                className="flex h-full min-w-[40px] items-center justify-center rounded-[2px] px-3 py-2 hover:bg-reddit_dark-brightest"
                 type="button"
                 onClick={translate}
               >
                 <span className="max-h-[36px] overflow-hidden text-ellipsis text-left leading-3">Magic</span>
               </button>
               <button
-                className="flex justify-center h-full items-center rounded-[2px] min-w-[40px] py-2 px-3 hover:bg-reddit_dark-brightest"
+                className="flex h-full min-w-[40px] items-center justify-center rounded-[2px] px-3 py-2 hover:bg-reddit_dark-brightest"
                 type="button"
               >
                 <span className="flex max-h-[36px] items-center overflow-hidden text-ellipsis text-left leading-3">

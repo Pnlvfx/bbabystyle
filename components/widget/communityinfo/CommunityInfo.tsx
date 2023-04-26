@@ -19,7 +19,7 @@ const CommunityInfo = ({ community }: CommunityInfoProps) => {
   return (
     <>
       <div className={`flex px-3 pb-3 text-[10px] font-bold leading-3 text-bbaby-text_darker`}>
-        <div className="pt-3 text-[16px] leading-5 font-medium">
+        <div className="pt-3 text-[16px] font-medium leading-5">
           <h2 className="inline text-[14px] font-bold leading-[18px]">About community</h2>
         </div>
         {community.user_is_moderator && (
@@ -28,7 +28,7 @@ const CommunityInfo = ({ community }: CommunityInfoProps) => {
               <MdOutlineAdminPanelSettings className="icon mr-1 inline-block" />
               MOD TOOLS
             </Link>
-            <button className="h-8 align-middle pl-1 pr-[2px]">
+            <button className="h-8 pl-1 pr-[2px] align-middle">
               <MoreIcon />
             </button>
           </div>

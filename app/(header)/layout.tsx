@@ -1,12 +1,14 @@
+import './post.css'
 import Script from 'next/script'
 import { use } from 'react'
 import ssrapis from '../../components/API/ssrapis'
 import ShowCommunity from '../../components/community/ShowCommunity'
 import Header from '../../components/header/Header'
 import HiddenLayout from '../../components/HiddenLayout'
-import './post.css'
+import { cookies } from 'next/headers'
 
 const Layout = ({ children }: ChildrenProps) => {
+  const token = cookies().get('token')
   const session = use(ssrapis.getSession())
   return (
     <>
@@ -17,7 +19,7 @@ const Layout = ({ children }: ChildrenProps) => {
         <div>
           <div id="main_content" className="pt-12">
             <div className="flex min-h-[calc(100vh_-_48px)] flex-col">
-              <div className="z-3">
+              <div className="z-[3]">
                 {/* {session?.device?.mobile && <CookieConsentMobile />} */}
                 {children}
               </div>
@@ -27,7 +29,7 @@ const Layout = ({ children }: ChildrenProps) => {
         </div>
         <ShowCommunity />
       </div>
-      <HiddenLayout />
+      <HiddenLayout token={token} />
       {process.env.NODE_ENV === 'production' && (
         <>
           {/* <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`} />

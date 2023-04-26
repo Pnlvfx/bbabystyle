@@ -1,40 +1,35 @@
-import style from './auth-input.module.css'
+import { DetailedHTMLProps, InputHTMLAttributes } from 'react';
+import style from './auth-input.module.css';
 
 type AuthInputProps = {
-  id: string
-  type: string
-  name: string
-  value: string
+  name: string;
   // eslint-disable-next-line no-unused-vars
-  validate: (input: HTMLInputElement['value']) => void
-  isValid: boolean | null
-  error: string
-  autoComplete?: string
-}
+  isValid: boolean | null;
+  error: string | null;
+};
 
-const AuthInput = ({ id, type, name, value, validate, isValid, error, autoComplete }: AuthInputProps) => {
+const AuthInput = ({
+  name,
+  isValid,
+  error,
+  ...props
+}: AuthInputProps & DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>) => {
   return (
     <fieldset className={`${style.field} ${style.modalUpdate} ${style.required} ${isValid ? style.valid : isValid === false ? style.invalid : ''}`}>
-      <input className='hidden' id={`${id}-prevent`} data-hidden type={type} name={`${name}-prevent`} data-empty />
+      <input className="hidden" id={`${props.id}-prevent`} data-hidden type={props.type} name={`${name}-prevent`} data-empty />
       <input
-        id={id}
+        {...props}
         className={`${style.textInput} ${style.modalUpdate}`}
-        type={type}
-        autoComplete={autoComplete}
         required
         name={name}
-        data-empty={value.length <= 0 ? true : false}
-        value={value}
-        onChange={(e) => {
-          validate(e.target.value)
-        }}
+        data-empty={props.value?.toString().length === 0 ? true : false}
       />
-      <label htmlFor={id} className={`${style.textInputLabel} ${style.modalUpdate}`}>
+      <label htmlFor={props.id} className={`${style.textInputLabel} ${style.modalUpdate}`}>
         {name.charAt(0).toUpperCase() + name.slice(1)}
       </label>
-      {isValid === false && <div className="mt-1 pl-4 text-[12px] text-[#fb133a]">{error}</div>}
+      <div className={style.errorMessage}>{error}</div>
     </fieldset>
-  )
-}
+  );
+};
 
-export default AuthInput
+export default AuthInput;

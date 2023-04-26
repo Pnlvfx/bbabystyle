@@ -13,7 +13,7 @@ const PostContent = ({ post, isListing, setPostForModal }: PostComponent) => {
   return (
     <>
       <div className="absolute left-0 top-0 box-border hidden w-10 flex-col items-center border-l-4 border-solid border-transparent py-2 pr-1 md:flex">
-        <div className="flex-col items-center flex">
+        <div className="flex flex-col items-center">
           <Voting ups={post.ups} postId={post._id} liked={post.liked} />
         </div>
       </div>
@@ -34,15 +34,15 @@ const PostContent = ({ post, isListing, setPostForModal }: PostComponent) => {
             {post?.mediaInfo?.isVideo && post?.mediaInfo?.video && (
               <>
                 <div className="w-full pb-[105.35%]" />
-                <div className="absolute top-0 left-0 bottom-0 right-0">
+                <div className="absolute inset-0">
                   <Video url={post.mediaInfo.video.url} poster={post.mediaInfo.video.url.replace('mp4', 'jpg')} scroll={isListing} Logo={LOGO} />
                 </div>
               </>
             )}
           </div>
           {post.body && (
-            <div className="--max-h-[250px] overflow-hidden pt-[5px] px-2 pb-[10px]">
-              <div className="break-words text-[14px] leading-[21px] mb-[-1px] pb-[1px] ">
+            <div className="--max-h-[250px] overflow-hidden px-2 pb-[10px] pt-[5px]">
+              <div className="mb-[-1px] break-words pb-[1px] text-[14px] leading-[21px] ">
                 <p className="whitespace-pre-wrap">{post.body}</p>
               </div>
             </div>

@@ -22,7 +22,7 @@ const TikTokText = ({ tiktok }: TiktokIDProps) => {
       } else {
         document.execCommand('copy', true, text)
       }
-      message.setMessage({ value: 'Link copied!', time: 8000, status: 'success' })
+      message.showMessage('Link copied!', { time: 8000, status: 'success' })
     } catch (err) {
       catchErrorWithMessage(err, message)
     }
@@ -79,10 +79,10 @@ const TikTokText = ({ tiktok }: TiktokIDProps) => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center w-full h-full">
-        <div className="w-full max-w-[700px] flex flex-col items-center justify-center mt-6">
+      <div className="flex h-full w-full flex-col items-center justify-center">
+        <div className="mt-6 flex w-full max-w-[700px] flex-col items-center justify-center">
           <button
-            className="bg-bbaby-brighter rounded-full border border-bbaby-border px-4 py-3"
+            className="rounded-full border border-bbaby-border bg-bbaby-brighter px-4 py-3"
             onClick={() => {
               copyTextToClipboard(currentTime.toString())
             }}
@@ -105,7 +105,7 @@ const TikTokText = ({ tiktok }: TiktokIDProps) => {
         </div>
       </div>
       <div className="flex items-center justify-center">
-        <div className="flex items-center justify-between w-full max-w-[700px] h-full mt-6">
+        <div className="mt-6 flex h-full w-full max-w-[700px] items-center justify-between">
           <div />
           <button
             disabled={loading}

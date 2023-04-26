@@ -1,40 +1,42 @@
-import { Dispatch, SetStateAction } from "react"
-import { TimeMsgContextProps } from "../../utils/message/TimeMsgContext"
+import { Dispatch, SetStateAction } from 'react'
+import { TimeMsgContextProps } from '../../utils/message/TimeMsgContext'
 
 export const previewImage = (
-    file: Blob, 
-    message: TimeMsgContextProps,
-    setHeight: Dispatch<SetStateAction<number>>,
-    setWidth: Dispatch<SetStateAction<number>>,
-    setSelectedFile: Dispatch<SetStateAction<string | null>>
-    ) => {
-    try {
-      if (!file) return
-      const reader = new FileReader()
-      reader.readAsDataURL(file)
-      reader.onload = (event) => {
-        const image_url = event.target?.result;
-        const image = document.createElement('img')
-        if (!image_url) return message.setMessage({value:'no valid image.', status: 'error'})
-        if (image_url.toString().match('video')) return message.setMessage({value:'Only images are accepted here. Please use the "Add video" button if you want to share a video.', status: 'error'})
-        image.src = image_url.toString()
-        image.onload = (e:any) => {
-          setHeight(e.target?.height)
-          setWidth(e.target?.width)
-        }
-        reader.onloadend = () => {
-          if (!reader.result) return;
-          setSelectedFile(reader.result.toString())
-        }
-        reader.onerror = () => {
-          message.setMessage({value: 'Something went wrong, please try to use a different image.', status: 'error'})
-        }
-        } 
-    } catch (err) {
-      message.setMessage({value: 'Something went wrong, please try to use a different image.', status: 'error'})
+  file: Blob,
+  message: TimeMsgContextProps,
+  setHeight: Dispatch<SetStateAction<number>>,
+  setWidth: Dispatch<SetStateAction<number>>,
+  setSelectedFile: Dispatch<SetStateAction<string | null>>
+) => {
+  try {
+    if (!file) return
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = (event) => {
+      const image_url = event.target?.result
+      const image = document.createElement('img')
+      if (!image_url) return message.showMessage('no valid image.', { status: 'error' })
+      if (image_url.toString().match('video'))
+        return message.showMessage('Only images are accepted here. Please use the "Add video" button if you want to share a video.', {
+          status: 'error',
+        })
+      image.src = image_url.toString()
+      image.onload = (e: any) => {
+        setHeight(e.target?.height)
+        setWidth(e.target?.width)
+      }
+      reader.onloadend = () => {
+        if (!reader.result) return
+        setSelectedFile(reader.result.toString())
+      }
+      reader.onerror = () => {
+        message.showMessage('Something went wrong, please try to use a different image.', { status: 'error' })
+      }
     }
+  } catch (err) {
+    message.showMessage('Something went wrong, please try to use a different image.', { status: 'error' })
+  }
 }
-
 
 // export const importFileandPreview = (file: Blob, revoke?: boolean) => {
 //   return new Promise((resolve, reject) => {

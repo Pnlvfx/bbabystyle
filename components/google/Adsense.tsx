@@ -1,14 +1,11 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 
 interface AdsenseProps {
   adTest?: 'on'
 }
 
 const Adsense = ({ adTest }: AdsenseProps) => {
-  const shouldRequest = useRef(true)
   useEffect(() => {
-    if (!shouldRequest.current) return
-    shouldRequest.current = false
     if (typeof window === undefined) return
     ;((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({})
   }, [])

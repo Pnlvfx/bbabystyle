@@ -11,7 +11,7 @@ const AddVideo = ({ styles }: UserMenuButton) => {
   const fileVideoRef = useRef<HTMLInputElement>(null)
 
   const addVideoToPost = async (e: ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) return message.setMessage({ value: errMessage, status: 'error' })
+    if (!e.target.files) return message.showMessage(errMessage, { status: 'error' })
     const file = e?.target?.files[0]
     // importFileandPreview(file).then((res) => {
     //   setSelectedFile(res);
@@ -53,7 +53,7 @@ const AddVideo = ({ styles }: UserMenuButton) => {
         }}
       >
         <VideoIcon className={styles.submitButtonIcon} />
-        <div className="absolute bottom-0 left-0 right-0 top-0">
+        <div className="absolute inset-0">
           <div className={`${styles.submitButtonTitle} transition-opacity`}>{'Add a video'}</div>
         </div>
         <input className="text-[16px]" type="file" accept="video/*" hidden onChange={addVideoToPost} ref={fileVideoRef} />

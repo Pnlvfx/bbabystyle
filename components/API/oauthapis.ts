@@ -1,9 +1,8 @@
-import { server } from "../../config/config"
-import { CredentialResponse } from "../auth/providers/google/types/googletypes"
-import { catchError } from "./config/apiErrors"
-import { HEADERS } from "./config/clientConfig"
-import { getUserInfo } from "./IPinfo"
-
+import { server } from '../../config/config'
+import { CredentialResponse } from '../auth/providers/google/types/googletypes'
+import { catchError } from './config/apiErrors'
+import { HEADERS } from './config/clientConfig'
+import { getUserInfo } from './IPinfo'
 
 const oauthapis = {
   register: async (email: string, username: string, password: string) => {
@@ -87,7 +86,7 @@ const oauthapis = {
       throw catchError(err)
     }
   },
-  checkEmail: async (email: string) => {
+  checkEmail: async (email: string): Promise<{ valid: boolean; data: string }> => {
     try {
       const url = `${server}/check_email`
       const body = JSON.stringify({ email })
@@ -98,12 +97,52 @@ const oauthapis = {
         credentials: 'include',
       })
       const data = await res.json()
-      return { status: data.status, data: data.msg }
+      return { valid: data.status, data: data.msg }
     } catch (err) {
       if (err instanceof Error) {
-        return { status: false, data: err.message }
+        return { valid: false, data: err.message }
       } else {
-        return { status: false, data: 'API error' }
+        return { valid: false, data: 'API error' }
+      }
+    }
+  },
+  checkUsername: async (username: string): Promise<{ valid: boolean; data: string }> => {
+    try {
+      const url = `${server}/check_username`
+      const body = JSON.stringify({ username })
+      const res = await fetch(url, {
+        method: 'post',
+        body,
+        headers: HEADERS,
+        credentials: 'include',
+      })
+      const data = await res.json()
+      return { valid: data.status, data: data.msg }
+    } catch (err) {
+      if (err instanceof Error) {
+        return { valid: false, data: err.message }
+      } else {
+        return { valid: false, data: 'API error' }
+      }
+    }
+  },
+  checkPass: async (password: string): Promise<{ valid: boolean; data: string }> => {
+    try {
+      const url = `${server}/check_password`
+      const body = JSON.stringify({ password })
+      const res = await fetch(url, {
+        method: 'post',
+        body,
+        headers: HEADERS,
+        credentials: 'include',
+      })
+      const data = await res.json()
+      return { valid: data.status, data: data.msg }
+    } catch (err) {
+      if (err instanceof Error) {
+        return { valid: false, data: err.message }
+      } else {
+        return { valid: false, data: 'API error' }
       }
     }
   },

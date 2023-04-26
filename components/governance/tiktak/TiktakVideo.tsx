@@ -32,7 +32,7 @@ const TiktakVideo = ({ tiktak }: TiktakVideoProps) => {
     try {
       setLoading(true)
       const msg = await tiktakapis.send(tiktak.permalink)
-      message.setMessage({ value: msg.msg, status: 'success' })
+      message.showMessage(msg.msg, { status: 'success' })
       setLoading(false)
     } catch (err) {
       setLoading(false)
@@ -48,10 +48,10 @@ const TiktakVideo = ({ tiktak }: TiktakVideoProps) => {
       <div />
       <button
         disabled={loading}
-        className={`flex h-[35px] px-4 py-3 items-center min-w-[150px] justify-center rounded-full border border-bbaby-border bg-bbaby-brighter`}
+        className={`flex h-[35px] min-w-[150px] items-center justify-center rounded-full border border-bbaby-border bg-bbaby-brighter px-4 py-3`}
         onClick={send}
       >
-        {loading ? <Spinner /> : <p className="font-semibold text-[14px]">Send to telegram</p>}
+        {loading ? <Spinner /> : <p className="text-[14px] font-semibold">Send to telegram</p>}
       </button>
     </div>
   )

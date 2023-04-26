@@ -16,19 +16,19 @@ interface HeaderProps {
 
 const Header = ({ session }: HeaderProps) => {
   return (
-    <header id="myHeader" className="mt-0 h-12 items-center inline-flex flex-row z-[80] right-0 left-0 top-0 fixed">
-      <div className="items-center inline-flex bg-reddit_dark-brighter box-border border-b border-bbaby-border flex-grow flex-row px-2 md:px-5">
-        <div className="inline-flex flex-grow items-center">
-          <div className="inline-flex items-center flex-row flex-grow">
-            <div className="h-12 items-center flex" />
+    <header id="myHeader" className="fixed inset-x-0 top-0 z-[80] mt-0 inline-flex h-12 flex-row items-center">
+      <div className="box-border inline-flex grow flex-row items-center border-b border-bbaby-border bg-reddit_dark-brighter px-2 md:px-5">
+        <div className="inline-flex grow items-center">
+          <div className="inline-flex grow flex-row items-center">
+            <div className="flex h-12 items-center" />
             <Link href={'/'} aria-label="Home" className="inline-flex flex-row items-center" scroll={true}>
-              <div className="pl-0 pr-2 py-2 flex-none">
+              <div className="flex-none py-2 pl-0 pr-2">
                 <Image src={LOGO} width={32} height={32} alt={'logo'} priority />
               </div>
               {!session?.device?.mobile ? (
-                <TextLogo className="hidden lg:block h-[18px] mr-5 w-auto" />
+                <TextLogo className="mr-5 hidden h-[18px] w-auto lg:block" />
               ) : (
-                <TextLogo className="block h-[18px] mr-5 w-auto" />
+                <TextLogo className="mr-5 block h-[18px] w-auto" />
               )}
             </Link>
             {session?.user && !session?.device?.mobile && (
@@ -37,23 +37,23 @@ const Header = ({ session }: HeaderProps) => {
               </div>
             )}
             {!session?.device?.mobile && (
-              <div className="flex-grow my-0 max-w-[690px] mx-auto">
+              <div className="mx-auto my-0 max-w-[690px] grow">
                 <SearchBar />
               </div>
             )}
           </div>
         </div>
-        <div className="items-center flex-row flex-grow-0 inline-flex">
-          <div className="flex items-center flex-row">
+        <div className="inline-flex grow-0 flex-row items-center">
+          <div className="flex flex-row items-center">
             {session?.user ? (
               <>
                 {session.user.role === 1 && <GovButton />}
                 <NotificationButton />
                 <SubmitButton />
-                <span className="md:ml-2 h-8" />
+                <span className="h-8 md:ml-2" />
               </>
             ) : (
-              <div className="hidden sm:flex items-center flex-row">
+              <div className="hidden flex-row items-center sm:flex">
                 <LoginButtons />
               </div>
             )}

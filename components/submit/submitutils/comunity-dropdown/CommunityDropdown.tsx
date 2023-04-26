@@ -91,7 +91,7 @@ const CommunityDropdown = () => {
             <div className="flex-1 pl-2">
               <input
                 spellCheck="false"
-                className={`w-full bg-reddit_dark-brighter bg-transparent align-middle text-[16px] font-medium leading-[18px] outline-none placeholder:text-[#d7dadc] md:text-[14px]`}
+                className="w-full bg-transparent align-middle text-[16px] font-medium leading-[18px] outline-none placeholder:text-[#d7dadc] md:text-[14px]"
                 placeholder={show ? 'Search communities' : 'Choose a community'}
                 value={searchValue}
                 onChange={chooseCommunity}
@@ -100,8 +100,8 @@ const CommunityDropdown = () => {
             <HiChevronDown className="h-[22px] w-[22px] cursor-pointer align-middle text-[20px] leading-5 text-reddit_text-darker" />
           </div>
           {show && (
-            <div className={'absolute z-30 w-full md:w-[300px] overflow-hidden bg-bbaby-brighter'}>
-              <div className={`solid max-h-[400px] overflow-y-scroll border border-bbaby-border bg-bbaby-brighter`}>
+            <div className={'absolute z-[11] w-full overflow-hidden bg-bbaby-brighter md:w-[300px]'}>
+              <div className={`max-h-[400px] overflow-y-scroll border border-solid border-bbaby-border bg-bbaby-brighter`}>
                 <div className="p-3 text-sm font-bold">
                   <p className="px-2 py-1 text-[11px] font-bold text-bbaby-text_darker">YOUR PROFILE</p>
                   {session?.user && (

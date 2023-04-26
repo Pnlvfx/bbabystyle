@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers'
 import { clientUrl } from '../../../config/config'
-import {headers} from 'next/headers'
+import { headers } from 'next/headers'
 
 export const getHeaders = () => {
   const headerList = headers()
@@ -13,7 +13,7 @@ export const getHeaders = () => {
     'Content-Type': 'application/json',
     origin: clientUrl,
     'user-agent': user_agent || '',
-    'Accept-Language': lang || ''
+    'Accept-Language': lang || '',
   }
   return _headers
 }
