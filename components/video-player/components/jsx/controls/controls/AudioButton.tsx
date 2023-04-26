@@ -15,14 +15,14 @@ const AudioButton = () => {
         toggleMute()
         e.stopPropagation()
       }}
-      className="outline-none w-9 h-9 flex justify-center items-center"
+      className="flex h-9 w-9 items-center justify-center outline-none"
     >
       <VideoMuteIcon
-        className="w-[18px] h-[18px] transition-opacity"
+        className="h-[18px] w-[18px] transition-opacity"
         style={{ display: isMuted ? 'block' : 'none', opacity: isMuted ? '100' : '0' }}
       />
       <VideoAudioIcon
-        className="w-[18px] h-[18px] transition-opacity"
+        className="h-[18px] w-[18px] transition-opacity"
         style={{ display: isMuted ? 'none' : 'block', opacity: isMuted ? '0' : '100' }}
       />
     </button>

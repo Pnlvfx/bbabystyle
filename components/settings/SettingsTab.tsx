@@ -12,14 +12,14 @@ const SettingsTab = () => {
   }, [pathname])
 
   return (
-    <div role={'tablist'} className="max-w-[1200px] mx-auto px-5 border-b border-bbaby-border">
+    <div role={'tablist'} className="mx-auto max-w-[1200px] border-b border-bbaby-border px-5">
       <Link
         href={'/settings/account'}
         className={`${
           active === '/settings' || active === '/settings/account'
             ? 'border-b-[3px] border-[#d7dadc] text-bbaby-text'
-            : 'text-bbaby-text_darker border-b-none'
-        } text-[14px] font-bold inline-block leading-[unset] mr-2 pt-[15px] p-3`}
+            : 'border-none text-bbaby-text_darker'
+        } mr-2 inline-block p-3 pt-[15px] text-[14px] font-bold leading-[unset]`}
         role="tab"
       >
         Account
@@ -27,8 +27,8 @@ const SettingsTab = () => {
       <Link
         href={'/settings/profile'}
         className={`${
-          active === '/settings/profile' ? 'border-b-[3px] border-[#d7dadc] text-bbaby-text' : 'text-bbaby-text_darker border-b-none'
-        } text-[14px] font-bold inline-block leading-[unset] mr-2 pt-[15px] p-3`}
+          active === '/settings/profile' ? 'border-b-[3px] border-[#d7dadc] text-bbaby-text' : 'border-none text-bbaby-text_darker'
+        } mr-2 inline-block p-3 pt-[15px] text-[14px] font-bold leading-[unset]`}
         role="tab"
       >
         Profile
@@ -36,8 +36,8 @@ const SettingsTab = () => {
       <Link
         href={'/settings/privacy'}
         className={`${
-          active === '/settings/privacy' ? 'border-b-[3px] border-[#d7dadc] text-bbaby-text' : 'text-bbaby-text_darker border-b-none'
-        } text-[14px] font-bold inline-block leading-[unset] mr-2 pt-[15px] p-3`}
+          active === '/settings/privacy' ? 'border-b-[3px] border-[#d7dadc] text-bbaby-text' : 'border-none text-bbaby-text_darker'
+        } mr-2 inline-block p-3 pt-[15px] text-[14px] font-bold leading-[unset]`}
         role="tab"
       >
         Safety & Privacy

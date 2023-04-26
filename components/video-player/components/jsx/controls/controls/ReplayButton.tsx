@@ -16,10 +16,10 @@ const ReplayButton = () => {
 
   return (
     <div className="h-auto w-auto opacity-95">
-      <button className="flex items-center justify-center outline-none bg-transparent" onClick={replayVideo}>
-        <VideoCenterReplayIcon className="w-[50px] h-[50px] overflow-hidden" />
+      <button className="flex items-center justify-center bg-transparent outline-none" onClick={replayVideo}>
+        <VideoCenterReplayIcon className="h-[50px] w-[50px] overflow-hidden" />
         <span
-          className="flex items-center text-[12px] font-bold text-white ml-[10px] text-center leading-6"
+          className="ml-[10px] flex items-center text-center text-[12px] font-bold leading-6 text-white"
           style={{
             letterSpacing: '.5px',
           }}

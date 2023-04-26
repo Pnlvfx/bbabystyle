@@ -24,13 +24,13 @@ const Controls = ({ loading, Logo }: VideoControls) => {
     <>
       <div className="absolute flex h-full w-full items-center justify-center bg-[rgba(0,0,0,.4)]">{isEnded && !loading && <ReplayButton />}</div>
       {!isPlaying && !isEnded && !loading && (
-        <div onClick={playVideo} className="absolute top-[50%] left-[50%] ml-[-30px] mt-[-30px] z-10 cursor-pointer">
+        <div onClick={playVideo} className="absolute left-[50%] top-[50%] z-10 ml-[-30px] mt-[-30px] cursor-pointer">
           <VideoCenterPlayIcon />
         </div>
       )}
       {loading && (
-        <div className="absolute top-[50%] left-[50%] ml-[-30px] mt-[-30px] z-10 cursor-pointer">
-          <LoadingIcon className="animate-spin mx-auto w-[50px] h-[50px]" />
+        <div className="absolute left-[50%] top-[50%] z-10 ml-[-30px] mt-[-30px] cursor-pointer">
+          <LoadingIcon className="mx-auto h-[50px] w-[50px] animate-spin" />
         </div>
       )}
       <DownControls Logo={Logo} />

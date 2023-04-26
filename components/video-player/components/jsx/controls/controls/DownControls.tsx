@@ -28,20 +28,20 @@ const DownControls = ({ Logo }: { Logo: string }) => {
   }
 
   return (
-    <div className="absolute flex justify-between items-end bottom-0 left-0 right-0 p-2 align-baseline m-0">
-      <div style={{ background: 'linear-gradient(180deg, transparent, rgba(0, 0, 0, .5)' }} className="absolute h-full left-0 right-0 bottom-0" />
+    <div className="absolute inset-x-0 bottom-0 m-0 flex items-end justify-between p-2 align-baseline">
+      <div style={{ background: 'linear-gradient(180deg, transparent, rgba(0, 0, 0, .5)' }} className="absolute inset-x-0 bottom-0 h-full" />
       <div className={`video-button ${controls ? 'opacity-0 md:opacity-100' : 'opacity-0'} ml-1`}>
         <div>
-          <Link href={'/'} className="m-0 p-0 flex justify-center items-center w-[36px] h-[36px] align-baseline">
-            <div className="w-6 h-6 flex justify-center items-center">
+          <Link href={'/'} className="m-0 flex h-[36px] w-[36px] items-center justify-center p-0 align-baseline">
+            <div className="flex h-6 w-6 items-center justify-center">
               <Image src={Logo} height={24} width={24} alt="Logo" />
             </div>
           </Link>
         </div>
       </div>
       <div className={`video-button ${controls ? 'opacity-0 md:opacity-100' : 'opacity-0'}`}>
-        <button onClick={playVideo} aria-label="Play" className="outline-none w-9 h-9 flex justify-center items-center">
-          {isPlaying ? <VideoPauseFromBarIcon className="h-[18px] w-[18px] block" /> : <VideoPlayFromBarIcon className="h-[18px] w-[18px] block" />}
+        <button onClick={playVideo} aria-label="Play" className="flex h-9 w-9 items-center justify-center outline-none">
+          {isPlaying ? <VideoPauseFromBarIcon className="block h-[18px] w-[18px]" /> : <VideoPlayFromBarIcon className="block h-[18px] w-[18px]" />}
         </button>
       </div>
       <div className={`time-button ${controls ? 'opacity-0 md:opacity-100' : 'opacity-0'}`}>{played}</div>
@@ -51,13 +51,13 @@ const DownControls = ({ Logo }: { Logo: string }) => {
         <div className="absolute">
           <div></div>
         </div>
-        <button className="outline-none w-9 h-9 flex justify-center items-center" aria-label="settings" aria-haspopup="true">
-          <VideoSettingsIcon className="w-[18px] h-[18px]" />
+        <button className="flex h-9 w-9 items-center justify-center outline-none" aria-label="settings" aria-haspopup="true">
+          <VideoSettingsIcon className="h-[18px] w-[18px]" />
         </button>
       </div>
       <div className={`video-button ${controls ? 'opacity-0 md:opacity-100' : 'opacity-0'}`}>
-        <button onClick={toggleFullScreenMode} className="outline-none w-9 h-9 flex justify-center items-center" aria-label="Fullscreen">
-          <VideoFullscreenIcon className="w-[18px] h-[18px]" />
+        <button onClick={toggleFullScreenMode} className="flex h-9 w-9 items-center justify-center outline-none" aria-label="Fullscreen">
+          <VideoFullscreenIcon className="h-[18px] w-[18px]" />
         </button>
       </div>
       <div className={`video-button [&>div:nth-child(1)]:hover:md:block [&>div:nth-child(1)]:hover:md:opacity-100`}>
@@ -66,11 +66,11 @@ const DownControls = ({ Logo }: { Logo: string }) => {
             e.preventDefault()
             e.stopPropagation()
           }}
-          className="rounded-[4px] absolute m-0 h-[96px] w-6 bottom-[100%] bg-[rgba(0,0,0,.6)] cursor-pointer hidden opacity-0 transition-opacity"
+          className="absolute bottom-[100%] m-0 hidden h-[96px] w-6 cursor-pointer rounded-[4px] bg-[rgba(0,0,0,.6)] opacity-0 transition-opacity"
         >
-          <div ref={volumeSliderContainer} className="bg-[#ffffff80] top-2 bottom-2 my-[6px] mx-auto w-1 absolute left-0 right-0 rounded-sm">
-            <div ref={volumeSlider} className="bg-[#0079d3] absolute bottom-0 w-1 my-0 mx-auto left-0 right-0 rounded-sm" style={{ height: '0%' }}>
-              <div className="absolute left-[-4px] top-[-6px] mx-auto w-3 h-3 bg-[#fff]" style={{ borderRadius: '50%' }} />
+          <div ref={volumeSliderContainer} className="absolute inset-x-0 inset-y-2 mx-auto my-[6px] w-1 rounded-sm bg-[#ffffff80]">
+            <div ref={volumeSlider} className="absolute inset-x-0 bottom-0 mx-auto my-0 w-1 rounded-sm bg-[#0079d3]" style={{ height: '0%' }}>
+              <div className="absolute left-[-4px] top-[-6px] mx-auto h-3 w-3 bg-[#fff]" style={{ borderRadius: '50%' }} />
             </div>
           </div>
         </div>

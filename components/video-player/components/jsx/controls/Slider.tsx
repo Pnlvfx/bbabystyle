@@ -8,11 +8,11 @@ const Slider = () => {
     <div
       className={`${
         controls ? 'opacity-0 md:opacity-100' : 'opacity-0'
-      } relative z-[4] m-auto flex h-auto w-full flex-grow items-center align-baseline outline-none transition-opacity`}
+      } relative z-[4] m-auto flex h-auto w-full grow items-center align-baseline outline-none transition-opacity`}
     >
       <div
         ref={timelineRef}
-        className="relative mr-2 ml-2 h-4 flex-grow cursor-pointer"
+        className="relative mx-2 h-4 grow cursor-pointer"
         onClick={(e) => {
           e.preventDefault()
           e.stopPropagation()
@@ -31,7 +31,7 @@ const Slider = () => {
             marginLeft: `calc(${progressPosition * 100}% - 8px)`,
             opacity: 0,
           }}
-          className="absolute bottom-0 top-0 h-4 w-4 bg-[#0079d3] transition-opacity"
+          className="absolute inset-y-0 h-4 w-4 bg-[#0079d3] transition-opacity"
         />
       </div>
     </div>

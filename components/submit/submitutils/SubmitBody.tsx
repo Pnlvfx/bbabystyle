@@ -37,7 +37,7 @@ const Body = () => {
         }}
       >
         <div
-          className={`solid relative rounded-[4px] border ${activeClassBody ? 'border-reddit_text' : 'border-reddit_border'}`}
+          className={`relative rounded-[4px] border border-solid ${activeClassBody ? 'border-reddit_text' : 'border-reddit_border'}`}
           onClick={() => setActiveClassBody(true)}
         >
           <div className="sticky top-12 z-[8] box-border flex flex-nowrap items-center rounded-[4px] bg-[#272729]">
@@ -45,17 +45,17 @@ const Body = () => {
           </div>
           <div className="relative overflow-auto">
             <div className="relative z-[1]">
-              <div className="min-h-[122px] resize-y overflow-hidden whitespace-pre-wrap break-words rounded-[4px] py-2 px-4 text-[14px] leading-[21px] outline-none">
+              <div className="min-h-[122px] resize-y overflow-hidden whitespace-pre-wrap break-words rounded-[4px] px-4 py-2 text-[14px] leading-[21px] outline-none">
                 <div></div>
                 {selectedFile && (
                   <>
                     <figure>
                       <ClickOutHandler onClickOut={figureClickOut}>
-                        <div className="mt-2 mb-1">
+                        <div className="mb-1 mt-2">
                           {showDeleteOptions && (
                             <div className="sticky bottom-0 top-10 z-10 flex h-0 justify-center" onClick={deleteCurrentImage}>
                               <div
-                                className="felx-row box-border flex h-[30px] translate-y-[-40px] items-center rounded-[4px] bg-[#272729] hover:bg-bbaby-hover"
+                                className="box-border flex h-[30px] translate-y-[-40px] flex-row items-center rounded-[4px] bg-[#272729] hover:bg-bbaby-hover"
                                 style={{
                                   boxShadow: '0 0 0 1px #343536, 0 1px 10px #343536',
                                 }}
@@ -78,16 +78,14 @@ const Body = () => {
                                 <div
                                   className={`select-all ${
                                     activeFigure && 'shadow-[0_0_0_4px_#d7dadc]'
-                                  } relative flex-grow justify-center overflow-hidden rounded-[8px] transition-shadow ${
-                                    isVideo && 'block pt-[56.25%]'
-                                  }`}
+                                  } relative grow justify-center overflow-hidden rounded-[8px] transition-shadow ${isVideo && 'block pt-[56.25%]'}`}
                                 >
                                   {isVideo && (
                                     <>
-                                      <div className="absolute bottom-0 left-0 right-0 top-0 z-[1] opacity-100">
+                                      <div className="absolute inset-0 z-[1] opacity-100">
                                         <div className="relative h-full max-h-[100%] max-w-[100%] cursor-default select-none overflow-hidden whitespace-nowrap">
                                           <Video url={selectedFile} poster={thumbnail as string} Logo={LOGO} />
-                                          <div className="absolute top-0 bottom-0 left-0 right-0" />
+                                          <div className="absolute inset-0" />
                                         </div>
                                       </div>
                                     </>
@@ -97,7 +95,7 @@ const Body = () => {
                                       <picture>
                                         <img draggable={false} src={selectedFile} alt={''} className="z-0 max-w-[100%] self-center rounded-[8px]" />
                                       </picture>
-                                      <div className="absolute bottom-0 left-0 right-0 z-10 h-[64px] opacity-0"></div>
+                                      <div className="absolute inset-x-0 bottom-0 z-10 h-[64px] opacity-0"></div>
                                     </>
                                   )}
                                 </div>
@@ -120,7 +118,7 @@ const Body = () => {
                 {!selectedFile && ( //body start here
                   <div className="relative whitespace-pre-wrap text-left ">
                     <textarea
-                      className="min-h-[135px] w-full bg-reddit_dark-brighter text-[16px] placeholder-reddit_text-darker outline-none"
+                      className="min-h-[135px] w-full bg-reddit_dark-brighter text-[16px] outline-none placeholder:text-bbaby-text_darker"
                       placeholder={'Text (optional)'}
                       onChange={(e) => setBody(e.target.value)}
                       value={body}
