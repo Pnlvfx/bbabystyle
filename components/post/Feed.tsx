@@ -2,9 +2,8 @@
 import { useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import postapis from '../API/postapis/postapis'
-import Adsense from '../google/Adsense'
-import Post from './Post'
 import PostModal from './PostModal'
+import Posts from './postutils/Posts'
 
 type FeedProps = {
   posts: PostProps[]
@@ -18,7 +17,7 @@ const Feed = ({ posts: ssrPost, community, author, isMobile, session }: FeedProp
   const [posts, setPosts] = useState(ssrPost)
   const [hasMore, setHasMore] = useState(true)
   const [postForModal, setPostForModal] = useState<PostProps>()
-  const ads = [3, 12, 24, 36, 48, 97]
+  const enableAds = false
 
   const getMorePosts = async () => {
     try {
@@ -43,22 +42,7 @@ const Feed = ({ posts: ssrPost, community, author, isMobile, session }: FeedProp
       {postForModal && <PostModal post={postForModal} isMobile={isMobile} onClickOut={closeModal} session={session} />}
       <div>
         <InfiniteScroll dataLength={posts.length} next={getMorePosts} hasMore={hasMore} loader={<div />} endMessage={<></>}>
-          {posts?.length >= 1 ? (
-            posts.map((post, index) => {
-              if (ads.find((ad) => ad === index) && process.env.NODE_ENV === 'production') {
-                return (
-                  <div key={index}>
-                    <div className="post-container" data-is-listing={'true'}>
-                      <Adsense />
-                    </div>
-                  </div>
-                )
-              }
-              return <Post key={post._id} post={post} isListing={true} isMobile={isMobile} setPostForModal={setPostForModal} session={session} />
-            })
-          ) : (
-            <div></div>
-          )}
+          <Posts isMobile={isMobile} posts={posts} session={session} setPostForModal={setPostForModal} enableAds={enableAds} />
         </InfiniteScroll>
       </div>
     </>

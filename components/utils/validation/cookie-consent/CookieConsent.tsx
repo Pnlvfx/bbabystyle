@@ -1,22 +1,22 @@
-"use client";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import userapis from "../../../API/userapis";
-import styles from "./cookie-consent.module.css";
-import useCookieConsent from "./useCookieConsent";
+'use client'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import userapis from '../../../API/userapis'
+import styles from './cookie-consent.module.css'
+import useCookieConsent from './useCookieConsent'
 const CookieConsent = () => {
-  const pathname = usePathname();
-  const notShow = pathname.match("/policies") ? true : false;
-  const { euCookie, setEuCookie } = useCookieConsent(notShow);
+  const pathname = usePathname()
+  const notShow = pathname.match('/policies') ? true : false
+  const { euCookie, setEuCookie } = useCookieConsent(notShow)
 
   const saveEUcookie = async (status: boolean) => {
     try {
-      await userapis.saveEUcookie(status);
-      setEuCookie(true);
+      await userapis.saveEUcookie(status)
+      setEuCookie(true)
     } catch (err) {}
-  };
+  }
 
-  if (euCookie || notShow) return null;
+  if (euCookie || notShow) return null
   return (
     <div>
       <div className={styles.cookieContainer}>
@@ -25,7 +25,7 @@ const CookieConsent = () => {
             className={styles.cookieConsent}
             style={{
               opacity: 1,
-              transform: "translateY(0px) scale(1, 1)",
+              transform: 'translateY(0px) scale(1, 1)',
             }}
           >
             <section className="my-[6px] flex flex-row items-center">
@@ -39,19 +39,19 @@ const CookieConsent = () => {
                 </span>
                 <span className={styles.span}>
                   By rejecting non-essential cookies, Bbabystyle may still use certain cookies to ensure the proper functionality of our platform. For
-                  more information, please see our{" "}
-                  <Link className="text-[#4fbcff]" href={"/policies/cookies"} target="_blank">
+                  more information, please see our{' '}
+                  <Link className="text-[#4fbcff]" href={'/policies/cookies'} target="_blank">
                     Cookie Notice
-                  </Link>{" "}
-                  and our{" "}
-                  <Link className="text-[#4fbcff]" href={"/policies/privacy-policy"} target="_blank">
+                  </Link>{' '}
+                  and our{' '}
+                  <Link className="text-[#4fbcff]" href={'/policies/privacy-policy'} target="_blank">
                     Privacy Policy
-                  </Link>{" "}
+                  </Link>{' '}
                   .
                 </span>
               </div>
             </section>
-            <section className="flex justify-center items-center my-3 min-w-[50%]">
+            <section className="my-3 flex min-w-[50%] items-center justify-center">
               <section>
                 <form onSubmit={(e) => e.preventDefault()}>
                   <button className={styles.cookieButtons} onClick={() => saveEUcookie(true)}>
@@ -71,7 +71,7 @@ const CookieConsent = () => {
         </section>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CookieConsent;
+export default CookieConsent

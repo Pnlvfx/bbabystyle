@@ -17,7 +17,7 @@ const SubmitType = () => {
         <button className={`${buttonClass} ${activeButton !== 'post' && 'text-reddit_text-darker'}`}>
           <HiOutlineDocumentText className="mr-2 h-5 w-5 align-middle leading-5" />
           Post
-          <div className="absolute left-0 right-0 bottom-[-1px] box-border h-[2px] bg-white "> </div>
+          <div className="absolute inset-x-0 bottom-[-1px] box-border h-[2px] bg-white "> </div>
         </button>
         <button disabled className={`${buttonClass} ${activeButton !== 'images&video' && 'text-reddit_text-darker'}`}>
           <AddImageIcon className="mr-2 h-5 w-5 align-middle leading-5" />
