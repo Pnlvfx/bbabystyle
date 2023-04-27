@@ -53,7 +53,7 @@ const Submit = () => {
       <div tabIndex={0} />
       <div className={`${loading ? 'opacity-40' : 'opacity-100'} px-2 md:px-0`}>
         {!minimal && (
-          <div className="my-4 flex border-b border-solid border-reddit_border p-1">
+          <div className="my-4 flex border-b border-solid border-bbaby-border p-1">
             <div className="flex-1 text-[18px] font-medium leading-[22px]">Create a Post</div>
             <button
               role={'button'}
@@ -66,7 +66,7 @@ const Submit = () => {
           </div>
         )}
         <CommunityDropdown />
-        <div className="mb-5 rounded-[5px] bg-reddit_dark-brighter">
+        <div className="mb-5 rounded-[5px] bg-bbaby-brighter">
           {!minimal && <SubmitType />}
           <div className="m-4">
             <SubmitTitle />

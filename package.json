@@ -13,10 +13,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/node": "18.15.11",
-    "@types/react": "18.0.37",
-    "@types/react-dom": "18.0.11",
-    "eslint": "8.38.0",
+    "@react-oauth/google": "^0.11.0",
+    "@types/node": "18.16.1",
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.1",
+    "eslint": "8.39.0",
     "eslint-config-next": "^13.3.1",
     "next": "^13.3.1",
     "react": "18.3.0-next-3d615fc14-20220919",
@@ -25,7 +26,7 @@
     "react-icons": "^4.8.0",
     "react-infinite-scroll-component": "^6.1.0",
     "react-linkify": "^1.0.0-alpha",
-    "sharp": "^0.32.0",
+    "sharp": "^0.32.1",
     "twitter-api-v2": "^1.14.2",
     "typescript": "5.0.4"
   },
@@ -36,9 +37,9 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-tailwindcss": "^3.11.0",
     "eslint-plugin-unused-imports": "^2.0.0",
-    "postcss": "^8.4.22",
-    "prettier": "^2.8.7",
+    "postcss": "^8.4.23",
+    "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.2.7",
-    "tailwindcss": "^3.3.1"
+    "tailwindcss": "^3.3.2"
   }
 }

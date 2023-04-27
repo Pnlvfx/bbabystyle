@@ -6,7 +6,7 @@ import oauthapis from '../API/oauthapis'
 import { Spinner } from '../utils/Spinner'
 import AuthInput from './auth-input/AuthInput'
 import { useModals } from './modal/ModalsProvider'
-import Google from './providers/google/Google'
+import Google from './Google'
 
 const LoginForm = () => {
   const [username, setUsername] = useState('')

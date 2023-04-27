@@ -9,13 +9,21 @@ import { useMessage } from '../../utils/message/TimeMsgContext'
 import UserPoliciesButton from './buttons/user/UserPoliciesButton'
 import Section1 from './Section1'
 import styles from './usermenu.module.css'
+import { useState } from 'react'
+import SwitchButton from '../../utils/buttons/switch/SwitchButton'
 
 const UserMenuIn = ({ session }: WithSession) => {
   const message = useMessage()
   const modals = useModals()
   const pathname = usePathname()
 
-  const doLogout = async () => {
+  const [darkMode, setDarkMode] = useState(true)
+
+  const triggerDark = () => {
+    setDarkMode(!darkMode)
+  }
+
+  const logout = async () => {
     try {
       await oauthapis.logout()
       window.location.href = pathname
@@ -49,11 +57,7 @@ const UserMenuIn = ({ session }: WithSession) => {
         </span>
       </div>
       <div className="mb-3 border-b border-bbaby-border pb-3">
-        <div
-          className={`${styles.active} box-border flex h-10 w-full cursor-pointer items-center justify-between pl-[52px] pr-4 text-[14px] font-medium leading-[18px]`}
-        >
-          <span>Dark Mode</span>
-        </div>
+        <SwitchButton content="Dark Mode" extraClass={styles.active} checked={darkMode} callback={triggerDark} />
       </div>
       <button className={`block h-10 w-full ${styles.active}`} onClick={openCommunityForm}>
         <span className="flex h-full items-center px-5">
@@ -66,7 +70,7 @@ const UserMenuIn = ({ session }: WithSession) => {
         </span>
       </button>
       <UserPoliciesButton />
-      <button className={`box-border block h-10 w-full border-none ${styles.active}`} onClick={doLogout}>
+      <button className={`box-border block h-10 w-full border-none ${styles.active}`} onClick={logout}>
         <span className="flex h-full items-center px-5">
           <span className="mr-3 h-5 w-5 grow-0">
             <BiLogIn className="icon" />

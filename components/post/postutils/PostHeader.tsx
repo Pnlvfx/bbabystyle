@@ -5,37 +5,40 @@ import { MouseEvent } from 'react'
 import TimeAgo from '../../react-time-ago'
 
 type PostHeaderProps = {
-  post: PostProps
+  community: string
+  communityIcon: string
+  createdAt: Date
+  author: string
   isMobile: boolean
   isListing?: boolean
 }
 
-const PostHeader = ({ post, isMobile, isListing }: PostHeaderProps) => {
+const PostHeader = ({ createdAt, community, author, communityIcon, isMobile, isListing }: PostHeaderProps) => {
   const router = useRouter()
 
   const linkToCommunity = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
     e.stopPropagation()
-    router.push(`/b/${post.community.toLowerCase()}`)
+    router.push(`/b/${community.toLowerCase()}`)
   }
 
   const linkToAuthor = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
     e.stopPropagation()
-    router.push(`/user/${post.author.toLowerCase()}`)
+    router.push(`/user/${author.toLowerCase()}`)
   }
 
   return (
     <div className={`relative mx-2 mb-2 flex items-start text-[12px] leading-4`}>
       <div className="flex-none align-baseline">
         <Link
-          href={`/b/${post.community.toLowerCase()}`}
+          href={`/b/${community.toLowerCase()}`}
           aria-label="Community"
           className={`inline align-baseline font-bold leading-5 ${isMobile && isListing && 'articleLink'}`}
           onClick={linkToCommunity}
         >
           <div className="relative mr-1 inline-block h-5 w-5 rounded-full bg-[#4c075a] align-middle">
-            <Image role={'presentation'} src={post.communityIcon} alt="Community Icon" className="rounded-full" width={20} height={20} />
+            <Image role={'presentation'} src={communityIcon} alt="Community Icon" className="rounded-full" width={20} height={20} />
           </div>
         </Link>
       </div>
@@ -43,11 +46,11 @@ const PostHeader = ({ post, isMobile, isListing }: PostHeaderProps) => {
         <div className="inline items-center font-normal leading-4">
           <div className="inline-block flex-none">
             <Link
-              href={`/b/${post.community.toLowerCase()}`}
+              href={`/b/${community.toLowerCase()}`}
               className={`inline align-baseline font-bold leading-5 hover:underline ${isMobile && isListing && 'articleLink'}`}
               onClick={linkToCommunity}
             >
-              {`b/${post.community}`}
+              {`b/${community}`}
             </Link>
           </div>
           <span className="mx-1 align-middle text-[6px] leading-5">-</span>
@@ -55,15 +58,15 @@ const PostHeader = ({ post, isMobile, isListing }: PostHeaderProps) => {
           <div className=" inline-block flex-none text-reddit_text-darker">
             <div>
               <Link
-                href={`/user/${post.author.toLowerCase()}`}
+                href={`/user/${author.toLowerCase()}`}
                 className={`hover:underline ${isMobile && isListing && 'articleLink'}`}
                 onClick={linkToAuthor}
               >
-                {'u/' + post.author}
+                {'u/' + author}
               </Link>
             </div>
           </div>
-          <TimeAgo className="ml-[3px] font-normal text-reddit_text-darker" date={post.createdAt} />
+          <TimeAgo className="ml-[3px] font-normal text-reddit_text-darker" date={createdAt} />
         </div>
       </div>
     </div>

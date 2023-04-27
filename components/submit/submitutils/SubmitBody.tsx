@@ -118,7 +118,7 @@ const Body = () => {
                 {!selectedFile && ( //body start here
                   <div className="relative whitespace-pre-wrap text-left ">
                     <textarea
-                      className="min-h-[135px] w-full bg-reddit_dark-brighter text-[16px] outline-none placeholder:text-bbaby-text_darker"
+                      className="min-h-[135px] w-full bg-bbaby-brighter text-[16px] outline-none placeholder:text-bbaby-text_darker"
                       placeholder={'Text (optional)'}
                       onChange={(e) => setBody(e.target.value)}
                       value={body}

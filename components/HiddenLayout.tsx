@@ -5,13 +5,13 @@ import GoogleAnalytics from './google/GoogleAnalytics'
 import oauthapis from './API/oauthapis'
 import AuthModal from './auth/modal/AuthModal'
 import { useModals } from './auth/modal/ModalsProvider'
-import useGoogleOneTapLogin from './auth/providers/google/hooks/useGoogleOneTapLogin'
 import SearchDropdown from './header/search/SearchDropdown'
 import UserMenu from './header/usermenu/UserMenu'
 import { useMessage } from './utils/message/TimeMsgContext'
 import { catchErrorWithMessage } from './API/config/apiErrors'
 import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies'
 import Analytics from './utils/Analytics'
+import { useGoogleOneTapLogin } from '@react-oauth/google'
 
 const HiddenLayout = ({ token, isMobile, session }: WithSession & { isMobile: boolean; token?: RequestCookie }) => {
   const modals = useModals()

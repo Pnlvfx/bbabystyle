@@ -1,9 +1,8 @@
-import GoogleLogin from './GoogleLogin'
-import oauthapis from '../../../API/oauthapis'
-import { useMessage } from '../../../utils/message/TimeMsgContext'
-import { CredentialResponse } from './types/googletypes'
-import { catchErrorWithMessage } from '../../../API/config/apiErrors'
-import { useModals } from '../../modal/ModalsProvider'
+import oauthapis from '../API/oauthapis'
+import { useMessage } from '../utils/message/TimeMsgContext'
+import { catchErrorWithMessage } from '../API/config/apiErrors'
+import { useModals } from './modal/ModalsProvider'
+import { CredentialResponse, GoogleLogin } from '@react-oauth/google'
 
 const Google = () => {
   const modals = useModals()

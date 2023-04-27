@@ -18,6 +18,7 @@ interface TwitterFeedProps {
 
 const TwitterFeed = ({ tweets: data, language, isMobile, session }: TwitterFeedProps) => {
   const [tweets, setTweets] = useState(data.data)
+
   const sort = useSearchParams().get('sort')
 
   const getMoreTweets = async () => {
@@ -43,6 +44,8 @@ const TwitterFeed = ({ tweets: data, language, isMobile, session }: TwitterFeedP
           return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
         })
       )
+    } else {
+      console.log(sort)
     }
   }, [sort])
 

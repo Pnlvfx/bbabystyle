@@ -1,5 +1,5 @@
+import { CredentialResponse } from '@react-oauth/google'
 import { server } from '../../config/config'
-import { CredentialResponse } from '../auth/providers/google/types/googletypes'
 import { catchError } from './config/apiErrors'
 import { HEADERS } from './config/clientConfig'
 import { getUserInfo } from './IPinfo'

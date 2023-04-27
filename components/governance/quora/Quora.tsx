@@ -37,7 +37,7 @@ const Quora = ({ quora, session }: QuoraPageProps) => {
           <Voting ups={quora.ups} postId={quora._id} liked={null} session={session} />
         </div>
       </div>
-      <div className="w-full bg-reddit_dark-brighter pt-2">
+      <div className="w-full bg-bbaby-brighter pt-2">
         <div className="mx-2">
           <div className="inline align-baseline">
             <h1 className="mb-4 break-words text-lg">{quora.title}</h1>

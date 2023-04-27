@@ -45,6 +45,10 @@
   border-color: rgb(215, 218, 220);
 }
 
+.voting {
+  display: none;
+}
+
 .bar-voting {
   display: flex;
   flex-direction: row;
@@ -56,5 +60,8 @@
 @media (min-width: 640px) {
   .bar-voting {
     display: none;
+  }
+  .voting {
+    display: flex;
   }
 }

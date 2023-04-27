@@ -49,8 +49,8 @@ const Tweet = ({ tweet, user, media, language, isMobile, session }: TweetPagePro
 
   return (
     <>
-      <div className="absolute left-0 top-0 box-border hidden w-10 flex-col items-center border-l-4 border-solid border-transparent py-2 pr-1 md:flex">
-        <div className="hidden flex-col items-center md:flex">
+      <div className="voting absolute left-0 top-0 box-border w-10 flex-col items-center border-l-4 border-solid border-transparent py-2 pr-1">
+        <div className="flex flex-col items-center">
           <Voting ups={tweet.public_metrics?.like_count} postId={tweet.id} liked={null} session={session} />
         </div>
       </div>

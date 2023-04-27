@@ -1,0 +1,26 @@
+.checkBox2e_1as {
+  border-width: 2.25px;
+  border-color: transparent;
+  height: 24px;
+  width: 37.5px;
+  transition: border-color 0.15s linear, background-color 0.15s linear;
+}
+
+.checkBox {
+  height: 19.5px;
+  width: 19.5px;
+  background-color: white;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+  transition: left 0.15s linear;
+  border-radius: 57%;
+}
+
+.checkBox::after {
+  content: '';
+  padding-top: 100%;
+  display: block;
+}
+
+.active:hover {
+  background: rgba(255, 255, 255, 0.04);
+}

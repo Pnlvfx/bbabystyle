@@ -1,10 +1,10 @@
 import './globals.css'
 import { ModalsContextProvider } from '../components/auth/modal/ModalsProvider'
-import { GoogleOAuthProvider } from '../components/auth/providers/google/GoogleOAuthProvider'
 import { TimeMsgContextProvider } from '../components/utils/message/TimeMsgContext'
 import { clientUrl } from '../config/config'
 import { cookies } from 'next/headers'
 import { deviceIsMobile } from '../components/API/config/serverConfig'
+import GoogleProvider from '../components/auth/GoogleProvider'
 
 const RootLayout = ({ children }: ChildrenProps) => {
   const isMobile = deviceIsMobile()
@@ -22,11 +22,11 @@ const RootLayout = ({ children }: ChildrenProps) => {
                 <TimeMsgContextProvider isMobile={isMobile}>{children}</TimeMsgContextProvider>
               </ModalsContextProvider>
             ) : (
-              <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
+              <GoogleProvider>
                 <ModalsContextProvider>
                   <TimeMsgContextProvider isMobile={isMobile}>{children}</TimeMsgContextProvider>
                 </ModalsContextProvider>
-              </GoogleOAuthProvider>
+              </GoogleProvider>
             )}
           </div>
         </div>

@@ -24,9 +24,10 @@ const SubmitShareButtons = () => {
     }
     authorize()
   }, [])
+
   return (
     <div
-      className="relative flex h-24 rounded-b-md border-t border-solid border-reddit_border bg-reddit_dark-brightest px-4 py-2"
+      className="relative flex h-24 rounded-b-md border-t border-solid border-reddit_border bg-bbaby-brightest px-4 py-2"
       style={{ flexFlow: 'column' }}
     >
       <div className="mt-2 flex w-full">

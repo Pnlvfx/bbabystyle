@@ -16,7 +16,7 @@ const Posts = ({ posts, isMobile, session, setPostForModal, enableAds }: PostsPr
     <>
       {posts?.length >= 1 ? (
         posts.map((post, index) => {
-          if (ads.find((ad) => ad === index) && process.env.NODE_ENV === 'production' && enableAds) {
+          if (enableAds && process.env.NODE_ENV === 'production' && ads.find((ad) => ad === index)) {
             return (
               <div key={index}>
                 <div className="post-container" data-is-listing={'true'}>

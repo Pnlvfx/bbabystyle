@@ -56,7 +56,7 @@ const TiktakHome = ({ tiktak }: TiktakHomeProps) => {
         <input
           value={synthetize}
           onChange={(e) => setSynthetize(e.target.value)}
-          className="rounded-md bg-reddit_dark-brighter p-2 text-center font-bold outline-none"
+          className="rounded-md bg-bbaby-brighter p-2 text-center font-bold outline-none"
         />
         <button
           disabled={loading}

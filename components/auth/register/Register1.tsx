@@ -4,7 +4,7 @@ import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react'
 import oauthapis from '../../API/oauthapis'
 import AuthInput from '../auth-input/AuthInput'
 import { useModals } from '../modal/ModalsProvider'
-import Google from '../providers/google/Google'
+import Google from '../Google'
 
 type Register1 = {
   setFase2: Dispatch<SetStateAction<boolean>>
