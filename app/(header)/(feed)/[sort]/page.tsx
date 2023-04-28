@@ -26,7 +26,7 @@ const BestPage = ({ params }: SortedPosts) => {
   const posts = use(
     ssrapis.getPosts(0, {
       limit: 15,
-      sort: params.sort,
+      sort: params.sort === 'best' ? undefined : params.sort,
     })
   )
   return <Feed posts={posts} isMobile={isMobile} session={session} />

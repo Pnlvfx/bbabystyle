@@ -10,13 +10,12 @@ import Widget from '../widget/Widget'
 import Post from './Post'
 
 type PostModalProps = {
-  session: SessionProps | null
-  post: PostProps
+  post: PostComponentProps
   isMobile: boolean
   onClickOut: () => void
 }
 
-const PostModal = ({ post, onClickOut, isMobile, session }: PostModalProps) => {
+const PostModal = ({ post, onClickOut, isMobile, session }: WithSession & PostModalProps) => {
   const router = useRouter()
   const clickOut = (e: MouseEvent<HTMLDivElement | HTMLButtonElement>) => {
     e.preventDefault()
@@ -25,19 +24,19 @@ const PostModal = ({ post, onClickOut, isMobile, session }: PostModalProps) => {
     onClickOut()
   }
   const postRef = useRef(post)
-  const [community, setCommunity] = useState<CommunityProps>()
+  const [communityInfo, setCommunityInfo] = useState<CommunityProps>()
 
   useEffect(() => {
     const get = async () => {
       try {
         const c = await communityapis.getCommunity(postRef.current.community)
-        setCommunity(c)
+        setCommunityInfo(c)
       } catch (err) {}
     }
     get()
   }, [])
 
-  if (!community) {
+  if (!communityInfo) {
     //create a cool loader
     return <div></div>
   }
@@ -93,13 +92,29 @@ const PostModal = ({ post, onClickOut, isMobile, session }: PostModalProps) => {
           }}
         >
           <div className="m-8 mr-3 min-h-[100vh] w-full grow break-words rounded-md bg-bbaby-brighter pb-[1px] md:max-w-[740px]">
-            <Post session={session} post={post} isListing={false} isMobile={isMobile} />
+            <Post
+              session={session}
+              isListing={false}
+              isMobile={isMobile}
+              post={{
+                author: post.author,
+                community: post.community,
+                communityIcon: post.communityIcon,
+                createdAt: post.createdAt,
+                id: post.id,
+                liked: post.liked,
+                numComments: post.numComments,
+                permalink: post.permalink,
+                title: post.title,
+                ups: post.ups,
+              }}
+            />
             <Comment post={post} session={session} />
           </div>
           {!isMobile && (
             <div className="m-8 ml-0 hidden lg:block">
               <Widget>
-                <CommunityInfo community={community} session={session} />
+                <CommunityInfo community={communityInfo} session={session} />
               </Widget>
               <Donations />
             </div>

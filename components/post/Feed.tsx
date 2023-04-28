@@ -16,7 +16,7 @@ type FeedProps = {
 const Feed = ({ posts: ssrPost, community, author, isMobile, session }: FeedProps) => {
   const [posts, setPosts] = useState(ssrPost)
   const [hasMore, setHasMore] = useState(true)
-  const [postForModal, setPostForModal] = useState<PostProps>()
+  const [postForModal, setPostForModal] = useState<PostComponentProps>()
   const enableAds = false
 
   const getMorePosts = async () => {

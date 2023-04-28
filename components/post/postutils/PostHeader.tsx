@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import { MouseEvent } from 'react'
 import TimeAgo from '../../react-time-ago'
 
-type PostHeaderProps = {
+interface PostHeaderProps {
   community: string
   communityIcon: string
   createdAt: Date

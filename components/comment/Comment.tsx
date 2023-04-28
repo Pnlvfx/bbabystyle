@@ -6,13 +6,13 @@ import { useEffect, useRef, useState } from 'react'
 import commentapis from '../API/commentapis'
 import { catchError } from '../API/config/apiErrors'
 
-const Comment = ({ post, session }: WithSession & { post: PostProps }) => {
+const Comment = ({ post, session }: WithSession & { post: PostComponentProps }) => {
   const [comments, setComments] = useState<CommentProps[]>([])
   const postRef = useRef(post)
 
   const getComments = async () => {
     try {
-      const reqcomments = await commentapis.getCommentsFromPost(postRef.current._id)
+      const reqcomments = await commentapis.getCommentsFromPost(postRef.current.id)
       setComments(reqcomments)
     } catch (err) {
       catchError(err)
@@ -25,9 +25,9 @@ const Comment = ({ post, session }: WithSession & { post: PostProps }) => {
 
   return (
     <>
-      {!!post && !!post._id && (
+      {!!post && !!post.id && (
         <div className="relative my-6 lg:mx-10">
-          <CommentForm session={session} rootId={post._id} parentId={post._id} showAuthor={true} getComments={getComments} />
+          <CommentForm session={session} rootId={post.id} parentId={post.id} showAuthor={true} getComments={getComments} />
           <div className="my-4">
             <hr className="border-bbaby-border" />
             {comments.length < 1 && (
@@ -40,7 +40,7 @@ const Comment = ({ post, session }: WithSession & { post: PostProps }) => {
               </div>
             )}
           </div>
-          <Comments comments={comments} parentId={post._id} rootId={post._id} getComments={getComments} session={session} />
+          <Comments comments={comments} parentId={post.id} rootId={post.id} getComments={getComments} session={session} />
         </div>
       )}
     </>

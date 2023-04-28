@@ -1,6 +1,5 @@
 'use client'
 import { useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { MediaObjectV2, TweetV2, UserV2 } from 'twitter-api-v2'
 import Tweet from './Tweet'
@@ -17,9 +16,14 @@ interface TwitterFeedProps {
 }
 
 const TwitterFeed = ({ tweets: data, language, isMobile, session }: TwitterFeedProps) => {
-  const [tweets, setTweets] = useState(data.data)
-
   const sort = useSearchParams().get('sort')
+  const tweets =
+    sort === 'best'
+      ? data.data.sort((a, b) => {
+          if (!a.public_metrics || !b.public_metrics) return 0
+          return b.public_metrics.like_count - a.public_metrics.like_count
+        })
+      : data.data
 
   const getMoreTweets = async () => {
     try {
@@ -27,27 +31,6 @@ const TwitterFeed = ({ tweets: data, language, isMobile, session }: TwitterFeedP
       // setTweets((t) => [...t, ...response])
     } catch (err) {}
   }
-
-  useEffect(() => {
-    if (!sort) return
-    if (sort === 'best') {
-      setTweets((t) =>
-        t.sort((a, b) => {
-          if (!a.public_metrics || !b.public_metrics) return 0
-          return b.public_metrics.like_count - a.public_metrics.like_count
-        })
-      )
-    } else if (sort === 'recently') {
-      setTweets((t) =>
-        t.sort((a, b) => {
-          if (!a.created_at || !b.created_at) return 0
-          return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-        })
-      )
-    } else {
-      console.log(sort)
-    }
-  }, [sort])
 
   return (
     <InfiniteScroll
@@ -64,15 +47,7 @@ const TwitterFeed = ({ tweets: data, language, isMobile, session }: TwitterFeedP
           return m.media_key === tweet.attachments?.media_keys[0]
         })
         if (!user) return
-        return (
-          <div key={tweet.id}>
-            <div>
-              <div className="post-container relative" data-is-listing={'true'}>
-                <Tweet session={session} tweet={tweet} user={user} media={media} language={language} isMobile={isMobile} />
-              </div>
-            </div>
-          </div>
-        )
+        return <Tweet key={tweet.id} session={session} tweet={tweet} user={user} media={media} language={language} isMobile={isMobile} isListing />
       })}
     </InfiniteScroll>
   )

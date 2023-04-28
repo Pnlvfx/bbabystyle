@@ -1,14 +1,13 @@
 import Link from 'next/link'
-import Linkify from './Linkify'
+import Linkify from '../../post/postutils/Linkify'
 
-export interface PostTitleProps {
-  isListing?: boolean
+interface TweetTitleProps {
   title: string
-  permalink: string
+  isListing?: boolean
   isMobile: boolean
 }
 
-const PostTitle = ({ title, permalink, isMobile, isListing }: PostTitleProps) => {
+const TweetTitle = ({ title, isListing, isMobile }: TweetTitleProps) => {
   const titleClass = `text-[18px] leading-[22px] words-breaks inline whitespace-pre-wrap text-[#D7DADC]`
   return (
     <div className="mx-2">
@@ -16,7 +15,7 @@ const PostTitle = ({ title, permalink, isMobile, isListing }: PostTitleProps) =>
         {isListing ? (
           isMobile ? (
             <div className="pointer-events-none box-border block overflow-hidden break-words">
-              <Link href={permalink} className={titleClass}>
+              <Link href={'/'} className={titleClass}>
                 <Linkify>{title}</Linkify>
               </Link>
             </div>
@@ -35,4 +34,4 @@ const PostTitle = ({ title, permalink, isMobile, isListing }: PostTitleProps) =>
   )
 }
 
-export default PostTitle
+export default TweetTitle

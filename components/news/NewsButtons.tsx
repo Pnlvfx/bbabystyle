@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation'
 import { Dispatch, SetStateAction } from 'react'
 import { AiOutlineRead } from 'react-icons/ai'
 import { FcVideoProjector } from 'react-icons/fc'
-import ShareButton from '../post/postutils/ShareButton'
+import ShareButton from '../post/buttons/ShareButton'
 
 interface NewsButtonsProps {
   news: NewsProps

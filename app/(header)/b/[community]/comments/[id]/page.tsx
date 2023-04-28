@@ -26,19 +26,34 @@ const PostPage = ({ params }: PostPageProps) => {
 
   if (!post) return <PostNotFound />
 
+  const componentPost = {
+    author: post.author,
+    community: post.community,
+    communityIcon: post.communityIcon,
+    createdAt: post.createdAt,
+    id: post._id,
+    liked: post.liked,
+    numComments: post.numComments,
+    permalink: post.permalink,
+    title: post.title,
+    ups: post.ups,
+    body: post.body,
+    mediaInfo: post.mediaInfo,
+  }
+
   return (
     <>
       {isMobile ? (
         <div className="mb-2 bg-bbaby-brighter pt-2">
-          <Post isMobile={isMobile} post={post} isListing={false} session={session} />
-          <Comment session={session} post={post} />
+          <Post isMobile={isMobile} isListing={false} session={session} post={componentPost} />
+          <Comment session={session} post={componentPost} />
         </div>
       ) : (
         <div className="flex min-h-[calc(100vh_-_48px)] flex-col">
           <div className="flex max-w-[1600px] flex-row justify-center md:px-6 md:py-5 lg:mx-auto">
             <div className="w-full max-w-[750px] flex-none break-words rounded-md bg-bbaby-brighter lg:mr-4 lg:w-7/12 xl:w-8/12 2xl:w-[750px]">
-              <Post isMobile={isMobile} post={post} isListing={false} session={session} />
-              <Comment session={session} post={post} />
+              <Post isMobile={isMobile} isListing={false} session={session} post={componentPost} />
+              <Comment session={session} post={componentPost} />
             </div>
             {post.community_detail && (
               <div className="hidden lg:block">

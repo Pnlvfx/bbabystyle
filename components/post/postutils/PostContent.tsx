@@ -7,12 +7,12 @@ import PostTitle from './PostTitle'
 import Voting from './Voting'
 import Video from '../../video-player'
 
-const PostContent = ({ post, isListing, isMobile, setPostForModal, session }: PostComponent) => {
+const PostContent = ({ post, isListing, isMobile, setPostForModal, session }: WithSession & PostComponent) => {
   return (
     <>
       <div className="voting absolute left-0 top-0 box-border w-10 flex-col items-center border-l-4 border-solid border-transparent py-2 pr-1">
         <div className="flex flex-col items-center">
-          <Voting ups={post.ups} postId={post._id} liked={post.liked} session={session} />
+          <Voting ups={post.ups} postId={post.id} liked={post.liked} session={session} />
         </div>
       </div>
       <div className="relative bg-bbaby-brighter pt-2">
@@ -37,7 +37,7 @@ const PostContent = ({ post, isListing, isMobile, setPostForModal, session }: Po
             isMobile={isMobile}
           />
         )}
-        <PostTitle isListing={isListing} isMobile={isMobile} post={post} />
+        <PostTitle isListing={isListing} isMobile={isMobile} title={post.title} permalink={post.permalink} />
         <div className="mt-2">
           <div className="relative max-h-[512px] overflow-hidden">
             {post?.mediaInfo?.isImage && post?.mediaInfo?.image && (
@@ -61,15 +61,13 @@ const PostContent = ({ post, isListing, isMobile, setPostForModal, session }: Po
           )}
         </div>
         {isMobile ? (
-          <>
-            {isListing ? (
-              <footer className="pointer-events-none">
-                <PostButtons post={post} isListing={isListing} isMobile={isMobile} setPostForModal={setPostForModal} session={session} />
-              </footer>
-            ) : (
+          isListing ? (
+            <footer className="pointer-events-none">
               <PostButtons post={post} isListing={isListing} isMobile={isMobile} setPostForModal={setPostForModal} session={session} />
-            )}
-          </>
+            </footer>
+          ) : (
+            <PostButtons post={post} isListing={isListing} isMobile={isMobile} setPostForModal={setPostForModal} session={session} />
+          )
         ) : (
           <PostButtons post={post} isListing={isListing} isMobile={isMobile} setPostForModal={setPostForModal} session={session} />
         )}

@@ -3,14 +3,13 @@ import { BiDownvote, BiUpvote } from 'react-icons/bi'
 import postapis from '../../API/postapis/postapis'
 import { useModals } from '../../auth/modal/ModalsProvider'
 
-type Voting = {
+interface VotingProps {
   ups: number
   postId: string
   liked: boolean | null
-  session: SessionProps | null
 }
 
-const Voting = ({ ups, postId, session, liked }: Voting) => {
+const Voting = ({ ups, postId, session, liked }: WithSession & VotingProps) => {
   let dir = 0 //vote
   const [upVote, setUpVote] = useState(ups)
   const modals = useModals()

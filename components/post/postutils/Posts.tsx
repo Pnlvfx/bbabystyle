@@ -6,15 +6,14 @@ const ads = [3, 12, 24, 36, 48, 97]
 interface PostsProps {
   posts: PostProps[]
   isMobile: boolean
-  session: SessionProps | null
-  setPostForModal: Dispatch<SetStateAction<PostProps | undefined>>
+  setPostForModal: Dispatch<SetStateAction<PostComponentProps | undefined>>
   enableAds: boolean
 }
 
-const Posts = ({ posts, isMobile, session, setPostForModal, enableAds }: PostsProps) => {
+const Posts = ({ posts, isMobile, session, setPostForModal, enableAds }: WithSession & PostsProps) => {
   return (
     <>
-      {posts?.length >= 1 ? (
+      {posts?.length > 0 ? (
         posts.map((post, index) => {
           if (enableAds && process.env.NODE_ENV === 'production' && ads.find((ad) => ad === index)) {
             return (
@@ -25,7 +24,29 @@ const Posts = ({ posts, isMobile, session, setPostForModal, enableAds }: PostsPr
               </div>
             )
           }
-          return <Post key={post._id} post={post} isListing={true} isMobile={isMobile} setPostForModal={setPostForModal} session={session} />
+          return (
+            <Post
+              key={post._id}
+              isListing={true}
+              isMobile={isMobile}
+              setPostForModal={setPostForModal}
+              session={session}
+              post={{
+                author: post.author,
+                community: post.community,
+                communityIcon: post.communityIcon,
+                createdAt: post.createdAt,
+                id: post._id,
+                liked: post.liked,
+                numComments: post.numComments,
+                permalink: post.permalink,
+                title: post.title,
+                ups: post.ups,
+                body: post.body,
+                mediaInfo: post.mediaInfo,
+              }}
+            />
+          )
         })
       ) : (
         <div></div>

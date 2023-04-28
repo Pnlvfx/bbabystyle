@@ -7,21 +7,21 @@ import { useMessage } from '../../utils/message/TimeMsgContext'
 import { catchErrorWithMessage } from '../../API/config/apiErrors'
 import { MoreIcon } from '../../utils/svg/SVG'
 
-type MoreButtonProps = {
-  post: PostProps
-  session: SessionProps | null
+interface MoreButtonProps {
+  author: string
+  postId: string
   isMobile: boolean
   isListing?: boolean
 }
 
-const MoreButton = ({ post, isMobile, session, isListing }: MoreButtonProps) => {
+const MoreButton = ({ postId, author, isMobile, session, isListing }: WithSession & MoreButtonProps) => {
   const router = useRouter()
   const [show, setShow] = useState(false)
   const message = useMessage()
 
   const deletePost = async () => {
     try {
-      await postapis.deletePost(post._id)
+      await postapis.deletePost(postId)
       router.refresh()
     } catch (err) {
       catchErrorWithMessage(err, message)
@@ -47,7 +47,7 @@ const MoreButton = ({ post, isMobile, session, isListing }: MoreButtonProps) => 
           </button>
           <div className={`absolute z-20 ${show ? 'block' : 'hidden'}`}>
             <div className="flex rounded-md border border-reddit_border bg-reddit_dark-brighter">
-              {session?.user?.username === post.author ||
+              {session?.user?.username === author ||
                 (session?.user?.role === 1 && (
                   <button
                     className="flex w-auto p-2 text-reddit_text-darker hover:bg-blue-900 lg:w-[200px]"

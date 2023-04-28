@@ -18,14 +18,17 @@ const Home = () => {
 
 export default Home
 
-const title = 'Bbabystyle - Free speech'
-const description =
-  "With Bbabystyle, you can build your own community, share your thoughts and ideas, and participate in lively debates. Whether you're looking to make new friends, learn from others, or simply express yourself, Bbabystyle provides the perfect platform for you to do so. Join the conversation today and see what the community has to offer!"
-const images = [
-  {
-    url: `${clientUrl}/imagePreview.png`,
-    width: 256,
-    height: 256,
-  },
-]
-export const metadata = getMetadata(title, description, clientUrl, 'website', 'summary', images)
+export const metadata = getMetadata(
+  'Bbabystyle - Free speech',
+  "With Bbabystyle, you can build your own community, share your thoughts and ideas, and participate in lively debates. Whether you're looking to make new friends, learn from others, or simply express yourself, Bbabystyle provides the perfect platform for you to do so. Join the conversation today and see what the community has to offer!",
+  clientUrl,
+  'website',
+  'summary',
+  [
+    {
+      url: `${clientUrl}/imagePreview.png`,
+      width: 256,
+      height: 256,
+    },
+  ]
+)

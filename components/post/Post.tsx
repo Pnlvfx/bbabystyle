@@ -6,14 +6,13 @@ import { openPost } from './postutils/hooks'
 import PostContent from './postutils/PostContent'
 
 export interface PostComponent {
-  post: PostProps
+  post: PostComponentProps
   isListing: boolean
-  setPostForModal?: Dispatch<SetStateAction<PostProps | undefined>>
+  setPostForModal?: Dispatch<SetStateAction<PostComponentProps | undefined>>
   isMobile: boolean
-  session: SessionProps | null
 }
 
-const Post = ({ post, isListing, setPostForModal, session, isMobile }: PostComponent) => {
+const Post = ({ isListing, setPostForModal, session, isMobile, post }: WithSession & PostComponent) => {
   const router = useRouter()
   return (
     <div>
@@ -31,7 +30,7 @@ const Post = ({ post, isListing, setPostForModal, session, isMobile }: PostCompo
             <PostContent session={session} post={post} isListing={isListing} setPostForModal={setPostForModal} isMobile={isMobile} />
           </div>
         ) : isListing ? (
-          <article data-is-listing={'true'} className={`post-container article`} id={post._id}>
+          <article data-is-listing={'true'} className={`post-container article`} id={post.id}>
             <Link style={{ pointerEvents: 'all' }} href={post.permalink} />
             <div className="pointer-events-none relative">
               <PostContent session={session} post={post} isListing={isListing} isMobile={isMobile} setPostForModal={setPostForModal} />

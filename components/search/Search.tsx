@@ -61,7 +61,25 @@ const Search = ({ posts, type = 'posts', q, isMobile, session }: SearchPageProps
               {posts?.length > 0 ? (
                 posts.map((post) => (
                   <div key={post._id} className="h-auto w-full">
-                    <Post session={session} post={post} isListing={false} isMobile={isMobile} />
+                    <Post
+                      session={session}
+                      isListing={false}
+                      isMobile={isMobile}
+                      post={{
+                        author: post.author,
+                        community: post.community,
+                        communityIcon: post.communityIcon,
+                        createdAt: post.createdAt,
+                        id: post._id,
+                        liked: post.liked,
+                        numComments: post.numComments,
+                        permalink: post.permalink,
+                        title: post.title,
+                        ups: post.ups,
+                        body: post.body,
+                        mediaInfo: post.mediaInfo,
+                      }}
+                    />
                   </div>
                 ))
               ) : (
