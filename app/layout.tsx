@@ -12,7 +12,7 @@ const RootLayout = ({ children }: ChildrenProps) => {
   const token = cookies().get('token')
 
   return (
-    <html lang="en">
+    <html className="dark" lang="en">
       <body cz-shortcut-listen="true" className="bg-bbaby-dark text-bbaby-text">
         <div id="container">
           <div tabIndex={-1} />
