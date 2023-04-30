@@ -60,14 +60,10 @@ const PostContent = ({ post, isListing, isMobile, setPostForModal, session }: Wi
             </div>
           )}
         </div>
-        {isMobile ? (
-          isListing ? (
-            <footer className="pointer-events-none">
-              <PostButtons post={post} isListing={isListing} isMobile={isMobile} setPostForModal={setPostForModal} session={session} />
-            </footer>
-          ) : (
+        {isMobile && isListing ? (
+          <footer className="pointer-events-none">
             <PostButtons post={post} isListing={isListing} isMobile={isMobile} setPostForModal={setPostForModal} session={session} />
-          )
+          </footer>
         ) : (
           <PostButtons post={post} isListing={isListing} isMobile={isMobile} setPostForModal={setPostForModal} session={session} />
         )}

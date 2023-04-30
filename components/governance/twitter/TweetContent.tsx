@@ -79,16 +79,12 @@ const TweetContent = ({ session, isMobile, language, tweet, user, media, isListi
             )}
           </div>
         </div>
-        {isMobile ? (
-          isListing ? (
-            <footer className="pointer-events-none">
-              <TweetButtons numComments={tweet.public_metrics.retweet_count} translate={translate} />
-            </footer>
-          ) : (
-            <TweetButtons numComments={tweet.public_metrics.retweet_count} translate={translate} />
-          )
+        {isMobile && isListing ? (
+          <footer className="pointer-events-none">
+            <TweetButtons isListing={isListing} isMobile={isMobile} numComments={tweet.public_metrics.retweet_count} translate={translate} />
+          </footer>
         ) : (
-          <TweetButtons numComments={tweet.public_metrics.retweet_count} translate={translate} />
+          <TweetButtons isListing={isListing} isMobile={isMobile} numComments={tweet.public_metrics.retweet_count} translate={translate} />
         )}
       </div>
       {showSubmit && (

@@ -68,9 +68,9 @@ const Voting = ({ ups, postId, session, liked }: WithSession & VotingProps) => {
       <button
         aria-label="downvote"
         className="h-6 w-6"
-        onClick={(event) => {
-          event.preventDefault()
-          event.stopPropagation()
+        onClick={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
           handleVoteDown()
         }}
       >

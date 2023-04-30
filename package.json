@@ -14,12 +14,12 @@
   },
   "dependencies": {
     "@react-oauth/google": "^0.11.0",
-    "@types/node": "18.16.1",
+    "@types/node": "18.16.3",
     "@types/react": "18.2.0",
     "@types/react-dom": "18.2.1",
     "eslint": "8.39.0",
-    "eslint-config-next": "^13.3.1",
-    "next": "^13.3.1",
+    "eslint-config-next": "^13.3.2-canary.14",
+    "next": "13.3.1",
     "react": "18.3.0-next-3d615fc14-20220919",
     "react-clickout-ts": "^2023.1.1",
     "react-dom": "18.2.0",
@@ -39,7 +39,7 @@
     "eslint-plugin-unused-imports": "^2.0.0",
     "postcss": "^8.4.23",
     "prettier": "^2.8.8",
-    "prettier-plugin-tailwindcss": "^0.2.7",
+    "prettier-plugin-tailwindcss": "^0.2.8",
     "tailwindcss": "^3.3.2"
   }
 }
