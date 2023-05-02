@@ -39,7 +39,11 @@ const ssrgov = {
         headers: getHeaders(),
       })
       const data = await res.json()
-      if (!res.ok) return new Error(data?.msg)
+      if (!res.ok) {
+        if (res.status === 401) {
+          return 'Unauthorized'
+        } else return new Error(data?.msg)
+      }
       return data as TweetResponse
     } catch (err) {
       return catchServer(err)

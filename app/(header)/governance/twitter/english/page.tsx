@@ -4,6 +4,7 @@ import TwitterFeed from '../../../../../components/governance/twitter/TwitterFee
 import ServerMsg from '../../../../../components/utils/message/ServerMsg'
 import { deviceIsMobile } from '../../../../../components/API/config/serverConfig'
 import ssrapis from '../../../../../components/API/ssrapis'
+import { redirect } from 'next/navigation'
 
 const TwitterPageEnglish = () => {
   const isMobile = deviceIsMobile()
@@ -11,7 +12,9 @@ const TwitterPageEnglish = () => {
   const session = use(ssrapis.getSession())
   const tweets = use(ssrgov.getMyListTweets(lang))
 
-  if (tweets instanceof Error) {
+  if (tweets === 'Unauthorized') {
+    redirect('/settings')
+  } else if (tweets instanceof Error) {
     return <ServerMsg error={tweets.message} />
   }
 

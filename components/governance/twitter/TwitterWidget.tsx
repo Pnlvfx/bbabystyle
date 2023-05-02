@@ -1,4 +1,3 @@
-'use client'
 import Link from 'next/link'
 import { RiArrowUpSLine } from 'react-icons/ri'
 
@@ -21,7 +20,7 @@ const TwitterWidget = () => {
           <div className="flex h-[50px] items-center p-1">
             <p className="mx-3 text-sm font-extrabold">{index + 1}</p>
             <RiArrowUpSLine className="mr-2 h-5 w-5 text-green-500" />
-            <div className="rounded-full w-[30px] h-[30px] bg-[#045db0]" />
+            <div className="h-[30px] w-[30px] rounded-full bg-[#045db0]" />
             <p className="ml-2 text-sm font-bold">{user.name}</p>
           </div>
         </Link>
