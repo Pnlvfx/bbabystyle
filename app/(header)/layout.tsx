@@ -5,12 +5,10 @@ import ssrapis from '../../components/API/ssrapis'
 import ShowCommunity from '../../components/community/ShowCommunity'
 import Header from '../../components/header/Header'
 import HiddenLayout from '../../components/HiddenLayout'
-import { cookies } from 'next/headers'
 import { deviceIsMobile } from '../../components/API/config/serverConfig'
 
 const Layout = ({ children }: ChildrenProps) => {
   const isMobile = deviceIsMobile()
-  const token = cookies().get('token')
   const session = use(ssrapis.getSession())
   return (
     <>
@@ -31,43 +29,14 @@ const Layout = ({ children }: ChildrenProps) => {
         </div>
         <ShowCommunity />
       </div>
-      <HiddenLayout token={token} isMobile={isMobile} session={session} />
+      <HiddenLayout isMobile={isMobile} session={session} />
       {process.env.NODE_ENV === 'production' && (
-        <>
-          {/* <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`} />
-          <Script
-            id="gtag-init"
-            async
-            defer
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
-              page_path: window.location.pathname
-            });
-          `,
-            }}
-          />
-          <Script id="onRouteChange">
-            {`(function (history) {
-            var pushState = history.pushState;
-            history.pushState = function(state){
-                var result = pushState.apply(history, arguments);
-                window.dispatchEvent(new Event("routeChange", state));
-                return result;
-            }
-        })(window.history)`}
-          </Script> */}
-          <Script
-            async
-            strategy="beforeInteractive"
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7203519143982992"
-            crossOrigin="anonymous"
-          />
-        </>
+        <Script
+          async
+          strategy="beforeInteractive"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7203519143982992"
+          crossOrigin="anonymous"
+        />
       )}
     </>
   )

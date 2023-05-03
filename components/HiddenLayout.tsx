@@ -1,7 +1,6 @@
 'use client'
 
 import { clientUrl } from '../config/config'
-import GoogleAnalytics from './google/GoogleAnalytics'
 import oauthapis from './API/oauthapis'
 import AuthModal from './auth/modal/AuthModal'
 import { useModals } from './auth/modal/ModalsProvider'
@@ -9,21 +8,19 @@ import SearchDropdown from './header/search/SearchDropdown'
 import UserMenu from './header/usermenu/UserMenu'
 import { useMessage } from './utils/message/TimeMsgContext'
 import { catchErrorWithMessage } from './API/config/apiErrors'
-import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies'
-import Analytics from './utils/Analytics'
 import { useGoogleOneTapLogin } from '@react-oauth/google'
+import UserAnalytics from './utils/UserAnalytics'
 
-const HiddenLayout = ({ token, isMobile, session }: WithSession & { isMobile: boolean; token?: RequestCookie }) => {
+const HiddenLayout = ({ isMobile, session }: WithSession & { isMobile: boolean }) => {
   const modals = useModals()
 
   return (
     <>
-      {!token && modals.showAuth !== 'hidden' && <AuthModal />}
+      {!session?.user && modals.showAuth !== 'hidden' && <AuthModal />}
       {!isMobile && <SearchDropdown />}
       {modals.showUserMenu && <UserMenu session={session} />}
-      {process.env.NODE_ENV === 'production' && <GoogleAnalytics />}
-      {!token && !clientUrl.startsWith('http://192') && <UseOneTap />}
-      <Analytics />
+      {!session?.user && !clientUrl.startsWith('http://192') && <UseOneTap />}
+      <UserAnalytics />
     </>
   )
 }

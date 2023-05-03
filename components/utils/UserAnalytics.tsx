@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { server } from '../../config/config'
 
-const Analytics = () => {
+const UserAnalytics = () => {
   const shouldRequest = useRef(true)
   useEffect(() => {
     const analytics = async () => {
@@ -21,4 +21,4 @@ const Analytics = () => {
   return null
 }
 
-export default Analytics
+export default UserAnalytics

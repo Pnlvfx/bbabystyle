@@ -25,12 +25,7 @@ const TwitterFeed = ({ tweets: data, language, isMobile, session }: TwitterFeedP
         })
       : data.data
 
-  const getMoreTweets = async () => {
-    try {
-      // const response = allTweets.current.data.slice(tweets.length, tweets.length + 10)
-      // setTweets((t) => [...t, ...response])
-    } catch (err) {}
-  }
+  const getMoreTweets = async () => {}
 
   return (
     <InfiniteScroll
