@@ -7,11 +7,11 @@ import { LOGO } from '../../../config/config'
 import Image from 'next/image'
 import Submit from '../../submit/Submit'
 import { TweetPageProps } from './Tweet'
-import TweetTitle from './TweetTitle'
 import TweetButtons from './TweetButtons'
 import govapis from '../../API/govapis'
 import { catchErrorWithMessage } from '../../API/config/apiErrors'
 import { useMessage } from '../../utils/message/TimeMsgContext'
+import PostTitle from '../../post/postutils/PostTitle'
 
 const TweetContent = ({ session, isMobile, language, tweet, user, media, isListing }: WithSession & TweetPageProps) => {
   const [translated, setTranslated] = useState('')
@@ -38,9 +38,9 @@ const TweetContent = ({ session, isMobile, language, tweet, user, media, isListi
   if (tweet.public_metrics?.like_count === undefined || !tweet.created_at || !user.profile_image_url || !tweet.author_id) return null
   return (
     <>
-      <div className="voting absolute left-0 top-0 box-border w-10 flex-col items-center border-l-4 border-solid border-transparent py-2 pr-1">
+      <div className="voting">
         <div className="flex flex-col items-center">
-          <Voting ups={tweet.public_metrics?.like_count} postId={tweet.id} liked={null} session={session} />
+          <Voting ups={tweet.public_metrics.like_count} postId={tweet.id} liked={null} session={session} />
         </div>
       </div>
       <div className="relative bg-bbaby-brighter pt-2">
@@ -65,7 +65,7 @@ const TweetContent = ({ session, isMobile, language, tweet, user, media, isListi
             isMobile={isMobile}
           />
         )}
-        <TweetTitle title={tweet.text} isMobile={isMobile} isListing={isListing} />
+        <PostTitle permalink="/" title={tweet.text} isMobile={isMobile} isListing={isListing} />
         <div className="mt-2">
           <div className="relative max-h-[512px] overflow-hidden">
             {media?.type === 'photo' && image && <Image src={image} height={media.height} alt="Tweet Image" width={media.width} />}
@@ -98,7 +98,9 @@ const TweetContent = ({ session, isMobile, language, tweet, user, media, isListi
           minimal={true}
           session={session}
         >
-          <Submit />
+          <div className={`${isMobile && isListing && 'pointer-events-auto'}`}>
+            <Submit />
+          </div>
         </SubmitContextProvider>
       )}
     </>

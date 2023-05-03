@@ -47,6 +47,15 @@
 
 .voting {
   display: none;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  box-sizing: border-box;
+  width: 40px;
+  flex-direction: column;
+  align-items: center;
+  border-left: 4px solid transparent;
+  padding: 8px 4px 0px;
 }
 
 .bar-voting {

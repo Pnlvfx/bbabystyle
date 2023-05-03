@@ -7,32 +7,34 @@ import TimeAgo from '../../react-time-ago'
 interface PostHeaderProps {
   community: string
   communityIcon: string
+  communityUrl: string
   createdAt: Date
   author: string
+  authorUrl: string
   isMobile: boolean
   isListing?: boolean
 }
 
-const PostHeader = ({ createdAt, community, author, communityIcon, isMobile, isListing }: PostHeaderProps) => {
+const PostHeader = ({ communityIcon, createdAt, community, author, authorUrl, communityUrl, isMobile, isListing }: PostHeaderProps) => {
   const router = useRouter()
 
   const linkToCommunity = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
     e.stopPropagation()
-    router.push(`/b/${community.toLowerCase()}`)
+    router.push(communityUrl)
   }
 
   const linkToAuthor = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
     e.stopPropagation()
-    router.push(`/user/${author.toLowerCase()}`)
+    router.push(authorUrl)
   }
 
   return (
-    <div className={`relative mx-2 mb-2 flex items-start text-[12px] leading-4`}>
+    <div className="relative mx-2 mb-2 flex items-start text-[12px] leading-4">
       <div className="flex-none align-baseline">
         <Link
-          href={`/b/${community.toLowerCase()}`}
+          href={communityUrl}
           aria-label="Community"
           className={`inline align-baseline font-bold leading-5 ${isMobile && isListing && 'articleLink'}`}
           onClick={linkToCommunity}
@@ -46,7 +48,7 @@ const PostHeader = ({ createdAt, community, author, communityIcon, isMobile, isL
         <div className="inline items-center font-normal leading-4">
           <div className="inline-block flex-none">
             <Link
-              href={`/b/${community.toLowerCase()}`}
+              href={communityUrl}
               className={`inline align-baseline font-bold leading-5 hover:underline ${isMobile && isListing && 'articleLink'}`}
               onClick={linkToCommunity}
             >
@@ -57,11 +59,7 @@ const PostHeader = ({ createdAt, community, author, communityIcon, isMobile, isL
           <span className="flex-none align-baseline text-reddit_text-darker">Posted by</span>{' '}
           <div className=" inline-block flex-none text-reddit_text-darker">
             <div>
-              <Link
-                href={`/user/${author.toLowerCase()}`}
-                className={`hover:underline ${isMobile && isListing && 'articleLink'}`}
-                onClick={linkToAuthor}
-              >
+              <Link href={authorUrl} className={`hover:underline ${isMobile && isListing && 'articleLink'}`} onClick={linkToAuthor}>
                 {'u/' + author}
               </Link>
             </div>

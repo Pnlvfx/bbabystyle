@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Linkify from './Linkify'
 
-export interface PostTitleProps {
+interface PostTitleProps {
   isListing?: boolean
   title: string
   permalink: string

@@ -10,6 +10,7 @@ import { useMessage } from './utils/message/TimeMsgContext'
 import { catchErrorWithMessage } from './API/config/apiErrors'
 import { useGoogleOneTapLogin } from '@react-oauth/google'
 import UserAnalytics from './utils/UserAnalytics'
+import { Analytics } from '@vercel/analytics/react'
 
 const HiddenLayout = ({ isMobile, session }: WithSession & { isMobile: boolean }) => {
   const modals = useModals()
@@ -21,6 +22,7 @@ const HiddenLayout = ({ isMobile, session }: WithSession & { isMobile: boolean }
       {modals.showUserMenu && <UserMenu session={session} />}
       {!session?.user && !clientUrl.startsWith('http://192') && <UseOneTap />}
       <UserAnalytics />
+      <Analytics />
     </>
   )
 }

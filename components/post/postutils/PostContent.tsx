@@ -10,7 +10,7 @@ import Video from '../../video-player'
 const PostContent = ({ post, isListing, isMobile, setPostForModal, session }: WithSession & PostComponent) => {
   return (
     <>
-      <div className="voting absolute left-0 top-0 box-border w-10 flex-col items-center border-l-4 border-solid border-transparent py-2 pr-1">
+      <div className="voting">
         <div className="flex flex-col items-center">
           <Voting ups={post.ups} postId={post.id} liked={post.liked} session={session} />
         </div>
@@ -20,8 +20,10 @@ const PostContent = ({ post, isListing, isMobile, setPostForModal, session }: Wi
           <header>
             <PostHeader
               author={post.author}
+              authorUrl={`/user/${post.author.toLowerCase()}`}
               community={post.community}
               communityIcon={post.communityIcon}
+              communityUrl={`/b/${post.community.toLowerCase()}`}
               createdAt={post.createdAt}
               isListing={isListing}
               isMobile={isMobile}
@@ -30,8 +32,10 @@ const PostContent = ({ post, isListing, isMobile, setPostForModal, session }: Wi
         ) : (
           <PostHeader
             author={post.author}
+            authorUrl={`/user/${post.author.toLowerCase()}`}
             community={post.community}
             communityIcon={post.communityIcon}
+            communityUrl={`/b/${post.community.toLowerCase()}`}
             createdAt={post.createdAt}
             isListing={isListing}
             isMobile={isMobile}
