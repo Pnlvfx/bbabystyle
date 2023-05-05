@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState } from 'react'
+import { MouseEvent } from 'react'
 import { formatDuration, handlePlayPause } from '../hooks/hooks'
 import { useProvider } from './VideoPlayerContext'
 import Controls from './controls/Controls'
@@ -6,9 +6,19 @@ import '../css/video.css'
 import { VideoPlayerProps } from '../..'
 
 const VideoPlayer = ({ url, poster, Logo }: VideoPlayerProps) => {
-  const { player, videoContainerRef, setIsPlaying, setIsEnded, setPlayed, setProgressPosition, setDuration, volumeSlider, setIsMuted, setControls } =
-    useProvider()
-  const [loading, setLoading] = useState(false)
+  const {
+    player,
+    videoContainerRef,
+    setIsPlaying,
+    setIsEnded,
+    setPlayed,
+    setProgressPosition,
+    volumeSlider,
+    setIsMuted,
+    setControls,
+    loading,
+    setLoading,
+  } = useProvider()
 
   const playFromContainer = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
@@ -20,10 +30,6 @@ const VideoPlayer = ({ url, poster, Logo }: VideoPlayerProps) => {
     setIsPlaying(true)
     setIsEnded(false)
     setLoading(false)
-  }
-
-  const onLoading = () => {
-    setLoading(true)
   }
 
   const onPause = () => {
@@ -40,13 +46,6 @@ const VideoPlayer = ({ url, poster, Logo }: VideoPlayerProps) => {
     setPlayed(formatDuration(player.current.currentTime))
     const percent = player.current.currentTime / player.current.duration
     setProgressPosition(percent)
-  }
-
-  const onLoadedMetadata = () => {
-    if (!player.current) return
-    const d = formatDuration(player.current?.duration)
-    setDuration(d)
-    setLoading(false)
   }
 
   const onVolumeChange = () => {
@@ -71,7 +70,7 @@ const VideoPlayer = ({ url, poster, Logo }: VideoPlayerProps) => {
   }
 
   return (
-    <div className="container" onMouseEnter={onVideo} onMouseLeave={outVideo} ref={videoContainerRef} onClick={playFromContainer}>
+    <div className="video-container" onMouseEnter={onVideo} onMouseLeave={outVideo} ref={videoContainerRef} onClick={playFromContainer}>
       <video
         className="video"
         ref={player}
@@ -81,11 +80,9 @@ const VideoPlayer = ({ url, poster, Logo }: VideoPlayerProps) => {
         playsInline
         onPlay={onPlay}
         // onWaiting={onLoading} // important
-        onLoadStart={onLoading}
         onPause={onPause}
         onEnded={onEnded}
         onTimeUpdate={onTimeUpdate}
-        onLoadedMetadata={onLoadedMetadata}
         onVolumeChange={onVolumeChange}
       >
         {Array.isArray(url) ? url.map((source, index) => <source key={index} src={source.url} />) : <source src={url} />}

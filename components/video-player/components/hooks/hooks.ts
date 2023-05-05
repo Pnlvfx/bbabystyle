@@ -8,9 +8,11 @@ export const getDuration = (player: HTMLVideoElement) => {
   return duration
 }
 
-export const handlePlayPause = (player: MutableRefObject<HTMLVideoElement | null>) => {
-  if (!player.current) return
-  player.current.paused ? player.current.play() : player.current.pause()
+export const handlePlayPause = async (player: MutableRefObject<HTMLVideoElement | null>) => {
+  try {
+    if (!player.current) return
+    player.current.paused ? await player.current.play() : player.current.pause()
+  } catch (err) {}
 }
 
 const leadingZeroFormatter = new Intl.NumberFormat(undefined, {

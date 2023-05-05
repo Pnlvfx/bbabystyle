@@ -1,13 +1,24 @@
 import React, { ReactNode, useEffect } from 'react'
 import { useProvider } from './VideoPlayerContext'
+import { formatDuration } from '../hooks/hooks'
 
 interface EffectsProps {
   children: ReactNode
 }
 
 const Effects = ({ children }: EffectsProps) => {
-  const { player, setIsMuted, volumeSliderContainer, volumeSlider, timelineBall, setProgressPosition, timelineRef, previewPositionRef } =
-    useProvider()
+  const {
+    player,
+    setIsMuted,
+    volumeSliderContainer,
+    volumeSlider,
+    timelineBall,
+    setProgressPosition,
+    timelineRef,
+    previewPositionRef,
+    setDuration,
+    setLoading,
+  } = useProvider()
 
   let isScrabbing = false
   let wasPaused = false
@@ -15,7 +26,7 @@ const Effects = ({ children }: EffectsProps) => {
   let isChangeVolume = false
   let isStillClicked = false
 
-  const toggleScrubbing = (e: MouseEvent) => {
+  const toggleScrubbing = async (e: MouseEvent) => {
     const rect = timelineRef.current?.getBoundingClientRect()
     if (!rect?.x || !timelineBall.current || !player.current) return
     const percent = Math.min(Math.max(0, e.x - rect.x), rect.width) / rect.width
@@ -26,7 +37,11 @@ const Effects = ({ children }: EffectsProps) => {
       player.current.pause()
     } else {
       player.current.currentTime = percent * player.current.duration
-      if (!wasPaused) player.current.play()
+      if (!wasPaused) {
+        try {
+          await player.current.play()
+        } catch (err) {}
+      }
       setTimeout(() => {
         if (!timelineBall.current) return
         timelineBall.current.style.opacity = '0'
@@ -87,29 +102,36 @@ const Effects = ({ children }: EffectsProps) => {
     }
   }
 
-  const addListeners = () => {
-    //PROGRESS BAR
-    timelineRef.current?.addEventListener('mousemove', handleTimelineUpdate) //preview
-    timelineRef.current?.addEventListener('mousedown', toggleScrubbing) //progress
-    document.addEventListener('mouseup', documentMouseUP)
-    document.addEventListener('mousemove', documentMouseMOVE)
-    //VOLUME
-    volumeSliderContainer.current?.addEventListener('mousedown', clickVolumeSlider)
-    volumeSliderContainer.current?.addEventListener('mousemove', slideOnVolume)
-  }
-
-  const removeListeners = () => {
-    //PROGRESS BAR
-    timelineRef.current?.removeEventListener('mousemove', handleTimelineUpdate) //preview
-    timelineRef.current?.removeEventListener('mousedown', toggleScrubbing) //progress
-    document.removeEventListener('mouseup', documentMouseUP)
-    document.removeEventListener('mousemove', documentMouseMOVE)
-    //VOLUME
-    volumeSliderContainer.current?.removeEventListener('mousedown', clickVolumeSlider)
-    volumeSliderContainer.current?.removeEventListener('mousemove', slideOnVolume)
-  }
-
   useEffect(() => {
+    const onLoadedMetadata = () => {
+      if (!player.current) return
+      const d = formatDuration(player.current.duration)
+      setDuration(d)
+      setLoading(false)
+    }
+    const addListeners = () => {
+      player.current?.addEventListener('loadedmetadata', onLoadedMetadata)
+      //PROGRESS BAR
+      timelineRef.current?.addEventListener('mousemove', handleTimelineUpdate) //preview
+      timelineRef.current?.addEventListener('mousedown', toggleScrubbing) //progress
+      document.addEventListener('mouseup', documentMouseUP)
+      document.addEventListener('mousemove', documentMouseMOVE)
+      //VOLUME
+      volumeSliderContainer.current?.addEventListener('mousedown', clickVolumeSlider)
+      volumeSliderContainer.current?.addEventListener('mousemove', slideOnVolume)
+    }
+
+    const removeListeners = () => {
+      player.current?.removeEventListener('loadedmetadata', onLoadedMetadata)
+      //PROGRESS BAR
+      timelineRef.current?.removeEventListener('mousemove', handleTimelineUpdate) //preview
+      timelineRef.current?.removeEventListener('mousedown', toggleScrubbing) //progress
+      document.removeEventListener('mouseup', documentMouseUP)
+      document.removeEventListener('mousemove', documentMouseMOVE)
+      //VOLUME
+      volumeSliderContainer.current?.removeEventListener('mousedown', clickVolumeSlider)
+      volumeSliderContainer.current?.removeEventListener('mousemove', slideOnVolume)
+    }
     addListeners()
     return () => {
       removeListeners()

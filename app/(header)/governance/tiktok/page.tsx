@@ -7,6 +7,7 @@ import tiktokapis from '../../../../components/API/tiktokapis/tiktokapis'
 import { buttonClass } from '../../../../components/utils/buttons/Button'
 import { useMessage } from '../../../../components/utils/message/TimeMsgContext'
 import { Spinner } from '../../../../components/utils/Spinner'
+import TextareaAutosize from '../../../../components/utils/TextareaAutosize'
 
 const TiktokPage = () => {
   const [url, setUrl] = useState('')
@@ -28,10 +29,13 @@ const TiktokPage = () => {
 
   return (
     <div className="mt-[30px] flex flex-col items-center justify-center lg:mx-12">
-      <textarea
+      <TextareaAutosize
         value={url}
-        className="costum-shadow w-full max-w-[640px] resize-none rounded-md bg-bbaby-brighter px-4 pt-4 outline-none"
-        onChange={(e) => setUrl(e.target.value)}
+        rows={1}
+        className="w-full max-w-[640px] resize-none rounded-md bg-bbaby-brighter px-4 py-3 outline-none"
+        onChange={(e) => {
+          setUrl(e.target.value)
+        }}
         placeholder={'Insert the url here!'}
       />
       <div className="mt-6 flex justify-center">

@@ -1,4 +1,4 @@
-import React, { createContext, Dispatch, MutableRefObject, ReactNode, SetStateAction, useContext, useRef, useState } from 'react'
+import { createContext, Dispatch, MutableRefObject, ReactNode, SetStateAction, useContext, useRef, useState } from 'react'
 
 interface VideoPlayerContextProps {
   player: MutableRefObject<HTMLVideoElement | null>
@@ -22,6 +22,8 @@ interface VideoPlayerContextProps {
   setIsMuted: Dispatch<SetStateAction<boolean>>
   controls: boolean
   setControls: Dispatch<SetStateAction<boolean>>
+  loading: boolean
+  setLoading: Dispatch<SetStateAction<boolean>>
 }
 
 const VideoPlayerContext = createContext<VideoPlayerContextProps | Record<string, never>>({})
@@ -46,6 +48,7 @@ export const VideoPlayerContextProvider = ({ children, duration: initialDuration
   const [isEnded, setIsEnded] = useState(false)
   const [controls, setControls] = useState(false)
   const [isMuted, setIsMuted] = useState(true)
+  const [loading, setLoading] = useState(true)
 
   return (
     <VideoPlayerContext.Provider
@@ -71,6 +74,8 @@ export const VideoPlayerContextProvider = ({ children, duration: initialDuration
         setIsMuted,
         controls,
         setControls,
+        loading,
+        setLoading,
       }}
     >
       {children}

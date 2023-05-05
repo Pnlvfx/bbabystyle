@@ -11,7 +11,8 @@ const TiktakText = ({ value, setValue }: TiktakTextProps) => {
     <div className="mt-[30px] flex items-center justify-center lg:mx-12">
       <TextareaAutosize
         value={value}
-        className="costum-shadow w-full max-w-[640px] rounded-md bg-bbaby-brighter px-4 py-3 outline-none"
+        rows={1}
+        className="w-full max-w-[640px] rounded-md bg-bbaby-brighter px-4 py-3 outline-none"
         onChange={(e) => {
           setValue(e.target.value)
         }}
