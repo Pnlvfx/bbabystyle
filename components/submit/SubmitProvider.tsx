@@ -2,14 +2,14 @@
 import { useContext } from 'react'
 import { createContext, Dispatch, SetStateAction, useState } from 'react'
 
-const SubmitContext = createContext<SubmitContextType | {}>({})
+const SubmitContext = createContext<SubmitContextType | undefined>(undefined)
 
 interface SubmitContextType {
   session: SessionProps | null
   title: string
   setTitle: Dispatch<SetStateAction<string>>
-  body: string
-  setBody: Dispatch<SetStateAction<string>>
+  body?: string
+  setBody: Dispatch<SetStateAction<string | undefined>>
   height: number
   setHeight: Dispatch<SetStateAction<number>>
   width: number
@@ -29,7 +29,7 @@ interface SubmitContextType {
   sharePostToTwitter: boolean
   setSharePostToTwitter: Dispatch<SetStateAction<boolean>>
   minimal: boolean
-  initialCommunity: CommunityProps
+  initialCommunity?: CommunityProps
 }
 
 interface SubmitContextProviderProps extends ChildrenProps {
@@ -51,8 +51,8 @@ export const SubmitContextProvider = (props: SubmitContextProviderProps) => {
   const [width, setWidth] = useState(props.width || 0)
   const [height, setHeight] = useState(props.height || 0)
   const [selectedCommunity, setSelectedCommunity] = useState(props.initialCommunity || undefined)
-  const [selectedFile, setSelectedFile] = useState(props.type === 'photo' ? props.image : props.type === 'video' ? props.video : null)
-  const [thumbnail, setThumbnail] = useState(null)
+  const [selectedFile, setSelectedFile] = useState(props.type === 'photo' ? props.image || null : props.type === 'video' ? props.video || null : null)
+  const [thumbnail, setThumbnail] = useState<string | null>(null)
   const [isImage, setIsImage] = useState(props.type === 'photo' ? true : false)
   const [isVideo, setIsVideo] = useState(props.type === 'video' ? true : false)
   const [sharePostToTG, setSharePostToTG] = useState(props.session?.user?.role === 1 && process.env.NODE_ENV === 'production' ? true : false)
@@ -94,7 +94,7 @@ export const SubmitContextProvider = (props: SubmitContextProviderProps) => {
 }
 
 export const useSubmitProvider = () => {
-  const context = useContext(SubmitContext) as SubmitContextType
+  const context = useContext(SubmitContext)
   if (!context) {
     throw new Error('Session component must be used with UserContextProvider component')
   }

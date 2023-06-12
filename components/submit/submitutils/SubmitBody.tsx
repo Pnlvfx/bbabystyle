@@ -84,7 +84,7 @@ const Body = () => {
                                     <>
                                       <div className="absolute inset-0 z-[1] opacity-100">
                                         <div className="relative h-full max-h-[100%] max-w-[100%] cursor-default select-none overflow-hidden whitespace-nowrap">
-                                          <Video url={selectedFile} poster={thumbnail as string} Logo={LOGO} />
+                                          <Video url={selectedFile} poster={thumbnail} Logo={LOGO} />
                                           <div className="absolute inset-0" />
                                         </div>
                                       </div>

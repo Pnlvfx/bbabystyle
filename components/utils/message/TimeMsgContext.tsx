@@ -23,7 +23,7 @@ export interface TimeMsgContextProps {
   showMessage: (value: string, options?: ShowMessageOptions) => void
 }
 
-const TimeMsgContext = createContext({})
+const TimeMsgContext = createContext<TimeMsgContextProps | undefined>(undefined)
 
 export const TimeMsgContextProvider = ({ children, isMobile: contextMobile }: ChildrenProps & { isMobile: boolean }) => {
   const [message, setMessage] = useState<MessageProps | undefined>()
@@ -93,7 +93,7 @@ export const TimeMsgContextProvider = ({ children, isMobile: contextMobile }: Ch
 }
 
 export const useMessage = () => {
-  const context = useContext(TimeMsgContext) as TimeMsgContextProps
+  const context = useContext(TimeMsgContext)
   if (!context) {
     throw new Error('Message component must be used with TimeMsgProvider component')
   }

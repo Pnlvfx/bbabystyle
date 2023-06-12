@@ -26,7 +26,7 @@ interface VideoPlayerContextProps {
   setLoading: Dispatch<SetStateAction<boolean>>
 }
 
-const VideoPlayerContext = createContext<VideoPlayerContextProps | Record<string, never>>({})
+const VideoPlayerContext = createContext<VideoPlayerContextProps | undefined>(undefined)
 
 interface VideoPlayerContextProviderProps {
   children: ReactNode
