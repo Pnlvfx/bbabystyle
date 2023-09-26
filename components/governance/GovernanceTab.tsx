@@ -8,9 +8,7 @@ const GovernanceTab = () => {
     { title: 'Twitter', url: '/governance/twitter/english' },
     { title: 'News', url: '/governance/news' },
     { title: 'Reddit', url: '/governance/reddit' },
-    { title: 'TikTak', url: '/governance/tiktak' },
     { title: 'TikTok', url: '/governance/tiktok' },
-    { title: 'Quora', url: '/governance/quora' },
   ]
   const pathname = usePathname()
 

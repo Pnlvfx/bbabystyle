@@ -6,19 +6,20 @@ import AddImage from './AddImage'
 import AddVideo from './AddVideo'
 import styles from './submit-button.module.css'
 
+const Button = (title: string, icon: ReactNode) => {
+  return (
+    <span className="h-8 w-8">
+      <button role={'button'} tabIndex={-1} title={title} className={`${styles.submitButton} transition-all`}>
+        {icon}
+        <div className="absolute inset-0">
+          <div className={`${styles.submitButtonTitle} transition-opacity`}>{title}</div>
+        </div>
+      </button>
+    </span>
+  )
+}
+
 const SubmitButton = () => {
-  const Button = (title: string, icon: ReactNode) => {
-    return (
-      <span className="h-8 w-8">
-        <button role={'button'} tabIndex={-1} title={title} className={`${styles.submitButton} transition-all`}>
-          {icon}
-          <div className="absolute inset-0">
-            <div className={`${styles.submitButtonTitle} transition-opacity`}>{title}</div>
-          </div>
-        </button>
-      </span>
-    )
-  }
 
   return (
     <>
