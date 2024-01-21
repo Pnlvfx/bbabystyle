@@ -5,10 +5,10 @@ import { clientUrl } from '../config/config'
 import { cookies } from 'next/headers'
 import { deviceIsMobile } from '../components/API/config/serverConfig'
 import GoogleProvider from '../components/auth/GoogleProvider'
+import type { Metadata, Viewport } from 'next'
 
 const RootLayout = ({ children }: ChildrenProps) => {
   const isMobile = deviceIsMobile()
-
   const token = cookies().get('token')
 
   return (
@@ -37,20 +37,21 @@ const RootLayout = ({ children }: ChildrenProps) => {
 
 export default RootLayout
 
-export const metadata = {
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#1a1a1b',
+}
+
+export const metadata: Metadata = {
   title: {
     default: 'Bbabystyle - Free speech',
     template: '%s',
   },
   description:
     "With Bbabystyle, you can build your own community, share your thoughts and ideas, and participate in lively debates. Whether you're looking to make new friends, learn from others, or simply express yourself, Bbabystyle provides the perfect platform for you to do so. Join the conversation today and see what the community has to offer!",
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-  },
   referrer: 'origin-when-cross-origin',
   manifest: process.env.NODE_ENV === 'production' ? `${clientUrl}/manifest.json` : undefined,
-  themeColor: '#1a1a1b',
   applicationName: 'bbabystyle',
 
   appleWebApp: {

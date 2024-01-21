@@ -7,9 +7,8 @@ import "./user-settings.css";
 const SettingsLayout = ({ children }: ChildrenProps) => {
   const session = use(ssrapis.getSession());
 
-  if (!session || !session.user) {
-    redirect("/");
-  }
+  if (!session || !session.user) redirect("/");
+  
   return (
     <div className="pb-10 bg-bbaby-brighter">
       <div className="relative box-border">

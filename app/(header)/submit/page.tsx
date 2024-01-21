@@ -8,9 +8,7 @@ import TempSubmitWid from '../../../components/widget/TempSubmitWid'
 const SubmitPage = () => {
   const session = use(ssrapis.getSession())
 
-  if (!session?.user) {
-    redirect('/')
-  }
+  if (!session?.user) redirect('/')
 
   return (
     <div className="mx-auto my-0 box-border flex max-w-[1248px] flex-row justify-center md:px-6 md:py-5">

@@ -5,9 +5,6 @@ const nextConfig = {
   images: {
     domains: ['res.cloudinary.com', 'pbs.twimg.com', 'www.paypal.com', 'images.pexels.com', 'localhost', 'api.bbabystyle.com'],
   },
-  experimental: {
-    appDir: true,
-  },
 }
 
 module.exports = nextConfig
