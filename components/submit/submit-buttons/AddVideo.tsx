@@ -8,7 +8,7 @@ const AddVideo = () => {
   const message = useMessage()
   const errMessage = `Sorry, we accept only images (.png, .jpeg, .gif) and videos (.mp4, .mov)`
   const { setSelectedFile, setIsVideo, setWidth, setHeight, setIsImage } = useSubmitProvider()
-  const fileVideoRef = useRef<HTMLInputElement>(null)
+  const fileVideoRef = useRefr<HTMLInputElement>(null)
 
   const addVideoToPost = async (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return message.showMessage(errMessage, { status: 'error' })

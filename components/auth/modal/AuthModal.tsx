@@ -1,12 +1,12 @@
-import { CloseIcon } from '../../utils/svg/SVG';
-import { useModals } from './ModalsProvider';
+import { CloseIcon } from '../../utils/svg/SVG'
+import { useModals } from './ModalsProvider'
 
 const AuthModal = () => {
-  const modals = useModals();
+  const modals = useModals()
 
   const closeModal = async () => {
-    modals.setShowAuth('hidden');
-  };
+    modals.setShowAuth('hidden')
+  }
 
   return (
     <div>
@@ -28,7 +28,7 @@ const AuthModal = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AuthModal;
+export default AuthModal
